@@ -15,7 +15,7 @@ namespace Nettbutikk.Models
         // If you wish to target a different database and/or database provider, modify the 'DbContext' 
         // connection string in the application configuration file.
         public DatabaseContext()
-            : base("name=Produkter")
+            : base("name=Products")
         {
             Database.CreateIfNotExists();
         }
@@ -23,31 +23,31 @@ namespace Nettbutikk.Models
         // Add a DbSet for each entity type that you want to include in your model. For more information 
         // on configuring and using a Code First model, see http://go.microsoft.com/fwlink/?LinkId=390109.
 
-        public DbSet<Produkter> Produkter { get; set; }
-        public DbSet<Produsenter> Produsenter { get; set; }
+        public DbSet<Products> Products { get; set; }
+        public DbSet<Producers> Producers { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Produsenter>()
+            modelBuilder.Entity<Producers>()
                 .HasKey(p => p.ID);
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
     }
 
-    public class Produkter
+    public class Products
     {
         [Key]
-        public int Varenummer { get; set; }
-        public String Navn { get; set; }
-        public String Beskrivelse { get; set; }
-        public int Pris { get; set; }
-        public int Produsentnr { get; set; }
-        public virtual Produsenter Produsenter { get; set; }
+        public int Itemnumber { get; set; }
+        public String Name { get; set; }
+        public String Description { get; set; }
+        public int Price { get; set; }
+        public int ProducerID { get; set; }
+        public virtual Producers Producers { get; set; }
     }
 
-    public class Produsenter
+    public class Producers
     {
         public int ID { get; set; }
-        public String Navn { get; set; }
+        public String Name { get; set; }
     }
 }
