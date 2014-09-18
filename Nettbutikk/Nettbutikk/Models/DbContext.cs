@@ -15,7 +15,7 @@ namespace Nettbutikk.Models
         // If you wish to target a different database and/or database provider, modify the 'DbContext' 
         // connection string in the application configuration file.
         public DatabaseContext()
-            : base("name=Products")
+            : base("name=Nettbutikk")
         {
             Database.CreateIfNotExists();
         }
@@ -41,7 +41,6 @@ namespace Nettbutikk.Models
         public String Name { get; set; }
         public String Description { get; set; }
         public int Price { get; set; }
-        public int ProducerID { get; set; }
         public virtual Producers Producers { get; set; }
     }
 
