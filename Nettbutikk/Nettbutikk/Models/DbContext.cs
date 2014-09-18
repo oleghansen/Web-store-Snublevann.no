@@ -42,11 +42,19 @@ namespace Nettbutikk.Models
         public String Description { get; set; }
         public int Price { get; set; }
         public virtual Producers Producers { get; set; }
+        public virtual Categories Categories { get; set; }
     }
 
     public class Producers
     {
         public int ID { get; set; }
         public String Name { get; set; }
+    }
+
+    public class Categories
+    {
+        public int ID { get; set; }
+        public String Name { get; set; }
+
     }
 }

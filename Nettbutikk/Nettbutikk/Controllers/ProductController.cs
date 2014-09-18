@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Nettbutikk.Models;
 
 namespace Nettbutikk.Controllers
 {
@@ -12,8 +13,9 @@ namespace Nettbutikk.Controllers
         public ActionResult ListProducts()
         {
             var db = new DBProduct();
-            List<Models.Product> listOfProducts = db.getAll();
+            List<Product> listOfProducts = db.getAll();
             return View(listOfProducts);
         }
     }
+
 }

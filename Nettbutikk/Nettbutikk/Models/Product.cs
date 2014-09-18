@@ -12,5 +12,6 @@ namespace Nettbutikk.Models
         public String description { get; set; }
         public int price { get; set; }
         public String producer { get; set; }
+        public String category { get; set; }
     }
 }
