@@ -1,6 +1,7 @@
 namespace Nettbutikk.Models
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Data.Entity;
     using System.Data.Entity.ModelConfiguration.Conventions;
@@ -25,11 +26,13 @@ namespace Nettbutikk.Models
 
         public DbSet<Products> Products { get; set; }
         public DbSet<Producers> Producers { get; set; }
-
+        public DbSet<Categories> Categories { get; set; }
+        public DbSet<OrderLines> OrderLines { get; set; }
+        public DbSet<Orders> Orders { get; set; }
+        public DbSet<Customers> Customers { get; set; }
+        public DbSet<Postalareas> Postalareas { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Producers>()
-                .HasKey(p => p.ID);
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
     }
@@ -41,14 +44,18 @@ namespace Nettbutikk.Models
         public String Name { get; set; }
         public String Description { get; set; }
         public int Price { get; set; }
+        public int ProducersID { get; set; }
         public virtual Producers Producers { get; set; }
+        public int CategoriesID { get; set; }
         public virtual Categories Categories { get; set; }
+        public virtual List<OrderLines> Orderlines { get; set; }
     }
 
     public class Producers
     {
         public int ID { get; set; }
         public String Name { get; set; }
+        public virtual List<Products> Products { get; set; }
     }
 
     public class Categories
@@ -56,5 +63,48 @@ namespace Nettbutikk.Models
         public int ID { get; set; }
         public String Name { get; set; }
 
+        public virtual List<Products> Products { get; set; } 
+
+    }
+
+    public class OrderLines //noen som har et bedre ord for ordrelinje?! 
+    {
+        public int ID { get; set; }
+        public int ProductID { get; set; }
+        public int Quantity { get; set; }
+        public int OrderID { get; set; }
+        public Products Product { get; set; }
+        public Orders Order { get; set; }
+    }
+
+    public class Orders
+    {
+        public int ID { get; set; }
+        public DateTime OrderDate { get; set; }
+        public virtual List<OrderLines> OrderLines { get; set; }
+        public int CustomerID { get; set; }
+
+
+    }
+
+
+    public class Customers
+    {
+        public int ID { get; set; }
+        public String Firstname { get; set; }
+        public String Lastname { get; set; }
+        public String Email { get; set; }
+        public String Phonenumber { get; set; }
+        public String Address { get; set; }
+        public int Postalcode { get; set; }
+        public Postalareas Postalareas { get; set; }
+        public virtual List<Orders> Orders { get; set; }
+    }
+
+    public class Postalareas
+    {
+        [Key]
+        public int Postalcode { get; set; }
+        public String Postalarea { get; set; }
     }
 }

@@ -8,7 +8,7 @@ namespace Nettbutikk.Models
 {
     public class Product
     {
-        [Display(Name = "Varenummer")]
+
         public int itemnumber { get; set; }
         [Display(Name = "Produktnavn")]
         public String name { get; set; }
@@ -20,5 +20,7 @@ namespace Nettbutikk.Models
         public String producer { get; set; }
         [Display(Name = "Kategori")]
         public String category { get; set; }
+        public int producerid { get; set; }
+        public int categoryid { get; set; }
     }
 }

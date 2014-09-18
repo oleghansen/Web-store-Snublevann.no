@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Nettbutikk.Models;
+using System.Web.WebPages.Html;
 
 namespace Nettbutikk
 {
@@ -17,10 +18,12 @@ namespace Nettbutikk
                     name = p.Name,
                     description = p.Description,
                     price = p.Price,
-                    producer = p.Producers.Name
+                    producer = p.Producers.Name,
+                    category = p.Categories.Name
                 }
             ).ToList();
             return allProducts;
         }
+
     }
 }

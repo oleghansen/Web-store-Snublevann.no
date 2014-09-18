@@ -16,6 +16,7 @@ namespace Nettbutikk.Controllers
             List<Product> listOfProducts = db.getAll();
             return View(listOfProducts);
         }
+
     }
 
 }
