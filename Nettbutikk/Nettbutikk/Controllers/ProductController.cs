@@ -29,6 +29,7 @@ namespace Nettbutikk.Controllers
             {
                 var productDb = new DBProduct();
                 bool insertOK = productDb.add(inProduct);
+          
                 if(insertOK)
                 {
                     return RedirectToAction("ListProducts");
