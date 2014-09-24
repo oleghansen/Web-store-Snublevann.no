@@ -12,11 +12,6 @@
     <script src="~/Scripts/bootstrap.js"></script>
     <script src="~/Scripts/jquery-1.9.0.js"></script>
 </head>
-<body>
-    <p>
-        @Html.ActionLink("Create New", "AddProduct")
-    </p>
-    /head>
     <body>
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
@@ -30,6 +25,11 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Produktliste", "ListProducts", "Product")</li>
+                        <li>@Html.ActionLink("Nytt product", "AddProduct", "Product")</li>
+                        <li>@Html.ActionLink("Kategori", "Category", "Product")</li>
+                        <li>@Html.ActionLink("Registrer", "RegisterUser", "Customer")</li>
+                        <li>@Html.ActionLink("Logg Inn", "LogIn", "Customer")</li>
                         <li>
                             <form method="get" action="@Url.Action("Search", "SearchProduct", "Search")">
                                 <label for="search">Search</label>
@@ -37,11 +37,6 @@
                                 <button type="submit">Søk</button>
                             </form>
                         </li>
-                        <li>@Html.ActionLink("Produktliste", "ListProducts", "Product")</li>
-                        <li>@Html.ActionLink("Nytt product", "AddProduct", "Product")</li>
-                        <li>@Html.ActionLink("Kategori", "Category", "Product")</li>
-                        <li>@Html.ActionLink("Registrer", "RegisterUser", "Customer")</li>
-                        <li>@Html.ActionLink("Logg Inn", "LogIn", "Customer")</li>
                     </ul>
                 </div>
             </div>
