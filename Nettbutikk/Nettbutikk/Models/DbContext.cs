@@ -61,7 +61,7 @@ namespace Nettbutikk.Models
     public class ProductContext : DbContext
     {
         public ProductContext()
-            : base("name=Products")
+            : base("name=Nettbutikk")
         {
             Database.CreateIfNotExists();
         }
