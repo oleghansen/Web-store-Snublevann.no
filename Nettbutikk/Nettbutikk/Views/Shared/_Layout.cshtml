@@ -26,6 +26,13 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    <li>
+                        <form method="get" action="@Url.Action("Search", "SearchProduct", "Search")">
+                            <label for="search">Search</label>
+                            <input type="text" name="search" id="search" />
+                            <button type="submit">Søk</button>
+                        </form>
+                    </li>
                     <li>@Html.ActionLink("Produktliste","ListProducts","Product")</li>
                     <li>@Html.ActionLink("Nytt product","AddProduct","Product")</li>
                     <li>@Html.ActionLink("Kategori", "Category", "Product")</li>
