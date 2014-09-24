@@ -8,23 +8,30 @@ namespace Nettbutikk.Models
 {
     public class Product
     {
-        
-        public int itemnumber { get; set; }
+
         [Display(Name = "Varenummer")]
-       
-        public String name { get; set; }
+        public int itemnumber { get; set; }
+
         [Display(Name = "Produktnavn")]
-       
-        public String description { get; set; }
+        [Required(ErrorMessage = "Produktnavn må oppgis")]
+        public String name { get; set; }
+
         [Display(Name = "Beskrivelse")]
-        
-        public int price { get; set; }
+        [Required(ErrorMessage = "Beskrivelse må oppgis")]
+        public String description { get; set; }
+
         [Display(Name = "Pris")]
-        public String producer { get; set; }
+        [Required(ErrorMessage = "Pris må oppgis")]
+        public int price { get; set; }
+
         [Display(Name = "Produsent")]
-        
-        public String category { get; set; }
+        [Required(ErrorMessage = "Produsent må oppgis")]
+        public String producer { get; set; }
+
         [Display(Name = "Kategori")]
+        [Required(ErrorMessage = "Kategori må oppgis")]
+        public String category { get; set; }
+        
         public int producerid { get; set; }
         public int categoryid { get; set; }
     }
