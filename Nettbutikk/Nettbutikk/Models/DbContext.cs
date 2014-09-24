@@ -31,7 +31,6 @@ namespace Nettbutikk.Models
         public DbSet<Orders> Orders { get; set; }
         public DbSet<Customers> Customers { get; set; }
         public DbSet<Postalareas> Postalareas { get; set; }
-        public DbSet<Users> Users { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
@@ -123,8 +122,8 @@ namespace Nettbutikk.Models
     public class Users
     {
         public Customer Customer { get; set; }
-        public String UserName { get; set; }
-        public byte[] Passoword { get; set; }
+        public String Username { get; set; }
+        public byte[] Password { get; set; }
     }
 
 }
