@@ -42,58 +42,77 @@
             </div>
         </div>
         <br />
-        <table class="table">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.itemnumber)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.description)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.price)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.producer)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.category)
-                </th>
-                <th></th>
-            </tr>
 
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.itemnumber)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.description)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.price)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.producer)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.category)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                    </td>
-                </tr>
-            }
+        <div class ="container">
+               
+            <div class="jumbotron">
+               <center></center> <h1>Her viser vi produktene våre</h1>
+                <p>Her kan vi putte produkter osv osv og mye annet snadder. Blir moro på BEKK i mårra! Hei</p>
 
-        </table>
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.itemnumber)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.description)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.price)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.producer)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.category)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.itemnumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.price)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.producer)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.category)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+                <br />
+                <a class="btn btn-default">Gå til betaling</a>
+                <a class="btn btn-info">Bli her</a></center>
+            </div>
+        </div>
+
+        <div class="navbar navbar-default navbar-fixed-bottom">
+
+            <div class="container">
+                <p class ="navbar-text text-center"> Nettbutikk for de flinkeste dataingeniørstudentene - 2014</p>
+            </div>
+        </div>
     </body>
 </html>
