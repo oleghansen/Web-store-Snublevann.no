@@ -17,6 +17,26 @@ namespace Nettbutikk.Controllers
             return View(listOfProducts);
         }
 
+        public ActionResult addProduct()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult addProduct(Product inProduct)
+        {
+            if(ModelState.IsValid)
+            {
+                var productDb = new DBProduct();
+                bool insertOK = productDb.add(inProduct);
+                if(insertOK)
+                {
+                    return RedirectToAction("ListProducts");
+                }
+            }
+            return View();
+        }
+
     }
 
 }

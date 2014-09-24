@@ -1,12 +1,12 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
+using System.Linq;
+
 namespace Nettbutikk.Models
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.Data.Entity;
-    using System.Data.Entity.ModelConfiguration.Conventions;
-    using System.Linq;
-
     public class DatabaseContext : DbContext
     {
         // Your context has been configured to use a 'DbContext' connection string from your application's 
@@ -56,6 +56,17 @@ namespace Nettbutikk.Models
         public int ID { get; set; }
         public String Name { get; set; }
         public virtual List<Products> Products { get; set; }
+    }
+
+    public class ProductContext : DbContext
+    {
+        public ProductContext()
+            : base("name=Products")
+        {
+            Database.CreateIfNotExists();
+        }
+
+        public DbSet<Products> Products { get; set; }
     }
 
     public class Categories

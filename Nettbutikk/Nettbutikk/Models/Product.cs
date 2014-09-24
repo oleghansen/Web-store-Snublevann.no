@@ -8,18 +8,23 @@ namespace Nettbutikk.Models
 {
     public class Product
     {
-        [Display(Name = "Varenummer")]
+        
         public int itemnumber { get; set; }
-        [Display(Name = "Produktnavn")]
+        [Display(Name = "Varenummer")]
+       
         public String name { get; set; }
-        [Display(Name = "Beskrivelse")]
+        [Display(Name = "Produktnavn")]
+       
         public String description { get; set; }
-        [Display(Name = "Pris")]
+        [Display(Name = "Beskrivelse")]
+        
         public int price { get; set; }
-        [Display(Name = "Produsent")]
+        [Display(Name = "Pris")]
         public String producer { get; set; }
-        [Display(Name = "Kategori")]
+        [Display(Name = "Produsent")]
+        
         public String category { get; set; }
+        [Display(Name = "Kategori")]
         public int producerid { get; set; }
         public int categoryid { get; set; }
     }
