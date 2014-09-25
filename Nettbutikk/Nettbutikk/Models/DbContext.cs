@@ -30,32 +30,11 @@ namespace Nettbutikk.Models
         public DbSet<OrderLine> OrderLines { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Customer> Customers { get; set; }
-        public DbSet<Postalarea> Postalareas { get; set; }
+        public DbSet<PostalArea> Postalareas { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
-    }
-
-    public class Product
-    {
-        [Key]
-        public int Itemnumber { get; set; }
-        public String Name { get; set; }
-        public String Description { get; set; }
-        public int Price { get; set; }
-        public int ProducersID { get; set; }
-        public virtual Producer Producers { get; set; }
-        public int CategoriesID { get; set; }
-        public virtual Category Categories { get; set; }
-        public virtual List<OrderLine> Orderlines { get; set; }
-    }
-
-    public class Producer
-    {
-        public int ID { get; set; }
-        public String Name { get; set; }
-        public virtual List<Product> Products { get; set; }
     }
 
     public class ProductContext : DbContext
@@ -68,61 +47,4 @@ namespace Nettbutikk.Models
 
         public DbSet<Product> Products { get; set; }
     }
-
-    public class Category
-    {
-        public int ID { get; set; }
-        public String Name { get; set; }
-
-        public virtual List<Product> Products { get; set; } 
-    }
-
-    public class OrderLine //noen som har et bedre ord for ordrelinje?! 
-    {
-        public int ID { get; set; }
-        public int ProductID { get; set; }
-        public int Quantity { get; set; }
-        public int OrderID { get; set; }
-        public Product Product { get; set; }
-        public Order Order { get; set; }
-    }
-
-    public class Order
-    {
-        public int ID { get; set; }
-        public DateTime OrderDate { get; set; }
-        public virtual List<OrderLine> OrderLines { get; set; }
-        public int CustomerID { get; set; }
-
-
-    }
-
-
-    public class Customer
-    {
-        public int ID { get; set; }
-        public String Firstname { get; set; }
-        public String Lastname { get; set; }
-        public String Email { get; set; }
-        public String Phonenumber { get; set; }
-        public String Address { get; set; }
-        public int Postalcode { get; set; }
-        public Postalarea Postalareas { get; set; }
-        public virtual List<Order> Orders { get; set; }
-    }
-
-    public class Postalarea
-    {
-        [Key]
-        public int Postalcode { get; set; }
-        public String Postalareas { get; set; }
-    }
-
-    public class User
-    {
-        public Customer Customer { get; set; }
-        public String Username { get; set; }
-        public byte[] Password { get; set; }
-    }
-
 }
