@@ -16,7 +16,7 @@ namespace Nettbutikk
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Mail", action = "Frontpage", id = UrlParameter.Optional }
+                defaults: new { controller = "Product", action = "ListProducts", id = UrlParameter.Optional }
             );
         }
     }
