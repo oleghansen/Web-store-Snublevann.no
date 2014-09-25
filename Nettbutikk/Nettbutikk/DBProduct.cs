@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using Nettbutikk.Models;
+using System.Web.WebPages.Html;
 
 namespace Nettbutikk
 {
@@ -9,28 +11,28 @@ namespace Nettbutikk
     {
         public List<Product> getAll()
         {
-            var db = new DatabaseContext();
-            List<Product> allProducts = db.Products.Select(p => new Product()
+            var db = new ProductContext();
+            List<Product> allProducts = db.Products.AsEnumerable().Select(p => new Product()
                 {
-                    Itemnumber = p.Itemnumber,
-                    Name = p.Name,
-                    Description = p.Description,
-                    Price = p.Price,
-                    Producers = p.Producers,
-                    Categories = p.Categories
+                    itemnumber = p.itemnumber,
+                    name = p.name,
+                    description = p.description,
+                    price = p.price,
+                    producer = p.producer,
+                    category = p.category
                 }
             ).ToList();
             return allProducts;
         }
 
-        public bool add(Product inProduct)
+        /*public bool add(Product inProduct)
         {
-            var newProduct = new Product()
+            var newProduct = new Products()
             {
-                Itemnumber = inProduct.Itemnumber,
-                Name = inProduct.Name,
-                Description = inProduct.Description,
-                Price = inProduct.Price
+                Itemnumber = inProduct.itemnumber,
+                Name = inProduct.name,
+                Description = inProduct.description,
+                Price = inProduct.price
                // Producer = inProduct.producer , må hente fra DbSet Producers?
                // Category = inProduct.category , må hente fra DbSet Categories?
             };
@@ -46,7 +48,7 @@ namespace Nettbutikk
             {
                 return false;
             }
-        }
+        }*/
 
 
 

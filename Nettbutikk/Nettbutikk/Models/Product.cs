@@ -9,14 +9,29 @@ namespace Nettbutikk.Models
     public class Product
     {
         [Key]
-        public int Itemnumber { get; set; }
-        public String Name { get; set; }
-        public String Description { get; set; }
-        public int Price { get; set; }
-        public int ProducersID { get; set; }
-        public virtual Producer Producers { get; set; }
-        public int CategoriesID { get; set; }
-        public virtual Category Categories { get; set; }
-        public virtual List<OrderLine> Orderlines { get; set; }
+        public int itemnumber { get; set; }
+
+        [Display(Name = "Produktnavn")]
+        [Required(ErrorMessage = "Produktnavn må oppgis")]
+        public String name { get; set; }
+
+        [Display(Name = "Beskrivelse")]
+        [Required(ErrorMessage = "Beskrivelse må oppgis")]
+        public String description { get; set; }
+
+        [Display(Name = "Pris")]
+        [Required(ErrorMessage = "Pris må oppgis")]
+        public int price { get; set; }
+
+        [Display(Name = "Produsent")]
+        [Required(ErrorMessage = "Produsent må oppgis")]
+        public String producer { get; set; }
+
+        [Display(Name = "Kategori")]
+        [Required(ErrorMessage = "Kategori må oppgis")]
+        public String category { get; set; }
+        
+        public int producerid { get; set; }
+        public int categoryid { get; set; }
     }
 }

@@ -88,10 +88,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\ProductDatabase.mdf" />
-    <Content Include="App_Data\ProductDatabase_log.ldf">
-      <DependentUpon>ProductDatabase.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -113,22 +109,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="DBProduct.cs" />
-    <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Customer.cs" />
-    <Compile Include="Models\DBInitializer.cs" />
     <Compile Include="Models\DbContext.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderLine.cs" />
-    <Compile Include="Models\PostalArea.cs" />
-    <Compile Include="Models\Producer.cs" />
     <Compile Include="Models\Product.cs" />
-    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -141,7 +131,6 @@
     <Content Include="Views\Home\Frontpage.cshtml" />
     <Content Include="Views\Home\ProductDetails.cshtml" />
     <Content Include="Views\Home\Checkout.cshtml" />
-    <Content Include="Views\Categories\Categories.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -150,7 +139,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\User\" />
+    <Folder Include="App_Data\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -7,14 +7,14 @@ namespace Nettbutikk.Models
 {
     public class Customer
     {
-        public int ID { get; set; }
-        public String Firstname { get; set; }
-        public String Lastname { get; set; }
-        public String Email { get; set; }
-        public String Phonenumber { get; set; }
-        public String Address { get; set; }
-        public int Postalcode { get; set; }
-        public PostalArea Postalarea { get; set; }
-        public virtual List<Order> Orders { get; set; }
+        public int id { get; set; }
+        public String firstname { get; set; }
+        public String lastname { get; set; }
+        public String email { get; set; }
+        public String phonenumber { get; set; }
+        public String address { get; set; }
+        public int postalcode { get; set; }
+        public Postalareas postalarea { get; set; }
+
     }
 }
