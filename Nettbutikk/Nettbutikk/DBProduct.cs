@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using Nettbutikk.Models;
+using System.Web.WebPages.Html;
 
 namespace Nettbutikk
 {
@@ -12,12 +14,12 @@ namespace Nettbutikk
             var db = new DatabaseContext();
             List<Product> allProducts = db.Products.Select(p => new Product()
                 {
-                    Itemnumber = p.Itemnumber,
-                    Name = p.Name,
-                    Description = p.Description,
-                    Price = p.Price,
-                    Producers = p.Producers.Name,
-                    Categories = p.Categories.Name
+                    itemnumber = p.Itemnumber,
+                    name = p.Name,
+                    description = p.Description,
+                    price = p.Price,
+                    producer = p.Producers.Name,
+                    category = p.Categories.Name
                 }
             ).ToList();
             return allProducts;
@@ -25,12 +27,12 @@ namespace Nettbutikk
 
         public bool add(Product inProduct)
         {
-            var newProduct = new Product()
+            var newProduct = new Products()
             {
-                Itemnumber = inProduct.Itemnumber,
-                Name = inProduct.Name,
-                Description = inProduct.Description,
-                Price = inProduct.Price
+                Itemnumber = inProduct.itemnumber,
+                Name = inProduct.name,
+                Description = inProduct.description,
+                Price = inProduct.price
                // Producer = inProduct.producer , må hente fra DbSet Producers?
                // Category = inProduct.category , må hente fra DbSet Categories?
             };
