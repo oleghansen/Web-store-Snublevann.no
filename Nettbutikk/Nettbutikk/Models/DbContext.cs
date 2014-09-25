@@ -18,7 +18,7 @@ namespace Nettbutikk.Models
         public DatabaseContext()
             : base("name=Nettbutikk")
         {
-            Database.CreateIfNotExists();
+           // Database.CreateIfNotExists();
         }
 
         // Add a DbSet for each entity type that you want to include in your model. For more information 
@@ -26,7 +26,7 @@ namespace Nettbutikk.Models
 
         public DbSet<Products> Products { get; set; }
         public DbSet<Producers> Producers { get; set; }
-        public DbSet<Categories> Categories { get; set; }
+        public DbSet<Category> Categories { get; set; }
         public DbSet<OrderLines> OrderLines { get; set; }
         public DbSet<Orders> Orders { get; set; }
         public DbSet<Customers> Customers { get; set; }
@@ -47,7 +47,7 @@ namespace Nettbutikk.Models
         public int ProducersID { get; set; }
         public virtual Producers Producers { get; set; }
         public int CategoriesID { get; set; }
-        public virtual Categories Categories { get; set; }
+        public virtual Category Categories { get; set; }
         public virtual List<OrderLines> Orderlines { get; set; }
     }
 
@@ -69,13 +69,12 @@ namespace Nettbutikk.Models
         public DbSet<Products> Products { get; set; }
     }
 
-    public class Categories
+    public class Category
     {
         public int ID { get; set; }
         public String Name { get; set; }
 
         public virtual List<Products> Products { get; set; } 
-
     }
 
     public class OrderLines //noen som har et bedre ord for ordrelinje?! 
