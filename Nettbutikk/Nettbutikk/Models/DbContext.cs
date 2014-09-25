@@ -66,7 +66,7 @@ namespace Nettbutikk.Models
             Database.CreateIfNotExists();
         }
 
-        public DbSet<Product> Products { get; set; }
+        public DbSet<Products> Products { get; set; }
         public DbSet<Categories> Categories { get; set; }
         public DbSet<Producers> Producers { get; set; }
     }
