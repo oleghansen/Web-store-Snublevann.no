@@ -24,20 +24,20 @@ namespace Nettbutikk.Models
         // Add a DbSet for each entity type that you want to include in your model. For more information 
         // on configuring and using a Code First model, see http://go.microsoft.com/fwlink/?LinkId=390109.
 
-        public DbSet<Product> Products { get; set; }
-        public DbSet<Producer> Producers { get; set; }
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<OrderLine> OrderLines { get; set; }
-        public DbSet<Order> Orders { get; set; }
-        public DbSet<Customer> Customers { get; set; }
-        public DbSet<Postalarea> Postalareas { get; set; }
+        public DbSet<Products> Products { get; set; }
+        public DbSet<Producers> Producers { get; set; }
+        public DbSet<Categories> Categories { get; set; }
+        public DbSet<OrderLines> OrderLines { get; set; }
+        public DbSet<Orders> Orders { get; set; }
+        public DbSet<Customers> Customers { get; set; }
+        public DbSet<Postalareas> Postalareas { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
     }
 
-    public class Product
+    public class Products
     {
         [Key]
         public int Itemnumber { get; set; }
@@ -45,13 +45,13 @@ namespace Nettbutikk.Models
         public String Description { get; set; }
         public int Price { get; set; }
         public int ProducersID { get; set; }
-        public virtual Producer Producers { get; set; }
+        public virtual Producers Producers { get; set; }
         public int CategoriesID { get; set; }
-        public virtual Category Categories { get; set; }
+        public virtual Categories Categories { get; set; }
         public virtual List<OrderLine> Orderlines { get; set; }
     }
 
-    public class Producer
+    public class Producers
     {
         public int ID { get; set; }
         public String Name { get; set; }
@@ -69,7 +69,7 @@ namespace Nettbutikk.Models
         public DbSet<Product> Products { get; set; }
     }
 
-    public class Category
+    public class Categories
     {
         public int ID { get; set; }
         public String Name { get; set; }
@@ -77,7 +77,7 @@ namespace Nettbutikk.Models
         public virtual List<Product> Products { get; set; } 
     }
 
-    public class OrderLine //noen som har et bedre ord for ordrelinje?! 
+    public class OrderLines //noen som har et bedre ord for ordrelinje?! 
     {
         public int ID { get; set; }
         public int ProductID { get; set; }
@@ -87,7 +87,7 @@ namespace Nettbutikk.Models
         public Order Order { get; set; }
     }
 
-    public class Order
+    public class Orders
     {
         public int ID { get; set; }
         public DateTime OrderDate { get; set; }
@@ -98,7 +98,7 @@ namespace Nettbutikk.Models
     }
 
 
-    public class Customer
+    public class Customers 
     {
         public int ID { get; set; }
         public String Firstname { get; set; }
@@ -107,18 +107,18 @@ namespace Nettbutikk.Models
         public String Phonenumber { get; set; }
         public String Address { get; set; }
         public int Postalcode { get; set; }
-        public Postalarea Postalareas { get; set; }
+        public Postalareas Postalareas { get; set; }
         public virtual List<Order> Orders { get; set; }
     }
 
-    public class Postalarea
+    public class Postalareas
     {
         [Key]
         public int Postalcode { get; set; }
         public String Postalarea { get; set; }
     }
 
-    public class User
+    public class Users
     {
         public Customer Customer { get; set; }
         public String Username { get; set; }

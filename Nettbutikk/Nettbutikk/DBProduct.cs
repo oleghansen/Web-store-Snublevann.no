@@ -25,7 +25,7 @@ namespace Nettbutikk
             return allProducts;
         }
 
-        public bool add(Product inProduct)
+        /*public bool add(Product inProduct)
         {
             var newProduct = new Products()
             {
@@ -48,7 +48,7 @@ namespace Nettbutikk
             {
                 return false;
             }
-        }
+        }*/
 
 
 
