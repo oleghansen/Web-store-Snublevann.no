@@ -24,20 +24,20 @@ namespace Nettbutikk.Models
         // Add a DbSet for each entity type that you want to include in your model. For more information 
         // on configuring and using a Code First model, see http://go.microsoft.com/fwlink/?LinkId=390109.
 
-        public DbSet<Products> Products { get; set; }
-        public DbSet<Producers> Producers { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Producer> Producers { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<OrderLines> OrderLines { get; set; }
-        public DbSet<Orders> Orders { get; set; }
-        public DbSet<Customers> Customers { get; set; }
-        public DbSet<Postalareas> Postalareas { get; set; }
+        public DbSet<OrderLine> OrderLines { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Postalarea> Postalareas { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
     }
 
-    public class Products
+    public class Product
     {
         [Key]
         public int Itemnumber { get; set; }
@@ -45,17 +45,17 @@ namespace Nettbutikk.Models
         public String Description { get; set; }
         public int Price { get; set; }
         public int ProducersID { get; set; }
-        public virtual Producers Producers { get; set; }
+        public virtual Producer Producers { get; set; }
         public int CategoriesID { get; set; }
         public virtual Category Categories { get; set; }
-        public virtual List<OrderLines> Orderlines { get; set; }
+        public virtual List<OrderLine> Orderlines { get; set; }
     }
 
-    public class Producers
+    public class Producer
     {
         public int ID { get; set; }
         public String Name { get; set; }
-        public virtual List<Products> Products { get; set; }
+        public virtual List<Product> Products { get; set; }
     }
 
     public class ProductContext : DbContext
@@ -66,7 +66,7 @@ namespace Nettbutikk.Models
             Database.CreateIfNotExists();
         }
 
-        public DbSet<Products> Products { get; set; }
+        public DbSet<Product> Products { get; set; }
     }
 
     public class Category
@@ -74,31 +74,31 @@ namespace Nettbutikk.Models
         public int ID { get; set; }
         public String Name { get; set; }
 
-        public virtual List<Products> Products { get; set; } 
+        public virtual List<Product> Products { get; set; } 
     }
 
-    public class OrderLines //noen som har et bedre ord for ordrelinje?! 
+    public class OrderLine //noen som har et bedre ord for ordrelinje?! 
     {
         public int ID { get; set; }
         public int ProductID { get; set; }
         public int Quantity { get; set; }
         public int OrderID { get; set; }
-        public Products Product { get; set; }
-        public Orders Order { get; set; }
+        public Product Product { get; set; }
+        public Order Order { get; set; }
     }
 
-    public class Orders
+    public class Order
     {
         public int ID { get; set; }
         public DateTime OrderDate { get; set; }
-        public virtual List<OrderLines> OrderLines { get; set; }
+        public virtual List<OrderLine> OrderLines { get; set; }
         public int CustomerID { get; set; }
 
 
     }
 
 
-    public class Customers
+    public class Customer
     {
         public int ID { get; set; }
         public String Firstname { get; set; }
@@ -107,18 +107,18 @@ namespace Nettbutikk.Models
         public String Phonenumber { get; set; }
         public String Address { get; set; }
         public int Postalcode { get; set; }
-        public Postalareas Postalareas { get; set; }
-        public virtual List<Orders> Orders { get; set; }
+        public Postalarea Postalareas { get; set; }
+        public virtual List<Order> Orders { get; set; }
     }
 
-    public class Postalareas
+    public class Postalarea
     {
         [Key]
         public int Postalcode { get; set; }
         public String Postalarea { get; set; }
     }
 
-    public class Users
+    public class User
     {
         public Customer Customer { get; set; }
         public String Username { get; set; }
