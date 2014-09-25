@@ -1,8 +1,5 @@
 ﻿@model Nettbutikk.Models.Product
 
-@{
-    Layout = null;
-}
 
 <!DOCTYPE html>
 
@@ -63,6 +60,7 @@
     
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
+                    @Html.ActionLink("LeggTELL", "addProduct", new { tom = "" }, new { @class = "btn btn-primary" })
                     <input type="submit" value="Legg inn" class="btn btn-success" />
                 </div>
             </div>

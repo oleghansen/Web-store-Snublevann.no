@@ -7,6 +7,9 @@ using System.Web.WebPages.Html;
 
 namespace Nettbutikk
 {
+
+    
+
     public class DBProduct
     {
         public List<Product> getAll()
@@ -14,18 +17,18 @@ namespace Nettbutikk
             var db = new ProductContext();
             List<Product> allProducts = db.Products.AsEnumerable().Select(p => new Product()
                 {
-                    itemnumber = p.itemnumber,
-                    name = p.name,
-                    description = p.description,
-                    price = p.price,
-                    producer = p.producer,
-                    category = p.category
+                    itemnumber = p.Itemnumber,
+                    name = p.Name,
+                    description = p.Description,
+                    price = p.Price,
+                    producer = p.Producers.Name,
+                    category = p.Categories.Name
                 }
             ).ToList();
             return allProducts;
         }
 
-        /*public bool add(Product inProduct)
+        public bool add(Product inProduct)
         {
             var newProduct = new Products()
             {
@@ -48,7 +51,7 @@ namespace Nettbutikk
             {
                 return false;
             }
-        }*/
+        }
 
 
 

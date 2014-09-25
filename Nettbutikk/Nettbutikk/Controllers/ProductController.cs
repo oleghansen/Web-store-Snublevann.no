@@ -22,8 +22,8 @@ namespace Nettbutikk.Controllers
             return View();
         }
 
-        //[HttpPost]
-        /*public ActionResult addProduct(Product inProduct)
+        [HttpPost]
+        public ActionResult addProduct(Product inProduct)
         {
             if(ModelState.IsValid)
             {
@@ -36,7 +36,7 @@ namespace Nettbutikk.Controllers
                 }
             }
             return View();
-        }*/
+        }
 
     }
 }
