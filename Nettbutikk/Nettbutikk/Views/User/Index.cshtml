@@ -12,9 +12,11 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Password)
+            @Html.DisplayNameFor(model => model.Username)
+            
+
         </th>
-        <th></th>
+        <th>@Html.DisplayNameFor(model => model.Password)</th>
     </tr>
 
 @foreach (var item in Model) {
