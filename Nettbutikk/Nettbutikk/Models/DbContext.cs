@@ -115,7 +115,7 @@ namespace Nettbutikk.Models
     {
         [Key]
         public int Postalcode { get; set; }
-        public String Postalarea { get; set; }
+        public String Postalareas { get; set; }
     }
 
     public class User

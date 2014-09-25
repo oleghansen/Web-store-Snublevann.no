@@ -119,8 +119,16 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="DBProduct.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\DBInitializer.cs" />
     <Compile Include="Models\DbContext.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderLine.cs" />
+    <Compile Include="Models\PostalArea.cs" />
+    <Compile Include="Models\Producer.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
