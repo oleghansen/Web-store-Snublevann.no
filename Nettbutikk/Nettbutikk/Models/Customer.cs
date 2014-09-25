@@ -14,7 +14,7 @@ namespace Nettbutikk.Models
         public String Phonenumber { get; set; }
         public String Address { get; set; }
         public int Postalcode { get; set; }
-        public Postalarea Postalareas { get; set; }
+        public PostalArea Postalarea { get; set; }
         public virtual List<Order> Orders { get; set; }
     }
 }

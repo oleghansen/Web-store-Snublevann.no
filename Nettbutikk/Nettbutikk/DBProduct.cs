@@ -16,8 +16,8 @@ namespace Nettbutikk
                     Name = p.Name,
                     Description = p.Description,
                     Price = p.Price,
-                    Producers = p.Producers.Name,
-                    Categories = p.Categories.Name
+                    Producers = p.Producers,
+                    Categories = p.Categories
                 }
             ).ToList();
             return allProducts;
