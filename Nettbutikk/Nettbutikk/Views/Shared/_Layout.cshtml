@@ -22,13 +22,10 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Produktoversikt", "ListProducts", "Product", new { tom = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Alkohol Mekka", "ListProducts", "Product", new { tom = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Nytt product", "AddProduct", "Product")</li>
-                    <li>@Html.ActionLink("Registrer", "RegisterUser", "Customer")</li>
-                    <li>@Html.ActionLink("Logg Inn", "Index", "User")</li>
                     <li>
                         <form method="get" action="@Url.Action("Search", "SearchProduct", "Search")">
                             <label for="search">Søk</label>
@@ -36,6 +33,10 @@
                             <button type="submit">Søk</button>
                         </form>
                     </li>
+                    <li>@Html.ActionLink("Nytt product", "AddProduct", "Product")</li>
+                    <li>@Html.ActionLink("Registrer", "RegisterUser", "Customer")</li>
+                    <li>@Html.ActionLink("Logg Inn", "Index", "User")</li>
+                    <li>@Html.ActionLink("Handlekurv", "","")</li>
                 </ul>
             </div>
         </div>
