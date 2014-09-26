@@ -2316,6 +2316,8 @@ legend {
 label {
   display: inline-block;
   max-width: 100%;
+  color: #777;
+  margin-left: 445px;
   margin-bottom: 5px;
   font-weight: bold;
 }

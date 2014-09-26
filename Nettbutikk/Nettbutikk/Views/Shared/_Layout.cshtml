@@ -26,15 +26,16 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Nytt product", "AddProduct", "Product")</li>
+                    <li>@Html.ActionLink("Registrer", "RegisterUser", "Customer")</li>
+                    <li>@Html.ActionLink("Logg Inn", "Index", "User")</li>
                     <li>
-                        <form id="search" method="get" action="@Url.Action("Search", "SearchProduct", "Search")">
-                            <label for="search">Search</label>
+                        <form method="get" action="@Url.Action("Search", "SearchProduct", "Search")">
+                            <label for="search">Søk</label>
                             <input type="text" name="search" id="search" />
                             <button type="submit">Søk</button>
                         </form>
                     </li>
-                    <li>@Html.ActionLink("Registrer", "RegisterUser", "Customer")</li>
-                    <li>@Html.ActionLink("Logg Inn", "LogIn", "Customer")</li>
                 </ul>
             </div>
         </div>
@@ -52,8 +53,7 @@
         @RenderBody()
         <hr/>
         <footer>
-            <p class="pull-left">&copy;@DateTime.Now.Year - Gruppe 12345</p>
-            <p class="pull-right">Tor er cool</p>
+            <p>&copy;@DateTime.Now.Year - Gruppe 12345</p>
         </footer>
     </div>
 </body>
