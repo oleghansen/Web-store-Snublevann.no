@@ -16,20 +16,21 @@ namespace Nettbutikk.Controllers
             return View();
         }
 
+        
         /*
         public ActionResult ListProducts()
         {
             var db = new DBProduct();
-            List<Product> listOfProducts = db.getAll();
-            return View(listOfProducts);
+            List<CategoriesController> listCategories = db.getAll();
+            return View(listCategories);
         }
+        */
         
         public ActionResult Categories()
         {
-            List<Models.Category> allCategories = db.Categories.ToList();
+            List<Models.Categories> allCategories = db.Categories.ToList();
             ViewData.Model = allCategories;
             return View();
         }
-        */ 
     }
 }
