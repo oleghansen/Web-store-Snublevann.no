@@ -108,7 +108,9 @@ samp {
   font-family: monospace, monospace;
   font-size: 1em;
 }
-button,
+button{
+    margin-top:12px;
+},
 input,
 optgroup,
 select,
@@ -1399,7 +1401,10 @@ pre code {
 @media (min-width: 768px) {
   .container {
     width: 750px;
-  }
+}
+
+search{
+
 }
 @media (min-width: 992px) {
   .container {

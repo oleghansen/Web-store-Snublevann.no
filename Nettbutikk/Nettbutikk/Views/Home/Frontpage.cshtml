@@ -1,9 +1,5 @@
-﻿@model IEnumerable<Nettbutikk.Models.Product>
+﻿@model List<Nettbutikk.Models.Product>
 
-@{
-    ViewBag.Title = "Forside";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
 
 <!DOCTYPE html>
 
@@ -11,75 +7,112 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Frontpage</title>
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/jquery-1.9.0.js"></script>
 </head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Produktoversikt", "ListProducts", "Product", new { tom = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Produktliste", "ListProducts", "Product")</li>
+                    <li>@Html.ActionLink("Nytt product", "AddProduct", "Product")</li>
+                    <li>@Html.ActionLink("Kategori", "Category", "Product")</li>
+                    <li>@Html.ActionLink("Registrer", "RegisterUser", "Customer")</li>
+                    <li>@Html.ActionLink("Logg Inn", "LogIn", "Customer")</li>
+                    <li>
+                        <form method="get" action="@Url.Action("Search", "SearchProduct", "Search")">
+                            <label for="search">Search</label>
+                            <input type="text" name="search" id="search" />
+                            <button type="submit">Søk</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <br />
 
-<h2>Forside</h2>
+    <div class="container">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.itemnumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.producer)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.category)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.producerid)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.categoryid)
-        </th>
-        <th></th>
-    </tr>
+        <div class="jumbotron">
+            <h1>Her viser vi produktene våre</h1>
+            <p>Her kan vi putte produkter osv osv og mye annet snadder. Blir moro på BEKK i mårra! Hei</p>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.itemnumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.producer)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.category)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.producerid)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.categoryid)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-    }
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model[0].itemnumber)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model[0].name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model[0].description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model[0].price)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model[0].producer)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model[0].category)
+                    </th>
+                    <th></th>
+                </tr>
 
-</table>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.itemnumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.producer)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.category)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+            <br />
+            <a class="btn btn-default">Gå til betaling</a>
+            <a class="btn btn-info">Bli her</a>
+        </div>
+    </div>
+
+    <div class="navbar navbar-default navbar-fixed-bottom">
+
+        <div class="container">
+            <p class="navbar-text text-center"> Nettbutikk for de flinkeste dataingeniørstudentene - 2014</p>
+        </div>
+    </div>
+</body>
+</html>
