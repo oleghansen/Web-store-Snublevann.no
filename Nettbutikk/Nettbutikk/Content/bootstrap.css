@@ -144,6 +144,7 @@ input::-moz-focus-inner {
 }
 input {
   line-height: normal;
+  width:250px;
 }
 input[type="checkbox"],
 input[type="radio"] {
@@ -2317,7 +2318,7 @@ label {
   display: inline-block;
   max-width: 100%;
   color: #777;
-  margin-left: 445px;
+  margin-left: 25px;
   margin-bottom: 5px;
   font-weight: bold;
 }
