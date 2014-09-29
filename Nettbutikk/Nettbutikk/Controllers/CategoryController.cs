@@ -19,18 +19,22 @@ namespace Nettbutikk.Controllers
             return View(listCategories);
         }
 
-
-        public ActionResult GetBeerCategory()
+        public List<Product> getProductsByCategory(int id)
         {
-            var beer = (from ID in db.Categories select "1").ToList();
-            return View(beer);
-        }
-
-        [HttpPost]
-        public ActionResult GetBeerCategory(DBCategory model)
-        {
-            var data = db.Categories.ToList();
-            return View(data);
+            var db = new DatabaseContext();
+            Products products = db.Products.Where(p => p.CategoriesID == id).First<Products>();
+            Categories categories = db.Categories.Where(c => c.ID == id).First<Categories>();
+            new Product()
+            {
+                itemnumber = products.Itemnumber,
+                name = products.Name,
+                description = products.Description,
+                longDescription = products.LongDescription,
+                price = products.Price,
+                producer = products.Producers.Name,
+                category = products.Categories.Name
+            };
+            return null;
         }
     }
 }
