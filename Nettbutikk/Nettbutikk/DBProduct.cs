@@ -12,10 +12,23 @@ namespace Nettbutikk
 
     public class DBProduct
     {
-        public List<Product> getAll()
+        public List<Product> getAll(int? id)
         {
             var db = new DatabaseContext();
-            List<Product> allProducts = db.Products.AsEnumerable().Select(p => new Product()
+            List<Product> allProducts;
+            if(id.HasValue)
+                allProducts = db.Products.AsEnumerable().Where(c => c.CategoriesID == id).Select(p => new Product()
+                {
+                    itemnumber = p.Itemnumber,
+                    name = p.Name,
+                    description = p.Description,
+                    price = p.Price,
+                    producer = p.Producers.Name,
+                    category = p.Categories.Name
+                }
+            ).ToList();
+            else
+                allProducts = db.Products.AsEnumerable().Select(p => new Product()
                 {
                     itemnumber = p.Itemnumber,
                     name = p.Name,
@@ -27,6 +40,21 @@ namespace Nettbutikk
             ).ToList();
             return allProducts;
         }
+//        public List<Product> getAll(int? id)
+//        {
+//            var db = new DatabaseContext();
+//            List<Product> products = db.Products.AsEnumerable().Where(c => c.CategoriesID == id).Select(p => new Product()
+//                {
+//                    itemnumber = p.Itemnumber,
+//                    name = p.Name,
+//                    description = p.Description,
+//                    price = p.Price,
+//                    producer = p.Producers.Name,
+//                    category = p.Categories.Name
+//                }
+//            ).ToList();
+//            return products; 
+//        }
         public Product get(int id)
         {
             var db = new DatabaseContext();
