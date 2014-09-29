@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Nettbutikk.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,9 @@ namespace Nettbutikk.Controllers
         // GET: Category
         public ActionResult Categories()
         {
-            return View();
+            var db = new DBCategory();
+            List<Category> listCategories = db.getAll();
+            return View(listCategories);
         }
     }
 }
