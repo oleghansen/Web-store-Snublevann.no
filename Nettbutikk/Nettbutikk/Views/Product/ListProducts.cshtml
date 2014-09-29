@@ -7,7 +7,8 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>ListProducts</title>
-    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="
+          sheet" />
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <script src="~/Scripts/bootstrap.js"></script>
     <script src="~/Scripts/jquery-1.9.0.js"></script>
@@ -21,6 +22,9 @@
 
                 <table class="table">
                     <tr>
+                        <th>
+                            
+                        </th>
                         <th>
                             @Html.DisplayNameFor(model => model[0].itemnumber)
                         </th>
@@ -45,6 +49,9 @@
                     @foreach (var item in Model)
                     {
                         <tr>
+                            <td>
+                                <a href="DetailsProduct"><img src="@Url.Content("/Content/img/" + item.itemnumber + ".png")" alt=@item.name class="img-thumbnail" height="100" width="60" /></a>
+                            </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.itemnumber)
                             </td>

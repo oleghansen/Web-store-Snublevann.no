@@ -17,6 +17,11 @@ namespace Nettbutikk.Controllers
             return View(listOfProducts);
         }
 
+        public ActionResult DetailsProduct(Product inProduct)
+        {
+            return View(inProduct);
+        }
+
         public ActionResult addProduct()
         {
             return View();

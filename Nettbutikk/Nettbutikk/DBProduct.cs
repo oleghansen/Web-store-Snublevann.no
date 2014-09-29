@@ -28,6 +28,7 @@ namespace Nettbutikk
             return allProducts;
         }
 
+
         public bool add(Product inProduct)
         {
             var newProduct = new Products()
