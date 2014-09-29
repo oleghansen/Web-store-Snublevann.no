@@ -132,6 +132,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\CostumerContoller.cs" />
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
@@ -159,6 +160,7 @@
     <Content Include="Views\About\About.cshtml" />
     <Content Include="Views\Main\Frontpage.cshtml" />
     <Content Include="Views\Home\Frontpage.cshtml" />
+    <Content Include="Views\Customer\Register.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
