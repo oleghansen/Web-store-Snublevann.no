@@ -22,7 +22,7 @@ namespace Nettbutikk.Controllers
 
         public ActionResult GetBeerCategory()
         {
-            var beer = (from ID in db.Categories select 1).ToList();
+            var beer = (from ID in db.Categories select "1").ToList();
             return View(beer);
         }
 
