@@ -155,7 +155,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Product\ListProducts.cshtml" />
     <Content Include="Views\Product\addProduct.cshtml" />
-    <Content Include="Views\Home\ProductDetails.cshtml" />
     <Content Include="Views\Home\Checkout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\About\About.cshtml" />
