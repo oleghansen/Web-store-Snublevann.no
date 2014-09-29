@@ -22,6 +22,9 @@
                 <table class="table">
                     <tr>
                         <th>
+                            
+                        </th>
+                        <th>
                             @Html.DisplayNameFor(model => model[0].itemnumber)
                         </th>
                         <th>
@@ -45,6 +48,9 @@
                     @foreach (var item in Model)
                     {
                         <tr>
+                            <td>
+                                <a href=@Url.Action("viewProduct",new { id = item.itemnumber} )><span><img src=@Url.Content("~/Content/img/" + item.itemnumber + ".png") width="80" height="130" class="img-thumbnail"/></span></a>
+                            </td>
                             <td>
                                 @Html.ActionLink(@Html.DisplayFor(modelItem => item.itemnumber).ToString(), "viewProduct", new { id = item.itemnumber})
                                
