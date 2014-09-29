@@ -147,10 +147,10 @@
     <Content Include="Views\User\Details.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
-    <Content Include="Views\Category\CategoryView.cshtml" />
     <Content Include="Views\About\About.cshtml" />
     <Content Include="Views\Main\Frontpage.cshtml" />
     <Content Include="Views\Home\Frontpage.cshtml" />
+    <Content Include="Views\Category\Categories.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
