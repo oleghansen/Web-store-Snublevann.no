@@ -8,7 +8,8 @@ using Nettbutikk.Models;
 namespace Nettbutikk.Controllers
 {
     public class CostumerContoller : Controller
-    {
+    {   
+        //SKjekker om man er logget inn
         //hvilken side skal man skjekke at man er logget inn eller ei ?
         //tatt fra lærern
         public ActionResult LogIn()
@@ -16,15 +17,16 @@ namespace Nettbutikk.Controllers
             if (Session["LoggetInn"] == null)
             {
                 Session["LoggetInn"] = false;
-                ViewBag.Innlogget = false;
+                ViewBag.LoggedIn = false;
             }
             else
             {
-                ViewBag.Innlogget = (bool)Session["LoggetInn"];
+                ViewBag.LoggedIn = (bool)Session["LoggetInn"];
             }
             return View();
         }
 
+        //Her kommer man dersom man har registrert en ny bruker 
         [HttpPost]
         public ActionResult Register(Customer newUser)
         {
@@ -40,6 +42,13 @@ namespace Nettbutikk.Controllers
                     byte[] hasedpassword = makeHash(newUser.password);
                     user.Password = hasedpassword;
                     user.Username = newUser.username;
+                    user.Firstname = newUser.firstname;
+                    user.Lastname = newUser.lastname;
+                    user.Email = newUser.email;
+                    user.Phonenumber = newUser.phonenumber;
+                    user.Address = newUser.address;
+                    user.Postalcode = newUser.postalcode;
+                    user.Postalareas = newUser.postalarea;
                     db.Customers.Add(user);
                     db.SaveChanges();
                     return RedirectToAction("LogIn");
@@ -51,6 +60,7 @@ namespace Nettbutikk.Controllers
             }
         }
 
+        //Hasher passordet
         private static byte[] makeHash(string inPassword)
         {
             byte[] inData, outData;
@@ -60,24 +70,25 @@ namespace Nettbutikk.Controllers
             return outData;
         }
 
-
+        // Her skjekker kaller man først opp userExits, dersom den gjør det så er man logget inn
         [HttpPost]
-        public ActionResult Index(Customer user)
+        public ActionResult LogIn(Customer user)
         {
             if (userExists(user))
             {
                 Session["LoggetInn"] = true;
-                ViewBag.Innlogget = true;
+                ViewBag.loggedIn = true;
                 return View();
             }
             else
             {
                 Session["LoggetInn"] = false;
-                ViewBag.Innlogget = false;
+                ViewBag.loggedIn = false;
                 return View();
             }
         }
 
+        //Går inn i db og skjekker om brukeren finnes
         private static bool userExists(Customer user)
         {
             using (var db = new Models.DatabaseContext())
@@ -96,17 +107,18 @@ namespace Nettbutikk.Controllers
             }
         }
 
+        //Dersom man går inn i den personlige siden så viser man denne siden, ellers må man logge inn.
         public ActionResult PersonalSite()
         {
             if (Session["LoggetInn"] != null)
             {
-                bool loggetInn = (bool)Session["LoggetInn"];
-                if(loggetInn)
+                bool loggedIn = (bool)Session["LoggetInn"];
+                if(loggedIn)
                 {
                     return View();
                 }
              }
-             return RedirectToAction("Index");
+             return RedirectToAction("LogIn");
         }
     }
 }
