@@ -11,7 +11,7 @@ namespace Nettbutikk.Controllers
     {
         //hvilken side skal man skjekke at man er logget inn eller ei ?
         //tatt fra lærern
-        public ActionResult Frontpage()
+        public ActionResult LogIn()
         {
             if (Session["LoggetInn"] == null)
             {
@@ -22,8 +22,8 @@ namespace Nettbutikk.Controllers
             {
                 ViewBag.Innlogget = (bool)Session["LoggetInn"];
             }
-             return View();
-         }
+            return View();
+        }
 
         [HttpPost]
         public ActionResult Register(Customer newUser)
@@ -53,13 +53,61 @@ namespace Nettbutikk.Controllers
 
         private static byte[] makeHash(string inPassword)
         {
-            byte[] inData, outData; 
+            byte[] inData, outData;
             var algorithm = System.Security.Cryptography.SHA256.Create();
-            inData = System.Text.Encoding.ASCII.GetBytes(inPassword);  
+            inData = System.Text.Encoding.ASCII.GetBytes(inPassword);
             outData = algorithm.ComputeHash(inData);
             return outData;
         }
+
+
+        [HttpPost]
+        public ActionResult Index(Customer user)
+        {
+            if (userExists(user))
+            {
+                Session["LoggetInn"] = true;
+                ViewBag.Innlogget = true;
+                return View();
+            }
+            else
+            {
+                Session["LoggetInn"] = false;
+                ViewBag.Innlogget = false;
+                return View();
+            }
+        }
+
+        private static bool userExists(Customer user)
+        {
+            using (var db = new Models.DatabaseContext())
+            {
+                byte[] passwordDb = makeHash(user.password);
+                Customers userFound = db.Customers.FirstOrDefault
+                (u => u.Password == passwordDb && u.Username == user.username);
+                if (userFound == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        }
+
+        public ActionResult PersonalSite()
+        {
+            if (Session["LoggetInn"] != null)
+            {
+                bool loggetInn = (bool)Session["LoggetInn"];
+                if(loggetInn)
+                {
+                    return View();
+                }
+             }
+             return RedirectToAction("Index");
+        }
     }
 }
-
 
