@@ -44,6 +44,16 @@
     <div class="panel panel-default pull-left">
         <div class="panel-body">
             <div class="pull-left">
+                <li>@Html.DropDownList("Kategori", new List<SelectListItem>
+                        {
+                             new SelectListItem{Text = "ØL", Value="1"},
+                             new SelectListItem{Text = "Rødvin", Value="2"},
+                             new SelectListItem{Text = "Hvitvin", Value="3"},
+                             new SelectListItem{Text = "Brennevin", Value="4"},
+                             new SelectListItem{Text = "Rosevin", Value="5"},
+                        }
+                        )
+                </li>
                 @Html.ActionLink("Logg Inn", "Index", "User")  <br />
                 @Html.ActionLink("Kategori", "CategoryView", "Category")<br />
                 @Html.ActionLink("Om oss", "About", "About")<br />
