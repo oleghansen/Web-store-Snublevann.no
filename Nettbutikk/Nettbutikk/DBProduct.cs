@@ -27,6 +27,22 @@ namespace Nettbutikk
             ).ToList();
             return allProducts;
         }
+        public Product get(int id)
+        {
+            var db = new DatabaseContext();
+            Products products = db.Products.Where(p=> p.Itemnumber == id).First<Products>();
+            return new Product()
+            {
+                itemnumber = products.Itemnumber,
+                name = products.Name,
+                description = products.Description,
+                longDescription = products.LongDescription,
+                price = products.Price,
+                producer = products.Producers.Name,
+                category = products.Categories.Name
+            };
+        }
+
 
         public bool add(Product inProduct)
         {

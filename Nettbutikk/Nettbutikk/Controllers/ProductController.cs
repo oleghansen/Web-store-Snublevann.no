@@ -17,6 +17,11 @@ namespace Nettbutikk.Controllers
             return View(listOfProducts);
         }
 
+        public ActionResult DetailsProduct(Product inProduct)
+        {
+            return View(inProduct);
+        }
+
         public ActionResult addProduct()
         {
             return View();
@@ -36,6 +41,12 @@ namespace Nettbutikk.Controllers
                 }
             }
             return View();
+        }
+
+        public ActionResult viewProduct(int id)
+        {
+            var db = new DBProduct();
+            return View(db.get(id));
         }
 
     }

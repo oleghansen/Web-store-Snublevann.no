@@ -8,11 +8,7 @@ using Nettbutikk.Models;
 namespace Nettbutikk.Controllers
 {
     public class CostumerContoller : Controller
-    {   
-        //SKjekker om man er logget inn
-        //hvilken side skal man skjekke at man er logget inn eller ei ?
-        //tatt fra lærern
-
+    {
         public ActionResult FrontPage()
         {
             return View();
@@ -24,6 +20,12 @@ namespace Nettbutikk.Controllers
 
        
 
+        
+        //SKjekker om man er logget inn
+        //hvilken side skal man skjekke at man er logget inn eller ei ?
+        //tatt fra lærern
+
+       
         public ActionResult LogIn()
         {
             if (Session["LoggetInn"] == null)
