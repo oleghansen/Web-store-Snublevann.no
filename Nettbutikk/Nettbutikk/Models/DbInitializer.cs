@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Nettbutikk.Models
 {
-    public class DbInitializer : DropCreateDatabaseAlways<DatabaseContext>
+    public class DbInitializer : DropCreateDatabaseIfModelChanges<DatabaseContext>
     {
         protected override void Seed(DatabaseContext context)
         {
