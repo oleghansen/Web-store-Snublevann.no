@@ -21,12 +21,6 @@ namespace Nettbutikk.Controllers
     
             return View(listOfProducts);
         }
-  //      public ActionResult ListProducts(int id)
-    //    {
-      //      var db = new DBProduct();
-            
-        //    return View(listOfProducts); 
-        //}
         public ActionResult addProduct()
         {
             return View();
