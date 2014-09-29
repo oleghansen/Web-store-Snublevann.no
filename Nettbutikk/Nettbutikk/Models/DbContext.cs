@@ -18,7 +18,14 @@ namespace Nettbutikk.Models
         public DatabaseContext()
             : base("name=Nettbutikk")
         {
-           Database.CreateIfNotExists();
+            try
+            {
+                Database.SetInitializer<DatabaseContext>(new DbInitializer());
+            }
+            catch( Exception e)
+            {
+
+            }
         }
 
         // Add a DbSet for each entity type that you want to include in your model. For more information 
@@ -26,7 +33,7 @@ namespace Nettbutikk.Models
 
         public DbSet<Products> Products { get; set; }
         public DbSet<Producers> Producers { get; set; }
-        public DbSet<Category> Categories { get; set; }
+        public DbSet<Categories> Categories { get; set; }
 
         public DbSet<OrderLines> OrderLines { get; set; }
         public DbSet<Orders> Orders { get; set; }
