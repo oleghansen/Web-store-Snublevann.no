@@ -14,7 +14,7 @@ namespace Nettbutikk
     {
         public List<Product> getAll()
         {
-            var db = new ProductContext();
+            var db = new DatabaseContext();
             List<Product> allProducts = db.Products.AsEnumerable().Select(p => new Product()
                 {
                     itemnumber = p.Itemnumber,
@@ -40,7 +40,7 @@ namespace Nettbutikk
                // Category = inProduct.category , må hente fra DbSet Categories?
             };
 
-            var db = new ProductContext();
+            var db = new DatabaseContext();
             try
             {
                 db.Products.Add(newProduct);

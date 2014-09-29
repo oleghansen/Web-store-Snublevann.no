@@ -18,7 +18,7 @@ namespace Nettbutikk.Models
         public DatabaseContext()
             : base("name=Nettbutikk")
         {
-           // Database.CreateIfNotExists();
+           Database.CreateIfNotExists();
         }
 
         // Add a DbSet for each entity type that you want to include in your model. For more information 
@@ -56,19 +56,6 @@ namespace Nettbutikk.Models
         public int ID { get; set; }
         public String Name { get; set; }
         public virtual List<Product> Products { get; set; }
-    }
-
-    public class ProductContext : DbContext
-    {
-        public ProductContext()
-            : base("name=Nettbutikk")
-        {
-            Database.CreateIfNotExists();
-        }
-
-        public DbSet<Products> Products { get; set; }
-        public DbSet<Categories> Categories { get; set; }
-        public DbSet<Producers> Producers { get; set; }
     }
 
     public class Categories
