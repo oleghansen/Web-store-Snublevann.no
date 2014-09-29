@@ -155,15 +155,14 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Product\ListProducts.cshtml" />
     <Content Include="Views\Product\addProduct.cshtml" />
-    <Content Include="Views\Home\ProductDetails.cshtml" />
     <Content Include="Views\Home\Checkout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\About\About.cshtml" />
     <Content Include="Views\Main\Frontpage.cshtml" />
     <Content Include="Views\Home\Frontpage.cshtml" />
     <Content Include="Views\Category\Categories.cshtml" />
-    <Content Include="Views\Product\DetailsProduct.cshtml" />
-    <Content Include="Views\Category\Beer.cshtml" />
+	<Content Include="Views\Category\Beer.cshtml" />
+    <Content Include="Views\Product\viewProduct.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

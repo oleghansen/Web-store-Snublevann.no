@@ -18,9 +18,12 @@
             <div class="jumbotron">
                <h1>Her viser vi produktene våre</h1>
                 <p>Her kan vi putte produkter osv osv og mye annet snadder. Blir moro på BEKK i mårra! Hei</p>
-
+                <!--
                 <table class="table">
                     <tr>
+                        <th>
+                            
+                        </th>
                         <th>
                             @Html.DisplayNameFor(model => model[0].itemnumber)
                         </th>
@@ -46,6 +49,9 @@
                     {
                         <tr>
                             <td>
+                                <a href=@Url.Action("viewProduct",new { id = item.itemnumber} )><span><img src=@Url.Content("~/Content/img/" + item.itemnumber + ".png") width="80" height="130" class="img-thumbnail"/></span></a>
+                            </td>
+                            <td>
                                 @Html.ActionLink(@Html.DisplayFor(modelItem => item.itemnumber).ToString(), "viewProduct", new { id = item.itemnumber})
                                
                             </td>
@@ -68,6 +74,34 @@
                     }
 
                 </table>
+                    -->
+
+                @foreach( var item in Model)
+                {
+                    <a href='@Url.Action("viewProduct","Product",new {id = item.itemnumber })'>
+                        <div class="col-md-12">
+
+                        
+                            <div class="col-md-4">
+                                Her kan vi f.eks ha et bilde
+                            </div>
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h3>
+                                            @Html.DisplayFor(modelItem => item.name)
+                                        </h3>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        @Html.DisplayFor(modelItem => item.description)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                }
                 <br />
                 <a class="btn btn-default">Gå til betaling</a>
                 <a class="btn btn-info">Bli her</a>
