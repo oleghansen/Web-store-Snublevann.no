@@ -19,7 +19,7 @@ namespace Nettbutikk.Models
         [Required(ErrorMessage = "Beskrivelse må oppgis")]
         public String description { get; set; }
 
-        [Display(Name = "Beskrivelse")]
+        [Display(Name = "Detaljert beskrivelse")]
         public String longDescription { get; set; }
 
         [Display(Name = "Pris")]
