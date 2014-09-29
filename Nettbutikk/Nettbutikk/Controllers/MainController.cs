@@ -10,7 +10,7 @@ namespace Nettbutikk.Controllers
     public class MainController : Controller
     {
         // GET: Product
-        public ActionResult Index()
+        public ActionResult Frontpage()
         {
             return View();
         }
