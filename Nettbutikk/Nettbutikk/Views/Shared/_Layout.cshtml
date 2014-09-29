@@ -21,7 +21,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Alkohol Mekka", "ListProducts", "Product", new { tom = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Alkohol Mekka", "Frontpage", "Main", new { tom = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -54,8 +54,9 @@
                         }
                         )
                 </li>
+                <h4>Kategori</h4>
                 @Html.ActionLink("Logg Inn", "Index", "User")  <br />
-                @Html.ActionLink("Kategori", "CategoryView", "Category")<br />
+                @Html.ActionLink("Kategori", "Categories", "Category")<br />
                 @Html.ActionLink("Om oss", "About", "About")<br />
             </div>
         </div>
