@@ -51,6 +51,7 @@ namespace Nettbutikk.Models
         public int Itemnumber { get; set; }
         public String Name { get; set; }
         public String Description { get; set; }
+        public String LongDescription { get; set; }
         public int Price { get; set; }
         public int ProducersID { get; set; }
         public virtual Producers Producers { get; set; }

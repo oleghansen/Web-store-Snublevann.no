@@ -29,7 +29,7 @@ namespace Nettbutikk.Models
             producers.ForEach(p => context.Producers.Add(p));
             var products = new List<Products>
             {
-                new Products {Name="Juleøl", Description="Hei", Price=200,ProducersID=1,CategoriesID=1}
+                new Products {Name="Juleøl", Description="En juleøl fra Ringnes",LongDescription="En meget god Juleøl fra Ringnes som fungerer godt til Juleribbe og til Pinnekjøtt!", Price=200,ProducersID=1,CategoriesID=1}
             };
 
             products.ForEach(c => context.Products.Add(c));
