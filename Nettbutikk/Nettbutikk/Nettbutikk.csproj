@@ -155,10 +155,10 @@
     <Content Include="Views\Home\ProductDetails.cshtml" />
     <Content Include="Views\Home\Checkout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Category\CategoryView.cshtml" />
     <Content Include="Views\About\About.cshtml" />
     <Content Include="Views\Main\Frontpage.cshtml" />
     <Content Include="Views\Home\Frontpage.cshtml" />
+    <Content Include="Views\Category\Categories.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
