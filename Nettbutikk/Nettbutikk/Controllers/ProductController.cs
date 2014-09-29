@@ -38,5 +38,11 @@ namespace Nettbutikk.Controllers
             return View();
         }
 
+        public ActionResult viewProduct(int id)
+        {
+            var db = new DBProduct();
+            return View(db.get(id));
+        }
+
     }
 }

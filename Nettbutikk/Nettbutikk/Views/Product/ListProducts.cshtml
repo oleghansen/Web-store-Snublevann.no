@@ -46,27 +46,23 @@
                     {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.itemnumber)
+                                @Html.ActionLink(@Html.DisplayFor(modelItem => item.itemnumber).ToString(), "viewProduct", new { id = item.itemnumber})
+                               
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.name)
+                                @Html.ActionLink(@Html.DisplayFor(modelItem => item.name).ToString(), "viewProduct", new { id = item.itemnumber })
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.description)
+                                @Html.ActionLink(@Html.DisplayFor(modelItem => item.description).ToString(), "viewProduct", new { id = item.itemnumber })
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.price)
+                                @Html.ActionLink(@Html.DisplayFor(modelItem => item.price).ToString(), "viewProduct", new { id = item.itemnumber})
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.producer)
+                                @Html.ActionLink(@Html.DisplayFor(modelItem => item.producer).ToString(), "viewProduct", new { id = item.itemnumber })
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.category)
-                            </td>
-                            <td>
-                                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                @Html.ActionLink(@Html.DisplayFor(modelItem => item.category).ToString(), "viewProduct", new { id = item.itemnumber })
                             </td>
                         </tr>
                     }
