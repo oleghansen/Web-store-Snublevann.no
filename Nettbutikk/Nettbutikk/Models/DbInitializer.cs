@@ -23,6 +23,16 @@ namespace Nettbutikk.Models
             categories.ForEach(c => context.Categories.Add(c));
             context.SaveChanges();
 
+            var products = new List<Products>
+            {
+                new Products {Name="Høne", Description="Hei", Price=200}
+
+            };
+
+            products.ForEach(c => context.Products.Add(c));
+            context.SaveChanges();
+
         }
+
     }
 }
