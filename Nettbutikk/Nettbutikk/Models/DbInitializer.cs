@@ -12,12 +12,14 @@ namespace Nettbutikk.Models
         {
             var categories = new List<Category>
             {
-                new Category {name="Admin"},
-                new Category {name="ProjectManager"},
-                new Category {name="Developer"}
+                new Category {name="Øl"},
+                new Category {name="Vin"},
+                new Category {name="Brennevin"}
             };
 
             // add data into context and save to db
+
+
             categories.ForEach(c => context.Categories.Add(c));
             context.SaveChanges();
 

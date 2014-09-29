@@ -13,6 +13,7 @@ namespace Nettbutikk.Controllers
         public ActionResult Frontpage()
         {
             return View();
+
         }
     }
 }

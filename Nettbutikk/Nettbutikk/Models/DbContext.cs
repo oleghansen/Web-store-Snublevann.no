@@ -26,7 +26,8 @@ namespace Nettbutikk.Models
 
         public DbSet<Products> Products { get; set; }
         public DbSet<Producers> Producers { get; set; }
-        public DbSet<Categories> Categories { get; set; }
+        public DbSet<Category> Categories { get; set; }
+
         public DbSet<OrderLines> OrderLines { get; set; }
         public DbSet<Orders> Orders { get; set; }
         public DbSet<Customers> Customers { get; set; }
