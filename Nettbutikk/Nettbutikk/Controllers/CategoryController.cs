@@ -11,7 +11,7 @@ namespace Nettbutikk.Controllers
 
         // GET: Cat
         private Models.DatabaseContext db = new Models.DatabaseContext();
-        public ActionResult Index()
+        public ActionResult CategoryView()
         {
             return View();
         }

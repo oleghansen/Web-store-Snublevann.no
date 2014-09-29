@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Nettbutikk.Models;
 
 namespace Nettbutikk.Controllers
 {
-    public class MainController : Controller
+    public class AboutController : Controller
     {
-        // GET: Product
+        // GET: About
         public ActionResult Index()
         {
             return View();
