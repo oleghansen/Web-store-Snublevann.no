@@ -97,7 +97,8 @@ namespace Nettbutikk.Models
         public String Address { get; set; }
         public int Postalcode { get; set; }
         public Postalareas Postalareas { get; set; }
-        public virtual Users Users { get; set; }
+        public String Username { get; set; }
+        public byte[] Password { get; set; }
         public virtual List<Order> Orders { get; set; }
     }
 
@@ -108,11 +109,6 @@ namespace Nettbutikk.Models
         public String Postalarea { get; set; }
     }
 
-    public class Users
-    {
-        [Key]
-        public String Username { get; set; }
-        public byte[] Password { get; set; }
-    }
+ 
 
 }
