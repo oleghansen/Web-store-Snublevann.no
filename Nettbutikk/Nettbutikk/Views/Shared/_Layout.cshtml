@@ -44,24 +44,20 @@
     <div class="panel panel-default pull-left">
         <div class="panel-body">
             <div class="pull-left">
-                <li>@Html.DropDownList("Kategori", new List<SelectListItem>
-                        {
-                             new SelectListItem{Text = "ØL", Value="1"},
-                             new SelectListItem{Text = "Rødvin", Value="2"},
-                             new SelectListItem{Text = "Hvitvin", Value="3"},
-                             new SelectListItem{Text = "Brennevin", Value="4"},
-                             new SelectListItem{Text = "Rosevin", Value="5"},
-                        }
-                        )
-                </li>
-                <h4>Kategori</h4>
-                @Html.ActionLink("Logg Inn", "Index", "User")  <br />
+                <div class="visible-lg-block">
+                    <h4>Kategori:</h4>
+                    <ul>@Html.ActionLink("Øl", "GetBeerCategory", "Category")</ul>
+                    <ul>@Html.ActionLink("Rødvin", "")</ul>
+                    <ul>@Html.ActionLink("Hvitvin", "")</ul>
+                </div>
+                <br />
                 @Html.ActionLink("Kategori", "Categories", "Category")<br />
                 @Html.ActionLink("Om oss", "About", "About")<br />
             </div>
         </div>
     </div>
     <div class="container body-content">
+            
         @RenderBody()
         <hr/>
         <footer>
