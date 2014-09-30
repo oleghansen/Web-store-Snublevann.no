@@ -33,6 +33,7 @@ namespace Nettbutikk.Models
         [Required(ErrorMessage = "Passord må oppgis")]
         public String password { get; set; }
 
+        public ShoppingCart shoppingcart; 
 
     }
 }
