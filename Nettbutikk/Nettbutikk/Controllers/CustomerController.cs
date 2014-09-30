@@ -9,6 +9,8 @@ namespace Nettbutikk.Controllers
 {
     public class CustomerController : Controller
     {
+        
+        
         public ActionResult Register()
         {
             return View();
@@ -24,14 +26,14 @@ namespace Nettbutikk.Controllers
        
         public ActionResult LogIn()
         {
-            if (Session["LoggetInn"] == null)
+            if (Session["loggedInUser"] == null)
             {
-                Session["LoggetInn"] = false;
+                Session["loggedInUser"] = false;
                 ViewBag.LoggedIn = false;
             }
             else
             {
-                ViewBag.LoggedIn = (bool)Session["LoggetInn"];
+                ViewBag.LoggedIn = (bool)Session["loggedInUser"];
             }
             return View();
         }
@@ -87,13 +89,14 @@ namespace Nettbutikk.Controllers
         {
             if (userExists(user))
             {
-                Session["LoggetInn"] = true;
+                user.shoppingcart = new ShoppingCart();
+                Session["loggedInUser"] = user;
                 ViewBag.loggedIn = true;
                 return View();
             }
             else
             {
-                Session["LoggetInn"] = false;
+                Session["loggedInUser"] = false;
                 ViewBag.loggedIn = false;
                 return View();
             }
@@ -121,9 +124,9 @@ namespace Nettbutikk.Controllers
         //Dersom man går inn i den personlige siden så viser man denne siden, ellers må man logge inn.
         public ActionResult PersonalSite()
         {
-            if (Session["LoggetInn"] != null)
+            if (Session["loggedInUser"] != null)
             {
-                bool loggedIn = (bool)Session["LoggetInn"];
+                bool loggedIn = (bool)Session["loggedInUser"];
                 if(loggedIn)
                 {
                     return View();
