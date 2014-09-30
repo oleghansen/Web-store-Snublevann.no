@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Nettbutikk.Models.ShoppingCart>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>viewShoppingCart</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>Antall</th>
+            <th>Vare</th>
+            <th>Pris</th>
+        </tr>
+        
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.)
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>
