@@ -23,6 +23,7 @@ namespace Nettbutikk
                     name = p.Name,
                     description = p.Description,
                     price = p.Price,
+                    volum = p.Volum,
                     producer = p.Producers.Name,
                     category = p.Categories.Name
                 }
@@ -34,6 +35,7 @@ namespace Nettbutikk
                     name = p.Name,
                     description = p.Description,
                     price = p.Price,
+                    volum = p.Volum,
                     producer = p.Producers.Name,
                     category = p.Categories.Name
                 }
@@ -51,6 +53,7 @@ namespace Nettbutikk
                 description = products.Description,
                 longDescription = products.LongDescription,
                 price = products.Price,
+                volum = products.Volum,
                 producer = products.Producers.Name,
                 category = products.Categories.Name
             };
@@ -64,7 +67,8 @@ namespace Nettbutikk
                 Itemnumber = inProduct.itemnumber,
                 Name = inProduct.name,
                 Description = inProduct.description,
-                Price = inProduct.price
+                Price = inProduct.price,
+                Volum = inProduct.volum
                // Producer = inProduct.producer , må hente fra DbSet Producers?
                // Category = inProduct.category , må hente fra DbSet Categories?
             };

@@ -21,6 +21,13 @@ namespace Nettbutikk.Controllers
     
             return View(listOfProducts);
         }
+
+        public double pricePerLitre(int id)
+        {
+            var db = new DBProduct();
+            double pricePerLitre = ((db.get(id).price) / (db.get(id).volum));
+            return pricePerLitre;
+        }
         public ActionResult addProduct()
         {
             return View();
@@ -45,7 +52,9 @@ namespace Nettbutikk.Controllers
         public ActionResult viewProduct(int id)
         {
             var db = new DBProduct();
-            return View(db.get(id));
+            Product p = db.get(id);
+            p.pricePerLitre = pricePerLitre(id);
+            return View(p);
         }
 
     }
