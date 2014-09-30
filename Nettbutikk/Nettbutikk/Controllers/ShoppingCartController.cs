@@ -12,14 +12,33 @@ namespace Nettbutikk.Controllers
         // GET: ShoppingCart
         public ActionResult viewShoppingCart()
         {
-            if (Session["LoggedInUser"])
-            {
-                Customer c = (Customer)Session["LoggedInUser"];
-                List<ShoppingCartItem> l = c.shoppingcart.shoppingCartItems;
-                return View(l);
-            }
+            List<ShoppingCartItem> list = getCart();
+            if (list != null)
+                return View(list);
             else
-                Redirect
+               return RedirectToAction("Main", "Frontpage");
+            
+        }
+
+        public ActionResult addToCart(Product p, int qty)
+        {
+            List<ShoppingCartItem> list = getCart();
+            ShoppingCartItem item = new ShoppingCartItem(p, qty);
+            list.Add(item);
+
+            //TODO hva skal returneres hvor her?
+            return View(true); 
+        }
+
+        private List<ShoppingCartItem> getCart()
+        {
+            if(!Session["loggedInUser"].Equals(null))
+            {
+                Customer c = (Customer)Session["loggedInUser"];
+                List<ShoppingCartItem> list = c.shoppingcart.shoppingCartItems;
+                return list; 
+            }
+            return null; 
         }
     }
 }
