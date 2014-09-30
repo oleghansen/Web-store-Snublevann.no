@@ -33,7 +33,7 @@
                         </form>
                     </li>
                     <li>@Html.ActionLink("Nytt product", "AddProduct", "Product")</li>
-                    <li>@Html.ActionLink("Handlekurv", "", "")</li>
+                    <li>@Html.ActionLink("Handlekurv", "viewShoppingCart", "ShoppingCart")</li>
                     
                     @if (Session["loggedInUser"] == null)
                     {    <li>@Html.ActionLink("Registrer", "Register", "Customer")</li>
