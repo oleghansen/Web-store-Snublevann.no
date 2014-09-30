@@ -37,6 +37,9 @@
                             @Html.DisplayNameFor(model => model[0].price)
                         </th>
                         <th>
+                            @Html.DisplayNameFor(model => model[0].pricePerLitre)
+                        </th>
+                        <th>
                             @Html.DisplayNameFor(model => model[0].producer)
                         </th>
                         <th>
@@ -63,6 +66,9 @@
                             </td>
                             <td>
                                 @Html.ActionLink(@Html.DisplayFor(modelItem => item.price).ToString(), "viewProduct", new { id = item.itemnumber})
+                            </td>
+                            <td>
+                                @Html.ActionLink(@Html.DisplayFor(modelItem => item.pricePerLitre).ToString(), "viewProduct", new { id = item.itemnumber})
                             </td>
                             <td>
                                 @Html.ActionLink(@Html.DisplayFor(modelItem => item.producer).ToString(), "viewProduct", new { id = item.itemnumber })
