@@ -17,6 +17,12 @@ namespace Nettbutikk.Controllers
 
         }
 
+        public ActionResult LogOut()
+        {
+            Session["loggedInUser"] = null;
+            return View("../Main/Frontpage");
+
+        }
         
         
         //SKjekker om man er logget inn
@@ -28,12 +34,11 @@ namespace Nettbutikk.Controllers
         {
             if (Session["loggedInUser"] == null)
             {
-                Session["loggedInUser"] = false;
                 ViewBag.LoggedIn = false;
             }
             else
             {
-                ViewBag.LoggedIn = (bool)Session["loggedInUser"];
+                ViewBag.LoggedIn = true;
             }
             return View();
         }
@@ -96,7 +101,7 @@ namespace Nettbutikk.Controllers
             }
             else
             {
-                Session["loggedInUser"] = false;
+                Session["loggedInUser"] = null;
                 ViewBag.loggedIn = false;
                 return View();
             }
@@ -124,14 +129,12 @@ namespace Nettbutikk.Controllers
         //Dersom man går inn i den personlige siden så viser man denne siden, ellers må man logge inn.
         public ActionResult PersonalSite()
         {
-            if (Session["loggedInUser"] != null)
+            if (Session["loggedInUser"] != null )
             {
-                bool loggedIn = (bool)Session["loggedInUser"];
-                if(loggedIn)
-                {
-                    return View();
-                }
-             }
+               
+                return View();
+                
+           }
              return RedirectToAction("LogIn");
         }
     }
