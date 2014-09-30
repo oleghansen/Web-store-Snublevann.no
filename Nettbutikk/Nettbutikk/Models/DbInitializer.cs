@@ -12,9 +12,9 @@ namespace Nettbutikk.Models
         {
             var categories = new List<Categories>
             {
-                new Categories {Name="Øl"},
-                new Categories {Name="Vin"},
-                new Categories {Name="Brennevin"}
+                new Categories {Name="Øl", ID=1},
+                new Categories {Name="Vin", ID=2},
+                new Categories {Name="Brennevin", ID=3}
             };
 
             // add data into context and save to db
