@@ -74,7 +74,7 @@ namespace Nettbutikk.Models
         public int ID { get; set; }
         public String Name { get; set; }
 
-        public virtual List<Product> Products { get; set; } 
+        public List<Product> Products { get; set; } 
     }
 
     public class OrderLines //noen som har et bedre ord for ordrelinje?! 

@@ -10,18 +10,17 @@ namespace Nettbutikk.Controllers
     public class ProductController : Controller
     {
         // GET: Product
-        public ActionResult ListProducts()
+        public ActionResult ListProducts(int? id)
         {
             var db = new DBProduct();
-            List<Product> listOfProducts = db.getAll();
+            List<Product> listOfProducts;
+            if(id.HasValue)
+                listOfProducts = db.getAll(id);
+            else
+                listOfProducts = db.getAll(id);
+    
             return View(listOfProducts);
         }
-
-        public ActionResult DetailsProduct(Product inProduct)
-        {
-            return View(inProduct);
-        }
-
         public ActionResult addProduct()
         {
             return View();

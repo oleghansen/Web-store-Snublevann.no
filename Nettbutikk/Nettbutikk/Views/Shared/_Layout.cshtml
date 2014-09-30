@@ -46,9 +46,9 @@
             <div class="pull-left">
                 <div class="visible-lg-block">
                     <h4>Kategori:</h4>
-                    <ul>@Html.ActionLink("Øl", "GetBeerCategory", "Category")</ul>
-                    <ul>@Html.ActionLink("Rødvin", "")</ul>
-                    <ul>@Html.ActionLink("Hvitvin", "")</ul>
+                    <ul><a href='@Url.Action("ListProducts", "Product", new { id = 1 })'>Øl</a></ul>
+                    <ul><a href='@Url.Action("ListProducts", "Product", new { id = 2 })'>Vin</a></ul>
+                    <ul><a href='@Url.Action("ListProducts", "Product", new { id = 3 })'>Brennevin</ul>
                 </div>
                 <br />
                 @Html.ActionLink("Kategori", "Categories", "Category")<br />
