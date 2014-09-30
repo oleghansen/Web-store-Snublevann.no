@@ -30,6 +30,9 @@ namespace Nettbutikk.Models
         [Required(ErrorMessage = "Volum må oppgis")]
         public double volum { get; set;}
 
+        [Display(Name = "Pris per liter")]
+        public double pricePerLitre { get; set; }
+
         [Display(Name = "Produsent")]
         [Required(ErrorMessage = "Produsent må oppgis")]
         public String producer { get; set; }

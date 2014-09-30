@@ -52,7 +52,9 @@ namespace Nettbutikk.Controllers
         public ActionResult viewProduct(int id)
         {
             var db = new DBProduct();
-            return View(db.get(id));
+            Product p = db.get(id);
+            p.pricePerLitre = pricePerLitre(id);
+            return View(p);
         }
 
     }
