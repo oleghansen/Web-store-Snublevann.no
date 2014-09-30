@@ -93,8 +93,14 @@
     
         </dl>
     </div>
-    <p>
-        @Html.ActionLink("Tilbakeøøøø", "ListProducts")
-    </p>
+    @using (Html.BeginForm("addToCart","ShoppingCart"))
+    { 
+        <div class="panel-footer">
+            @Html.EditorFor(model => model.quantity)
+            @Html.HiddenFor(model => model.itemnumber)
+            <input type="submit" value="KJØP!" />
+        </div>
+    }
+    @Html.ActionLink("Tilbake", "ListProducts")
 </body>
 </html>

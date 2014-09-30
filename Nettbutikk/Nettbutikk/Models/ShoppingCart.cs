@@ -8,10 +8,11 @@ namespace Nettbutikk.Models
     public class ShoppingCart
     {
         public List<ShoppingCartItem> shoppingCartItems;
-
+        public int sum {get; set;}
         public ShoppingCart()
         {
-            shoppingCartItems = new List<ShoppingCartItem>(); 
+            shoppingCartItems = new List<ShoppingCartItem>();
+            sum = 0; 
         }
 
         
