@@ -55,6 +55,7 @@ namespace Nettbutikk.Models
         public String Description { get; set; }
         public String LongDescription { get; set; }
         public int Price { get; set; }
+        public double Volum { get; set; }
         public int ProducersID { get; set; }
         public virtual Producers Producers { get; set; }
         public int CategoriesID { get; set; }
