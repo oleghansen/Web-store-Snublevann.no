@@ -1,5 +1,4 @@
-﻿@model List<Nettbutikk.Models.Categories>
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -47,11 +46,10 @@
             <div class="pull-left">
                 <div class="visible-lg-block">
                     <h4>Kategori:</h4>
-                    <nav>
-                        @Html.ActionLink("Øl", "getProductsByCategory", "Category", new { id = 1}, null)<br />
-                        @Html.ActionLink("Rødvin", "")<br />
-                        @Html.ActionLink("Hvitvin", "")<br />
-                    </nav>
+                    <ul><a href='@Url.Action("ListProducts", "Product", new { id = 1 })'>Øl</a></ul>
+                    <ul><a href='@Url.Action("ListProducts", "Product", new { id = 2 })'>Vin</a></ul>
+                    <ul><a href='@Url.Action("ListProducts", "Product", new { id = 3 })'>Brennevin</ul>
+                </div>
                 <br />
                 @Html.ActionLink("Kategori", "Categories", "Category")<br />
                 @Html.ActionLink("Om oss", "About", "About")<br />
