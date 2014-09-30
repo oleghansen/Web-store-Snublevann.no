@@ -17,6 +17,12 @@ namespace Nettbutikk.Controllers
 
         }
 
+        public ActionResult LogOut()
+        {
+            Session["loggedInUser"] = null;
+            return View("../Main/Frontpage");
+
+        }
         
         
         //SKjekker om man er logget inn
