@@ -28,7 +28,7 @@ namespace Nettbutikk.Models
         public Postalareas postalarea { get; set; }
         [Display(Name = "Brukernavn")]
         [Required(ErrorMessage = "Brukernavn må oppgis")]
-        public String usename { get; set; }
+        public String username { get; set; }
         [Display(Name = "Passord")]
         [Required(ErrorMessage = "Passord må oppgis")]
         public String password { get; set; }
