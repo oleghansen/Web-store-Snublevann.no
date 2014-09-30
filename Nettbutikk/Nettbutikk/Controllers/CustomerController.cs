@@ -7,19 +7,15 @@ using Nettbutikk.Models;
 
 namespace Nettbutikk.Controllers
 {
-    public class CostumerContoller : Controller
+    public class CustomerController : Controller
     {
-        public ActionResult FrontPage()
-        {
-            return View();
-        }
         public ActionResult Register()
         {
             return View();
+
         }
 
-       
-
+        
         
         //SKjekker om man er logget inn
         //hvilken side skal man skjekke at man er logget inn eller ei ?
@@ -65,6 +61,7 @@ namespace Nettbutikk.Controllers
                     user.Postalareas = newUser.postalarea;
                     db.Customers.Add(user);
                     db.SaveChanges();
+                    
                     return RedirectToAction("LogIn");
                 }
                 catch (Exception e)
@@ -109,7 +106,7 @@ namespace Nettbutikk.Controllers
             {
                 byte[] passwordDb = makeHash(user.password);
                 Customers userFound = db.Customers.FirstOrDefault
-                (u => u.Password == passwordDb && u.Username == user.username);
+                (u => u.Password == passwordDb && u.Username == user.username);   
                 if (userFound == null)
                 {
                     return false;

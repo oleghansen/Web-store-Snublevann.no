@@ -43,6 +43,8 @@ namespace Nettbutikk.Models
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
+
+        public System.Data.Entity.DbSet<Nettbutikk.Models.Customer> Customers1 { get; set; }
     }
 
     public class Products
