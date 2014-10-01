@@ -8,7 +8,6 @@ namespace Nettbutikk.Models
 {
     public class Product
     {
-        [Key]
         public int itemnumber { get; set; }
 
         [Display(Name = "Produktnavn")]
