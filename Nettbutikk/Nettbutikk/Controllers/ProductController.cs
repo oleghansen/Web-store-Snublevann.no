@@ -22,8 +22,9 @@ namespace Nettbutikk.Controllers
             return View(listOfProducts);
         }
 
-        public ViewResult Search(string searchString)
-        {
+        public ActionResult Search(string searchString)
+        {   
+            
             var db = new DatabaseContext();
             var products = from p in db.Products
                            select p;
@@ -34,7 +35,9 @@ namespace Nettbutikk.Controllers
                                             || p.Description.ToUpper().Contains(searchString.ToUpper()));
             }
 
-            return View(products.ToList());
+            
+
+            return View(products);
 
         }
 

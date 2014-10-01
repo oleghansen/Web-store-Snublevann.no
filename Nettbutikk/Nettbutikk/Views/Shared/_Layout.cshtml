@@ -27,11 +27,15 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>
-                        <form method="get" action="@Url.Action("Search", "SearchProduct", "Search")">
-                            <label for="search">Søk</label>
-                            <input type="text" name="search" id="search" />
-                            <button type="submit">Søk</button>
-                        </form>
+
+                        @using (Html.BeginForm())
+                        {
+                            <p>
+                                Search: @Html.TextBox("SearchString")
+                                <input type="submit" value="Søk" />
+                            </p>
+                        }
+
                     </li>
                     <li>@Html.ActionLink("Nytt product", "AddProduct", "Product")</li>
                     
