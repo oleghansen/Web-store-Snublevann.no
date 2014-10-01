@@ -17,6 +17,27 @@ namespace Nettbutikk.Controllers
 
         }
 
+        //Her kommer man dersom man har registrert en ny bruker 
+        [HttpPost]
+        public ActionResult Register(Customer newUser)
+        {
+            if (ModelState.IsValid)
+            {
+                var customerDB = new DBCustomer();
+                byte[] hashedPassword = makeHash(newUser.password);
+                bool insertOK = customerDB.add(newUser, hashedPassword);
+                if (insertOK)
+                    return RedirectToAction("LogIn");
+            }
+            return View();
+        }
+
+        public ActionResult LogOut()
+        {
+            Session["loggedInUser"] = null;
+            return View("../Main/Frontpage");
+
+        }
         
         
         //SKjekker om man er logget inn
@@ -28,49 +49,49 @@ namespace Nettbutikk.Controllers
         {
             if (Session["loggedInUser"] == null)
             {
-                Session["loggedInUser"] = false;
                 ViewBag.LoggedIn = false;
             }
             else
             {
-                ViewBag.LoggedIn = (bool)Session["loggedInUser"];
+                ViewBag.LoggedIn = true;
             }
             return View();
         }
 
-        //Her kommer man dersom man har registrert en ny bruker 
+
+
+
+        // Her skjekker kaller man først opp userExits, dersom den gjør det så er man logget inn
         [HttpPost]
-        public ActionResult Register(Customer newUser)
+        public ActionResult LogIn(Customer user)
         {
-            if (!ModelState.IsValid)
+            var customerDB = new DBCustomer(); 
+            var hashedPassword = makeHash(user.password); 
+            if (customerDB.validate(user.username, hashedPassword))
             {
+                user.shoppingcart = new ShoppingCart();
+                Session["loggedInUser"] = user;
+                ViewBag.loggedIn = true;
                 return View();
             }
-            using (var db = new Models.DatabaseContext())
+            else
             {
-                try
-                {
-                    var user = new Customers();
-                    byte[] hasedpassword = makeHash(newUser.password);
-                    user.Password = hasedpassword;
-                    user.Username = newUser.username;
-                    user.Firstname = newUser.firstname;
-                    user.Lastname = newUser.lastname;
-                    user.Email = newUser.email;
-                    user.Phonenumber = newUser.phonenumber;
-                    user.Address = newUser.address;
-                    user.Postalcode = newUser.postalcode;
-                    user.Postalareas = newUser.postalarea;
-                    db.Customers.Add(user);
-                    db.SaveChanges();
-                    
-                    return RedirectToAction("LogIn");
-                }
-                catch (Exception e)
-                {
-                    return View();
-                }
+                Session["loggedInUser"] = null;
+                ViewBag.loggedIn = false;
+                return View();
             }
+        }
+
+        //Dersom man går inn i den personlige siden så viser man denne siden, ellers må man logge inn.
+        public ActionResult PersonalSite()
+        {
+            if (Session["loggedInUser"] != null )
+            {
+               
+                return View();
+                
+           }
+             return RedirectToAction("LogIn");
         }
 
         //Hasher passordet
@@ -83,57 +104,6 @@ namespace Nettbutikk.Controllers
             return outData;
         }
 
-        // Her skjekker kaller man først opp userExits, dersom den gjør det så er man logget inn
-        [HttpPost]
-        public ActionResult LogIn(Customer user)
-        {
-            if (userExists(user))
-            {
-                user.shoppingcart = new ShoppingCart();
-                Session["loggedInUser"] = user;
-                ViewBag.loggedIn = true;
-                return View();
-            }
-            else
-            {
-                Session["loggedInUser"] = false;
-                ViewBag.loggedIn = false;
-                return View();
-            }
-        }
-
-        //Går inn i db og skjekker om brukeren finnes
-        private static bool userExists(Customer user)
-        {
-            using (var db = new Models.DatabaseContext())
-            {
-                byte[] passwordDb = makeHash(user.password);
-                Customers userFound = db.Customers.FirstOrDefault
-                (u => u.Password == passwordDb && u.Username == user.username);   
-                if (userFound == null)
-                {
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
-            }
-        }
-
-        //Dersom man går inn i den personlige siden så viser man denne siden, ellers må man logge inn.
-        public ActionResult PersonalSite()
-        {
-            if (Session["loggedInUser"] != null)
-            {
-                bool loggedIn = (bool)Session["loggedInUser"];
-                if(loggedIn)
-                {
-                    return View();
-                }
-             }
-             return RedirectToAction("LogIn");
-        }
     }
 }
 
