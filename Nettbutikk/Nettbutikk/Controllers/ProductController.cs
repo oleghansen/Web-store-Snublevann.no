@@ -22,6 +22,22 @@ namespace Nettbutikk.Controllers
             return View(listOfProducts);
         }
 
+        public ViewResult Search(string searchString)
+        {
+            var db = new DatabaseContext();
+            var products = from p in db.Products
+                           select p;
+          
+            if(!String.IsNullOrEmpty(searchString))
+            {
+                products = products.Where(p => p.Name.ToUpper().Contains(searchString.ToUpper())
+                                            || p.Description.ToUpper().Contains(searchString.ToUpper()));
+            }
+
+            return View(products.ToList());
+
+        }
+
         public double pricePerLitre(int id)
         {
             var db = new DBProduct();
