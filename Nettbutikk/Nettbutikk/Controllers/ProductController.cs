@@ -14,6 +14,7 @@ namespace Nettbutikk.Controllers
         {
             var db = new DBProduct();
             List<Product> listOfProducts;
+
             if(id.HasValue)
                 listOfProducts = db.getAll(id);
             else
@@ -23,22 +24,20 @@ namespace Nettbutikk.Controllers
         }
 
         public ActionResult Search(string searchString)
-        {   
+        {
+            var db = new DBProduct();
+            List<Product> listOfProducts;
             
-            var db = new DatabaseContext();
-            var products = from p in db.Products
-                           select p;
-          
             if(!String.IsNullOrEmpty(searchString))
             {
-                products = products.Where(p => p.Name.ToUpper().Contains(searchString.ToUpper())
-                                            || p.Description.ToUpper().Contains(searchString.ToUpper()));
+                listOfProducts = db.getResult(searchString);
+                return View(listOfProducts);
             }
-
-            
-
-            return View(products);
-
+            else
+            {
+                listOfProducts = db.getResult("Tomt");
+                return View(listOfProducts);
+            }
         }
 
         public double pricePerLitre(int id)

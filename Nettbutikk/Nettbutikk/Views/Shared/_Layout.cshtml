@@ -28,11 +28,12 @@
                 <ul class="nav navbar-nav">
                     <li>
 
-                        @using (Html.BeginForm())
+
+                        @using (Html.BeginForm("Search", "Product", FormMethod.Get))
                         {
                             <p>
                                 Search: @Html.TextBox("SearchString")
-                                <input type="submit" value="Søk" />
+                                <input type="submit" value="Search" />
                             </p>
                         }
 

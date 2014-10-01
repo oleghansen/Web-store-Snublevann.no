@@ -59,6 +59,24 @@ namespace Nettbutikk
             };
         }
 
+        public List<Product> getResult(string searchString)
+        {
+            var db = new DatabaseContext();
+            List<Product> foundProducts;
+            foundProducts = db.Products.AsEnumerable().Where(p => p.Name.ToUpper().Contains(searchString.ToUpper())
+                            || p.Description.ToUpper().Contains(searchString.ToUpper())).Select(p => new Product()
+                            {                    
+                                itemnumber = p.Itemnumber,
+                                name = p.Name,
+                                description = p.Description,
+                                price = p.Price,
+                                volum = p.Volum,
+                                producer = p.Producers.Name,
+                                category = p.Categories.Name
+                            }).ToList();
+            return foundProducts;
+        }
+
 
         public bool add(Product inProduct)
         {

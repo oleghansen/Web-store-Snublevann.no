@@ -1,0 +1,110 @@
+﻿@model List<Nettbutikk.Models.Product>
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="jumbotron">
+    <p>Søkeresultater</p> 
+    <!--
+    <table class="table">
+        <tr>
+            <th>
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].itemnumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].pricePerLitre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].producer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].category)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a href=@Url.Action("viewProduct",new { id = item.itemnumber} )><span><img src=@Url.Content("~/Content/img/" + item.itemnumber + ".png") width="80" height="130" class="img-thumbnail"/></span></a>
+                </td>
+                <td>
+                    @Html.ActionLink(@Html.DisplayFor(modelItem => item.itemnumber).ToString(), "viewProduct", new { id = item.itemnumber})
+
+                </td>
+                <td>
+                    @Html.ActionLink(@Html.DisplayFor(modelItem => item.name).ToString(), "viewProduct", new { id = item.itemnumber })
+                </td>
+                <td>
+                    @Html.ActionLink(@Html.DisplayFor(modelItem => item.description).ToString(), "viewProduct", new { id = item.itemnumber })
+                </td>
+                <td>
+                    @Html.ActionLink(@Html.DisplayFor(modelItem => item.price).ToString(), "viewProduct", new { id = item.itemnumber})
+                </td>
+                <td>
+                    @Html.ActionLink(@Html.DisplayFor(modelItem => item.pricePerLitre).ToString(), "viewProduct", new { id = item.itemnumber})
+                </td>
+                <td>
+                    @Html.ActionLink(@Html.DisplayFor(modelItem => item.producer).ToString(), "viewProduct", new { id = item.itemnumber })
+                </td>
+                <td>
+                    @Html.ActionLink(@Html.DisplayFor(modelItem => item.category).ToString(), "viewProduct", new { id = item.itemnumber })
+                </td>
+            </tr>
+        }
+
+    </table>
+        -->
+    @foreach (var item in Model)
+    {
+        <a href='@Url.Action("viewProduct","Product",new {id = item.itemnumber })'>
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <div class="col-md-4">
+                        <img src=@Url.Content("~/Content/img/" + item.itemnumber + ".png") height="170" width="100">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3>
+                                    @Html.DisplayFor(modelItem => item.name)
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                @Html.DisplayFor(modelItem => item.description)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    }
+    <br />
+    <a class="btn btn-default">Gå til betaling</a>
+    <a class="btn btn-info">Bli her</a>
+</div>
+        </div>
+
+<div class="navbar navbar-default navbar-fixed-bottom">
+
+    <div class="container">
+        <p class="navbar-text text-center"> Nettbutikk for de flinkeste dataingeniørstudentene - 2014</p>
+    </div>
+</div>
