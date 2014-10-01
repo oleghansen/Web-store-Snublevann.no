@@ -48,6 +48,7 @@ namespace Nettbutikk.Controllers
 
         public ActionResult checkout()
         {
+            ViewBag.Empty = false; 
             ShoppingCart cart = getCart();
             if (cart == null)
             {

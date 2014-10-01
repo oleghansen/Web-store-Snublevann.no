@@ -22,9 +22,9 @@ namespace Nettbutikk.Controllers
         public ActionResult getProductsByCategory(int id)
         {
 
-            List<Product> productsByCat = db.Products.AsEnumerable().Where(p => p.CategoriesID == id).Select(p => new Product()
+            List<Product> productsByCat = db.Products.AsEnumerable().Where(p => p.CategoriesId == id).Select(p => new Product()
             {
-                itemnumber = p.Itemnumber,
+                itemnumber = p.Id,
                 name = p.Name,
                 description = p.Description,
                 price = p.Price,

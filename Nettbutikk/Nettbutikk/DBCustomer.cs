@@ -15,7 +15,7 @@ namespace Nettbutikk
                 Firstname = inCustomer.firstname,
                 Lastname = inCustomer.lastname,
                 Address = inCustomer.address,
-                Postalcode = Convert.ToInt16(inCustomer.postalcode),
+                PostalareasId = Convert.ToInt16(inCustomer.postalcode),
                 Username = inCustomer.username,
                 Password = hashedPassword,
                 Phonenumber = inCustomer.phonenumber,
@@ -31,7 +31,7 @@ namespace Nettbutikk
                 {
                     var newPostalarea = new Postalareas()
                     {
-                        Postalcode = inCustomer.postalcode,
+                        PostalareasId = inCustomer.postalcode,
                         Postalarea = inCustomer.postalarea
                     };
                     newCustomer.Postalareas = newPostalarea;

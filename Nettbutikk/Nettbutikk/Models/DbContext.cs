@@ -42,29 +42,29 @@ namespace Nettbutikk.Models
     public class Products
     {
         [Key]
-        public int Itemnumber { get; set; }
+        public int Id { get; set; }
         public String Name { get; set; }
         public String Description { get; set; }
         public String LongDescription { get; set; }
         public int Price { get; set; }
         public double Volum { get; set; }
-        public int ProducersID { get; set; }
+        public int ProducersId { get; set; }
         public virtual Producers Producers { get; set; }
-        public int CategoriesID { get; set; }
+        public int CategoriesId { get; set; }
         public virtual Categories Categories { get; set; }
-        public virtual List<OrderLines> Orderlines { get; set; }
+        public virtual List<OrderLines> OrderLines { get; set; }
     }
 
     public class Producers
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public String Name { get; set; }
         public virtual List<Products> Products { get; set; }
     }
 
     public class Categories
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public String Name { get; set; }
 
         public List<Products> Products { get; set; } 
@@ -73,20 +73,21 @@ namespace Nettbutikk.Models
     public class OrderLines //noen som har et bedre ord for ordrelinje?! 
     {
         [Key]
-        public int ID { get; set; }
-        public int ProductID { get; set; }
+        public int Id { get; set; }
+        public int ProductsId { get; set; }
+        public Products Products { get; set; }
         public int Quantity { get; set; }
-        public int OrderID { get; set; }
-        public Product Product { get; set; }
-        public Order Order { get; set; }
+        public int OrdersId { get; set; }
+        public Orders Orders { get; set; }
     }
 
     public class Orders
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public DateTime OrderDate { get; set; }
         public virtual List<OrderLines> OrderLines { get; set; }
-        public int CustomerID { get; set; }
+        public int CustomersId { get; set; }
+        public Customers Customers { get; set; }
 
 
     }
@@ -94,13 +95,13 @@ namespace Nettbutikk.Models
 
     public class Customers 
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public String Firstname { get; set; }
         public String Lastname { get; set; }
         public String Email { get; set; }
         public String Phonenumber { get; set; }
         public String Address { get; set; }
-        public int Postalcode { get; set; }
+        public int PostalareasId { get; set; }
         public Postalareas Postalareas { get; set; }
         public String Username { get; set; }
         public byte[] Password { get; set; }
@@ -110,7 +111,7 @@ namespace Nettbutikk.Models
     public class Postalareas
     {
         [Key]
-        public int Postalcode { get; set; }
+        public int PostalareasId { get; set; }
         public String Postalarea { get; set; }
     }
 

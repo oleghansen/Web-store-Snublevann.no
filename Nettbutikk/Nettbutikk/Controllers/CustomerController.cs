@@ -70,7 +70,7 @@ namespace Nettbutikk.Controllers
             if (customerDB.validate(user.username, hashedPassword))
             {
                 //TODO: ugly hack, fikse bedre metode for å få id inn i shoppingcart
-                var userid = customerDB.findCustomer(user.username).ID;
+                var userid = customerDB.findCustomer(user.username).Id;
                 user.shoppingcart = new ShoppingCart(userid);
                 Session["loggedInUser"] = user;
                 ViewBag.loggedIn = true;
