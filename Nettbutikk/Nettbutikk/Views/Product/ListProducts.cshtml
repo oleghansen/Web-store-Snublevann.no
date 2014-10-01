@@ -1,20 +1,8 @@
 ﻿@model List<Nettbutikk.Models.Product>
 
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>ListProducts</title>
-    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
-    <link href="~/Content/bootstrap.css" rel="stylesheet" />
-    <script src="~/Scripts/bootstrap.js"></script>
-    <script src="~/Scripts/jquery-1.9.0.js"></script>
-</head>
-    <body>
-        <div class ="container">
-               
+@{
+    ViewBag.Title = "Produkter";
+}
             <div class="jumbotron">
                <h1>Her viser vi produktene våre</h1>
                 <p>Her kan vi putte produkter osv osv og mye annet snadder. Blir moro på BEKK i mårra! Hei</p>
@@ -121,5 +109,3 @@
                 <p class ="navbar-text text-center"> Nettbutikk for de flinkeste dataingeniørstudentene - 2014</p>
             </div>
         </div>
-    </body>
-</html>
