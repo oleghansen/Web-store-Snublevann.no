@@ -7,10 +7,12 @@ namespace Nettbutikk.Models
 {
     public class ShoppingCart
     {
+        public int userID;
         public List<ShoppingCartItem> shoppingCartItems;
         public int sum { get; set; }
-        public ShoppingCart()
+        public ShoppingCart(int id)
         {
+            userID = id; 
             shoppingCartItems = new List<ShoppingCartItem>();
             sum = 0;
         }

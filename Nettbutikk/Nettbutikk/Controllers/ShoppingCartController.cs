@@ -45,5 +45,20 @@ namespace Nettbutikk.Controllers
             }
             return null;
         }
+
+        public ActionResult checkout()
+        {
+            ShoppingCart cart = getCart();
+            if (cart == null)
+            {
+                ViewBag.Empty = true;
+                return View();
+            }
+
+            var orderDB = new DBOrder();
+            orderDB.checkout(cart);
+            return View(); 
+
+        }
     }
 }

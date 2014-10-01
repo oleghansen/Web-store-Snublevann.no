@@ -13,6 +13,6 @@ namespace Nettbutikk.Models
         [Display(Name = "Kategori")]
         public string name { get; set; }
 
-        public Product product { get; set; }
+        //public Product product { get; set; }
     }
 }

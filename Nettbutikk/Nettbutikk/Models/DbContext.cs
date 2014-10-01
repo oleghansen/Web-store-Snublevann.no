@@ -37,7 +37,6 @@ namespace Nettbutikk.Models
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
 
-        public System.Data.Entity.DbSet<Nettbutikk.Models.Customer> Customers1 { get; set; }
     }
 
     public class Products
@@ -53,14 +52,14 @@ namespace Nettbutikk.Models
         public virtual Producers Producers { get; set; }
         public int CategoriesID { get; set; }
         public virtual Categories Categories { get; set; }
-        public virtual List<OrderLine> Orderlines { get; set; }
+        public virtual List<OrderLines> Orderlines { get; set; }
     }
 
     public class Producers
     {
         public int ID { get; set; }
         public String Name { get; set; }
-        public virtual List<Product> Products { get; set; }
+        public virtual List<Products> Products { get; set; }
     }
 
     public class Categories
@@ -68,11 +67,12 @@ namespace Nettbutikk.Models
         public int ID { get; set; }
         public String Name { get; set; }
 
-        public List<Product> Products { get; set; } 
+        public List<Products> Products { get; set; } 
     }
 
     public class OrderLines //noen som har et bedre ord for ordrelinje?! 
     {
+        [Key]
         public int ID { get; set; }
         public int ProductID { get; set; }
         public int Quantity { get; set; }
@@ -85,7 +85,7 @@ namespace Nettbutikk.Models
     {
         public int ID { get; set; }
         public DateTime OrderDate { get; set; }
-        public virtual List<OrderLine> OrderLines { get; set; }
+        public virtual List<OrderLines> OrderLines { get; set; }
         public int CustomerID { get; set; }
 
 
@@ -104,7 +104,7 @@ namespace Nettbutikk.Models
         public Postalareas Postalareas { get; set; }
         public String Username { get; set; }
         public byte[] Password { get; set; }
-        public virtual List<Order> Orders { get; set; }
+        public virtual List<Orders> Orders { get; set; }
     }
 
     public class Postalareas
