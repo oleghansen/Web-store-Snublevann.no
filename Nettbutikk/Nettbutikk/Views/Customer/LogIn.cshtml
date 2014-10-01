@@ -1,7 +1,21 @@
 ﻿@model Nettbutikk.Models.Customer
-@{
-    ViewBag.Title = "Login";
-}
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <meta name="viewport" content="width=device-width" />
+
+    <title>LogIn</title>
+</head>
+
+<body>
+
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
@@ -45,6 +59,8 @@
         @Html.ActionLink("Innlogget side", "PersonalSite") <br />
     </div>
 
+</body>
+</html>
 
 
 

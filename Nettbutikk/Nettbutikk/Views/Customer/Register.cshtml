@@ -1,12 +1,22 @@
 ﻿@model Nettbutikk.Models.Customer
 
-@{
-    ViewBag.Title = "Register";
-}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Register</title>
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/jquery-1.9.0.js"></script>
+</head>
+<body>
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-        <div class="col-md-6">
+
         <div class="form-horizontal">
             <h4>Registrer ny bruker</h4>
             <hr />
@@ -82,5 +92,10 @@
                 </div>
             </div>
         </div>
-            </div>
     }
+
+
+</body>
+</html>
+
+

@@ -43,9 +43,5 @@ namespace Nettbutikk.Models
         
         public int producerid { get; set; }
         public int categoryid { get; set; }
-      
-        
-        // for handlekurven.. 
-        public int quantity { get; set; }
     }
 }

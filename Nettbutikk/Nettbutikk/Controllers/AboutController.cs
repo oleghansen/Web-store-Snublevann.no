@@ -9,7 +9,7 @@ namespace Nettbutikk.Controllers
     public class AboutController : Controller
     {
         // GET: About
-        public ActionResult About()
+        public ActionResult Index()
         {
             return View();
         }

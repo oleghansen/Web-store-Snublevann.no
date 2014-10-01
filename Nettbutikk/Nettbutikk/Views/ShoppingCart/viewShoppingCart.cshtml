@@ -1,33 +1,36 @@
-﻿@model Nettbutikk.Models.ShoppingCart
+﻿@model IEnumerable<Nettbutikk.Models.ShoppingCart>
 
 @{
-    ViewBag.Title = "Handlevogn";
+    Layout = null;
 }
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>viewShoppingCart</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
     <table class="table">
         <tr>
             <th>Antall</th>
             <th>Vare</th>
             <th>Pris</th>
         </tr>
-   
-        @foreach (var item in Model.shoppingCartItems) { 
+        
+    
+    @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.product.name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.quantity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.price)
+                @Html.DisplayFor(modelItem => item.)
             </td>
         </tr>
-        }
-
-    </table>
-    <footer>
-        SUM:
-    @Html.DisplayFor(modelItem => Model.sum)
-
-    </footer>
+    }
     
+    </table>
+</body>
+</html>

@@ -1,9 +1,14 @@
 ﻿@model Nettbutikk.Models.Product
 
-@{
-    ViewBag.Title = "Produkt";
-}
 
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>viewProduct</title>
+</head>
+<body>
     <div>
         <h4>Product</h4>
         <hr />
@@ -88,13 +93,8 @@
     
         </dl>
     </div>
-    @using (Html.BeginForm("addToCart","ShoppingCart"))
-    { 
-        <div class="panel-footer">
-            @Html.EditorFor(model => model.quantity)
-            @Html.HiddenFor(model => model.itemnumber)
-            <input type="submit" value="KJØP!" />
-        </div>
-    }
-    @Html.ActionLink("Tilbake", "ListProducts")
-
+    <p>
+        @Html.ActionLink("Tilbakeøøøø", "ListProducts")
+    </p>
+</body>
+</html>
