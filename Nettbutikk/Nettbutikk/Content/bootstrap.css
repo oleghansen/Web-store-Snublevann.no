@@ -5011,6 +5011,8 @@ a.list-group-item-danger.active:focus {
 }
 .panel-body {
   padding: 15px;
+  float:left;
+  width:180px;
 }
 .panel-heading {
   padding: 10px 15px;
@@ -5972,6 +5974,7 @@ button.close {
 }
 .pull-left {
   float: left !important;
+  width:185px;
 }
 .hide {
   display: none !important;
