@@ -181,6 +181,7 @@
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="DBCustomer.cs" />
+    <Compile Include="DBOrder.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -211,6 +212,7 @@
     <Content Include="Views\Customer\LogIn.cshtml" />
     <Content Include="Views\Product\viewProduct.cshtml" />
     <Content Include="Views\ShoppingCart\viewShoppingCart.cshtml" />
+    <Content Include="Views\ShoppingCart\checkout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
