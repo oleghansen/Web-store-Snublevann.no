@@ -26,18 +26,6 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>
-
-
-                        @using (Html.BeginForm("Search", "Product", FormMethod.Get))
-                        {
-                            <p>
-                                Search: @Html.TextBox("SearchString")
-                                <input type="submit" value="Search" />
-                            </p>
-                        }
-
-                    </li>
                     <li>@Html.ActionLink("Nytt product", "AddProduct", "Product")</li>
                     
                     @if(Session["loggedInUser"] == null)
@@ -53,15 +41,29 @@
                     }
                     
                 </ul>
+                <ul>
+                    <li>
+
+
+                        @using (Html.BeginForm("Search", "Product", FormMethod.Get))
+                        {
+                            <p>
+                                Search: @Html.TextBox("SearchString")
+                                <input type="submit" value="Search" />
+                            </p>
+                        }
+
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
     <br/>
-    <div class="panel panel-default pull-left">
+    <div class="panel panel-default pull-left" style="position:fixed">
         <div class="panel-body">
             <div class="pull-left">
                 <span>Kategori:</span>
-                </div>
+            
                 <div class="content">
                     <ul>
                         <li><a href='@Url.Action("ListProducts", "Product", new { id = 1 })'>Øl</a></li>
@@ -70,6 +72,7 @@
                         <li><a href='@Url.Action("ListProducts", "Product", new { id = 4 })'>Brennevin</a></li>
                     </ul>
                 </div>
+            </div>
             @Html.ActionLink("Kategori", "Categories", "Category")<br />
             @Html.ActionLink("Om oss", "About", "About")<br />
         </div>
