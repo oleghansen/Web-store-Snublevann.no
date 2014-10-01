@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Custom/SideMenu.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-1.9.0.min.map"></script>
     <script src="~/Scripts/jquery-1.9.0.min.js"></script>
     <script src="~/Scripts/Custom/Collapse.js"></script>
@@ -62,15 +63,16 @@
     <div class="panel panel-default pull-left" style="position:fixed">
         <div class="panel-body">
             <div class="pull-left">
-                <span>Kategori:</span>
-            
-                <div class="content">
-                    <ul>
-                        <li><a href='@Url.Action("ListProducts", "Product", new { id = 1 })'>Øl</a></li>
-                        <li><a href='@Url.Action("ListProducts", "Product", new { id = 2 })'>Rødvin</a></li>
-                        <li><a href='@Url.Action("ListProducts", "Product", new { id = 3 })'>Hvitvin</a></li>
-                        <li><a href='@Url.Action("ListProducts", "Product", new { id = 4 })'>Brennevin</a></li>
-                    </ul>
+                <div id="menu_container">
+                    <div id="accordion">
+                        <div class="item" id="brakes">
+                            <a>Category 1</a>
+                            <a href='@Url.Action("ListProducts", "Product", new { id = 3 })' class="sub">Hvitvin</a>
+                            <a href='@Url.Action("ListProducts", "Product", new { id = 2 })' class="sub">Rødvin</a>
+                            <a href='@Url.Action("ListProducts", "Product", new { id = 1 })' class="sub">Øl</a>
+                            <a href='@Url.Action("ListProducts", "Product", new { id = 4 })' class="sub">Brennevin</a>
+                        </div>
+                    </div>
                 </div>
             </div>
             @Html.ActionLink("Kategori", "Categories", "Category")<br />

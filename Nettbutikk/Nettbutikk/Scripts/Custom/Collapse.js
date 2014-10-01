@@ -1,6 +1,9 @@
-﻿$(".header").click(function () {
-        $header = $(this);
-        $content = $header.next();
-        $content.slideToggle(500, function () {
-        });
+﻿$(document).ready(function () {
+    $('.item').click(function () {
+        if ($(this).css('max-height') == '33px') {
+            $(this).css('max-height', '429px')
+        } else {
+            $(this).css('max-height', '33px')
+        }
+    });
 });
