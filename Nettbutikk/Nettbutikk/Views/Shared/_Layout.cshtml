@@ -59,20 +59,18 @@
     <div class="panel panel-default pull-left">
         <div class="panel-body">
             <div class="pull-left">
-                <div class="container">
-                        <span>Kategori:</span>
-                    </div>
-                    <div class="content">
-                        <ul>
-                            <li><a href='@Url.Action("ListProducts", "Product", new { id = 1 })'>Øl</a></li>
-                            <li><a href='@Url.Action("ListProducts", "Product", new { id = 2 })'>Rødvin</a></li>
-                            <li><a href='@Url.Action("ListProducts", "Product", new { id = 3 })'>Hvitvin</a></li>
-                            <li><a href='@Url.Action("ListProducts", "Product", new { id = 4 })'>Brennevin</a></li>
-                        </ul>
-                    </div>
-                @Html.ActionLink("Kategori", "Categories", "Category")<br />
-                @Html.ActionLink("Om oss", "About", "About")<br />
-            </div>
+                <span>Kategori:</span>
+                </div>
+                <div class="content">
+                    <ul>
+                        <li><a href='@Url.Action("ListProducts", "Product", new { id = 1 })'>Øl</a></li>
+                        <li><a href='@Url.Action("ListProducts", "Product", new { id = 2 })'>Rødvin</a></li>
+                        <li><a href='@Url.Action("ListProducts", "Product", new { id = 3 })'>Hvitvin</a></li>
+                        <li><a href='@Url.Action("ListProducts", "Product", new { id = 4 })'>Brennevin</a></li>
+                    </ul>
+                </div>
+            @Html.ActionLink("Kategori", "Categories", "Category")<br />
+            @Html.ActionLink("Om oss", "About", "About")<br />
         </div>
     </div>
     <div class="container body-content">
