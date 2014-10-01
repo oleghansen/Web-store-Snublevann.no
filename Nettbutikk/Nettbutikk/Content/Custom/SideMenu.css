@@ -1,5 +1,4 @@
 ﻿hmtl, body {
-  font-family:Helvetica, Arial, sans-serif;
   background:#4d4d4d;
 }
 
@@ -14,7 +13,7 @@
 #accordion .item {
 	width: 150px;
 	max-height: 33px;
-	background:LightSalmon;
+	background:#808080;
 	overflow: hidden;
 	margin-bottom:5px;
 	transition: max-height .5s;
