@@ -1,13 +1,22 @@
-﻿@model Nettbutikk.Models.Customer
+﻿PersonalSite:
+
+@model Nettbutikk.Models.Customer
 
 @{
     ViewBag.Title = "Min Side";
 }
-    <div>
+<div>
 
-        Du har nå kommet til en side som det er bare lov til for autoriserte brukere.
+    <h1> Velkommen, @ViewBag.Username  </h1>
 
-    </div>
+    <table class="table">
+        <tr>
+            <th>Endre din brukerinfo</th>
+            <th>Se tidligere ordre</th>
+            <th>Se stående ordre</th>
+            <th>blabal</th>
+        </tr>
+    </table>
 
-
-
+    <div>Her kommer det du velger av tingene over</div>
+</div>

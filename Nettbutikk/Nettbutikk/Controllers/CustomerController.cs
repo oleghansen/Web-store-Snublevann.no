@@ -27,7 +27,11 @@ namespace Nettbutikk.Controllers
                 byte[] hashedPassword = makeHash(newUser.password);
                 bool insertOK = customerDB.add(newUser, hashedPassword);
                 if (insertOK)
-                    return RedirectToAction("LogIn");
+                {
+                    ViewBag.Username = newUser.username; 
+                    Session["loggedInUser"] = newUser;
+                    return RedirectToAction("PersonalSite");
+                }    
             }
             return View();
         }
@@ -53,6 +57,7 @@ namespace Nettbutikk.Controllers
             }
             else
             {
+                
                 ViewBag.LoggedIn = true;
             }
             return View();
@@ -73,6 +78,7 @@ namespace Nettbutikk.Controllers
                 var userid = customerDB.findCustomer(user.username).Id;
                 user.shoppingcart = new ShoppingCart(userid);
                 Session["loggedInUser"] = user;
+                ViewBag.Username = user.username; 
                 ViewBag.loggedIn = true;
                 return View();
             }
