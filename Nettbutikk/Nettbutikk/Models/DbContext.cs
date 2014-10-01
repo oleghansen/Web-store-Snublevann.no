@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
@@ -101,7 +102,7 @@ namespace Nettbutikk.Models
         public String Phonenumber { get; set; }
         public String Address { get; set; }
         public int Postalcode { get; set; }
-        public Postalareas Postalareas { get; set; }
+        public virtual Postalareas Postalareas { get; set; }
         public String Username { get; set; }
         public byte[] Password { get; set; }
         public virtual List<Order> Orders { get; set; }
@@ -110,6 +111,8 @@ namespace Nettbutikk.Models
     public class Postalareas
     {
         [Key]
+        // trenger denne for å få lov til å sette egne verdier i postalcode, og ikke at de blir autogenererte.
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Postalcode { get; set; }
         public String Postalarea { get; set; }
     }

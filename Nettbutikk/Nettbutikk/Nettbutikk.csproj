@@ -179,6 +179,7 @@
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
+    <Compile Include="DBCustomer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

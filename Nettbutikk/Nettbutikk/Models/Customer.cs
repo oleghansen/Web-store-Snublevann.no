@@ -25,7 +25,7 @@ namespace Nettbutikk.Models
         [Display(Name = "Postnummer")]
         public int postalcode { get; set; }
         [Display(Name = "Poststed")]
-        public Postalareas postalarea { get; set; }
+        public String postalarea { get; set; }
         [Display(Name = "Brukernavn")]
         [Required(ErrorMessage = "Brukernavn må oppgis")]
         public String username { get; set; }
