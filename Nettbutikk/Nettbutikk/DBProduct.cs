@@ -17,9 +17,9 @@ namespace Nettbutikk
             var db = new DatabaseContext();
             List<Product> allProducts;
             if(id.HasValue)
-                allProducts = db.Products.AsEnumerable().Where(c => c.CategoriesID == id).Select(p => new Product()
+                allProducts = db.Products.AsEnumerable().Where(c => c.CategoriesId == id).Select(p => new Product()
                 {
-                    itemnumber = p.Itemnumber,
+                    itemnumber = p.Id,
                     name = p.Name,
                     description = p.Description,
                     price = p.Price,
@@ -31,7 +31,7 @@ namespace Nettbutikk
             else
                 allProducts = db.Products.AsEnumerable().Select(p => new Product()
                 {
-                    itemnumber = p.Itemnumber,
+                    itemnumber = p.Id,
                     name = p.Name,
                     description = p.Description,
                     price = p.Price,
@@ -45,10 +45,10 @@ namespace Nettbutikk
         public Product get(int id)
         {
             var db = new DatabaseContext();
-            Products products = db.Products.Where(p=> p.Itemnumber == id).First<Products>();
+            Products products = db.Products.Where(p=> p.Id == id).First<Products>();
             return new Product()
             {
-                itemnumber = products.Itemnumber,
+                itemnumber = products.Id,
                 name = products.Name,
                 description = products.Description,
                 longDescription = products.LongDescription,
@@ -66,7 +66,7 @@ namespace Nettbutikk
             foundProducts = db.Products.AsEnumerable().Where(p => p.Name.ToUpper().Contains(searchString.ToUpper())
                             || p.Description.ToUpper().Contains(searchString.ToUpper())).Select(p => new Product()
                             {                    
-                                itemnumber = p.Itemnumber,
+                                itemnumber = p.Id,
                                 name = p.Name,
                                 description = p.Description,
                                 price = p.Price,
@@ -82,7 +82,7 @@ namespace Nettbutikk
         {
             var newProduct = new Products()
             {
-                Itemnumber = inProduct.itemnumber,
+                Id = inProduct.itemnumber,
                 Name = inProduct.name,
                 Description = inProduct.description,
                 Price = inProduct.price,

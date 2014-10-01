@@ -16,19 +16,19 @@ namespace Nettbutikk
             var newOrder = new Orders()
             {
                 OrderDate = DateTime.Now, 
-                CustomerID = cart.userID
+                CustomersId = cart.userID
             };
             db.Orders.Add(newOrder);
             db.SaveChanges();
             Debug.WriteLine("Her kommer ID'En");
-            Debug.WriteLine(newOrder.ID); 
+            Debug.WriteLine(newOrder.Id); 
 
             foreach (var item in cart.shoppingCartItems)
             {
                 var newItem = new OrderLines()
                 {
-                    ProductID = item.product.itemnumber,
-                    OrderID = newOrder.ID,
+                    ProductsId = item.product.itemnumber,
+                    OrdersId = newOrder.Id,
                     Quantity = item.quantity
                 };
                 db.OrderLines.Add(newItem);

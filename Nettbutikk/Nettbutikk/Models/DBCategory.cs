@@ -12,7 +12,7 @@ namespace Nettbutikk.Models
             var db = new DatabaseContext();
             List<Category> all = db.Categories.AsEnumerable().Select(p => new Category()
             {
-                ID = p.ID,
+                ID = p.Id,
                 name = p.Name,
             }
             ).ToList();
