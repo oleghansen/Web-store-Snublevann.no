@@ -47,20 +47,19 @@ namespace Nettbutikk
         }
 
         // trenger vi denne =?!?!!? 
-        public Customers findCustomer(String username)
+       /* public Customers findCustomer(String username)
         {
             var db = new DatabaseContext();
             Customers userFound = db.Customers.FirstOrDefault(u => u.Username == username);
             return userFound; 
-        }
+        }*/
 
-        public Customer findCustomer(int id)
+        public Customer findCustomer(String username)
         {
-
             var db = new DatabaseContext();
-            Customers userFound = db.Customers.FirstOrDefault(u => u.Id == id);
+            Customers userFound =  db.Customers.FirstOrDefault(u => u.Username == username);
             Customer c = new Customer();
-            c.id =userFound.Id;
+            c.id = userFound.Id;
             c.firstname = userFound.Firstname;
             c.lastname = userFound.Lastname;
             c.email = userFound.Email;

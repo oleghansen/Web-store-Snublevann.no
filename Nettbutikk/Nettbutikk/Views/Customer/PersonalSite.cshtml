@@ -1,22 +1,22 @@
-﻿PersonalSite:
-
-@model Nettbutikk.Models.Customer
+﻿@model Nettbutikk.Models.Customer
 
 @{
     ViewBag.Title = "Min Side";
 }
+
+
 <div>
 
-    <h1> Velkommen, @Html.DisplayFor(model => model.username), @Html.DisplayFor(model => model.id)  </h1>
+    <h1> Velkommen, @Html.DisplayFor(model => model.username)  </h1>
 
     <table class="table">
         <tr>
-            <th> @Html.ActionLink("Endre din brukerinfo", "updateUserinfo", new { id = Model.id })</th>
+            <th> @Html.ActionLink("Endre brukerinfo", "updateUserinfo", new { id = Model.id })</th>
             <th>Se tidligere ordre</th>
             <th>Se stående ordre</th>
             <th>blabal</th>
         </tr>
     </table>
 
-    <div>Her kommer det du velger av tingene over</div>
+    
 </div>

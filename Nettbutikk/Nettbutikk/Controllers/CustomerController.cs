@@ -28,10 +28,9 @@ namespace Nettbutikk.Controllers
                 bool insertOK = customerDB.add(newUser, hashedPassword);
                 if (insertOK)
                 {
-                    var userid = customerDB.findCustomer(newUser.username).Id;
-                    var founduser = customerDB.findCustomer(userid);
-                    Session["loggedInUser"] = newUser;
-                    return RedirectToAction("PersonalSite", founduser);
+                    var founduser = customerDB.findCustomer(newUser.username);
+                    Session["loggedInUser"] = founduser;
+                    return View("PersonalSite", founduser);
                 }    
             }
             return View();
@@ -46,9 +45,6 @@ namespace Nettbutikk.Controllers
         
         
         //SKjekker om man er logget inn
-        //hvilken side skal man skjekke at man er logget inn eller ei ?
-        //tatt fra lærern
-
        
         public ActionResult LogIn()
         {
@@ -76,10 +72,10 @@ namespace Nettbutikk.Controllers
             if (customerDB.validate(user.username, hashedPassword))
             {
                 //TODO: ugly hack, fikse bedre metode for å få id inn i shoppingcart
-                var userid = customerDB.findCustomer(user.username).Id;
-                var founduser = customerDB.findCustomer(userid);
-                user.shoppingcart = new ShoppingCart(userid);
-                Session["loggedInUser"] = user;
+             //   var userid = customerDB.findCustomer(user.username).Id;
+                var founduser = customerDB.findCustomer(user.username);
+                user.shoppingcart = new ShoppingCart(founduser.id);
+                Session["loggedInUser"] = founduser;
                 ViewBag.loggedIn = true;
                 return View("PersonalSite", founduser);
             }
@@ -115,10 +111,9 @@ namespace Nettbutikk.Controllers
 
         public ActionResult updateUserinfo(int id)
         {
+            Customer c = (Customer)Session["loggedInUser"];
             
-            var customerDB = new DBCustomer();
-            var founduser = customerDB.findCustomer(id);
-            return View(founduser);
+            return View(c);
         }
 
         [HttpPost]
@@ -126,7 +121,8 @@ namespace Nettbutikk.Controllers
         {
             if (ModelState.IsValid)
             {
-                    return RedirectToAction("PersonalSite", newUser);
+                Customer c = (Customer)Session["loggedInUser"];
+                    return View("PersonalSite", c);
                 
             }
             return View("../Main/Frontpage");
