@@ -54,6 +54,25 @@ namespace Nettbutikk
             return userFound; 
         }
 
+        public Customer findCustomer(int id)
+        {
+
+            var db = new DatabaseContext();
+            Customers userFound = db.Customers.FirstOrDefault(u => u.Id == id);
+            Customer c = new Customer();
+            c.id =userFound.Id;
+            c.firstname = userFound.Firstname;
+            c.lastname = userFound.Lastname;
+            c.email = userFound.Email;
+            c.phonenumber = userFound.Phonenumber;
+            c.address = userFound.Address;
+          //  c.postalcode = userFound.Postalcode;
+          //  c.postalcode = userFound.Postalcode;
+            c.username = userFound.Username;
+
+            return c;
+        }
+
         public bool validate(String username, byte[] hashedPassword)
         {
             var db = new DatabaseContext();

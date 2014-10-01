@@ -28,9 +28,10 @@ namespace Nettbutikk.Controllers
                 bool insertOK = customerDB.add(newUser, hashedPassword);
                 if (insertOK)
                 {
-                    ViewBag.Username = newUser.username; 
+                    var userid = customerDB.findCustomer(newUser.username).Id;
+                    var founduser = customerDB.findCustomer(userid);
                     Session["loggedInUser"] = newUser;
-                    return RedirectToAction("PersonalSite");
+                    return RedirectToAction("PersonalSite", founduser);
                 }    
             }
             return View();
@@ -76,11 +77,11 @@ namespace Nettbutikk.Controllers
             {
                 //TODO: ugly hack, fikse bedre metode for å få id inn i shoppingcart
                 var userid = customerDB.findCustomer(user.username).Id;
+                var founduser = customerDB.findCustomer(userid);
                 user.shoppingcart = new ShoppingCart(userid);
                 Session["loggedInUser"] = user;
-                ViewBag.Username = user.username; 
                 ViewBag.loggedIn = true;
-                return View();
+                return View("PersonalSite", founduser);
             }
             else
             {
@@ -111,6 +112,26 @@ namespace Nettbutikk.Controllers
             outData = algorithm.ComputeHash(inData);
             return outData;
         }
+
+        public ActionResult updateUserinfo(int id)
+        {
+            
+            var customerDB = new DBCustomer();
+            var founduser = customerDB.findCustomer(id);
+            return View(founduser);
+        }
+
+        [HttpPost]
+        public ActionResult updateUserinfo(Customer newUser)
+        {
+            if (ModelState.IsValid)
+            {
+                    return RedirectToAction("PersonalSite", newUser);
+                
+            }
+            return View("../Main/Frontpage");
+        }
+
 
     }
 }
