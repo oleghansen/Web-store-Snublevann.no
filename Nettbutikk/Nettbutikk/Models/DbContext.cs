@@ -18,14 +18,7 @@ namespace Nettbutikk.Models
         public DatabaseContext()
             : base("name=Nettbutikk")
         {
-            try
-            {
-                Database.SetInitializer<DatabaseContext>(new DbInitializer());
-            }
-            catch( Exception e)
-            {
 
-            }
         }
 
         // Add a DbSet for each entity type that you want to include in your model. For more information 
