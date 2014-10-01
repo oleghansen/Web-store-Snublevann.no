@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
-    <script src="~/Scripts/bootstrap.js"></script>
     <script src="~/Scripts/jquery-1.9.0.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    
 
 
 
@@ -69,10 +72,11 @@
     <div class="container body-content">
             
         @RenderBody()
+    </div>
         <hr/>
         <footer>
             <p>&copy;@DateTime.Now.Year - Gruppe 12345</p>
         </footer>
-    </div>
+    
 </body>
 </html>
