@@ -12,33 +12,38 @@ namespace Nettbutikk.Controllers
         // GET: ShoppingCart
         public ActionResult viewShoppingCart()
         {
-            List<ShoppingCartItem> list = getCart();
-            if (list != null)
-                return View(list);
+            ShoppingCart cart = getCart();
+            if (cart != null)
+                return View(cart);
             else
-               return RedirectToAction("Main", "Frontpage");
-            
-        }
+                return RedirectToAction("Frontpage", "Main");
 
-        public ActionResult addToCart(Product p, int qty)
+        }
+        [HttpPost]
+        public ActionResult addToCart(int quantity, int itemnumber)
         {
-            List<ShoppingCartItem> list = getCart();
-            ShoppingCartItem item = new ShoppingCartItem(p, qty);
+            var db = new DBProduct();
+            Product p = db.get(itemnumber);
+            ShoppingCart cart = getCart();
+            ShoppingCartItem item = new ShoppingCartItem(p, quantity);
+            List<ShoppingCartItem> list = cart.shoppingCartItems;
+            cart.sum += p.price * quantity;
             list.Add(item);
 
+
             //TODO hva skal returneres hvor her?
-            return View(true); 
+            return RedirectToAction("viewShoppingCart");
         }
 
-        private List<ShoppingCartItem> getCart()
+        private ShoppingCart getCart()
         {
-            if(!Session["loggedInUser"].Equals(null))
+            if (Session["loggedInUser"] != null)
             {
                 Customer c = (Customer)Session["loggedInUser"];
-                List<ShoppingCartItem> list = c.shoppingcart.shoppingCartItems;
-                return list; 
+                ShoppingCart cart = c.shoppingcart;
+                return cart;
             }
-            return null; 
+            return null;
         }
     }
 }

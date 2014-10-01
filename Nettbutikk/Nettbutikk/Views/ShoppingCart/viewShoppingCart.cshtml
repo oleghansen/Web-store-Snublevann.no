@@ -1,8 +1,4 @@
-﻿@model IEnumerable<Nettbutikk.Models.ShoppingCart>
-
-@{
-    Layout = null;
-}
+﻿@model Nettbutikk.Models.ShoppingCart
 
 <!DOCTYPE html>
 
@@ -12,25 +8,34 @@
     <title>viewShoppingCart</title>
 </head>
 <body>
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
     <table class="table">
         <tr>
             <th>Antall</th>
             <th>Vare</th>
             <th>Pris</th>
         </tr>
-        
-    
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.)
-            </td>
-        </tr>
-    }
-    
+
+        @foreach (var item in Model.shoppingCartItems)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.product.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.price)
+                </td>
+            </tr>
+        }
+
     </table>
+    <footer>
+        SUM:
+        @Html.DisplayFor(modelItem => Model.sum)
+
+    </footer>
+
 </body>
 </html>
