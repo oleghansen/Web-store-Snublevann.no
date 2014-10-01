@@ -7,8 +7,14 @@
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <script src="~/Scripts/bootstrap.js"></script>
     <script src="~/Scripts/jquery-1.9.0.js"></script>
-
-
+    <script src="~/Scripts/Custom/Collapse.js"></script>
+    <script src="~/Scripts/jquery-1.9.0.intellisense.js"></script>
+    <script src="~/Scripts/jquery-1.9.0.js"></script>
+    <script src="~/Scripts/jquery-1.9.0.min.js"></script>
+    <script src="~/Scripts/jquery.validate-vsdoc.js"></script>
+    <script src="~/Scripts/jquery-1.11.0.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/wow.min.js"></script>
 
 
 </head>
@@ -44,14 +50,19 @@
     <div class="panel panel-default pull-left">
         <div class="panel-body">
             <div class="pull-left">
-                <div class="visible-lg-block">
-                    <h4>Kategori:</h4>
-                    <ul><a href='@Url.Action("ListProducts", "Product", new { id = 1 })'>Øl</a></ul>
-                    <ul><a href='@Url.Action("ListProducts", "Product", new { id = 2 })'>Rødvin</a></ul>
-                    <ul><a href='@Url.Action("ListProducts", "Product", new { id = 3 })'>Hvitvin</a></ul>
-                    <ul><a href='@Url.Action("ListProducts", "Product", new { id = 4 })'>Brennevin</ul>
+                <div class="container">
+                    <div class="header">
+                        <span>Kategori:</span>
+                    </div>
+                    <div class="content">
+                        <ul>
+                            <li><a href='@Url.Action("ListProducts", "Product", new { id = 1 })'>Øl</a></li>
+                            <li><a href='@Url.Action("ListProducts", "Product", new { id = 2 })'>Rødvin</a></li>
+                            <li><a href='@Url.Action("ListProducts", "Product", new { id = 3 })'>Hvitvin</a></li>
+                            <li><a href='@Url.Action("ListProducts", "Product", new { id = 4 })'>Brennevin</a></li>
+                        </ul>
+                    </div>
                 </div>
-                <br />
                 @Html.ActionLink("Kategori", "Categories", "Category")<br />
                 @Html.ActionLink("Om oss", "About", "About")<br />
             </div>
