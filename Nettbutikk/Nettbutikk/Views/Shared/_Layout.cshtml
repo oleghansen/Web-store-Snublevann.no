@@ -34,9 +34,19 @@
                         </form>
                     </li>
                     <li>@Html.ActionLink("Nytt product", "AddProduct", "Product")</li>
-                    <li>@Html.ActionLink("Registrer", "Register", "Customer")</li>
-                    <li>@Html.ActionLink("Logg Inn", "LogIn", "Customer")</li>
-                    <li>@Html.ActionLink("Handlekurv", "viewShoppingCart","ShoppingCart")</li>
+                    
+                    @if(Session["loggedInUser"] == null)
+                    {
+                        <li>@Html.ActionLink("Registrer", "Register", "Customer")</li>
+                        <li>@Html.ActionLink("Logg Inn", "LogIn", "Customer")</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Handlekurv", "viewShoppingCart","ShoppingCart")</li>
+                        <li>@Html.ActionLink("MinSide", "PersonalSite", "Customer")</li>   
+                        <li>@Html.ActionLink("Logg ut", "LogOut", "Customer")</li> 
+                    }
+                    
                 </ul>
             </div>
         </div>
