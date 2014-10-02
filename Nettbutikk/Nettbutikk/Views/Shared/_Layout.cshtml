@@ -9,7 +9,6 @@
     <script src="~/Scripts/jquery-1.9.0.min.map"></script>
     <script src="~/Scripts/jquery-1.9.0.min.js"></script>
     <script src="~/Scripts/Custom/Collapse.js"></script>
-    <script src="~/Scripts/bootstrap.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <link href="~/Content/jquery-ui.theme.min.css" rel="stylesheet" />
     <link href="~/Content/jquery-ui.css" rel="stylesheet" />
@@ -23,7 +22,7 @@
         $(function () {
             $("#txtSearch").autocomplete({
                 source: '@Url.Action("getResults", "Product")',
-                minLength: 2,
+                minLength: 1,
                 select: function(event, ui)
                 {
                     $("#txtSearch").submit();
@@ -31,6 +30,10 @@
             });
         });
     </script>
+
+            
+   
+
 </head>
 <body>
 
@@ -51,7 +54,7 @@
                     @if(Session["loggedInUser"] == null)
                     {
                         <li>@Html.ActionLink("Registrer", "Register", "Customer")</li>
-                        <li>@Html.ActionLink("Logg Inn", "LogIn", "Customer")</li>
+                        <li>@Html.ActionLink("Logg Inn", "LogIn", "Customer", new { href="#login",data_toggle = "modal" })</li>
                     }
                     else
                     {
@@ -64,13 +67,13 @@
                         @using (Html.BeginForm("Search", "Product", FormMethod.Get))
                         {
                                 <div class="input-group">
-                                    @Html.TextBox("searchString", null, new { id = "txtSearch", @class = "search-form" })
+                                    @Html.TextBox("searchString", null, new { id = "txtSearch", @class = "form-control" })
                                     <div class="input-group-btn">
                                         <button class="btn btn-success pull-left" type="submit"><span class="glyphicon glyphicon-search"></span></button>
                                     </div>
                                 </div>
-                        }
-            </div>
+                        } 
+         </div>
         </div>
     </div>
     <br/>
@@ -89,25 +92,25 @@
                    
                 </div>
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
-                    <div class="col-sm-6 col-md-6">
-                        <form class="navbar-form">
-                            <div class="input-group">
-                                @using (Html.BeginForm("Search", "Product", FormMethod.Get))
+                    <div class="col-sm-5 col-md-5">
+                                @using(Html.BeginForm("Search", "Product", FormMethod.Get))
                                 {
-                                        @Html.TextBox("SearchString", null, new { id = "txtSearch", @class = "form-control", placeholder = "Søk etter vare..." })
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-success pull-left" type="submit"><span class="glyphicon glyphicon-search"></span>
-                                            </button>
+                                    <div class="input-group">
+                                             @Html.TextBox("searchString", null, new { id = "txtSearch", @class = "form-control", placeholder = "Søk etter vare..." })
+                                             <div class="input-group-btn">  
+                                             <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-search"></span>
+                                        </button>
                                         </div>
+                                    </div>
+ 
                                 }
-                            </div>
-                        </form>
                     </div>
                     <ul class="nav navbar-nav navbar-right">
                         @if (Session["loggedInUser"] == null)
                         {
                             <li>@Html.ActionLink("Registrer", "Register", "Customer")</li>
-                            <li>@Html.ActionLink("Logg Inn", "LogIn", "Customer")</li>
+                            <li><a href="#LoginModal" id="loginBtn" data-login="true" data-toggle="modal">Logg Inn</a></li>
+                            //<li>@Html.ActionLink("Logg Inn", "LogIn", "Customer")</li>
                         }
                         else
                         {
@@ -178,6 +181,7 @@
             <p>&copy;@DateTime.Now.Year - Gruppe 12345</p>
         </footer>
     </div>
+    @Html.Partial("~/Views/Customer/LoginModal.cshtml")
 </body>
 </html>
 

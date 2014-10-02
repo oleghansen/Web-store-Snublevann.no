@@ -221,13 +221,13 @@
     <Content Include="Views\Main\Frontpage.cshtml" />
     <Content Include="Views\Category\Categories.cshtml" />
     <Content Include="Views\Customer\Register.cshtml" />
-    <Content Include="Views\Customer\LogIn.cshtml" />
+    <Content Include="Views\Customer\PersonalSite.cshtml" />
     <Content Include="Views\Product\viewProduct.cshtml" />
     <Content Include="Views\ShoppingCart\viewShoppingCart.cshtml" />
     <Content Include="Views\ShoppingCart\checkout.cshtml" />
     <Content Include="Views\Product\Search.cshtml" />
     <Content Include="Views\Customer\updateUserinfo.cshtml" />
-    <Content Include="Views\Customer\PersonalSite.cshtml" />
+    <Content Include="Views\Customer\LoginModal.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Nettbutikk.Models;
+using System.Diagnostics;
 
 namespace Nettbutikk.Controllers
 {
@@ -29,9 +30,8 @@ namespace Nettbutikk.Controllers
                 if (insertOK)
                 {
                     var founduser = customerDB.findCustomer(newUser.username);
-                    founduser.shoppingcart = new ShoppingCart(founduser.id);
                     Session["loggedInUser"] = founduser;
-                    return View("PersonalSite",founduser);
+                    return View("PersonalSite", founduser);
                 }    
             }
             return View();
@@ -66,25 +66,29 @@ namespace Nettbutikk.Controllers
 
         // Her skjekker kaller man først opp userExits, dersom den gjør det så er man logget inn
         [HttpPost]
-        public ActionResult LogIn(Customer user)
+        public ActionResult LogIn(String un, String pw)
         {
+    
+            Debug.WriteLine(un);
+            Debug.WriteLine(pw);
+
             var customerDB = new DBCustomer(); 
-            var hashedPassword = makeHash(user.password); 
-            if (customerDB.validate(user.username, hashedPassword))
+            var hashedPassword = makeHash(pw); 
+            if (customerDB.validate(un, hashedPassword))
             {
                 //TODO: ugly hack, fikse bedre metode for å få id inn i shoppingcart
              //   var userid = customerDB.findCustomer(user.username).Id;
-                var founduser = customerDB.findCustomer(user.username);
+                var founduser = customerDB.findCustomer(un);
                 founduser.shoppingcart = new ShoppingCart(founduser.id);
                 Session["loggedInUser"] = founduser;
                 ViewBag.loggedIn = true;
-                return View("PersonalSite",founduser);
+                return View("PersonalSite", founduser);
             }
             else
             {
                 Session["loggedInUser"] = null;
                 ViewBag.loggedIn = false;
-                return View();
+                return RedirectToAction("Frontpage","Main");
             }
         }
 
@@ -93,8 +97,8 @@ namespace Nettbutikk.Controllers
         {
             if (Session["loggedInUser"] != null )
             {
-                Customer c = (Customer)Session["loggedInUser"];
-                return View(c);
+               
+                return View();
                 
            }
              return RedirectToAction("LogIn");
@@ -120,35 +124,12 @@ namespace Nettbutikk.Controllers
         [HttpPost]
         public ActionResult updateUserinfo(Customer newUser)
         {
-           
-
             if (ModelState.IsValid)
             {
+                Customer hm = newUser;
                 Customer c = (Customer)Session["loggedInUser"];
-                c.firstname = newUser.firstname;
-                c.lastname = newUser.lastname;
-                c.email = newUser.email;
-                c.phonenumber = newUser.phonenumber;
-                c.address = newUser.address;
-                c.postalcode = newUser.postalcode;
-                c.postalarea = newUser.postalarea;
-                c.username = newUser.username;
-                c.password = newUser.password;
-
-                var customerDB = new DBCustomer();
-                byte[] hashedPassword = makeHash(newUser.password);
-                bool updateOK = customerDB.update(c.id,c, newUser.hashpassword);
-
-                if (updateOK)
-                {
-                    Session["loggedInUser"] = c;
-                    return View("PersonalSite",c);
-                }
-                else
-                {
-                   Customer old = (Customer)Session["loggedInUser"];
-                    return View("PersonalSite",old);
-                }
+                    return View("PersonalSite", c);
+                
             }
             return View("../Main/Frontpage");
         }

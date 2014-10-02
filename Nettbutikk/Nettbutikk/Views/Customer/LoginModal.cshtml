@@ -1,0 +1,37 @@
+﻿<div id="LoginModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Logg Inn</h4>
+            </div>
+            <div class="modal-body">
+                @using(Html.BeginForm("LogIn","Customer"))
+                {
+                    @Html.AntiForgeryToken()
+                    
+                
+                <form class="form-signin">
+                    <h2 class="form-signin-heading">Logg inn</h2>
+                    <div class="editor-label">
+                        <label>Brukernavn</label>
+                    </div>
+                    <div class="editor-field">
+                       <input type="text" name="un" placeholder="brukernavn" />
+                    </div>
+                    <div class="editor-label">
+                        <label>Passord</label>
+                    </div>
+                    <div class="editor-field">
+                        <input type="password" name="pw" placeholder="passord" />
+                    </div>
+                    <button class="btn btn-large btn-primary" type="submit">Logg inn</button>
+                </form>
+            
+                }
+
+
+</div>
+        </div>
+    </div>
+</div>
