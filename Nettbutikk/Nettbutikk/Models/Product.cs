@@ -39,9 +39,12 @@ namespace Nettbutikk.Models
         [Display(Name = "Kategori")]
         [Required(ErrorMessage = "Kategori må oppgis")]
         public String category { get; set; }
-        
-        public int producerid { get; set; }
-        public int categoryid { get; set; }
+
+        public String subCategory { get; set; }
+        public String country { get; set; }
+        // TODO: trenger vi disse? 
+        //public int producerid { get; set; }
+        //public int categoryid { get; set; }
       
         
         // for handlekurven.. 

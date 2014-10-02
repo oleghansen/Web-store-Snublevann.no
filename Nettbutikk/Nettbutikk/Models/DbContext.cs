@@ -32,6 +32,8 @@ namespace Nettbutikk.Models
         public DbSet<Orders> Orders { get; set; }
         public DbSet<Customers> Customers { get; set; }
         public DbSet<Postalareas> Postalareas { get; set; }
+        public DbSet<SubCategories> SubCategories { get; set; }
+        public DbSet<Countries> Countries { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
@@ -50,8 +52,10 @@ namespace Nettbutikk.Models
         public double Volum { get; set; }
         public int ProducersId { get; set; }
         public virtual Producers Producers { get; set; }
-        public int CategoriesId { get; set; }
-        public virtual Categories Categories { get; set; }
+        public int SubCategoriesId { get; set; }
+        public virtual SubCategories SubCategories { get; set; }
+        public int CountriesId { get; set; }
+        public virtual Countries Countries {get; set;}
         public virtual List<OrderLines> OrderLines { get; set; }
     }
 
@@ -66,8 +70,7 @@ namespace Nettbutikk.Models
     {
         public int Id { get; set; }
         public String Name { get; set; }
-
-        public List<Products> Products { get; set; } 
+        public List<SubCategories> SubCategories { get; set; }
     }
 
     public class OrderLines //noen som har et bedre ord for ordrelinje?! 
@@ -115,6 +118,21 @@ namespace Nettbutikk.Models
         public String Postalarea { get; set; }
     }
 
+    public class SubCategories
+    {
+        public int Id { get; set; }
+        public String Name { get; set; }
+        public int CategoriesId { get; set; }
+        public Categories Categories { get; set; }
+        public List<Products> Products { get; set; }
+    }
+
+    public class Countries
+    {
+        public int Id { get; set; }
+        public String Name { get; set; }
+        public List<Products> Products { get; set; }
+    }
  
 
 }
