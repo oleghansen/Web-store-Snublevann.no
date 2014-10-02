@@ -23,12 +23,18 @@
         $(function () {
             $("#txtSearch").autocomplete({
                 source: '@Url.Action("getResults", "Product")',
-                minLength: 2
+                minLength: 2,
+                select: function(event, ui)
+                {
+                    $("#txtSearch").submit();
+                }
             });
         });
     </script>
 </head>
 <body>
+
+    <!--
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -40,7 +46,7 @@
                 @Html.ActionLink("Alkohol Mekka", "Frontpage", "Main", new { tom = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
+                <div class="nav navbar-nav">
                     
                     @if(Session["loggedInUser"] == null)
                     {
@@ -54,25 +60,68 @@
                         <li>@Html.ActionLink("Logg ut", "LogOut", "Customer")</li> 
                     }
                     
-                </ul>
-                <ul>
-                    <li>
-
-
+                </div>
                         @using (Html.BeginForm("Search", "Product", FormMethod.Get))
                         {
-                            <p>
-                                @Html.TextBox("searchString", null, new {id = "txtSearch"})
-                                <input type="submit" value="Search" />
-                            </p>
+                                <div class="input-group">
+                                    @Html.TextBox("searchString", null, new { id = "txtSearch", @class = "search-form" })
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-success pull-left" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                                    </div>
+                                </div>
                         }
-
-                    </li>
-                </ul>
             </div>
         </div>
     </div>
     <br/>
+        -->
+    <div class="container">
+        <div class="row">
+            <div class="navbar navbar-inverse" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Alkohol Mekka", "Frontpage", "Main", new { tom = "" }, new { @class = "navbar-brand" })
+                   
+                </div>
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <div class="col-sm-6 col-md-6">
+                        <form class="navbar-form">
+                            <div class="input-group">
+                                @using (Html.BeginForm("Search", "Product", FormMethod.Get))
+                                {
+                                        @Html.TextBox("SearchString", null, new { id = "txtSearch", @class = "form-control", placeholder = "Søk etter vare..." })
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-success pull-left" type="submit"><span class="glyphicon glyphicon-search"></span>
+                                            </button>
+                                        </div>
+                                }
+                            </div>
+                        </form>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        @if (Session["loggedInUser"] == null)
+                        {
+                            <li>@Html.ActionLink("Registrer", "Register", "Customer")</li>
+                            <li>@Html.ActionLink("Logg Inn", "LogIn", "Customer")</li>
+                        }
+                        else
+                        {
+                            <li>@Html.ActionLink("Handlekurv", "viewShoppingCart", "ShoppingCart")</li>
+                            <li>@Html.ActionLink("MinSide", "PersonalSite", "Customer")</li>
+                            <li>@Html.ActionLink("Logg ut", "LogOut", "Customer")</li>
+                        }
+                    </ul>
+                </div>
+                </div>
+            </div>
+        </div>
+
+
     <div class="panel panel-default pull-left" style="position:fixed">
         <div class="panel-body">
             <div class="pull-left">
