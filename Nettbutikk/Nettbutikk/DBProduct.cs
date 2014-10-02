@@ -78,6 +78,7 @@ namespace Nettbutikk
         }
 
 
+
         public bool add(Product inProduct)
         {
             var newProduct = new Products()
