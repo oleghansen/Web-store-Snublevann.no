@@ -7,6 +7,13 @@
 
 
 <div class="jumbotron">
+    @using (Html.BeginForm("Search", "Product", FormMethod.Get))
+    {
+        <p>
+            @Html.TextBox("SearchString", null , new { id = "txtSearch", @class = "form-control" })
+            <input type="submit" value="Search" />
+        </p>
+    }
     <p>Søkeresultater</p> 
 
 
