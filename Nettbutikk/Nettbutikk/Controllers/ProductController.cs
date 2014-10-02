@@ -46,26 +46,6 @@ namespace Nettbutikk.Controllers
             double pricePerLitre = ((db.get(id).price) / (db.get(id).volum));
             return pricePerLitre;
         }
-        public ActionResult addProduct()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult addProduct(Product inProduct)
-        {
-            if(ModelState.IsValid)
-            {
-                var productDb = new DBProduct();
-                bool insertOK = productDb.add(inProduct);
-          
-                if(insertOK)
-                {
-                    return RedirectToAction("ListProducts");
-                }
-            }
-            return View();
-        }
 
         public ActionResult viewProduct(int id)
         {

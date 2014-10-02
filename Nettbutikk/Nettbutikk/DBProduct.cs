@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using Nettbutikk.Models;
 using System.Web.WebPages.Html;
+using System.Data.Entity;
 
 namespace Nettbutikk
 {
@@ -15,37 +16,59 @@ namespace Nettbutikk
         public List<Product> getAll(int? id)
         {
             var db = new DatabaseContext();
-            List<Product> allProducts;
-            if(id.HasValue)
-                allProducts = db.Products.AsEnumerable().Where(c => c.CategoriesId == id).Select(p => new Product()
+            List<Product> allProducts = new List<Product>();
+            if (id.HasValue)
+            {
+
+                var products = db.Products.Include(p => p.SubCategories.Categories).Where(p => p.SubCategories.CategoriesId == id).ToList();
+
+                foreach (var p in products)
                 {
-                    itemnumber = p.Id,
-                    name = p.Name,
-                    description = p.Description,
-                    price = p.Price,
-                    volum = p.Volum,
-                    producer = p.Producers.Name,
-                    category = p.Categories.Name
+
+                    var product = new Product()
+                    {
+                        itemnumber = p.Id,
+                        name = p.Name,
+                        description = p.Description,
+                        price = p.Price,
+                        volum = p.Volum,
+                        producer = p.Producers.Name,
+                        category = p.SubCategories.Categories.Name,
+                        subCategory = p.SubCategories.Name,
+                        country = p.Countries.Name
+
+                    };
+                    allProducts.Add(product);
                 }
-            ).ToList();
+            }
             else
-                allProducts = db.Products.AsEnumerable().Select(p => new Product()
+            {
+                var products = db.Products.Include(p => p.SubCategories.Categories).ToList();
+                foreach (var p in products)
                 {
-                    itemnumber = p.Id,
-                    name = p.Name,
-                    description = p.Description,
-                    price = p.Price,
-                    volum = p.Volum,
-                    producer = p.Producers.Name,
-                    category = p.Categories.Name
+                    var product = new Product()
+                    {
+                        itemnumber = p.Id,
+                        name = p.Name,
+                        description = p.Description,
+                        price = p.Price,
+                        volum = p.Volum,
+                        producer = p.Producers.Name,
+                        category = p.SubCategories.Categories.Name,
+                        subCategory = p.SubCategories.Categories.Name,
+                        country = p.Countries.Name
+                    };
+                    allProducts.Add(product);
                 }
-            ).ToList();
+            }
+
             return allProducts;
         }
         public Product get(int id)
         {
             var db = new DatabaseContext();
-            Products products = db.Products.Where(p=> p.Id == id).First<Products>();
+            Products products = db.Products.Include(p => p.SubCategories.Categories).Where(p=> p.Id == id).First<Products>();
+            //Products products = db.Products.Where(p=> p.Id == id).First<Products>();
             return new Product()
             {
                 itemnumber = products.Id,
@@ -55,7 +78,8 @@ namespace Nettbutikk
                 price = products.Price,
                 volum = products.Volum,
                 producer = products.Producers.Name,
-                category = products.Categories.Name
+                category = products.SubCategories.Categories.Name,
+                country = products.Countries.Name
             };
         }
 
@@ -72,40 +96,9 @@ namespace Nettbutikk
                                 price = p.Price,
                                 volum = p.Volum,
                                 producer = p.Producers.Name,
-                                category = p.Categories.Name
+                                category = p.SubCategories.Categories.Name
                             }).ToList();
             return foundProducts;
         }
-
-
-
-        public bool add(Product inProduct)
-        {
-            var newProduct = new Products()
-            {
-                Id = inProduct.itemnumber,
-                Name = inProduct.name,
-                Description = inProduct.description,
-                Price = inProduct.price,
-                Volum = inProduct.volum
-               // Producer = inProduct.producer , må hente fra DbSet Producers?
-               // Category = inProduct.category , må hente fra DbSet Categories?
-            };
-
-            var db = new DatabaseContext();
-            try
-            {
-                db.Products.Add(newProduct);
-                db.SaveChanges();
-                return true;
-            }
-            catch(Exception error)
-            {
-                return false;
-            }
-        }
-
-
-
     }
 }
