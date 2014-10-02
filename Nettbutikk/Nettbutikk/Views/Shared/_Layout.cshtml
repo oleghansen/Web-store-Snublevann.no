@@ -22,7 +22,11 @@
         $(function () {
             $("#txtSearch").autocomplete({
                 source: '@Url.Action("getResults", "Product")',
-                minLength: 2
+                minLength: 2,
+                select: function(event, ui)
+                {
+                    $("#txtSearch").submit();
+                }
             });
         });
         $("#loginBtn").click(function () {
@@ -105,18 +109,16 @@
                 </div>
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <div class="col-sm-6 col-md-6">
-                        <form class="navbar-form" role="search" method="get" id="search-form" name="search-form">
+                        <form class="navbar-form">
                             <div class="input-group">
-
                                 @using (Html.BeginForm("Search", "Product", FormMethod.Get))
                                 {
-                                    <div class="input-group">
-                                        @Html.TextBox("searchString", null, new { id = "txtSearch", @class = "form-control", placeholder = "Søk etter vare..." })
-                                   </div>
+                                        @Html.TextBox("SearchString", null, new { id = "txtSearch", @class = "form-control", placeholder = "Søk etter vare..." })
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-success pull-left" type="submit"><span class="glyphicon glyphicon-search"></span>
+                                            </button>
+                                        </div>
                                 }
-                                <div class="input-group-btn">
-                                    <button class="btn btn-success pull-left" type="submit"><span class="glyphicon glyphicon-search"></span></button>
-                                </div>
                             </div>
                         </form>
                     </div>
