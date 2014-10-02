@@ -83,5 +83,37 @@ namespace Nettbutikk
                 return false;
             }
         }
+
+        public bool update(int id, Customer updateUser, byte[] hashpassword)
+        {
+            var db = new DatabaseContext();
+            try
+            {
+                var existPostalcode = db.Postalareas.Find(updateUser.postalcode);
+
+                if (existPostalcode == null)
+                {
+                    var newPostalarea = new Postalareas()
+                    {
+                        PostalareasId = updateUser.postalcode,
+                        Postalarea = updateUser.postalarea
+                    };
+                   
+                }
+                               
+                     db.Customers.Update(c => new Customers() { Id = id },
+                                 c => c.Firstname == updateUser.firstname && c.Lastname == updateUser.lastname && 
+                                 c.Address == updateUser.address && c.Address == updateUser.address && c.Address == updateUser.address &&
+                                 c.Postalcode == updateUser.postalcode && c.Username == updateUser.username && c.Password == hashpassword &&
+                                 c.Phonenumber == updateUser.phonenumber && c.Email == updateUser.email && c.Postalareas = Postalarea &&
+                                 c.Orders == updateUser.Orders);    
+                
+            }
+            catch (Exception fail)
+            {
+                return false;
+            }
+        }
     }
 }
+

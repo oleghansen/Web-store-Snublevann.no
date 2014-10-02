@@ -119,12 +119,34 @@ namespace Nettbutikk.Controllers
         [HttpPost]
         public ActionResult updateUserinfo(Customer newUser)
         {
+            Customer c = (Customer)Session["loggedInUser"];
+
             if (ModelState.IsValid)
             {
-                Customer hm = newUser;
-                Customer c = (Customer)Session["loggedInUser"];
+                c.firstname = newUser.firstname;
+                c.lastname = newUser.lastname;
+                c.email = newUser.email;
+                c.phonenumber = newUser.phonenumber;
+                c.address = newUser.address;
+                c.postalcode = newUser.postalcode;
+                c.postalarea = newUser.postalarea;
+                c.username = newUser.username;
+                c.password = newUser.password;
+
+                var customerDB = new DBCustomer();
+                byte[] hashedPassword = makeHash(newUser.password);
+                bool updateOK = customerDB.update(c.id,c, newUser.hashpassword);
+
+                if (updateOK)
+                {
+                    Session["loggedInUser"] = c;
                     return View("PersonalSite", c);
-                
+                }
+                else
+                {
+                    Customer old = (Customer)Session["loggedInUser"];
+                    return View("PersonalSite", old);
+                }
             }
             return View("../Main/Frontpage");
         }
