@@ -18,6 +18,7 @@
     <link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-ui.js"></script>
     <script src="~/Scripts/jquery-ui.min.js"></script>
+
     <script type="text/javascript">
         $(function () {
             $("#txtSearch").autocomplete({
@@ -93,16 +94,17 @@
                 </div>
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <div class="col-sm-5 col-md-5">
-                                @using(Html.BeginForm("Search", "Product", FormMethod.Get))
+                                @using (Html.BeginForm("Search", "Product", FormMethod.Get, new { @class = "form-inline", @role ="form" }))
                                 {
+                                   <div class="form-group">
                                     <div class="input-group">
-                                             @Html.TextBox("searchString", null, new { id = "txtSearch", @class = "form-control", placeholder = "Søk etter vare..." })
-                                             <div class="input-group-btn">  
+                                            
+                                       @Html.TextBox("searchString", null, new { id = "txtSearch", @class = "form-control", @style = "margin-top:12px", placeholder = "Søk etter vare..." })
+                                        </div>
+                                       </div>
                                              <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-search"></span>
                                         </button>
-                                        </div>
-                                    </div>
- 
+                                 
                                 }
                     </div>
                     <ul class="nav navbar-nav navbar-right">
