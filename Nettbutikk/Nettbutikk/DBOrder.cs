@@ -20,8 +20,7 @@ namespace Nettbutikk
             };
             db.Orders.Add(newOrder);
             db.SaveChanges();
-            Debug.WriteLine("Her kommer ID'En");
-            Debug.WriteLine(newOrder.Id); 
+            
 
             foreach (var item in cart.shoppingCartItems)
             {

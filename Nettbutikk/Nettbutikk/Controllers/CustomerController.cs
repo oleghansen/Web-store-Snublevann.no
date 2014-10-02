@@ -68,23 +68,18 @@ namespace Nettbutikk.Controllers
         [HttpPost]
         public ActionResult LogIn(String un, String pw)
         {
-            var user = new Customer()
-            {
-                username = un,
-                password = pw
-            };
-
+    
             Debug.WriteLine(un);
             Debug.WriteLine(pw);
 
             var customerDB = new DBCustomer(); 
-            var hashedPassword = makeHash(user.password); 
-            if (customerDB.validate(user.username, hashedPassword))
+            var hashedPassword = makeHash(pw); 
+            if (customerDB.validate(un, hashedPassword))
             {
                 //TODO: ugly hack, fikse bedre metode for å få id inn i shoppingcart
              //   var userid = customerDB.findCustomer(user.username).Id;
-                var founduser = customerDB.findCustomer(user.username);
-                user.shoppingcart = new ShoppingCart(founduser.id);
+                var founduser = customerDB.findCustomer(un);
+                founduser.shoppingcart = new ShoppingCart(founduser.id);
                 Session["loggedInUser"] = founduser;
                 ViewBag.loggedIn = true;
                 return View("PersonalSite", founduser);
