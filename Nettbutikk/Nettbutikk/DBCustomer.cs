@@ -45,15 +45,7 @@ namespace Nettbutikk
                 return false;
             }
         }
-
-        // trenger vi denne =?!?!!? 
-       /* public Customers findCustomer(String username)
-        {
-            var db = new DatabaseContext();
-            Customers userFound = db.Customers.FirstOrDefault(u => u.Username == username);
-            return userFound; 
-        }*/
-
+    
         public Customer findCustomer(String username)
         {
             var db = new DatabaseContext();
@@ -65,9 +57,11 @@ namespace Nettbutikk
             c.email = userFound.Email;
             c.phonenumber = userFound.Phonenumber;
             c.address = userFound.Address;
-          //  c.postalcode = userFound.Postalcode;
-          //  c.postalcode = userFound.Postalcode;
+            c.postalcode = userFound.PostalareasId;
+            c.postalarea = db.Postalareas.Find(userFound.PostalareasId).Postalarea;
             c.username = userFound.Username;
+            c.hashpassword = userFound.Password;
+            
 
             return c;
         }
