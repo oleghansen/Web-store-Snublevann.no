@@ -121,6 +121,7 @@ namespace Nettbutikk.Controllers
         {
             if (ModelState.IsValid)
             {
+                Customer hm = newUser;
                 Customer c = (Customer)Session["loggedInUser"];
                     return View("PersonalSite", c);
                 
