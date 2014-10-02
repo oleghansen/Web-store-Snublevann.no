@@ -9,7 +9,6 @@
     <script src="~/Scripts/jquery-1.9.0.min.map"></script>
     <script src="~/Scripts/jquery-1.9.0.min.js"></script>
     <script src="~/Scripts/Custom/Collapse.js"></script>
-    <script src="~/Scripts/bootstrap.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <link href="~/Content/jquery-ui.theme.min.css" rel="stylesheet" />
     <link href="~/Content/jquery-ui.css" rel="stylesheet" />
@@ -26,7 +25,27 @@
                 minLength: 2
             });
         });
+        $("#loginBtn").click(function () {
+            // id som skal slettes ligger i data_id
+            $.ajax({
+                url: '@Url.Action("Slett", "Kunde")',
+                data: { id: data_id },  // en parameter inn i slett(id)-metoden i kunde-kontrolleren (JSON-objekt)
+                success: function () {
+                    // må kalle liste-metoden for å vise den nye listen av kunder
+                    $.ajax({
+                        url: '@Url.Action("Liste", "Kunde")',
+                        success: function () {
+                            // så må siden reloades!
+                            window.location.reload();
+                        }
+                    });
+                }
+            });
+        })
+        })
     </script>
+   
+
 </head>
 <body>
 
@@ -47,7 +66,7 @@
                     @if(Session["loggedInUser"] == null)
                     {
                         <li>@Html.ActionLink("Registrer", "Register", "Customer")</li>
-                        <li>@Html.ActionLink("Logg Inn", "LogIn", "Customer")</li>
+                        <li>@Html.ActionLink("Logg Inn", "LogIn", "Customer", new { href="#login",data_toggle = "modal" })</li>
                     }
                     else
                     {
@@ -105,7 +124,8 @@
                         @if (Session["loggedInUser"] == null)
                         {
                             <li>@Html.ActionLink("Registrer", "Register", "Customer")</li>
-                            <li>@Html.ActionLink("Logg Inn", "LogIn", "Customer")</li>
+                            <li><a href="#LoginModal" id="loginBtn" data-login="true" data-toggle="modal">Logg Inn</a></li>
+                            //<li>@Html.ActionLink("Logg Inn", "LogIn", "Customer")</li>
                         }
                         else
                         {
@@ -176,6 +196,7 @@
             <p>&copy;@DateTime.Now.Year - Gruppe 12345</p>
         </footer>
     </div>
+  @Html.Partial("~/Views/Customer/LoginModal.cshtml")
 </body>
 </html>
 
