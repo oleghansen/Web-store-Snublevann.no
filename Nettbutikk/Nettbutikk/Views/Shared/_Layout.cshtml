@@ -93,14 +93,16 @@
                 </div>
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <div class="col-sm-5 col-md-5">
-                                @Html.BeginForm("Search", "Product", FormMethod.Get))
+                                @using(Html.BeginForm("Search", "Product", FormMethod.Get))
                                 {
                                     <div class="input-group">
-                                        @Html.TextBox("searchString", null, new { id = "txtSearch", @class = "form-control", placeholder = "Søk etter vare..." })
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-success pull-left" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                                             @Html.TextBox("searchString", null, new { id = "txtSearch", @class = "form-control", placeholder = "Søk etter vare..." })
+                                             <div class="input-group-btn">  
+                                             <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-search"></span>
+                                        </button>
                                         </div>
                                     </div>
+ 
                                 }
                     </div>
                     <ul class="nav navbar-nav navbar-right">
