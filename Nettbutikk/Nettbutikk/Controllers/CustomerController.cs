@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Nettbutikk.Models;
+using System.Diagnostics;
 
 namespace Nettbutikk.Controllers
 {
@@ -65,8 +66,17 @@ namespace Nettbutikk.Controllers
 
         // Her skjekker kaller man først opp userExits, dersom den gjør det så er man logget inn
         [HttpPost]
-        public ActionResult LogIn(Customer user)
+        public ActionResult LogIn(String un, String pw)
         {
+            var user = new Customer()
+            {
+                username = un,
+                password = pw
+            };
+
+            Debug.WriteLine(un);
+            Debug.WriteLine(pw);
+
             var customerDB = new DBCustomer(); 
             var hashedPassword = makeHash(user.password); 
             if (customerDB.validate(user.username, hashedPassword))
@@ -83,7 +93,7 @@ namespace Nettbutikk.Controllers
             {
                 Session["loggedInUser"] = null;
                 ViewBag.loggedIn = false;
-                return View();
+                return RedirectToAction("Frontpage","Main");
             }
         }
 
