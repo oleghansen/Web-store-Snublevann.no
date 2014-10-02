@@ -4,8 +4,19 @@
     ViewBag.Title = "Search";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+
 <div class="jumbotron">
+    @using (Html.BeginForm("Search", "Product", FormMethod.Get))
+    {
+        <p>
+            @Html.TextBox("SearchString", null, new { id = "txtSearch" })
+            <input type="submit" value="Search" />
+        </p>
+    }
     <p>Søkeresultater</p> 
+
+
     <!--
     <table class="table">
         <tr>

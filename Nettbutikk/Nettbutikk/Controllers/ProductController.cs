@@ -55,5 +55,14 @@ namespace Nettbutikk.Controllers
             return View(p);
         }
 
+        public JsonResult getResults(string term)
+        {
+            DatabaseContext db = new DatabaseContext();
+            List<string> foundProducts;
+            foundProducts = db.Products.Where(x=>x.Name.StartsWith(term))
+                                               .Select(y => y.Name).ToList();
+
+            return Json(foundProducts, JsonRequestBehavior.AllowGet);
+        }
     }
 }

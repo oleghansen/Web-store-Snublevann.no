@@ -11,8 +11,22 @@
     <script src="~/Scripts/Custom/Collapse.js"></script>
     <script src="~/Scripts/bootstrap.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
-
-
+    <link href="~/Content/jquery-ui.theme.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery-ui.structure.css" rel="stylesheet" />
+    <link href="~/Content/jquery-ui.structure.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-ui.js"></script>
+    <script src="~/Scripts/jquery-ui.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#txtSearch").autocomplete({
+                source: '@Url.Action("getResults", "Product")',
+                minLength: 2
+            });
+        });
+    </script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -49,7 +63,7 @@
                         @using (Html.BeginForm("Search", "Product", FormMethod.Get))
                         {
                             <p>
-                                Search: @Html.TextBox("SearchString")
+                                @Html.TextBox("searchString", null, new {id = "txtSearch"})
                                 <input type="submit" value="Search" />
                             </p>
                         }
