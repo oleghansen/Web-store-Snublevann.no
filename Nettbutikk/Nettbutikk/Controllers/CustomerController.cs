@@ -29,8 +29,9 @@ namespace Nettbutikk.Controllers
                 if (insertOK)
                 {
                     var founduser = customerDB.findCustomer(newUser.username);
+                    founduser.shoppingcart = new ShoppingCart(founduser.id);
                     Session["loggedInUser"] = founduser;
-                    return View("PersonalSite", founduser);
+                    return View("PersonalSite",founduser);
                 }    
             }
             return View();
@@ -74,10 +75,10 @@ namespace Nettbutikk.Controllers
                 //TODO: ugly hack, fikse bedre metode for å få id inn i shoppingcart
              //   var userid = customerDB.findCustomer(user.username).Id;
                 var founduser = customerDB.findCustomer(user.username);
-                user.shoppingcart = new ShoppingCart(founduser.id);
+                founduser.shoppingcart = new ShoppingCart(founduser.id);
                 Session["loggedInUser"] = founduser;
                 ViewBag.loggedIn = true;
-                return View("PersonalSite", founduser);
+                return View("PersonalSite",founduser);
             }
             else
             {
@@ -92,8 +93,8 @@ namespace Nettbutikk.Controllers
         {
             if (Session["loggedInUser"] != null )
             {
-               
-                return View();
+                Customer c = (Customer)Session["loggedInUser"];
+                return View(c);
                 
            }
              return RedirectToAction("LogIn");
@@ -119,10 +120,11 @@ namespace Nettbutikk.Controllers
         [HttpPost]
         public ActionResult updateUserinfo(Customer newUser)
         {
-            Customer c = (Customer)Session["loggedInUser"];
+           
 
             if (ModelState.IsValid)
             {
+                Customer c = (Customer)Session["loggedInUser"];
                 c.firstname = newUser.firstname;
                 c.lastname = newUser.lastname;
                 c.email = newUser.email;
@@ -140,12 +142,12 @@ namespace Nettbutikk.Controllers
                 if (updateOK)
                 {
                     Session["loggedInUser"] = c;
-                    return View("PersonalSite", c);
+                    return View("PersonalSite",c);
                 }
                 else
                 {
-                    Customer old = (Customer)Session["loggedInUser"];
-                    return View("PersonalSite", old);
+                   Customer old = (Customer)Session["loggedInUser"];
+                    return View("PersonalSite",old);
                 }
             }
             return View("../Main/Frontpage");
