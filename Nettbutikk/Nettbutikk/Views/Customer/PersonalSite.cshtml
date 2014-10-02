@@ -9,6 +9,7 @@
 
     <h1> Velkommen, @Html.DisplayFor(model => model.username)  </h1>
 
+
     <table class="table">
         <tr>
             <th> @Html.ActionLink("Endre brukerinfo", "updateUserinfo", new { id = Model.id })</th>
@@ -16,7 +17,8 @@
             <th>Se stående ordre</th>
             <th>blabal</th>
         </tr>
+        }
     </table>
 
-    
+
 </div>

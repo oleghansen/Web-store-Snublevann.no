@@ -1,6 +1,7 @@
 ﻿using Nettbutikk.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 
@@ -83,5 +84,45 @@ namespace Nettbutikk
                 return false;
             }
         }
+
+        public bool update(int id, Customer updateUser, byte[] hashpassword)
+        {
+            var db = new DatabaseContext();
+            try
+            {
+                Customers cust = db.Customers.FirstOrDefault(u => u.Id == id);
+           
+                cust.Firstname = updateUser.firstname;
+                cust.Lastname = updateUser.lastname;
+                cust.Address = updateUser.address;
+                cust.PostalareasId = Convert.ToInt16(updateUser.postalcode);
+                cust.Username = updateUser.username;
+                cust.Password = hashpassword;
+                cust.Phonenumber = updateUser.phonenumber;
+                cust.Email = updateUser.email;      
+          
+            
+                var existPostalcode = db.Postalareas.Find(updateUser.postalcode);
+
+                if (existPostalcode == null)
+                {
+                    var newPostalarea = new Postalareas()
+                    {
+                        PostalareasId = updateUser.postalcode,
+                        Postalarea = updateUser.postalarea
+                    };
+                    cust.Postalareas = newPostalarea;
+                }
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception fail)
+            {
+                Debug.Write("fungerte ikke");
+                return false;
+               
+            }
+        }
     }
 }
+
