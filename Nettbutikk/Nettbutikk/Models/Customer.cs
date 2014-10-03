@@ -23,7 +23,7 @@ namespace Nettbutikk.Models
         [RegularExpression(@"(^[a-zA-Z][\w\.-]*[a-zA-Z0-9]@[a-zA-Z][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$)", ErrorMessage = "Ugyldig email")]
         public String email { get; set; }
          [Display(Name = "Telefonnummer")]
-         [RegularExpression(@"(^[0-9\+\(\)]+$)", ErrorMessage = "Ugyldig telefonnummer")]
+         [RegularExpression(@"(^[0-9\+\(\)\s]+$)", ErrorMessage = "Ugyldig telefonnummer")]
          [Required(ErrorMessage = "Telefonnummer må oppgis")]
         public String phonenumber { get; set; }
         [Display(Name = "Adresse")]
