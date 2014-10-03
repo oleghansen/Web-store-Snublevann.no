@@ -1,14 +1,13 @@
-﻿$(document).ready(function () {
-    $('.item').click(function () {
-        if ($(this).css('max-height') == '33px') {
-            $(this).css('max-height', '429px')
-        } else {
-            $(this).css('max-height', '33px')
-        }
-        $('#accordion a.collapse').live('click', function (event) {
-            event.stopPropagation();
-            event.preventDefault();
-        });
+﻿$('#sidebar > a').on('click', function (e) {
+    e.preventDefault();
 
-    });
+    if (!$(this).hasClass("active")) {
+        var lastActive = $(this).closest("#sidebar").children(".active");
+        lastActive.removeClass("active");
+        lastActive.next('div').collapse('hide');
+        $(this).addClass("active");
+        $(this).next('div').collapse('show');
+
+    }
+
 });

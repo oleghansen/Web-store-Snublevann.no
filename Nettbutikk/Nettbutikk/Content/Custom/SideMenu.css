@@ -48,3 +48,13 @@
 	color:#ffffff;
 	font-weight:normal !important;
 }
+
+
+div.subitem a.list-group-item {
+    padding-left: 30px;
+    width:185px;
+}
+
+.panl panel-default{
+    width:150px;
+}
