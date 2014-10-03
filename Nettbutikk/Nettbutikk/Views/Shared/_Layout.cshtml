@@ -41,6 +41,7 @@
 
 </head>
 <body>
+
     <div class="container">
         <div class="row">
             <div class="navbar navbar-inverse" role="navigation">
@@ -90,95 +91,95 @@
         </div>
 
 
-    <div class="panel panel-default pull-left">
-        <div class="panel-heading">
-            <h3>Kategorier</h3>
-                        </div>
-        <div id="sidebar" class="list-group">
-            <a href='@Url.Action("ListProducts", "Product", new { id = 1 })' class="list-group-item" data-parent="#sidebar">
-                <i class="icon-group"></i> Øl
-                <span class="badge bg_danger"></span>
-            </a>
-            
-            <div id="users" class="list-group subitem collapse">
-                <a href="#" class="list-group-item">
-                    <i class="icon-caret-right"></i>Overgjæret
-                    <span class="badge bg_danger"></span>
-                </a>
-                <a href="#" class="list-group-item">
-                    <i class="icon-caret-right"></i> Undergjøret
-                </a>
-                <a href="#" class="list-group-item">
-                    <i class="icon-caret-right"></i> Spontangjæret
-                </a>
-                    </div>
+
+    <div class="container body-content">
+        <div class="panel panel-default pull-left" style="position:fixed">
+            <div class="panel-heading">
+                <h4>Kategorier</h4>
+            </div>
             <div id="sidebar" class="list-group">
-                <a href="#users" class="list-group-item" data-parent="#sidebar">
-                    <i class="icon-group"></i> Rødvin
+                <a href='@Url.Action("ListProducts", "Product", new { id = 1 })' class="list-group-item" data-parent="#sidebar">
+                    <i class="icon-group"></i> Øl
                     <span class="badge bg_danger"></span>
                 </a>
+
                 <div id="users" class="list-group subitem collapse">
                     <a href="#" class="list-group-item">
-                        <i class="icon-caret-right"></i>Drikkevin
+                        <i class="icon-caret-right"></i>Overgjæret
                         <span class="badge bg_danger"></span>
                     </a>
                     <a href="#" class="list-group-item">
-                        <i class="icon-caret-right"></i> Matvin
+                        <i class="icon-caret-right"></i> Undergjøret
                     </a>
                     <a href="#" class="list-group-item">
-                        <i class="icon-caret-right"></i> For fylla
+                        <i class="icon-caret-right"></i> Spontangjæret
                     </a>
-                        </div>
+                </div>
                 <div id="sidebar" class="list-group">
                     <a href="#users" class="list-group-item" data-parent="#sidebar">
-                        <i class="icon-group"></i> Hvitvin
+                        <i class="icon-group"></i> Rødvin
                         <span class="badge bg_danger"></span>
                     </a>
                     <div id="users" class="list-group subitem collapse">
                         <a href="#" class="list-group-item">
-                            <i class="icon-caret-right"></i>Tørr
+                            <i class="icon-caret-right"></i>Drikkevin
                             <span class="badge bg_danger"></span>
                         </a>
                         <a href="#" class="list-group-item">
-                            <i class="icon-caret-right"></i> Søt
+                            <i class="icon-caret-right"></i> Matvin
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="icon-caret-right"></i> For fylla
                         </a>
                     </div>
                     <div id="sidebar" class="list-group">
                         <a href="#users" class="list-group-item" data-parent="#sidebar">
-                            <i class="icon-group"></i> Brennevin
+                            <i class="icon-group"></i> Hvitvin
                             <span class="badge bg_danger"></span>
                         </a>
                         <div id="users" class="list-group subitem collapse">
                             <a href="#" class="list-group-item">
-                                <i class="icon-caret-right"></i>Vodka
+                                <i class="icon-caret-right"></i>Tørr
                                 <span class="badge bg_danger"></span>
                             </a>
                             <a href="#" class="list-group-item">
-                                <i class="icon-caret-right"></i> Cognac
+                                <i class="icon-caret-right"></i> Søt
                             </a>
-                            <a href="#" class="list-group-item">
-                                <i class="icon-caret-right"></i> Wiskey
+                        </div>
+                        <div id="sidebar" class="list-group">
+                            <a href="#users" class="list-group-item" data-parent="#sidebar">
+                                <i class="icon-group"></i> Brennevin
+                                <span class="badge bg_danger"></span>
                             </a>
-                            <a href="#" class="list-group-item">
-                                <i class="icon-caret-right"></i> Rom
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <i class="icon-caret-right"></i> Likør
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <i class="icon-caret-right"></i> Likør over 22%
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <i class="icon-caret-right"></i> Akevitt
-                            </a>
+                            <div id="users" class="list-group subitem collapse">
+                                <a href="#" class="list-group-item">
+                                    <i class="icon-caret-right"></i>Vodka
+                                    <span class="badge bg_danger"></span>
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <i class="icon-caret-right"></i> Cognac
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <i class="icon-caret-right"></i> Wiskey
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <i class="icon-caret-right"></i> Rom
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <i class="icon-caret-right"></i> Likør
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <i class="icon-caret-right"></i> Likør over 22%
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <i class="icon-caret-right"></i> Akevitt
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="container body-content">
-            
         @RenderBody()
             <hr />
         <footer>
