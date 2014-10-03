@@ -137,6 +137,25 @@ namespace Nettbutikk
             }
  
         }
+
+        public bool checkEmail(string email)
+        {
+            var db = new DatabaseContext();
+            Customers cust = db.Customers.FirstOrDefault(u => u.Email.Equals(email));
+
+            if (cust == null)
+                return true;
+            else return false;  
+        }
+
+        public bool checkUsername(string username)
+        {
+            var db = new DatabaseContext();
+            Customers cust = db.Customers.FirstOrDefault(u => u.Username.Equals(username));
+            if (cust == null)
+                return true;
+            else return false;
+        }
     }
 }
 
