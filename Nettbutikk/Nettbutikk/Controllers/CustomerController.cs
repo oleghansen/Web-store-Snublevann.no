@@ -20,10 +20,15 @@ namespace Nettbutikk.Controllers
 
         //Her kommer man dersom man har registrert en ny bruker 
         [HttpPost]
-        public ActionResult Register(Customer newUser)
+        public ActionResult Register(Customer newUser, String password_confirmation)
         {
             if (ModelState.IsValid)
             {
+                if (!newUser.password.Equals(password_confirmation))
+                {
+                    ViewBag.confirmation = "bekreftet passord, ikke riktig";
+                    return View();
+                }
                 var customerDB = new DBCustomer();
 
                 if (!customerDB.checkEmail(newUser.email))
