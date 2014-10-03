@@ -65,25 +65,25 @@
                     <div class="collapse navbar-collapse navbar-ex1-collapse">
                         <div class="row">
                             <div class="col-sm-12 col-md-12">
-                                <img src="~/Content/img/snublevann.png" width="500" height="96" style="margin-top: 20px; margin-left: 20px" />
+                               <img src="~/Content/img/snublevann.png" width="500" height="96" style="margin-top: 20px; margin-left: 20px" />
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-5 col-md-5 pull-right">
-    <ul class="nav navbar-nav navbar-right">
-        @if (Session["loggedInUser"] == null)
-        {
-            <li>@Html.ActionLink("Registrer", "Register", "Customer")</li>
-            <li><a href="#LoginModal" id="loginBtn" data-login="true" data-toggle="modal">Logg Inn</a></li>
-            //<li>@Html.ActionLink("Logg Inn", "LogIn", "Customer")</li>
-        }
-        else
-        {
-            <li>@Html.ActionLink("Handlekurv", "viewShoppingCart", "ShoppingCart")</li>
-            <li>@Html.ActionLink("MinSide", "PersonalSite", "Customer")</li>
-            <li>@Html.ActionLink("Logg ut", "LogOut", "Customer")</li>
-        }
-    </ul>
+                            <div class="col-sm-12 col-md-12">
+                                <ul class="nav navbar-nav navbar-right">
+                                        @if (Session["loggedInUser"] == null)
+                                        {
+                                            <li>@Html.ActionLink("Registrer", "Register", "Customer")</li>
+                                            <li><a href="#LoginModal" id="loginBtn" data-login="true" data-toggle="modal">Logg Inn</a></li>
+                                            //<li>@Html.ActionLink("Logg Inn", "LogIn", "Customer")</li>
+                                        }
+                                        else
+                                        {
+                                            <li>@Html.ActionLink("Handlekurv", "viewShoppingCart", "ShoppingCart")</li>
+                                            <li>@Html.ActionLink("MinSide", "PersonalSite", "Customer")</li>
+                                            <li>@Html.ActionLink("Logg ut", "LogOut", "Customer")</li>
+                                        }
+                                </ul>
                             </div>
                         </div>
                     </div>
