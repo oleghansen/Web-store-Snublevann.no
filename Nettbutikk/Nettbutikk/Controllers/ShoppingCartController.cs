@@ -25,6 +25,8 @@ namespace Nettbutikk.Controllers
             var db = new DBProduct();
             Product p = db.get(itemnumber);
             ShoppingCart cart = getCart();
+            if (cart == null)
+                return Json(false);  
             ShoppingCartItem item = new ShoppingCartItem(p, quantity);
             List<ShoppingCartItem> list = cart.shoppingCartItems;
             cart.sum += p.price * quantity;
@@ -34,7 +36,7 @@ namespace Nettbutikk.Controllers
             //TODO hva skal returneres hvor her?
             return RedirectToAction("viewShoppingCart");
         }
-
+ 
         private ShoppingCart getCart()
         {
             if (Session["loggedInUser"] != null)
