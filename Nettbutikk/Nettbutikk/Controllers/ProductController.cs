@@ -19,15 +19,6 @@ namespace Nettbutikk.Controllers
 
             return View(listOfProducts);
         }
-        public ActionResult ListProducts(int id, string tull)
-        {
-            var db = new DBProduct();
-            List<Product> listOfProducts;
-
-            listOfProducts = db.getAll(id,tull);
-
-            return View(listOfProducts);
-        }
 
         public ActionResult ListSub(int? id)
         {
