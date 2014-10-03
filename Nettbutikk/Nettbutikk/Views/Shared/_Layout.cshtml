@@ -58,7 +58,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    @Html.ActionLink("Alkohol Mekka", "Frontpage", "Main", new { tom = "" }, new { @class = "navbar-brand" })
+                    <img src="~/Content/img/snublevann.png" />
                    
                 </div>
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
@@ -98,12 +98,12 @@
     <div class="container body-content">
         <div class="row">
             <div class="col-md-2">
-                <div class="panel panel-default pull-left" style="position:fixed; margin-top:0px">
+                <div class="panel panel-default pull-left" style="position:fixed; margin-top:0px; background:#2c2c2c">
                     <div class="panel-body">
                         <div class="pull-left">
                             <div id="menu_container">
                                 <div id="accordion">
-                                    <h>Kategori</h>
+                                    <h4>Kategori</h4>
                                     <div class="item pull-left" id="Subcategory">
                                         <a class="sub">Øl</a>
                                         <a href='@Url.Action("ListProducts", "Product", new { id = 1 })'> All Øl</a>
