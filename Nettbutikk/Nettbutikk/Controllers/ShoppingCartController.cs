@@ -58,7 +58,21 @@ namespace Nettbutikk.Controllers
 
             var orderDB = new DBOrder();
             orderDB.checkout(cart);
-            return View(); 
+            
+            var returnCustomer= (Customer) Session["LoggedInUser"];
+            return View(new BillingDocument()
+            {
+                customer = returnCustomer,
+                shoppingcart = cart,
+                order = new Order()
+                {
+                    customerid = returnCustomer.id,
+                    orderdate = DateTime.Now
+                },
+                sum = cart.sum, 
+                exmva = cart.sum * 0.8,
+                mva = cart.sum * 0.2
+            }); 
 
         }
     }

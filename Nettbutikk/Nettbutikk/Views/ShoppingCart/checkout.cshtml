@@ -1,9 +1,156 @@
-﻿@if (ViewBag.Empty)
-{
-    <p>Dette gikk ikke</p>
+﻿@model Nettbutikk.Models.BillingDocument
+
+@{
+    Layout = null; 
 }
-else
-{
-    <p>Besillingen er lagret</p>
-}
-    
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ordre</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/custom/billingdoc.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.9.0.min.map"></script>
+    <script src="~/Scripts/jquery-1.9.0.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/jquery-ui.theme.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery-ui.structure.css" rel="stylesheet" />
+    <link href="~/Content/jquery-ui.structure.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-ui.js"></script>
+    <script src="~/Scripts/jquery-ui.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="navbar"></div>
+        </div>
+        <div class="container a4">
+            <div class="row">
+                <div class="col-md-8">
+                    <p>
+                        Her kommer logo og navn!
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-6">
+                            Adresse:
+                        </div>
+                        <div class="col-md-6">
+                            Vin og mer AS<br />
+                            Osloveien 88<br />
+                            1234 Oslo<br />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            Telefon:
+                        
+                        </div>
+                        <div class="col-md-6">
+                            +47 12311231
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            E-post:
+                        </div>
+                        <div class="col-md-6">
+                            <a href="mailto:billing@nettbutikk.no">billing@nettbutikk.no</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            Org. Nr:
+                        </div>
+                        <div class="col-md-6">
+                            123 456 789
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    @Html.DisplayFor(model => model.customer.firstname) @Html.DisplayFor( model => model.customer.lastname)<br />
+                    @Html.DisplayFor(model => model.customer.address) <br />
+                    @Html.DisplayFor(model => model.customer.postalcode) @Html.DisplayFor(model => model.customer.postalarea)<br />
+                </div>
+                <div class="col-md-4">
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" >
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Varenummer
+                                </th>
+                                <th>
+                                    Navn
+                                </th>
+                                <th>
+                                    Beskrivelse
+                                </th>
+                                <th>
+                                    Antall
+                                </th>
+                                <th>
+                                    Pris
+                                </th>
+                                <th>
+                                    Sum
+                                </th>
+                            </tr>
+                        </thead>
+                        @foreach (var item in Model.shoppingcart.shoppingCartItems)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(i => item.product.itemnumber)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(i => item.product.name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(i => item.product.description)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(i => item.quantity)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(i => item.product.price)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(i => item.price)
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+            <div class="row col-md-12 foten" >
+                <hr />
+                <div class="col-md-4">
+                    SUM eks mva: @Html.DisplayFor(model => model.exmva) NOK
+                </div>
+                <div class="col-md-4">
+                    MVA: @Html.DisplayFor(model => model.mva) NOK
+                </div>
+                <div class="col-md-4">
+                    Total(SUM): @Html.DisplayFor(model => model.sum) NOK
+                </div>
+            </div>
+         </div>
+        <div class="row">
+            <div class="navbar"></div>
+        </div>
+    </div>
+</body>
+</html>
