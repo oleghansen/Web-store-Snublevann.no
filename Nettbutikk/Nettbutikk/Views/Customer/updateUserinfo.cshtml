@@ -72,7 +72,10 @@
             <div class="form-group">
                 <input type="hidden" name="password" value="hackestuff">
             </div>
-            <p style="color:red" @Html.Raw(ViewBag.ok)</p>
+            @if (ViewBag.ok != null)
+            {
+                <div class="alert alert-danger" role="alert">@ViewBag.ok</div>
+            }
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <input type="submit" value="Oppdater brukerinfo" class="btn btn-success" />

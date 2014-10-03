@@ -26,19 +26,19 @@ namespace Nettbutikk.Controllers
             {
                 if (!newUser.password.Equals(password_confirmation))
                 {
-                    ViewBag.confirmation = "bekreftet passord, ikke riktig";
+                    ViewBag.confirmation = true;
                     return View();
                 }
                 var customerDB = new DBCustomer();
 
                 if (!customerDB.checkEmail(newUser.email))
                 {
-                    ViewBag.email = "email er allerede i bruk, velg en annen";
+                    ViewBag.email = true;
                     return View();
                 }
                 else if (!customerDB.checkUsername(newUser.username))
                 {
-                    ViewBag.username = "I bruk";
+                    ViewBag.username = true;
                     return View();
                 }
                 else
@@ -188,7 +188,7 @@ namespace Nettbutikk.Controllers
                     if (updateOK)
                     {
                         Session["loggedInUser"] = c;
-                        RedirectToAction("PersonalSite"); 
+                        return RedirectToAction("PersonalSite"); 
                     }
                     else
                     {
