@@ -13,6 +13,33 @@ namespace Nettbutikk
 
     public class DBProduct
     {
+        public List<Product> getAll(int id, string tull)
+        {
+            var db = new DatabaseContext();
+            List<Product> allProducts = new List<Product>();
+            var products = db.Products.Where(p => p.SubCategoriesId == id).ToList();
+
+            foreach (var p in products)
+            {
+
+                var product = new Product()
+                {
+                    itemnumber = p.Id,
+                    name = p.Name,
+                    description = p.Description,
+                    price = p.Price,
+                    volum = p.Volum,
+                    producer = p.Producers.Name,
+                    pricePerLitre = pricePerLitre(p.Price, p.Volum),
+                    category = p.SubCategories.Categories.Name,
+                    subCategory = p.SubCategories.Name,
+                    country = p.Countries.Name
+
+                };
+                allProducts.Add(product);
+            }
+            return allProducts;
+        }
         public List<Product> getAll(int? id)
         {
             var db = new DatabaseContext();
@@ -33,6 +60,7 @@ namespace Nettbutikk
                         price = p.Price,
                         volum = p.Volum,
                         producer = p.Producers.Name,
+                        pricePerLitre = pricePerLitre(p.Price, p.Volum),
                         category = p.SubCategories.Categories.Name,
                         subCategory = p.SubCategories.Name,
                         country = p.Countries.Name
@@ -54,6 +82,7 @@ namespace Nettbutikk
                         price = p.Price,
                         volum = p.Volum,
                         producer = p.Producers.Name,
+                        pricePerLitre = pricePerLitre(p.Price, p.Volum),
                         category = p.SubCategories.Categories.Name,
                         subCategory = p.SubCategories.Categories.Name,
                         country = p.Countries.Name
@@ -77,10 +106,16 @@ namespace Nettbutikk
                 longDescription = products.LongDescription,
                 price = products.Price,
                 volum = products.Volum,
+                pricePerLitre = pricePerLitre(products.Price, products.Volum),
                 producer = products.Producers.Name,
                 category = products.SubCategories.Categories.Name,
                 country = products.Countries.Name
             };
+        }
+
+        private double pricePerLitre(int price, double volume)
+        {
+            return Math.Round(((price / volume)*100),0);
         }
 
         public List<Product> getResult(string searchString)
@@ -99,6 +134,7 @@ namespace Nettbutikk
                     price = p.Price,
                     volum = p.Volum,
                     producer = p.Producers.Name,
+                    pricePerLitre = pricePerLitre(p.Price, p.Volum),
                     category = p.SubCategories.Categories.Name,
                     subCategory = p.SubCategories.Name,
                     country = p.Countries.Name

@@ -26,19 +26,19 @@ namespace Nettbutikk.Controllers
             {
                 if (!newUser.password.Equals(password_confirmation))
                 {
-                    ViewBag.confirmation = "bekreftet passord, ikke riktig";
+                    ViewBag.confirmation = true;
                     return View();
                 }
                 var customerDB = new DBCustomer();
 
                 if (!customerDB.checkEmail(newUser.email))
                 {
-                    ViewBag.email = "email er allerede i bruk, velg en annen";
+                    ViewBag.email = true;
                     return View();
                 }
                 else if (!customerDB.checkUsername(newUser.username))
                 {
-                    ViewBag.username = "I bruk";
+                    ViewBag.username = true;
                     return View();
                 }
                 else
@@ -101,6 +101,7 @@ namespace Nettbutikk.Controllers
             Debug.WriteLine("tullball");
             if (Session["loggedInUser"] != null )
             {
+                TempData["pview"] = "none";
                 Customer c = (Customer)Session["loggedInUser"];
                 return View("PersonalSite",c);
                
@@ -123,6 +124,7 @@ namespace Nettbutikk.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 Customer c = (Customer)Session["loggedInUser"];
 
                 byte[] hpass = makeHash(op);
@@ -154,18 +156,18 @@ namespace Nettbutikk.Controllers
             } return RedirectToAction("PersonalSite");
         }
 
-        public ActionResult updateUserPassword(int id )
+        public ActionResult updateUserPassword()
         {
             Customer c = (Customer)Session["loggedInUser"];
-
-            return View(c);
+            TempData["pview"] = "password";
+            return View("PersonalSite",c);
         }
 
-        public ActionResult updateUserinfo(int id)
+        public ActionResult updateUserinfo()
         {
             Customer c = (Customer)Session["loggedInUser"];
-            
-            return View(c);
+            TempData["pview"] = "info";
+            return View("PersonalSite",c);
         }
 
         [HttpPost]
@@ -174,7 +176,20 @@ namespace Nettbutikk.Controllers
 
             if (ModelState.IsValid)
             {
-                 Customer c = (Customer)Session["loggedInUser"];
+                var customerDB = new DBCustomer(); 
+                if (!customerDB.checkEmail(newUser.email))
+                {
+                    ViewBag.ok = "bekreftet ikke passordet riktig";
+                    return View();
+                }
+                else if (!customerDB.checkUsername(newUser.username))
+                {
+                    ViewBag.ok = "bekreftet ikke passordet riktig";
+                    return View();
+                }
+                
+                
+                Customer c = (Customer)Session["loggedInUser"];
                   c.firstname = newUser.firstname;
                   c.lastname = newUser.lastname;
                   c.email = newUser.email;
@@ -182,13 +197,13 @@ namespace Nettbutikk.Controllers
                   c.address = newUser.address;
                   c.postalcode = newUser.postalcode;
                   c.postalarea = newUser.postalarea;
-                  var customerDB = new DBCustomer(); 
+                  
                     bool updateOK = customerDB.update(c.id, c);
                 
                     if (updateOK)
                     {
                         Session["loggedInUser"] = c;
-                        RedirectToAction("PersonalSite"); 
+                        return RedirectToAction("PersonalSite"); 
                     }
                     else
                     {
@@ -209,7 +224,6 @@ namespace Nettbutikk.Controllers
             Session["loggedInUser"] = founduser;
             
         }
-
 
     }
 }

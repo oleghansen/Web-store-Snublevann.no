@@ -12,14 +12,21 @@
 
     <table class="table">
         <tr>
-            <th> @Html.ActionLink("Endre brukerinfo", "updateUserinfo", new { id = Model.id })</th>
-            <th> @Html.ActionLink("Endre Passord", "updateUserPassword", new { id = Model.id })</th>
-            <th>Se tidligere ordre</th>
-            <th>Se stående ordre</th>
-            <th>blabal</th>
+            <th> @Html.ActionLink("Endre brukerinfo", "updateUserinfo","Customer")</th>
+            <th> @Html.ActionLink("Endre Passord", "updateUserPassword","Customer")</th>
+            <th>@Html.ActionLink("Se tidligere ordre","","")e</th>
+            <th> @Html.ActionLink("endre i handlekurv", "","")</th>
         </tr>
         
     </table>
 
+    @if (TempData["pview"].Equals("info"))
+    {
+        @Html.Partial("updateUserinfo", Model);
+    }
+    else if (TempData["pview"].Equals("password"))
+    {
+        @Html.Partial("updateUserPassword", Model);
+    }
 
 </div>

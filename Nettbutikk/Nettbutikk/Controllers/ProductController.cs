@@ -19,6 +19,28 @@ namespace Nettbutikk.Controllers
 
             return View(listOfProducts);
         }
+        public ActionResult ListProducts(int id, string tull)
+        {
+            var db = new DBProduct();
+            List<Product> listOfProducts;
+
+            listOfProducts = db.getAll(id,tull);
+
+            return View(listOfProducts);
+        }
+
+        public ActionResult ListSub(int? id)
+        {
+            var db = new DBProduct();
+            List<Product> listSub;
+
+            if (id.HasValue)
+                listSub = db.getAll(id);
+            else
+                listSub = db.getAll(id);
+
+            return View(listSub);
+        }
 
         public ActionResult Search(string searchString)
         {
@@ -37,18 +59,10 @@ namespace Nettbutikk.Controllers
             }
         }
 
-        public double pricePerLitre(int id)
-        {
-            var db = new DBProduct();
-            double pricePerLitre = ((db.get(id).price) / (db.get(id).volum));
-            return pricePerLitre;
-        }
-
         public ActionResult viewProduct(int id)
         {
             var db = new DBProduct();
             Product p = db.get(id);
-            p.pricePerLitre = pricePerLitre(id);
             return View(p);
         }
 
