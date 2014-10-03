@@ -47,6 +47,7 @@ namespace Nettbutikk.Controllers
 
         // Her skjekker kaller man først opp userExits, dersom den gjør det så er man logget inn
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult LogIn(String un, String pw)
         {
     
@@ -60,14 +61,15 @@ namespace Nettbutikk.Controllers
                
                  logInUser(un);
                 ViewBag.loggedIn = true;
-               return RedirectToAction("PersonalSite"); 
-               
+               //return RedirectToAction("PersonalSite"); 
+                return Json(true);
             }
             else
             {
                 Session["loggedInUser"] = null;
                 ViewBag.loggedIn = false;
-                return RedirectToAction("Frontpage","Main");
+                //return RedirectToAction("Frontpage","Main");
+                return Json(false);
             }
 
         }
