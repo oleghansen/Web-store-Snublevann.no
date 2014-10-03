@@ -31,14 +31,9 @@ namespace Nettbutikk.Controllers
                 }
                 var customerDB = new DBCustomer();
 
-                if (!customerDB.checkEmail(newUser.email))
+                if (!customerDB.checkEmail(newUser.email,null))
                 {
                     ViewBag.email = true;
-                    return View();
-                }
-                else if (!customerDB.checkUsername(newUser.username))
-                {
-                    ViewBag.username = true;
                     return View();
                 }
                 else
@@ -48,7 +43,7 @@ namespace Nettbutikk.Controllers
                     bool insertOK = customerDB.add(newUser, hashedPassword);
                     if (insertOK)
                     {
-                        logInUser(newUser.username);
+                        logInUser(newUser.email);
                         return RedirectToAction("PersonalSite");
 
                     }
@@ -72,24 +67,18 @@ namespace Nettbutikk.Controllers
         public ActionResult LogIn(String un, String pw)
         {
     
-            Debug.WriteLine(un);
-            Debug.WriteLine(pw);
-
             var customerDB = new DBCustomer(); 
             var hashedPassword = makeHash(pw); 
             if (customerDB.validate(un, hashedPassword))
             {
-               
                  logInUser(un);
                 ViewBag.loggedIn = true;
-               //return RedirectToAction("PersonalSite"); 
                 return Json(true);
             }
             else
             {
                 Session["loggedInUser"] = null;
                 ViewBag.loggedIn = false;
-                //return RedirectToAction("Frontpage","Main");
                 return Json(false);
             }
 
@@ -98,13 +87,12 @@ namespace Nettbutikk.Controllers
         //Dersom man går inn i den personlige siden så viser man denne siden, ellers må man logge inn.
         public ActionResult PersonalSite()
         {
-            Debug.WriteLine("tullball");
+        
             if (Session["loggedInUser"] != null )
             {
                 TempData["pview"] = "none";
                 Customer c = (Customer)Session["loggedInUser"];
                 return View("PersonalSite",c);
-               
            }
             return View("../Main/Frontpage");
         }
@@ -176,20 +164,14 @@ namespace Nettbutikk.Controllers
 
             if (ModelState.IsValid)
             {
-                var customerDB = new DBCustomer(); 
-                if (!customerDB.checkEmail(newUser.email))
-                {
-                    ViewBag.ok = "bekreftet ikke passordet riktig";
-                    return View();
-                }
-                else if (!customerDB.checkUsername(newUser.username))
-                {
-                    ViewBag.ok = "bekreftet ikke passordet riktig";
-                    return View();
-                }
-                
-                
                 Customer c = (Customer)Session["loggedInUser"];
+                var customerDB = new DBCustomer(); 
+                if (!customerDB.checkEmail(newUser.email,c.id))
+                {
+                    ViewBag.ok = "email er i bruk av annen bruker, velg en annen";
+                    return View();
+                }
+       
                   c.firstname = newUser.firstname;
                   c.lastname = newUser.lastname;
                   c.email = newUser.email;
