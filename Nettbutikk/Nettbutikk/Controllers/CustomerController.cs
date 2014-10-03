@@ -20,18 +20,39 @@ namespace Nettbutikk.Controllers
 
         //Her kommer man dersom man har registrert en ny bruker 
         [HttpPost]
-        public ActionResult Register(Customer newUser)
+        public ActionResult Register(Customer newUser, String password_confirmation)
         {
             if (ModelState.IsValid)
             {
-                var customerDB = new DBCustomer();
-                byte[] hashedPassword = makeHash(newUser.password);
-                bool insertOK = customerDB.add(newUser, hashedPassword);
-                if (insertOK)
+                if (!newUser.password.Equals(password_confirmation))
                 {
-                    logInUser(newUser.username);
-                    return RedirectToAction("PersonalSite");
-                    
+                    ViewBag.confirmation = "bekreftet passord, ikke riktig";
+                    return View();
+                }
+                var customerDB = new DBCustomer();
+
+                if (!customerDB.checkEmail(newUser.email))
+                {
+                    ViewBag.email = "email er allerede i bruk, velg en annen";
+                    return View();
+                }
+                else if (!customerDB.checkUsername(newUser.username))
+                {
+                    ViewBag.username = "I bruk";
+                    return View();
+                }
+                else
+                {
+
+                    byte[] hashedPassword = makeHash(newUser.password);
+                    bool insertOK = customerDB.add(newUser, hashedPassword);
+                    if (insertOK)
+                    {
+                        logInUser(newUser.username);
+                        return RedirectToAction("PersonalSite");
+
+                    }
+
                 }
             }
             return View();
@@ -172,10 +193,12 @@ namespace Nettbutikk.Controllers
                     else
                     {
                        Customer old = (Customer)Session["loggedInUser"];
-                       RedirectToAction("PersonalSite"); 
+                       ViewBag.ok = "klarte ikke oppdatere"; 
+                       return View();
                     }
             }
-            return View("../Main/Frontpage");
+            ViewBag.ok = "et felt er blankt, fyll det ut trykk oppdater";
+            return View();
         }
 
         private void logInUser(String un)

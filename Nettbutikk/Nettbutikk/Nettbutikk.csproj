@@ -112,6 +112,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Custom\customNav.css" />
     <Content Include="Content\Custom\MainSheet.css" />
     <Content Include="Content\Custom\billingdoc.css" />
     <Content Include="Content\img\1.png" />
@@ -161,6 +162,7 @@
     <Content Include="Content\img\carousel\1.png" />
     <Content Include="Content\img\carousel\2.png" />
     <Content Include="Content\img\carousel\3.png" />
+    <Content Include="Content\img\snublevann.png" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\jquery-ui.min.css" />
     <Content Include="Content\jquery-ui.structure.css" />
