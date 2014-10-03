@@ -101,6 +101,7 @@ namespace Nettbutikk.Controllers
             Debug.WriteLine("tullball");
             if (Session["loggedInUser"] != null )
             {
+                TempData["pview"] = "none";
                 Customer c = (Customer)Session["loggedInUser"];
                 return View("PersonalSite",c);
                
@@ -155,18 +156,18 @@ namespace Nettbutikk.Controllers
             } return RedirectToAction("PersonalSite");
         }
 
-        public ActionResult updateUserPassword(int id )
+        public ActionResult updateUserPassword()
         {
             Customer c = (Customer)Session["loggedInUser"];
-
-            return View(c);
+            TempData["pview"] = "password";
+            return View("PersonalSite",c);
         }
 
-        public ActionResult updateUserinfo(int id)
+        public ActionResult updateUserinfo()
         {
             Customer c = (Customer)Session["loggedInUser"];
-            
-            return View(c);
+            TempData["pview"] = "info";
+            return View("PersonalSite",c);
         }
 
         [HttpPost]
