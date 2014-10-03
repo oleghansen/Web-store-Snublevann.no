@@ -5,21 +5,18 @@
 }
 <link href="~/Content/Custom/MainSheet.css" rel="stylesheet" />
 <script src="~/Scripts/jquery-1.9.0.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#antiLink").on('click', function (event) {
-            event.preventDefault();
-        });
-    });
-</script>
+<script src="~/Scripts/Custom/ProductListing.js"></script>
+
             
             <div class="jumbotron">
                     @foreach (var item in Model)
                     {
-                        <a href='@Url.Action("viewProduct","Product",new {id = item.itemnumber })'>
-                            <div class="panel panel-default" style="background: #FFFFFF; margin-top: 0px">
+                       // <a href='@Url.Action("viewProduct","Product",new {id = item.itemnumber })'>
+                        //HACK: superduperuglyhack! 
+                       
+                            <div class="panel panel-default clickable" style="background: #FFFFFF; margin-top: 0px">
                                 <div class="panel-body">
-
+                                    <p id="itemnumber" style="display:none;">@Html.DisplayFor(modelItem => item.itemnumber)</p>
                                     <div class="col-md-2">
                                         <img src=@Url.Content("~/Content/img/" + item.itemnumber + ".png") height="140" width="80">
                                     </div>
@@ -49,12 +46,12 @@
                                                 <div class="row">
                                                     @using (Html.BeginForm("addToCart", "ShoppingCart"))
                                                     {
-                                                        <div class="form-group pull-right" id="antiLink">
+                                                        <div class="form-group pull-right">
                                                             <div class="input-group">
                                                                 <label for="count" class="pull-left" style="margin-top: 25px; margin-right: 5px">Antall  </label>
-                                                                @Html.EditorFor(modelItem => item.quantity, new { htmlAttributes = new { @class = "form-control", placeholder = "Antall", style = "width: 60px; margin-top: 12px" } })
+                                                                @Html.EditorFor(modelItem => item.quantity, new { htmlAttributes = new { @class = "form-control", id="qtyField", placeholder = "Antall", style = "width: 60px; margin-top: 12px" } })
                                                                 <div class="input-group-btn pull-left">
-                                                                    <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-shopping-cart"></span></button>
+                                                                    <button class="btn btn-success shoppingBtn" type="submit"><span class="glyphicon glyphicon-shopping-cart shoppingBtn"></span></button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -67,7 +64,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </a>
+                        //</a>
                     }
                     <br />
                 </div>
