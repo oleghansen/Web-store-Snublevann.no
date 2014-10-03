@@ -7,11 +7,12 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
+     <hr />
     <div class="col-md-6">
         <div class="form-horizontal">
             <h4>Oppdater brukerinfo</h4>
-            <h5>passord må fylles inn for å kunne oppdatere</h5>
-            <hr />
+            
+           
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
                 @Html.LabelFor(model => model.firstname, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -78,10 +79,11 @@
             }
                
              <div class="form-group">
-                 <button type="button" class="btn btn-default"> @Html.ActionLink("Avbryt", "PersonalSite", "Customer")</button>
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Oppdater brukerinfo" class="btn btn-success" />
-                    </div>
+                 <div class="col-md-offset-2 col-md-10">
+                     <button type="button" class="btn btn-default"> @Html.ActionLink("Avbryt", "PersonalSite", "Customer")</button>
+
+                     <input type="submit" value="Oppdater brukerinfo" class="btn btn-success" />
+                 </div>
                 </div>
             </div>
     </div>

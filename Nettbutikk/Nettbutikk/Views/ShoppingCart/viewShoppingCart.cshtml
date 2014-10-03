@@ -26,8 +26,12 @@
 
     </table>
     <footer>
-        SUM:
-    @Html.DisplayFor(modelItem => Model.sum)
-        @Html.ActionLink("Sjekkut!", "checkout","ShoppingCart", new { target = "_blank" }); 
+        <h4>    
+            SUM:
+            @Html.DisplayFor(modelItem => Model.sum)
+            ,-
+        </h4>
+
+        @Html.ActionLink("Sjekkut!", "checkout","ShoppingCart", new { target = "_blank" })
     </footer>
     
