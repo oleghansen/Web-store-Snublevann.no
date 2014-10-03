@@ -95,69 +95,73 @@
             </div>
         </div>
     </div>
-    <div class="panel panel-default pull-left" style="position:fixed">
-        <div class="panel-body">
-            <div class="pull-left">
-                <div id="menu_container">
-                    <div id="accordion">
-                        <h4>Kategori:</h4>
-                        <div class="item pull-left" id="Subcategory">
-                            <a class="sub">Øl</a>
-                            <a href='@Url.Action("ListProducts", "Product", new { id = 1 })'> All Øl</a>
-                            <a href='@Url.Action("ListProducts", "Product", new { subCategory = 1 })'>Overgjæret</a>
-                            <a href='@Url.Action("ListProducts", "Product", new { subCategory = 2 })'>Undergjæret</a>
-                            <a href='@Url.Action("ListProducts", "Product", new { subCategory = 3 })'>Spontangjæret</a>
-                        </div>
-                    </div>
-                    <div id="accordion">
-                        <div class="item" id="Subcategory">
-                            <a class="sub">Rødvin</a>
-                            <a href='@Url.Action("ListProducts", "Product", new { id = 2 })'> All Rødvin</a>
-                            <a href="#">Tørr</a>
-                            <a href="#">Søt</a>
-                        </div>
-                    </div>
-                    <div id="accordion">
-                        <div class="item" id="Subcategory">
-                            <a class="sub">Hvitvin</a>
-                            <a href='@Url.Action("ListProducts", "Product", new { id = 3 })'> All Hvitvin</a>
-                            <a href="#">Matvin</a>
-                            <a href="#">Drikkevin</a>
-                        </div>
-                    </div>
-                    <div id="accordion">
-                        <div class="item" id="Subcategory">
-                            <a class="sub">Brennevin</a>
-                            <a href='@Url.Action("ListProducts", "Product", new { id = 4 })'> All Brennevin</a>
-                            <a href="#vodka">Vodka</a>
-                            <a href="#">Rom</a>
-                            <a href="#">Cognac</a>
-                            <a href="#">Wiskey</a>
-                            <a href="#">Diverse</a>
-                        </div>
-                    </div>
-                    <br />
-                    <br />
-                    <br />
-                    <div id="accordion">
-                        <div class="item" id="Subcategory">
-                            <a href='@Html.ActionLink("Om oss", "About", "About")' class="sub">Om Oss</a>
+    <div class="container body-content">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="panel panel-default pull-left" style="position:fixed; margin-top:0px">
+                    <div class="panel-body">
+                        <div class="pull-left">
+                            <div id="menu_container">
+                                <div id="accordion">
+                                    <h>Kategori</h>
+                                    <div class="item pull-left" id="Subcategory">
+                                        <a class="sub">Øl</a>
+                                        <a href='@Url.Action("ListProducts", "Product", new { id = 1 })'> All Øl</a>
+                                        <a href='@Url.Action("ListProducts", "Product", new { subCategory = 1 })'>Overgjæret</a>
+                                        <a href='@Url.Action("ListProducts", "Product", new { subCategory = 2 })'>Undergjæret</a>
+                                        <a href='@Url.Action("ListProducts", "Product", new { subCategory = 3 })'>Spontangjæret</a>
+                                    </div>
+                                </div>
+                                <div id="accordion">
+                                    <div class="item" id="Subcategory">
+                                        <a class="sub">Rødvin</a>
+                                        <a href='@Url.Action("ListProducts", "Product", new { id = 2 })'> All Rødvin</a>
+                                        <a href="#">Tørr</a>
+                                        <a href="#">Søt</a>
+                                    </div>
+                                </div>
+                                <div id="accordion">
+                                    <div class="item" id="Subcategory">
+                                        <a class="sub">Hvitvin</a>
+                                        <a href='@Url.Action("ListProducts", "Product", new { id = 3 })'> All Hvitvin</a>
+                                        <a href="#">Matvin</a>
+                                        <a href="#">Drikkevin</a>
+                                    </div>
+                                </div>
+                                <div id="accordion">
+                                    <div class="item" id="Subcategory">
+                                        <a class="sub">Brennevin</a>
+                                        <a href='@Url.Action("ListProducts", "Product", new { id = 4 })'> All Brennevin</a>
+                                        <a href="#vodka">Vodka</a>
+                                        <a href="#">Rom</a>
+                                        <a href="#">Cognac</a>
+                                        <a href="#">Wiskey</a>
+                                        <a href="#">Diverse</a>
+                                    </div>
+                                </div>
+                                <br />
+                                <br />
+                                <br />
+                                <div id="accordion">
+                                    <div class="item" id="Subcategory">
+                                        <a href='@Html.ActionLink("Om oss", "About", "About")' class="sub">Om Oss</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="col-md-10">
+                @RenderBody()
+            </div>
         </div>
-    </div>
-
-   
-    <div class="container body-content">
-            
-        @RenderBody()
             <hr />
-        <footer>
-            <p>&copy;@DateTime.Now.Year - Gruppe 12345</p>
-        </footer>
-    </div>
+            <footer>
+                <p>&copy;@DateTime.Now.Year - Gruppe 12345</p>
+            </footer>
+        </div>
+
     @Html.Partial("~/Views/Customer/LoginModal.cshtml")
 </body>
 
