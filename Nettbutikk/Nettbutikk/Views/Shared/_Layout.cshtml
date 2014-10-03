@@ -93,13 +93,13 @@
     <div class="panel panel-default pull-left">
         <div class="panel-heading">
             <h3>Kategorier</h3>
-
         </div>
         <div id="sidebar" class="list-group">
-            <a href='@Html.ActionLink("ListProduct", "Produkt", new { id = 1 })' class="list-group-item" data-parent="#sidebar">
+            <a href='@Url.Action("ListProducts", "Product", new { id = 1 })' class="list-group-item" data-parent="#sidebar">
                 <i class="icon-group"></i> Øl
                 <span class="badge bg_danger"></span>
             </a>
+            
             <div id="users" class="list-group subitem collapse">
                 <a href="#" class="list-group-item">
                     <i class="icon-caret-right"></i>Overgjæret
