@@ -24,15 +24,19 @@ namespace Nettbutikk.Models
         public String email { get; set; }
          [Display(Name = "Telefonnummer")]
          [RegularExpression(@"(^[0-9\+\(\)]+$)", ErrorMessage = "Ugyldig telefonnummer")]
+         [Required(ErrorMessage = "Telefonnummer må oppgis")]
         public String phonenumber { get; set; }
         [Display(Name = "Adresse")]
         [RegularExpression(@"(^[a-zA-Z0-9\s]+$)", ErrorMessage = "Ugyldig adresse")]
+        [Required(ErrorMessage = "Adresse må oppgis")]
         public String address { get; set; }
         [Display(Name = "Postnummer")]
         [RegularExpression(@"(^[0-9]{4})", ErrorMessage = "Ugyldig postnummer")]
+        [Required(ErrorMessage = "Postnummer må oppgis")]
         public int postalcode { get; set; }
         [Display(Name = "Poststed")]
         [RegularExpression(@"(^[a-zA-Z]+$)", ErrorMessage = "Ugyldig poststed")]
+        [Required(ErrorMessage = "Poststed må oppgis")]
         public String postalarea { get; set; }
         [Display(Name = "Brukernavn")]
         [RegularExpression(@"(^[a-zA-Z0-9_]+$)", ErrorMessage = "Ugyldig brukernavn")]

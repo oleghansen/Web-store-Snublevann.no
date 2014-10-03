@@ -9,5 +9,6 @@
             event.stopPropagation();
             event.preventDefault();
         });
+
     });
 });
