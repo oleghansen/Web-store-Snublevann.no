@@ -29,10 +29,10 @@ namespace Nettbutikk.Controllers
                 bool insertOK = customerDB.add(newUser, hashedPassword);
                 if (insertOK)
                 {
-                    var founduser = customerDB.findCustomer(newUser.username);
-                    Session["loggedInUser"] = founduser;
-                    return View("PersonalSite", founduser);
-                }    
+                    logInUser(newUser.username);
+                    return RedirectToAction("PersonalSite");
+                    
+                }
             }
             return View();
         }
@@ -78,11 +78,10 @@ namespace Nettbutikk.Controllers
             {
                 //TODO: ugly hack, fikse bedre metode for å få id inn i shoppingcart
              //   var userid = customerDB.findCustomer(user.username).Id;
-                var founduser = customerDB.findCustomer(un);
-                founduser.shoppingcart = new ShoppingCart(founduser.id);
-                Session["loggedInUser"] = founduser;
+                 logInUser(un);
                 ViewBag.loggedIn = true;
-                return View("PersonalSite", founduser);
+               return RedirectToAction("PersonalSite"); 
+               
             }
             else
             {
@@ -90,18 +89,20 @@ namespace Nettbutikk.Controllers
                 ViewBag.loggedIn = false;
                 return RedirectToAction("Frontpage","Main");
             }
+
         }
 
         //Dersom man går inn i den personlige siden så viser man denne siden, ellers må man logge inn.
         public ActionResult PersonalSite()
         {
+            Debug.WriteLine("tullball");
             if (Session["loggedInUser"] != null )
             {
+                Customer c = (Customer)Session["loggedInUser"];
+                return View("PersonalSite",c);
                
-                return View();
-                
            }
-             return RedirectToAction("LogIn");
+            return View("../Main/Frontpage");
         }
 
         //Hasher passordet
@@ -122,16 +123,57 @@ namespace Nettbutikk.Controllers
         }
 
         [HttpPost]
-        public ActionResult updateUserinfo(Customer newUser)
+        public ActionResult updateUserinfo(Customer newUser, String newPassword)
         {
+
             if (ModelState.IsValid)
             {
-                Customer hm = newUser;
-                Customer c = (Customer)Session["loggedInUser"];
-                    return View("PersonalSite", c);
                 
+                Customer c = (Customer)Session["loggedInUser"];
+
+                byte[] hpass = makeHash(newUser.password);
+                if (Enumerable.SequenceEqual(c.hashpassword,hpass))
+                {   c.firstname = newUser.firstname;
+                    c.lastname = newUser.lastname;
+                    c.email = newUser.email;
+                    c.phonenumber = newUser.phonenumber;
+                    c.address = newUser.address;
+                    c.postalcode = newUser.postalcode;
+                    c.postalarea = newUser.postalarea;
+                    c.username = newUser.username;
+                    if (newPassword.Length != 0)
+                    {
+                        byte[] hashedPassword = makeHash(newPassword);
+                        c.hashpassword = hashedPassword;
+                    }
+
+                    var customerDB = new DBCustomer();
+                    
+                    bool updateOK = customerDB.update(c.id, c);
+                
+                    if (updateOK)
+                    {
+                        Session["loggedInUser"] = c;
+                        return View("PersonalSite",c);
+                    }
+                    else
+                    {
+                       Customer old = (Customer)Session["loggedInUser"];
+                        return View("PersonalSite",old);
+                    }
+                    
+                } return View(c);
             }
             return View("../Main/Frontpage");
+        }
+
+        public void logInUser(String un)
+        {
+            var customerDB = new DBCustomer(); 
+            var founduser = customerDB.findCustomer(un);
+            founduser.shoppingcart = new ShoppingCart(founduser.id);
+            Session["loggedInUser"] = founduser;
+            
         }
 
 

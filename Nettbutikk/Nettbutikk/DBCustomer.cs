@@ -85,7 +85,7 @@ namespace Nettbutikk
             }
         }
 
-        public bool update(int id, Customer updateUser, byte[] hashpassword)
+        public bool update(int id, Customer updateUser)
         {
             var db = new DatabaseContext();
             try
@@ -97,9 +97,9 @@ namespace Nettbutikk
                 cust.Address = updateUser.address;
                 cust.PostalareasId = Convert.ToInt16(updateUser.postalcode);
                 cust.Username = updateUser.username;
-                cust.Password = hashpassword;
                 cust.Phonenumber = updateUser.phonenumber;
-                cust.Email = updateUser.email;      
+                cust.Email = updateUser.email;
+                cust.Password = updateUser.hashpassword;
           
             
                 var existPostalcode = db.Postalareas.Find(updateUser.postalcode);
