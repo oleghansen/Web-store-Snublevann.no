@@ -25,13 +25,29 @@ namespace Nettbutikk.Controllers
             if (ModelState.IsValid)
             {
                 var customerDB = new DBCustomer();
-                byte[] hashedPassword = makeHash(newUser.password);
-                bool insertOK = customerDB.add(newUser, hashedPassword);
-                if (insertOK)
+
+                if (!customerDB.checkEmail(newUser.email))
                 {
-                    logInUser(newUser.username);
-                    return RedirectToAction("PersonalSite");
-                    
+                    ViewBag.email = "email er allerede i bruk, velg en annen";
+                    return View();
+                }
+                else if (!customerDB.checkUsername(newUser.username))
+                {
+                    ViewBag.username = "I bruk";
+                    return View();
+                }
+                else
+                {
+
+                    byte[] hashedPassword = makeHash(newUser.password);
+                    bool insertOK = customerDB.add(newUser, hashedPassword);
+                    if (insertOK)
+                    {
+                        logInUser(newUser.username);
+                        return RedirectToAction("PersonalSite");
+
+                    }
+
                 }
             }
             return View();
@@ -170,10 +186,12 @@ namespace Nettbutikk.Controllers
                     else
                     {
                        Customer old = (Customer)Session["loggedInUser"];
-                       RedirectToAction("PersonalSite"); 
+                       ViewBag.ok = "klarte ikke oppdatere"; 
+                       return View();
                     }
             }
-            return View("../Main/Frontpage");
+            ViewBag.ok = "et felt er blankt, fyll det ut trykk oppdater";
+            return View();
         }
 
         private void logInUser(String un)
