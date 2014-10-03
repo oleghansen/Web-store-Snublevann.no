@@ -15,11 +15,8 @@ namespace Nettbutikk.Controllers
             var db = new DBProduct();
             List<Product> listOfProducts;
 
-            if(id.HasValue)
-                listOfProducts = db.getAll(id);
-            else
-                listOfProducts = db.getAll(id);
-    
+            listOfProducts = db.getAll(id);
+
             return View(listOfProducts);
         }
 
