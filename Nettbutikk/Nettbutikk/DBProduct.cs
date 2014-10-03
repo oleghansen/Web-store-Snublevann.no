@@ -13,6 +13,33 @@ namespace Nettbutikk
 
     public class DBProduct
     {
+        public List<Product> getAll(int id, string tull)
+        {
+            var db = new DatabaseContext();
+            List<Product> allProducts = new List<Product>();
+            var products = db.Products.Where(p => p.SubCategoriesId == id).ToList();
+
+            foreach (var p in products)
+            {
+
+                var product = new Product()
+                {
+                    itemnumber = p.Id,
+                    name = p.Name,
+                    description = p.Description,
+                    price = p.Price,
+                    volum = p.Volum,
+                    producer = p.Producers.Name,
+                    pricePerLitre = pricePerLitre(p.Price, p.Volum),
+                    category = p.SubCategories.Categories.Name,
+                    subCategory = p.SubCategories.Name,
+                    country = p.Countries.Name
+
+                };
+                allProducts.Add(product);
+            }
+            return allProducts;
+        }
         public List<Product> getAll(int? id)
         {
             var db = new DatabaseContext();
