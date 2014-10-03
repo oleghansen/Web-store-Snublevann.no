@@ -14,7 +14,6 @@
 </script>
             
             <div class="jumbotron">
-                <div class="containMargain" style="margin-left:60px">
                     @foreach (var item in Model)
                     {
                         <a href='@Url.Action("viewProduct","Product",new {id = item.itemnumber })'>
@@ -72,7 +71,6 @@
                     }
                     <br />
                 </div>
-            </div>
         <div class="navbar navbar-default navbar-fixed-bottom">
 
             <div class="container">
