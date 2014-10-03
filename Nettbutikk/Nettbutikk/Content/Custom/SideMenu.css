@@ -1,7 +1,7 @@
 ﻿
 #menu_container {
     color:#FFFFFF;
-    background: #2c2c2c;
+    background: #180d00;
 	display:block;
 	float:left;
 	width: 150px;
@@ -12,7 +12,7 @@
 #accordion .item {
 	width: 150px;
 	max-height: 33px;
-	background:#656565;
+	background:#311a00;
 	overflow: hidden;
 	margin-bottom:5px;
 	transition: max-height .5s;
@@ -34,7 +34,7 @@
 }
 
 #accordion .item a:hover {
-	background:#6fbbec;
+	background:#a5862c;
 	-o-transition: .3s;
 	-ms-transition: .3s;
 	-moz-transition: .3s;
@@ -44,7 +44,7 @@
 
 .sub {
 
-    background:#393939;
+    background:#251400;
 	color:#ffffff;
 	font-weight:normal !important;
 }
