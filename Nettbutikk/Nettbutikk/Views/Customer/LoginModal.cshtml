@@ -17,16 +17,20 @@
                     <div class="editor-label">
                         <label>Brukernavn</label>
                     </div>
-                    <div class="editor-field">
+                    <div class="editor-field loginFields">
                         <input class="form-control input-lg" id="un" type="text" name="un" placeholder="brukernavn" />
                     </div>
                     <div class="editor-label">
                         <label>Passord</label>
                     </div>
-                    <div class="editor-field">
+                    <div class="editor-field loginFields">
                         <input class="form-control input-lg" id="pw" type="password" name="pw" placeholder="passord" />
                     </div>
                     <button class="btn btn-large btn-primary" type="submit">Logg inn</button>
+                    <button id="forgotPwBtn" style="display:none" class="btn btn-large btn-primary">Glemt passord</button>
+                    <button id="closeModalBtn"style="display:none" class="btn btn-large btn-warning" data-dismiss="modal">Lukk</button>
+                    <p class="text-danger" id="modalMessage">
+                    </p>
                 </form>
             
                 

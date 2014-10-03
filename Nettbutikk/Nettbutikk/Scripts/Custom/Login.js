@@ -19,7 +19,10 @@
                 }
                 else
                 {
-                    alert("Feil passord, prøv igjen motherfucker!");
+                    $('.loginFields').addClass("has-error");
+                    $('#forgotPwBtn').show();
+                    $('#closeModalBtn').show();
+                    $('#modalMessage').text("Brukernav og eller passord feil");
                 }
             }
         }); 
