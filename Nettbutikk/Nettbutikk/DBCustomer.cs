@@ -99,8 +99,6 @@ namespace Nettbutikk
                 cust.Username = updateUser.username;
                 cust.Phonenumber = updateUser.phonenumber;
                 cust.Email = updateUser.email;
-                cust.Password = updateUser.hashpassword;
-          
             
                 var existPostalcode = db.Postalareas.Find(updateUser.postalcode);
 
@@ -118,10 +116,26 @@ namespace Nettbutikk
             }
             catch (Exception fail)
             {
-                Debug.Write("fungerte ikke");
                 return false;
                
             }
+        }
+
+        public bool updatePw(int id, byte[] newPassword)
+        {
+            var db = new DatabaseContext();
+            try
+            {
+                Customers cust = db.Customers.FirstOrDefault(u => u.Id == id);
+                cust.Password = newPassword;
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception fail)
+            {
+                return false;
+            }
+ 
         }
     }
 }

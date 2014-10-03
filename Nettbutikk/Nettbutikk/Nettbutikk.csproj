@@ -231,6 +231,7 @@
     <Content Include="Views\Product\Search.cshtml" />
     <Content Include="Views\Customer\updateUserinfo.cshtml" />
     <Content Include="Views\Customer\LoginModal.cshtml" />
+    <Content Include="Views\Customer\updateUserPassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

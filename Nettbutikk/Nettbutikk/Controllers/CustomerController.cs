@@ -44,25 +44,6 @@ namespace Nettbutikk.Controllers
 
         }
         
-        
-        //SKjekker om man er logget inn
-       
-        public ActionResult LogIn()
-        {
-            if (Session["loggedInUser"] == null)
-            {
-                ViewBag.LoggedIn = false;
-            }
-            else
-            {
-                
-                ViewBag.LoggedIn = true;
-            }
-            return View();
-        }
-
-
-
 
         // Her skjekker kaller man først opp userExits, dersom den gjør det så er man logget inn
         [HttpPost]
@@ -76,8 +57,7 @@ namespace Nettbutikk.Controllers
             var hashedPassword = makeHash(pw); 
             if (customerDB.validate(un, hashedPassword))
             {
-                //TODO: ugly hack, fikse bedre metode for å få id inn i shoppingcart
-             //   var userid = customerDB.findCustomer(user.username).Id;
+               
                  logInUser(un);
                 ViewBag.loggedIn = true;
                return RedirectToAction("PersonalSite"); 
@@ -115,6 +95,49 @@ namespace Nettbutikk.Controllers
             return outData;
         }
 
+          [HttpPost]
+        public ActionResult updateUserPassword(String op, String np, String bp)
+        {
+            if (ModelState.IsValid)
+            {
+                Customer c = (Customer)Session["loggedInUser"];
+
+                byte[] hpass = makeHash(op);
+                if (Enumerable.SequenceEqual(c.hashpassword, hpass))
+                {
+                    if (np.Equals(bp))
+                    {
+                        byte[] hashedPassword = makeHash(np);
+                        c.hashpassword = hashedPassword;
+
+                        var customerDB = new DBCustomer();
+                        bool updateOK = customerDB.updatePw(c.id, hashedPassword);
+
+                        if (updateOK)
+                        {
+                            Session["loggedInUser"] = c;
+                            return RedirectToAction("PersonalSite");
+                        }
+                        else
+                        {
+                            ViewBag.correct = "klarte ikke oppdatere";
+                            Customer old = (Customer)Session["loggedInUser"];
+                            return View();
+                        }
+                    } ViewBag.correct = "bekreftet ikke passordet riktig";
+                    return View();
+                } ViewBag.correct = "ikke riktig nåværende passord";
+                return View();
+            } return RedirectToAction("PersonalSite");
+        }
+
+        public ActionResult updateUserPassword(int id )
+        {
+            Customer c = (Customer)Session["loggedInUser"];
+
+            return View(c);
+        }
+
         public ActionResult updateUserinfo(int id)
         {
             Customer c = (Customer)Session["loggedInUser"];
@@ -123,51 +146,37 @@ namespace Nettbutikk.Controllers
         }
 
         [HttpPost]
-        public ActionResult updateUserinfo(Customer newUser, String newPassword)
+        public ActionResult updateUserinfo(Customer newUser)
         {
 
             if (ModelState.IsValid)
             {
-                
-                Customer c = (Customer)Session["loggedInUser"];
-
-                byte[] hpass = makeHash(newUser.password);
-                if (Enumerable.SequenceEqual(c.hashpassword,hpass))
-                {   c.firstname = newUser.firstname;
-                    c.lastname = newUser.lastname;
-                    c.email = newUser.email;
-                    c.phonenumber = newUser.phonenumber;
-                    c.address = newUser.address;
-                    c.postalcode = newUser.postalcode;
-                    c.postalarea = newUser.postalarea;
-                    c.username = newUser.username;
-                    if (newPassword.Length != 0)
-                    {
-                        byte[] hashedPassword = makeHash(newPassword);
-                        c.hashpassword = hashedPassword;
-                    }
-
-                    var customerDB = new DBCustomer();
-                    
+                 Customer c = (Customer)Session["loggedInUser"];
+                  c.firstname = newUser.firstname;
+                  c.lastname = newUser.lastname;
+                  c.email = newUser.email;
+                  c.phonenumber = newUser.phonenumber;
+                  c.address = newUser.address;
+                  c.postalcode = newUser.postalcode;
+                  c.postalarea = newUser.postalarea;
+                  var customerDB = new DBCustomer(); 
                     bool updateOK = customerDB.update(c.id, c);
                 
                     if (updateOK)
                     {
                         Session["loggedInUser"] = c;
-                        return View("PersonalSite",c);
+                        RedirectToAction("PersonalSite"); 
                     }
                     else
                     {
                        Customer old = (Customer)Session["loggedInUser"];
-                        return View("PersonalSite",old);
+                       RedirectToAction("PersonalSite"); 
                     }
-                    
-                } return View(c);
             }
             return View("../Main/Frontpage");
         }
 
-        public void logInUser(String un)
+        private void logInUser(String un)
         {
             var customerDB = new DBCustomer(); 
             var founduser = customerDB.findCustomer(un);
