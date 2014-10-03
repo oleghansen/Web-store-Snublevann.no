@@ -60,3 +60,14 @@ box-shadow:         0px 3px 10px 0px rgba(50, 50, 50, 0.75);
 -moz-box-shadow:    0px 1px 2px 0px rgba(50, 50, 50, 0.24);
 box-shadow:         0px 1px 2px 0px rgba(50, 50, 50, 0.24);
 }
+
+.nav navbar-nav navbar-right
+{
+  color: #fff;
+  background-color: transparent;
+}
+
+.navbar-nav-text
+{
+    color: #fff;
+}
