@@ -50,18 +50,10 @@ namespace Nettbutikk.Controllers
             }
         }
 
-        public double pricePerLitre(int id)
-        {
-            var db = new DBProduct();
-            double pricePerLitre = ((db.get(id).price) / (db.get(id).volum) * 100);
-            return pricePerLitre;
-        }
-
         public ActionResult viewProduct(int id)
         {
             var db = new DBProduct();
             Product p = db.get(id);
-            p.pricePerLitre = pricePerLitre(id);
             return View(p);
         }
 
