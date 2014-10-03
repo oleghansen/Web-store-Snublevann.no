@@ -123,6 +123,7 @@ namespace Nettbutikk.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 Customer c = (Customer)Session["loggedInUser"];
 
                 byte[] hpass = makeHash(op);
@@ -174,7 +175,20 @@ namespace Nettbutikk.Controllers
 
             if (ModelState.IsValid)
             {
-                 Customer c = (Customer)Session["loggedInUser"];
+                var customerDB = new DBCustomer(); 
+                if (!customerDB.checkEmail(newUser.email))
+                {
+                    ViewBag.ok = "bekreftet ikke passordet riktig";
+                    return View();
+                }
+                else if (!customerDB.checkUsername(newUser.username))
+                {
+                    ViewBag.ok = "bekreftet ikke passordet riktig";
+                    return View();
+                }
+                
+                
+                Customer c = (Customer)Session["loggedInUser"];
                   c.firstname = newUser.firstname;
                   c.lastname = newUser.lastname;
                   c.email = newUser.email;
@@ -182,7 +196,7 @@ namespace Nettbutikk.Controllers
                   c.address = newUser.address;
                   c.postalcode = newUser.postalcode;
                   c.postalarea = newUser.postalarea;
-                  var customerDB = new DBCustomer(); 
+                  
                     bool updateOK = customerDB.update(c.id, c);
                 
                     if (updateOK)
@@ -209,7 +223,6 @@ namespace Nettbutikk.Controllers
             Session["loggedInUser"] = founduser;
             
         }
-
 
     }
 }
