@@ -2,13 +2,12 @@
     ViewBag.Title = "Forsiden";
 }
 
-
-
 <script>
     $('.carousel').carousel({
         interval: 500
     })
 </script>
+<link href="~/Content/Custom/MainSheet.css" rel="stylesheet" />
 <div id="carousel-mainpage" class="carousel slide" data-ride="carousel" style="width:900px; margin:0 auto;">
 
     <ol class="carousel-indicators">
@@ -19,21 +18,18 @@
 
     <div class="carousel-inner">
         <div class="item active">
-            <img src="~/Content/img/hei.png" alt="...">
-            <div class="carousel-caption">
-                <h3>Tekst slide 1</h3>
-            </div>
-        </div>
+            <a href="~/Product/ListProducts"> <img src="~/Content/img/carousel/1.png" alt="..."></a>
+                <div class="carousel-caption">
+                </div>
+</div>
         <div class="item">
-            <img src="~/Content/img/hei.png" alt="...">
-            <div class="carousel-caption">
-                <h3>Teskt slide 2</h3>
-            </div>
-        </div>
+            <a href="~/Product/ListProducts"> <img src="~/Content/img/carousel/2.png" alt="..."></a>
+                <div class="carousel-caption">
+                </div>
+</div>
         <div class="item">
-            <img src="~/Content/img/hei.png" alt="...">
+            <a href="~/Product/ListProducts"><img src="~/Content/img/carousel/3.png" alt="..."></a>
             <div class="carousel-caption">
-                <h3>Tekst slide 3</h3>
             </div>
         </div>
     </div>
@@ -45,7 +41,4 @@
             <span class="glyphicon glyphicon-chevron-right"></span>
         </a>
     -->
-</div>
-<div class="info" style="width:900px; margin:0 auto;">
-    <h3>Om oss</h3>
 </div>
