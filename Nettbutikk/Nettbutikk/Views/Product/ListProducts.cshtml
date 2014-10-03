@@ -3,114 +3,76 @@
 @{
     ViewBag.Title = "Produkter";
 }
+<link href="~/Content/Custom/MainSheet.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.9.0.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#antiLink").on('click', function (event) {
+            event.preventDefault();
+        });
+    });
+</script>
+            
             <div class="jumbotron">
-               <h1>Her viser vi produktene våre</h1>
-                <p>Her kan vi putte produkter osv osv og mye annet snadder. Blir moro på BEKK i mårra! Hei</p>
-
-                <!--
-                <table class="table">
-                    <tr>
-                        <th>
-                            
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model[0].itemnumber)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model[0].name)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model[0].description)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model[0].price)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model[0].pricePerLitre)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model[0].producer)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model[0].category)
-                        </th>
-                        <th></th>
-                    </tr>
-
+                <div class="containMargain" style="margin-left:60px">
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td>
-                                <a href=@Url.Action("viewProduct",new { id = item.itemnumber} )><span><img src=@Url.Content("~/Content/img/" + item.itemnumber + ".png") width="80" height="130" class="img-thumbnail"/></span></a>
-                            </td>
-                            <td>
-                                @Html.ActionLink(@Html.DisplayFor(modelItem => item.itemnumber).ToString(), "viewProduct", new { id = item.itemnumber})
-                               
-                            </td>
-                            <td>
-                                @Html.ActionLink(@Html.DisplayFor(modelItem => item.name).ToString(), "viewProduct", new { id = item.itemnumber })
-                            </td>
-                            <td>
-                                @Html.ActionLink(@Html.DisplayFor(modelItem => item.description).ToString(), "viewProduct", new { id = item.itemnumber })
-                            </td>
-                            <td>
-                                @Html.ActionLink(@Html.DisplayFor(modelItem => item.price).ToString(), "viewProduct", new { id = item.itemnumber})
-                            </td>
-                            <td>
-                                @Html.ActionLink(@Html.DisplayFor(modelItem => item.pricePerLitre).ToString(), "viewProduct", new { id = item.itemnumber})
-                            </td>
-                            <td>
-                                @Html.ActionLink(@Html.DisplayFor(modelItem => item.producer).ToString(), "viewProduct", new { id = item.itemnumber })
-                            </td>
-                            <td>
-                                @Html.ActionLink(@Html.DisplayFor(modelItem => item.category).ToString(), "viewProduct", new { id = item.itemnumber })
-                            </td>
-                        </tr>
-                    }
+                        <a href='@Url.Action("viewProduct","Product",new {id = item.itemnumber })'>
+                            <div class="panel panel-default" style="background: #FFFFFF; margin-top: 0px">
+                                <div class="panel-body">
 
-                </table>
-                    -->
-                
-                @foreach( var item in Model)
-                {
-                    <a href='@Url.Action("viewProduct","Product",new {id = item.itemnumber })'>
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                        
-                                <div class="col-md-4">
-                                    <img src=@Url.Content("~/Content/img/" + item.itemnumber + ".png") height="170" width="90">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <h3>
-                                                @Html.DisplayFor(modelItem => item.name)
-                                            </h3>
-                                        </div>
+                                    <div class="col-md-2">
+                                        <img src=@Url.Content("~/Content/img/" + item.itemnumber + ".png") height="140" width="80">
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            @Html.DisplayFor(modelItem => item.description)
+                                    <div class="col-md-10">
+                                        <div class="row">
+                                            <div class="col-md-10">
+                                                (@Html.DisplayFor(modelItem => item.volum, "#smallGray")) cl
+                                                <h3>
+                                                    @Html.DisplayFor(modelItem => item.name)
+                                                </h3>
+
+                                            </div>
+                                            <div class="col-md-2">
+                                                <h3>
+                                                    @Html.DisplayFor(modelItem => item.price) ,-
+                                                </h3>
+                                                @Html.DisplayFor(modelItem => item.pricePerLitre) ,- per liter
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <h3>  
-                                                @Html.DisplayFor(modelItem => item.price) ,-
-                                            </h3>
+                                        <div class="row">
+                                            <div class="col-md-9">
+                                                @Html.DisplayFor(modelItem => item.description, new { @id = "smallGray" })
+                                            </div>
+                                            <div class="col-md-3">
+
+
+                                                <div class="row">
+                                                    @using (Html.BeginForm("addToCart", "ShoppingCart"))
+                                                    {
+                                                        <div class="form-group pull-right" id="antiLink">
+                                                            <div class="input-group">
+                                                                <label for="count" class="pull-left" style="margin-top: 25px; margin-right: 5px">Antall  </label>
+                                                                @Html.EditorFor(modelItem => item.quantity, new { htmlAttributes = new { @class = "form-control", placeholder = "Antall", style = "width: 60px; margin-top: 12px" } })
+                                                                <div class="input-group-btn pull-left">
+                                                                    <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-shopping-cart"></span></button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                    }
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </a>
-                }
-                <br />
-                <a class="btn btn-default">Gå til betaling</a>
-                <a class="btn btn-info">Bli her</a>
+                        </a>
+                    }
+                    <br />
+                </div>
             </div>
-        </div>
-
         <div class="navbar navbar-default navbar-fixed-bottom">
 
             <div class="container">

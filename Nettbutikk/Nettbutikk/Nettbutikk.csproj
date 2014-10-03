@@ -158,6 +158,9 @@
     <Content Include="Content\img\8.png" />
     <Content Include="Content\img\9.png" />
     <Content Include="Content\Custom\SideMenu.css" />
+    <Content Include="Content\img\carousel\1.png" />
+    <Content Include="Content\img\carousel\2.png" />
+    <Content Include="Content\img\carousel\3.png" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\jquery-ui.min.css" />
     <Content Include="Content\jquery-ui.structure.css" />
@@ -176,6 +179,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Custom\Collapse.js" />
+    <Content Include="Scripts\Custom\Login.js" />
     <Content Include="Scripts\jquery-1.9.0.js" />
     <Content Include="Scripts\jquery-1.9.0.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />

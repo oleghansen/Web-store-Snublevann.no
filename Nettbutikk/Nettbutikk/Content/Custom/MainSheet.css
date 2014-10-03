@@ -16,3 +16,17 @@ a:hover {
 	-webkit-transition: .3s;
 	transition: .3s;
 }
+
+.carousel-indicators li {
+  background-color: #2E2E2E;
+  background-color: rgba(70,70,70,.25);
+}
+
+.carousel-indicators .active {
+  background-color: #808080;
+}
+
+#smallGray
+{
+    color: #bbbbbb;
+}

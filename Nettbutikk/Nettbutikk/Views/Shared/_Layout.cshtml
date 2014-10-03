@@ -22,6 +22,7 @@
     <link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-ui.js"></script>
     <script src="~/Scripts/jquery-ui.min.js"></script>
+    <script src="~/Scripts/Custom/Login.js"></script>
 
     <script type="text/javascript">
         $(function () {
@@ -35,6 +36,12 @@
             });
         });
     </script>
+
+
+
+
+
+
 
             
    
@@ -52,23 +59,23 @@
                         <span class="icon-bar"></span>
                     </button>
                     @Html.ActionLink("Alkohol Mekka", "Frontpage", "Main", new { tom = "" }, new { @class = "navbar-brand" })
-
+                   
                 </div>
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <div class="col-sm-5 col-md-5">
                         @using (Html.BeginForm("Search", "Product", FormMethod.Get, new { @class = "form-inline", @role = "form" }))
-                        {
-                            <div class="form-group">
-                                <div class="input-group">
-
-                                    @Html.TextBox("searchString", null, new { id = "txtSearch", @class = "form-control", @style = "margin-top:12px", placeholder = "Søk etter vare..." })
-                                </div>
-                            </div>
+                                {
+                                   <div class="form-group">
+                                    <div class="input-group">
+                                            
+                                       @Html.TextBox("searchString", null, new { id = "txtSearch", @class = "form-control", @style = "margin-top:12px", placeholder = "Søk etter vare..." })
+                                        </div>
+                                       </div>
                             <button class="btn btn-success" type="submit">
                                 <span class="glyphicon glyphicon-search"></span>
-                            </button>
-
-                        }
+                                        </button>
+                                 
+                                }
                     </div>
                     <ul class="nav navbar-nav navbar-right">
                         @if (Session["loggedInUser"] == null)
@@ -88,104 +95,70 @@
             </div>
         </div>
     </div>
-
-
-    <div class="panel panel-default pull-left">
-        <div class="panel-heading">
-            <h3>Kategorier</h3>
-        </div>
-        <div id="sidebar" class="list-group">
-            <a href='@Url.Action("ListProducts", "Product", new { id = 1 })' class="list-group-item" data-parent="#sidebar">
-                <i class="icon-group"></i> Øl
-                <span class="badge bg_danger"></span>
-            </a>
-            
-            <div id="users" class="list-group subitem collapse">
-                <a href="#" class="list-group-item">
-                    <i class="icon-caret-right"></i>Overgjæret
-                    <span class="badge bg_danger"></span>
-                </a>
-                <a href="#" class="list-group-item">
-                    <i class="icon-caret-right"></i> Undergjøret
-                </a>
-                <a href="#" class="list-group-item">
-                    <i class="icon-caret-right"></i> Spontangjæret
-                </a>
-            </div>
-            <div id="sidebar" class="list-group">
-                <a href="#users" class="list-group-item" data-parent="#sidebar">
-                    <i class="icon-group"></i> Rødvin
-                    <span class="badge bg_danger"></span>
-                </a>
-                <div id="users" class="list-group subitem collapse">
-                    <a href="#" class="list-group-item">
-                        <i class="icon-caret-right"></i>Drikkevin
-                        <span class="badge bg_danger"></span>
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <i class="icon-caret-right"></i> Matvin
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <i class="icon-caret-right"></i> For fylla
-                    </a>
-                </div>
-                <div id="sidebar" class="list-group">
-                    <a href="#users" class="list-group-item" data-parent="#sidebar">
-                        <i class="icon-group"></i> Hvitvin
-                        <span class="badge bg_danger"></span>
-                    </a>
-                    <div id="users" class="list-group subitem collapse">
-                        <a href="#" class="list-group-item">
-                            <i class="icon-caret-right"></i>Tørr
-                            <span class="badge bg_danger"></span>
-                        </a>
-                        <a href="#" class="list-group-item">
-                            <i class="icon-caret-right"></i> Søt
-                        </a>
+    <div class="panel panel-default pull-left" style="position:fixed">
+        <div class="panel-body">
+            <div class="pull-left">
+                <div id="menu_container">
+                    <div id="accordion">
+                        <h4>Kategori:</h4>
+                        <div class="item pull-left" id="Subcategory">
+                            <a class="sub">Øl</a>
+                            <a href='@Url.Action("ListProducts", "Product", new { id = 1 })'> All Øl</a>
+                            <a href='@Url.Action("ListProducts", "Product", new { subCategory = 1 })'>Overgjæret</a>
+                            <a href='@Url.Action("ListProducts", "Product", new { subCategory = 2 })'>Undergjæret</a>
+                            <a href='@Url.Action("ListProducts", "Product", new { subCategory = 3 })'>Spontangjæret</a>
+                        </div>
                     </div>
-                    <div id="sidebar" class="list-group">
-                        <a href="#users" class="list-group-item" data-parent="#sidebar">
-                            <i class="icon-group"></i> Brennevin
-                            <span class="badge bg_danger"></span>
-                        </a>
-                        <div id="users" class="list-group subitem collapse">
-                            <a href="#" class="list-group-item">
-                                <i class="icon-caret-right"></i>Vodka
-                                <span class="badge bg_danger"></span>
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <i class="icon-caret-right"></i> Cognac
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <i class="icon-caret-right"></i> Wiskey
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <i class="icon-caret-right"></i> Rom
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <i class="icon-caret-right"></i> Likør
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <i class="icon-caret-right"></i> Likør over 22%
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <i class="icon-caret-right"></i> Akevitt
-                            </a>
+                    <div id="accordion">
+                        <div class="item" id="Subcategory">
+                            <a class="sub">Rødvin</a>
+                            <a href='@Url.Action("ListProducts", "Product", new { id = 2 })'> All Rødvin</a>
+                            <a href="#">Tørr</a>
+                            <a href="#">Søt</a>
+                        </div>
+                    </div>
+                    <div id="accordion">
+                        <div class="item" id="Subcategory">
+                            <a class="sub">Hvitvin</a>
+                            <a href='@Url.Action("ListProducts", "Product", new { id = 3 })'> All Hvitvin</a>
+                            <a href="#">Matvin</a>
+                            <a href="#">Drikkevin</a>
+                        </div>
+                    </div>
+                    <div id="accordion">
+                        <div class="item" id="Subcategory">
+                            <a class="sub">Brennevin</a>
+                            <a href='@Url.Action("ListProducts", "Product", new { id = 4 })'> All Brennevin</a>
+                            <a href="#vodka">Vodka</a>
+                            <a href="#">Rom</a>
+                            <a href="#">Cognac</a>
+                            <a href="#">Wiskey</a>
+                            <a href="#">Diverse</a>
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <div id="accordion">
+                        <div class="item" id="Subcategory">
+                            <a href='@Html.ActionLink("Om oss", "About", "About")' class="sub">Om Oss</a>
                         </div>
                     </div>
                 </div>
-              </div>
             </div>
         </div>
-        <div class="container body-content">
+    </div>
 
-            @RenderBody()
+   
+    <div class="container body-content">
+            
+        @RenderBody()
             <hr />
-            <footer>
-                <p>&copy;@DateTime.Now.Year - Gruppe 12345</p>
-            </footer>
-        </div>
-        @Html.Partial("~/Views/Customer/LoginModal.cshtml")
+        <footer>
+            <p>&copy;@DateTime.Now.Year - Gruppe 12345</p>
+        </footer>
+    </div>
+    @Html.Partial("~/Views/Customer/LoginModal.cshtml")
 </body>
 
 </html>
@@ -196,4 +169,4 @@
 <a href='@Url.Action("ListProducts", "Product", new { id = 2 })' class="sub">Rødvin</a>
 <a href='@Url.Action("ListProducts", "Product", new { id = 1 })' class="sub">Øl</a>
 <a href='@Url.Action("ListProducts", "Product", new { id = 4 })' class="sub">Brennevin</a>
-    -->s
+    -->
