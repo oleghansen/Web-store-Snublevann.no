@@ -89,7 +89,7 @@
                                         @if (Session["loggedInUser"] == null)
                                         {
                                             <li>@Html.ActionLink("Registrer", "Register", "Customer")</li>
-                                            //<li><a href="#LoginModal" id="loginBtn" data-login="true" data-toggle="modal">Logg Inn</a></li>
+                                            <li><a href="#LoginModal" id="loginBtn" data-login="true" data-toggle="modal">Logg Inn</a></li>
                                             //<li>@Html.ActionLink("Logg Inn", "LogIn", "Customer")</li>
                                         }
                                         else
@@ -203,6 +203,7 @@
         </div>
 
     @Html.Partial("~/Views/Customer/LoginModal.cshtml")
+    @Html.Partial("~/Views/Customer/NotLoggedInModal.cshtml")
 </body>
 
 </html>
