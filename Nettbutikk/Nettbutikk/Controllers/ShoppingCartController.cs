@@ -1,6 +1,7 @@
 ﻿using Nettbutikk.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -48,8 +49,16 @@ namespace Nettbutikk.Controllers
             return null;
         }
 
-        public ActionResult checkout()
+        public ActionResult checkout(Order order)
         {
+
+            if (order.id != 0)
+            {
+                Debug.WriteLine("Order er ikke null");
+                return View(showOrder(order));
+            }
+                
+            
             ViewBag.Empty = false; 
             ShoppingCart cart = getCart();
             if (cart == null)
@@ -79,6 +88,25 @@ namespace Nettbutikk.Controllers
                 mva = cart.sum * 0.2
             }); 
 
+        }
+
+        private BillingDocument showOrder(Order id)
+        {
+  
+            var orderDB = new DBOrder();
+            List<OrderLine> list = orderDB.getOrder(id.id);
+            List<ShoppingCartItem> cartItems = new List<ShoppingCartItem>();
+            foreach(var item in list){
+                cartItems.Add(new ShoppingCartItem(item.product, item.quantity));
+            };
+            var billingDoc = new BillingDocument(){
+                customer = (Customer) Session["LoggedInUser"],
+                shoppingcart = new ShoppingCart(id.customerid){
+                    shoppingCartItems = cartItems
+                }
+
+            };
+            return billingDoc;
         }
     }
 }
