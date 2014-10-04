@@ -22,7 +22,7 @@
                 @Html.DisplayFor(modelItem => item.price)
             </td>
             <td>
-                @Html.ActionLink("Fjern", "removeItem", "ShoppingCart", new { item = item.product.itemnumber })
+                @Html.ActionLink("Fjern", "removeItem", new { item = item.product.itemnumber })
             </td>
         </tr>
         }

@@ -20,6 +20,7 @@ namespace Nettbutikk.Controllers
 
         }
 
+        
         public ActionResult removeItem(int quantity, int itemnumber)
         {
             var db = new DBProduct();
@@ -32,7 +33,7 @@ namespace Nettbutikk.Controllers
             cart.sum += p.price * quantity;
             list.Remove(item);
 
-            return RedirectToAction("ViewShoppingCart");
+            return RedirectToAction("viewShoppingCart");
         }
 
         [HttpPost]
@@ -95,5 +96,6 @@ namespace Nettbutikk.Controllers
             }); 
 
         }
-    }
+    
+public  int quantity { get; set; }}
 }
