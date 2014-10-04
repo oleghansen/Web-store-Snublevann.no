@@ -39,6 +39,14 @@
             });
         });
     </script>
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/nb_NO/sdk.js#xfbml=1&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
 
 
@@ -51,6 +59,15 @@
 
 </head>
 <body>
+    <div id="fb-root"></div>
+    <script>
+(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/nb_NO/sdk.js#xfbml=1&version=v2.0";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
     <div class="container">
             <div class="navbar navbar-inner" role="navigation">
                 <div class="navbar-header">
@@ -70,6 +87,7 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-12 col-md-12">
+                                <div class="fb-like" data-href="https://developers.facebook.com/snublevann" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
                                 <ul class="nav navbar-nav navbar-right">
                                         @if (Session["loggedInUser"] == null)
                                         {
@@ -102,9 +120,9 @@
                                     <div class="item pull-left" id="Subcategory">
                                         <a class="sub">Øl</a>
                                         <a href='@Url.Action("ListProducts", "Product", new { id = 1 })'> All Øl</a>
-                                        <a href='@Url.Action("ListProducts", "Product", new { subCategory = 1 })'>Overgjæret</a>
+                                        <a href='@Url.Action("ListProducts", "Product", new { id = 1, tull = ""})'>Overgjæret</a>
                                         <a href='@Url.Action("ListProducts", "Product", new { subCategory = 2 })'>Undergjæret</a>
-                                        <a href='@Url.Action("ListProducts", "Product", new { subCategory = 3 })'>Spontangjæret</a>
+                                        <a href='@Url.Action("ListProducts", "Product", new { id = 1 , tull = 3})'>Spontangjæret</a>
                                     </div>
                                 </div>
                                 <div id="accordion">
