@@ -1,6 +1,7 @@
 ﻿using Nettbutikk.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -19,25 +20,6 @@ namespace Nettbutikk.Controllers
                 return RedirectToAction("Frontpage", "Main");
 
         }
-
-        
-
-        //TODO: Få metoden til å fungere
-        public ActionResult removeItem(int quantity, int itemnumber)
-        {
-            var db = new DBProduct();
-            Product p = db.get(itemnumber);
-            ShoppingCart cart = getCart();
-            if (cart == null)
-                return Json(false);
-            ShoppingCartItem item = new ShoppingCartItem(p, quantity);
-            List<ShoppingCartItem> list = cart.shoppingCartItems;
-            cart.sum += p.price * quantity;
-            list.Remove(item);
-
-            return RedirectToAction("viewShoppingCart");
-        }
-
         [HttpPost]
         public ActionResult addToCart(int quantity, int itemnumber)
         {
@@ -67,10 +49,16 @@ namespace Nettbutikk.Controllers
             return null;
         }
 
-        
-
-        public ActionResult checkout()
+        public ActionResult checkout(Order order)
         {
+
+            if (order.id != 0)
+            {
+                Debug.WriteLine("Order er ikke null");
+                return View(showOrder(order));
+            }
+                
+            
             ViewBag.Empty = false; 
             ShoppingCart cart = getCart();
             if (cart == null)
@@ -101,6 +89,24 @@ namespace Nettbutikk.Controllers
             }); 
 
         }
-    
-public  int quantity { get; set; }}
+
+        private BillingDocument showOrder(Order id)
+        {
+  
+            var orderDB = new DBOrder();
+            List<OrderLine> list = orderDB.getOrder(id.id);
+            List<ShoppingCartItem> cartItems = new List<ShoppingCartItem>();
+            foreach(var item in list){
+                cartItems.Add(new ShoppingCartItem(item.product, item.quantity));
+            };
+            var billingDoc = new BillingDocument(){
+                customer = (Customer) Session["LoggedInUser"],
+                shoppingcart = new ShoppingCart(id.customerid){
+                    shoppingCartItems = cartItems
+                }
+
+            };
+            return billingDoc;
+        }
+    }
 }

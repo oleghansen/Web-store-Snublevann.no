@@ -1,10 +1,11 @@
-﻿<div id="LoginModal" class="modal fade">
+﻿<div id="LoginModal" class="modal fade my-modal-login">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Logg Inn</h4>
+                <h3 class="modal-title">Logg inn</h3>
             </div>
+            
 
             <div class="modal-body">
                 @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "__AjaxAntiForgeryForm" }))
@@ -13,22 +14,18 @@
                 }   
                 
                 <form class="form-signin" id="stop" data-url="@Url.Action("LogIn","Customer")">
-                    <h2 class="form-signin-heading">Logg inn</h2>
-                    <div class="editor-label">
-                        <label>Brukernavn</label>
+                    
+                    <div class="panel panel-default" style="margin-top:0px; margin-bottom:0px">
+                        <div class="editor-field loginFields">
+                            <input class="form-control input-sm" id="un" type="text" name="un" placeholder="E-postadresse" />
+                        </div>
+
+                        <div class="editor-field loginFields">
+                            <input class="form-control input-sm" id="pw" type="password" name="pw" placeholder="Passord" />
+                        </div>
                     </div>
-                    <div class="editor-field loginFields">
-                        <input class="form-control input-lg" id="un" type="text" name="un" placeholder="email" />
-                    </div>
-                    <div class="editor-label">
-                        <label>Passord</label>
-                    </div>
-                    <div class="editor-field loginFields">
-                        <input class="form-control input-lg" id="pw" type="password" name="pw" placeholder="passord" />
-                    </div>
-                    <button class="btn btn-large btn-primary" type="submit">Logg inn</button>
-                    <button id="forgotPwBtn" style="display:none" class="btn btn-large btn-primary">Glemt passord</button>
-                    <button id="closeModalBtn"style="display:none" class="btn btn-large btn-warning" data-dismiss="modal">Lukk</button>
+                    <button class="btn btn-large btn-success" type="submit"><span class="glyphicon glyphicon-log-in"></span> Logg inn</button>
+                    <button id="forgotPwBtn" style="display:none" class="btn btn-large btn-warning"><span class="glyphicon glyphicon-question-sign"></span> Glemt passord</button>
                     <p class="text-danger" id="modalMessage">
                     </p>
                 </form>

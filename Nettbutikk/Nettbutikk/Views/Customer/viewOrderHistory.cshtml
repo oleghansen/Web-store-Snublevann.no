@@ -12,19 +12,27 @@
         </tr>
     
     @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.orderdate)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-                @Html.ActionLink("Details", "Details", new { id=item.id }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.id })
-            </td>
-        </tr>
+        
+            <tr>
+                
+                <td>
+                    @Html.DisplayFor(modelItem => item.id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.orderdate)
+                </td>
+                <td>
+                @using(Html.BeginForm("checkout", "ShoppingCart")){
+                    @Html.HiddenFor(modelItem => item.id)
+                    @Html.HiddenFor(modelItem => item.orderdate)
+                    <input type="hidden" name="viewOrder" value="true" />
+                    @Html.ActionLink("tull", "checkout", "ShoppingCart", item, new { })
+                    //<button type="submit">Detaljer</button>
+                }
+                </td>
+            
+            </tr>
+        
     }
     
     </table>
