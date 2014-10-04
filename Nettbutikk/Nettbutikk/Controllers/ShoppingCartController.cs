@@ -21,6 +21,8 @@ namespace Nettbutikk.Controllers
         }
 
         
+
+        //TODO: Få metoden til å fungere
         public ActionResult removeItem(int quantity, int itemnumber)
         {
             var db = new DBProduct();
