@@ -42,10 +42,11 @@ namespace Nettbutikk.Models
         public String category { get; set; }
 
         public String subCategory { get; set; }
+        public int subCategoryid { get; set; }
         public String country { get; set; }
         // TODO: trenger vi disse? 
         //public int producerid { get; set; }
-        //public int categoryid { get; set; }
+        public int categoryid { get; set; }
       
         
         // for handlekurven.. 
