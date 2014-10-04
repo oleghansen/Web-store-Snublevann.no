@@ -18,7 +18,7 @@
                 },
                 success: function (status) {
                     if (!status)
-                        $('#LoginModal').modal('show');
+                        $('#NotLoggedIn').modal('show');
                     else
                         window.location.href = '/ShoppingCart/viewShoppingCart';
                 }
@@ -29,5 +29,8 @@
             console.log("tull");
         else
             window.location.href = '/Product/viewProduct/' + itemnumber;
+    });
+    $('#modalLogInBtn').click(function () {
+        $('#LoginModal').modal('show');
     });
 });
