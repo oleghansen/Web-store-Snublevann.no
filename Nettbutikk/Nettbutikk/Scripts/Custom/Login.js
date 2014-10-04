@@ -22,7 +22,7 @@
                     $('.loginFields').addClass("has-error");
                     $('#forgotPwBtn').show();
                     $('#closeModalBtn').show();
-                    $('#modalMessage').text("Brukernav og eller passord feil");
+                    $('#modalMessage').text("Feil brukernavn og/eller passord");
                 }
             }
         }); 
