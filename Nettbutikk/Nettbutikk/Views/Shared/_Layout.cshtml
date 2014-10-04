@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-
+    <link href="~/Content/Custom/customNav.css" rel="stylesheet" /> 
     <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/Custom/MainSheet.css" rel="stylesheet" />
@@ -20,7 +20,6 @@
     <link href="~/Content/jquery-ui.structure.css" rel="stylesheet" />
     <link href="~/Content/jquery-ui.structure.min.css" rel="stylesheet" />
     <link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />
-    <link href="~/Content/Custom/customNav.css" rel="stylesheet" /> 
     <script src="~/Scripts/jquery-ui.min.js"></script>
     <script src="~/Scripts/Custom/Login.js"></script>
     <script src="~/Scripts/Custom/ProductListing.js"></script>
@@ -88,15 +87,25 @@
                                 <div class="navUl pull-right">
                                         @if (Session["loggedInUser"] == null)
                                         {
-                                            @Html.ActionLink("Registrer", "Register", "Customer")
-                                            <a href="#LoginModal" id="loginBtn" data-login="true" data-toggle="modal">Logg Inn</a>
+                                            <a href="@Url.Action("Register", "Customer")">
+                                                <i class="glyphicon glyphicon-shopping-cart"> </i> Registrer
+                                            </a>
+                                            <a href="#LoginModal" id="loginBtn" data-login="true" data-toggle="modal"><i class="glyphicon glyphicon-log-in"> </i> Logg Inn</a>
                                             //<li>@Html.ActionLink("Logg Inn", "LogIn", "Customer")</li>
                                         }
                                         else
                                         {
-                                            @Html.ActionLink("Handlekurv", "viewShoppingCart", "ShoppingCart")
-                                            @Html.ActionLink("MinSide", "PersonalSite", "Customer")
-                                            @Html.ActionLink("Logg ut", "LogOut", "Customer")
+                                            <a href="@Url.Action("viewShoppingCart", "ShoppingCart")">
+                                                <i class="glyphicon glyphicon-shopping-cart"> </i> Handlekurv
+                                            </a>
+                                            
+                                            <a href="@Url.Action("PersonalSite", "Customer")">
+                                                <i class="glyphicon glyphicon-user"> </i> MinSide
+                                            </a>
+                                            
+                                            <a href="@Url.Action("LogOut", "Customer")">
+                                                <i class="glyphicon glyphicon-log-out"> </i> Logg ut
+                                            </a>
                                         }
                                 </div>
                             </div>
