@@ -91,7 +91,7 @@ namespace Nettbutikk
                         pricePerLitre = pricePerLitre(p.Price, p.Volum),
                         category = p.SubCategories.Categories.Name,
                         categoryid = p.SubCategories.Categories.Id,
-                        subCategory = p.SubCategories.Categories.Name,
+                        subCategory = p.SubCategories.Name,
                         subCategoryid = p.SubCategories.Id,
                         country = p.Countries.Name
                     };
@@ -118,7 +118,7 @@ namespace Nettbutikk
                 producer = products.Producers.Name,
                 category = products.SubCategories.Categories.Name,
                 categoryid = products.SubCategories.Categories.Id,
-                subCategory = products.SubCategories.Categories.Name,
+                subCategory = products.SubCategories.Name,
                 subCategoryid = products.SubCategories.Id,
                 country = products.Countries.Name
             };

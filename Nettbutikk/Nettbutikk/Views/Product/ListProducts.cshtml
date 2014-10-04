@@ -8,9 +8,8 @@
                 <div class="productPath">
                     <!-- BRØDSMULESTI -->
                     <h5>
-                        @Html.ActionLink("Produkter", "ListProducts")
-                        > @Html.ActionLink(Model[0].category, "ListProducts" + "/" + Model[0].categoryid)
-                        <!-- Kommentert ut så lenge. subCategory gir samme navn som category.name. (4.10, kl 1605) > @Html.ActionLink(Model.subCategory, "ListProducts" + "/" + Model.subCategoryid)-->
+                        @Html.ActionLink("Produkter", "ListProducts") 
+                        > @Html.ActionLink(Model[0].category, "ListProducts" + "/" + Model[0].categoryid + "?sc=no")
                     </h5>
                 </div>
 
