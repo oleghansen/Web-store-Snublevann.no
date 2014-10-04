@@ -6,10 +6,13 @@
 
 
 <div>
+    <div class="jumbotron">
+        <div class="container" >
+            <div class="row">
 
-    <h1> Velkommen, @Html.DisplayFor(model => model.email)  </h1>
+                <h3><span class="glyphicon glyphicon-user"> Velkommen, @Html.DisplayFor(model => model.email)</span>  </h3>
 
-
+<hr />
     <table class="table">
         <tr>
             <th> @Html.ActionLink("Endre brukerinfo", "updateUserinfo","Customer")</th>
@@ -20,13 +23,24 @@
         
     </table>
 
+                @if (TempData["changed"] != null)
+                {
+                    <div class="alert alert-success" role="alert">
+                        @TempData["changed"]
+                    </div>
+                }
+
     @if (TempData["pview"].Equals("info"))
     {
         @Html.Partial("updateUserinfo", Model);
+
     }
     else if (TempData["pview"].Equals("password"))
     {
         @Html.Partial("updateUserPassword", Model);
     }
 
+</div>
+        </div>
+    </div>
 </div>

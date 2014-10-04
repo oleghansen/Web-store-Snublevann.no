@@ -129,6 +129,7 @@ namespace Nettbutikk.Controllers
                         if (updateOK)
                         {
                             Session["loggedInUser"] = c;
+                            TempData["changed"] = "Passord ble endret";
                             return RedirectToAction("PersonalSite");
                         }
                         else
@@ -185,6 +186,7 @@ namespace Nettbutikk.Controllers
                     if (updateOK)
                     {
                         Session["loggedInUser"] = c;
+                        TempData["changed"] = "Brukerinformasjon ble oppdatert";
                         return RedirectToAction("PersonalSite"); 
                     }
                     else
@@ -194,7 +196,7 @@ namespace Nettbutikk.Controllers
                        return View();
                     }
             }
-            ViewBag.ok = "et felt er blankt, fyll det ut trykk oppdater";
+            ViewBag.ok = "et felt er blankt, fyll det ut og trykk oppdater";
             return View();
         }
 
