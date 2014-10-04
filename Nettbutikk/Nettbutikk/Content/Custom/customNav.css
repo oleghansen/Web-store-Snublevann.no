@@ -19,14 +19,14 @@ box-shadow:         0px 3px 10px 0px rgba(50, 50, 50, 0.75);
     margin-bottom: 10px;
 }
 
-a
+.navUl a
 {
-    margin-right: 43px;
+    margin-right: 42px;
     font-family: sans-serif;
     color:#dfc8ab;
 }
 
-a:hover
+.navUl a:hover
 {
     background: transparent;
     text-decoration: none;
