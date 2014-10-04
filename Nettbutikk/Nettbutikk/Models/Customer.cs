@@ -33,7 +33,7 @@ namespace Nettbutikk.Models
         [Display(Name = "Postnummer")]
         [RegularExpression(@"(^[0-9]{4})", ErrorMessage = "Ugyldig postnummer")]
         [Required(ErrorMessage = "Postnummer må oppgis")]
-        public int postalcode { get; set; }
+        public String postalcode { get; set; }
         [Display(Name = "Poststed")]
         [RegularExpression(@"(^[a-zA-Z]+$)", ErrorMessage = "Ugyldig poststed")]
         [Required(ErrorMessage = "Poststed må oppgis")]
