@@ -339,7 +339,7 @@ namespace Nettbutikk.Models
                     Name="Captain Morgan",
                     Description="Rom fra Cuba. Vol: 40 %",
                     LongDescription="Søtelig rom som passer godt med cola og isbiter. 40% alkohol",
-                    Price=320,Volum=70, ProducersId=34, SubCategoriesId=8,CountriesId=11},
+                    Price=320,Volum=70, ProducersId=34, SubCategoriesId=9,CountriesId=11},
                 new Products {
                     Name="Bacardi Razz", 
                     Description="Søtt dritt fra Cuba Vol: 37.5 %",
