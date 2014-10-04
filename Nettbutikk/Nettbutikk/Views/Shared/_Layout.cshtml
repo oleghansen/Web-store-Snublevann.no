@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-
+    <link href="~/Content/Custom/customNav.css" rel="stylesheet" /> 
     <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/Custom/MainSheet.css" rel="stylesheet" />
@@ -20,7 +20,6 @@
     <link href="~/Content/jquery-ui.structure.css" rel="stylesheet" />
     <link href="~/Content/jquery-ui.structure.min.css" rel="stylesheet" />
     <link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />
-    <link href="~/Content/Custom/customNav.css" rel="stylesheet" /> 
     <script src="~/Scripts/jquery-ui.min.js"></script>
     <script src="~/Scripts/Custom/Login.js"></script>
     <script src="~/Scripts/Custom/ProductListing.js"></script>
@@ -85,20 +84,30 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-12 col-md-12">
-                                <ul class="nav navbar-nav navbar-right">
+                                <div class="navUl pull-right">
                                         @if (Session["loggedInUser"] == null)
                                         {
-                                            <li>@Html.ActionLink("Registrer", "Register", "Customer")</li>
-                                            <li><a href="#LoginModal" id="loginBtn" data-login="true" data-toggle="modal">Logg Inn</a></li>
+                                            <a href="@Url.Action("Register", "Customer")">
+                                                <i class="glyphicon glyphicon-pencil"> </i> Registrer
+                                            </a>
+                                            <a href="#LoginModal" id="loginBtn" data-login="true" data-toggle="modal"><i class="glyphicon glyphicon-log-in"> </i> Logg Inn</a>
                                             //<li>@Html.ActionLink("Logg Inn", "LogIn", "Customer")</li>
                                         }
                                         else
                                         {
-                                            <li>@Html.ActionLink("Handlekurv", "viewShoppingCart", "ShoppingCart")</li>
-                                            <li>@Html.ActionLink("MinSide", "PersonalSite", "Customer")</li>
-                                            <li>@Html.ActionLink("Logg ut", "LogOut", "Customer")</li>
+                                            <a href="@Url.Action("viewShoppingCart", "ShoppingCart")">
+                                                <i class="glyphicon glyphicon-shopping-cart"> </i> Handlekurv
+                                            </a>
+                                            
+                                            <a href="@Url.Action("PersonalSite", "Customer")">
+                                                <i class="glyphicon glyphicon-user"> </i> MinSide
+                                            </a>
+                                            
+                                            <a href="@Url.Action("LogOut", "Customer")">
+                                                <i class="glyphicon glyphicon-log-out"> </i> Logg ut
+                                            </a>
                                         }
-                                </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -113,7 +122,6 @@
                         <div class="pull-left">
                             <div id="menu_container">
                                 <div id="accordion">
-                                    <div class="fb-like" data-href="https://www.facebook.com/snublevann" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
                                     @using (Html.BeginForm("Search", "Product", FormMethod.Get, new { @class = "form-inline", @role = "form", @style="margin-top:0px; padding-bottom:12px" }))
                                     {
                                         <div class="row">
@@ -121,7 +129,7 @@
                                                 <div class="form-group">
                                                     <div class="input-group">
 
-                                                        @Html.TextBox("searchString", null, new { id = "txtSearch", @class = "form-control", @style = "margin-top:12px", placeholder = "Søk etter vare..." })
+                                                        @Html.TextBox("searchString", null, new { id = "txtSearch", @class = "form-control", @style = "margin-top:12px; background-color: #dfc8ab; border-color:#a5862c ", placeholder = "Søk etter vare..." })
                                                     </div>
                                                 </div>                                            </div>
                                             <div class="input-group-btn pull-left">
@@ -134,7 +142,7 @@
                                     <h4>Kategori</h4>
                                     <div class="item pull-left" id="Subcategory">
                                         <a class="sub">Øl</a>
-                                        <a href='@Url.Action("ListProducts", "Product", new { id = 1 })'> All Øl</a>
+                                        <a href='@Url.Action("ListProducts", "Product", new { id = 1 })'> All øl</a>
                                         <a href='@Url.Action("ListProducts", "Product", new { id = 1, tull = ""})'>Overgjæret</a>
                                         <a href='@Url.Action("ListProducts", "Product", new { subCategory = 2 })'>Undergjæret</a>
                                         <a href='@Url.Action("ListProducts", "Product", new { id = 1 , tull = 3})'>Spontangjæret</a>
@@ -143,7 +151,7 @@
                                 <div id="accordion">
                                     <div class="item" id="Subcategory">
                                         <a class="sub">Rødvin</a>
-                                        <a href='@Url.Action("ListProducts", "Product", new { id = 2 })'> All Rødvin</a>
+                                        <a href='@Url.Action("ListProducts", "Product", new { id = 2 })'> Alle</a>
                                         <a href="#">Tørr</a>
                                         <a href="#">Søt</a>
                                     </div>
@@ -151,7 +159,7 @@
                                 <div id="accordion">
                                     <div class="item" id="Subcategory">
                                         <a class="sub">Hvitvin</a>
-                                        <a href='@Url.Action("ListProducts", "Product", new { id = 3 })'> All Hvitvin</a>
+                                        <a href='@Url.Action("ListProducts", "Product", new { id = 3 })'> Alle</a>
                                         <a href="#">Matvin</a>
                                         <a href="#">Drikkevin</a>
                                     </div>
@@ -159,7 +167,7 @@
                                 <div id="accordion">
                                     <div class="item" id="Subcategory">
                                         <a class="sub">Brennevin</a>
-                                        <a href='@Url.Action("ListProducts", "Product", new { id = 4 })'> All Brennevin</a>
+                                        <a href='@Url.Action("ListProducts", "Product", new { id = 4 })'> Alle</a>
                                         <a href="#vodka">Vodka</a>
                                         <a href="#">Rom</a>
                                         <a href="#">Cognac</a>
@@ -170,7 +178,7 @@
                                 <div id="accordion">
                                     <div class="item" id="Subcategory">
                                         <a class="sub">Musserende</a>
-                                        <a href='@Url.Action("ListProducts", "Product", new { id = 5 })'> All Musserende</a>
+                                        <a href='@Url.Action("ListProducts", "Product", new { id = 5 })'> Alle</a>
                                         <a href="#champ">Champagne</a>
                                         <a href="#">Cava</a>
                                         <a href="#">Prosecco</a>
@@ -197,8 +205,12 @@
             </div>
         </div>
             <hr />
-            <footer>
-                <p>&copy;@DateTime.Now.Year - Gruppe 12345</p>
+            <footer class="footerBot">
+                <p>
+                    &copy;@DateTime.Now.Year - Gruppe 12345
+              <!-- Kommentert ut midlertidig, tar litt tid å laste inn.    <div class="fb-like" data-href="https://www.facebook.com/snublevann" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+                 --> 
+                  </p>
             </footer>
         </div>
 

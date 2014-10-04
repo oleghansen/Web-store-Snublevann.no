@@ -83,6 +83,9 @@ namespace Nettbutikk.Controllers
             orderDB.checkout(cart);
             
             var returnCustomer= (Customer) Session["LoggedInUser"];
+            returnCustomer.shoppingcart = new ShoppingCart(returnCustomer.id);
+            Session["LoggedInUser"] = returnCustomer; 
+
             return View(new BillingDocument()
             {
                 customer = returnCustomer,
