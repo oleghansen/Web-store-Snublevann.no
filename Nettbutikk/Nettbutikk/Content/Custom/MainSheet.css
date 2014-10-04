@@ -54,6 +54,12 @@ a:hover {
 box-shadow:         0px 3px 10px 0px rgba(50, 50, 50, 0.75);
 }
 
+.jumbotron a:hover
+{
+        background: transparent;
+        text-decoration: none;
+}
+
 .panel-default
 {
 -webkit-box-shadow: 0px 1px 2px 0px rgba(50, 50, 50, 0.24);
@@ -67,7 +73,16 @@ box-shadow:         0px 1px 2px 0px rgba(50, 50, 50, 0.24);
   background-color: transparent;
 }
 
+.footerBot {
+   position:absolute;
+   bottom:0;
+}
+
 .navbar-nav-text
 {
     color: #fff;
+}
+
+.navbar-inner{
+margin-bottom:0px;
 }

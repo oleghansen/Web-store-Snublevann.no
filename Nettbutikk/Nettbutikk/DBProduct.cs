@@ -33,7 +33,9 @@ namespace Nettbutikk
                     producer = p.Producers.Name,
                     pricePerLitre = pricePerLitre(p.Price, p.Volum),
                     category = p.SubCategories.Categories.Name,
+                    categoryid = p.SubCategories.Categories.Id,
                     subCategory = p.SubCategories.Name,
+                    subCategoryid = p.SubCategories.Id,
                     country = p.Countries.Name
 
                 };
@@ -64,7 +66,9 @@ namespace Nettbutikk
                         producer = p.Producers.Name,
                         pricePerLitre = pricePerLitre(p.Price, p.Volum),
                         category = p.SubCategories.Categories.Name,
+                        categoryid = p.SubCategories.Categories.Id,
                         subCategory = p.SubCategories.Name,
+                        subCategoryid = p.SubCategories.Id,
                         country = p.Countries.Name
 
                     };
@@ -86,7 +90,9 @@ namespace Nettbutikk
                         producer = p.Producers.Name,
                         pricePerLitre = pricePerLitre(p.Price, p.Volum),
                         category = p.SubCategories.Categories.Name,
+                        categoryid = p.SubCategories.Categories.Id,
                         subCategory = p.SubCategories.Categories.Name,
+                        subCategoryid = p.SubCategories.Id,
                         country = p.Countries.Name
                     };
                     allProducts.Add(product);
@@ -111,6 +117,9 @@ namespace Nettbutikk
                 pricePerLitre = pricePerLitre(products.Price, products.Volum),
                 producer = products.Producers.Name,
                 category = products.SubCategories.Categories.Name,
+                categoryid = products.SubCategories.Categories.Id,
+                subCategory = products.SubCategories.Categories.Name,
+                subCategoryid = products.SubCategories.Id,
                 country = products.Countries.Name
             };
         }
@@ -138,7 +147,9 @@ namespace Nettbutikk
                     producer = p.Producers.Name,
                     pricePerLitre = pricePerLitre(p.Price, p.Volum),
                     category = p.SubCategories.Categories.Name,
+                    categoryid = p.SubCategories.Categories.Id,
                     subCategory = p.SubCategories.Name,
+                    subCategoryid = p.SubCategories.Id,
                     country = p.Countries.Name
                 };
                 foundProducts.Add(product);

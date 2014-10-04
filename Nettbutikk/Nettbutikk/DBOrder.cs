@@ -35,5 +35,20 @@ namespace Nettbutikk
             db.SaveChanges();
 
         }
+
+        public List<Order> getOrders(int id)
+        {
+            var db = new DatabaseContext();
+            var order = db.Orders.Where(o => o.Id == id).ToList();
+            List<Order> list = new List<Order>();
+            foreach (var item in order){
+                list.Add(new Order()
+                {
+                    id = item.Id,
+                    orderdate = item.OrderDate
+                });
+            }
+            return list; 
+        }
     }
 }

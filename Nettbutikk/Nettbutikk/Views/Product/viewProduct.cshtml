@@ -3,92 +3,61 @@
 @{
     ViewBag.Title = "Produkt";
 }
-
     <div class="jumbotron">
     
-        <h4>(sett inn tittel her)</h4>
+        <!-- BRØDSMULESTI -->
+        <h5>@Html.ActionLink("Produkter", "ListProducts") 
+        > @Html.ActionLink(Model.category, "ListProducts" + "/" + Model.categoryid)
+        <!-- Kommentert ut så lenge. subCategory gir samme navn som category.name. (4.10, kl 1605) > @Html.ActionLink(Model.subCategory, "ListProducts" + "/" + Model.subCategoryid)-->  
+        > @Html.ActionLink(Model.name, "viewProduct" + "/" + Model.itemnumber)</h5>
+
+
         <hr />
         <div class="row">
-            <div class="col-md-2">
-                        <img src=@Url.Content("~/Content/img/products/" + Model.itemnumber + ".png") height="280" width="140">
-            </div>
-            <div class="col-md-6 pull-left">
-                <dl class="pull-left">
-                    <dt>
-                        @Html.DisplayNameFor(model => model.name)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.name)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.description)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.description)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.longDescription)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.longDescription)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.price)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.price) ,-
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.pricePerLitre) ,-
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.pricePerLitre)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.producer)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.producer)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.category)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.category)
-                    </dd>
-
-                </dl>
-            </div>
-            <div class="col-md-4">
-                @using (Html.BeginForm("addToCart", "ShoppingCart"))
-                {
-                    <div class="form-group pull-right" id="antiLink">
-                        <div class="input-group">
-                            <label for="count" class="pull-left" style="margin-top: 25px; margin-right: 5px">Antall  </label>
-                            @Html.EditorFor(model => model.quantity, new { htmlAttributes = new { @class = "form-control", placeholder = "Antall", style = "width: 60px; margin-top: 12px" } })
-                            <div class="input-group-btn pull-left">
-                                <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-shopping-cart"></span></button>
-                            </div>
-                        </div>
+            <h3>
+                @Html.DisplayFor(model => model.name) (@Html.DisplayFor(model => model.volum) cl)
+            </h3>
+        </div>
+        <div class="row">
+            <h4>
+                (@Html.DisplayFor(model => model.producer))
+            </h4>
+        </div>
+            <div class="row">
+                <div class="col-md-3"> 
+                    <a href='@Url.Content("~/Content/img/products/" + Model.itemnumber + ".png")'> 
+                        <img src=@Url.Content("~/Content/img/products/" + Model.itemnumber + ".png") height="280" width="180">
+                    </a>
+                </div>
+                <div class="col-md-4 pull-left">
+                    <div class="row">
+                         @Html.DisplayFor(model => model.longDescription)
                     </div>
+                        <div class="row">
+                            <h3>
+                                @Html.DisplayFor(model => model.price) ,-
+                            </h3>
+                        </div>
 
-
-                }
+                        <div class="row">
+                            @Html.DisplayFor(model => model.pricePerLitre) ,- pr liter
+                        </div>
+                        @using (Html.BeginForm("addToCart", "ShoppingCart"))
+                        {
+                            <div class="form-group pull-left" id="antiLink">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <label for="count" class="pull-left" style="margin-top: 25px; margin-right: 5px">Antall  </label>
+                                        @Html.EditorFor(model => model.quantity, new { htmlAttributes = new { @class = "form-control", placeholder = "Antall", style = "width: 60px; margin-top: 12px" } })
+                                        <div class="input-group-btn pull-left">
+                                            <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-shopping-cart"></span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
             </div>
         </div>
- </div>
     @Html.ActionLink("Tilbake", "ListProducts")
 

@@ -13,16 +13,16 @@
                 <h3><span class="glyphicon glyphicon-user"> Velkommen, @Html.DisplayFor(model => model.email)</span>  </h3>
 
 <hr />
-                <table class="table">
-                    <tr>
-                        <th> @Html.ActionLink("Endre brukerinfo", "updateUserinfo", "Customer")</th>
-                        <th> @Html.ActionLink("Endre Passord", "updateUserPassword", "Customer")</th>
-                        <th>@Html.ActionLink("Se tidligere ordre", "", "")</th>
-                        <th> @Html.ActionLink("endre i handlekurv", "", "")</th>
-                    </tr>
-                
-                </table>
-  
+    <table class="table">
+        <tr>
+            <th> @Html.ActionLink("Endre brukerinfo", "updateUserinfo","Customer")</th>
+            <th> @Html.ActionLink("Endre Passord", "updateUserPassword","Customer")</th>
+            <th>@Html.ActionLink("Se tidligere ordre","viewOrderHistory","Customer")</th>
+            <th> @Html.ActionLink("endre i handlekurv", "","")</th>
+        </tr>
+        
+    </table>
+
                 @if (TempData["changed"] != null)
                 {
                     <div class="alert alert-success" role="alert">
@@ -30,17 +30,17 @@
                     </div>
                 }
 
-                        @if (TempData["pview"].Equals("info"))
-                {
-                            @Html.Partial("updateUserinfo", Model);
+    @if (TempData["pview"].Equals("info"))
+    {
+        @Html.Partial("updateUserinfo", Model);
 
-                }
-                else if (TempData["pview"].Equals("password"))
-                {
-                    @Html.Partial("updateUserPassword", Model);
-                }
+    }
+    else if (TempData["pview"].Equals("password"))
+    {
+        @Html.Partial("updateUserPassword", Model);
+    }
 
-                    </div>
+</div>
         </div>
     </div>
 </div>

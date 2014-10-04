@@ -241,6 +241,7 @@
     <Content Include="Views\Customer\LoginModal.cshtml" />
     <Content Include="Views\Customer\updateUserPassword.cshtml" />
     <Content Include="Views\Customer\NotLoggedInModal.cshtml" />
+    <Content Include="Views\Customer\viewOrderHistory.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -200,6 +200,14 @@ namespace Nettbutikk.Controllers
             return View();
         }
 
+        public ActionResult viewOrderHistory()
+        {
+            var user = (Customer) Session["LoggedInUser"];
+            var db = new DBOrder();
+            List<Order> list = db.getOrders(user.id);
+            return View(list); 
+        }
+
         private void logInUser(String un)
         {
             var customerDB = new DBCustomer(); 

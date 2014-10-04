@@ -19,6 +19,25 @@ namespace Nettbutikk.Controllers
                 return RedirectToAction("Frontpage", "Main");
 
         }
+
+        
+
+        //TODO: Få metoden til å fungere
+        public ActionResult removeItem(int quantity, int itemnumber)
+        {
+            var db = new DBProduct();
+            Product p = db.get(itemnumber);
+            ShoppingCart cart = getCart();
+            if (cart == null)
+                return Json(false);
+            ShoppingCartItem item = new ShoppingCartItem(p, quantity);
+            List<ShoppingCartItem> list = cart.shoppingCartItems;
+            cart.sum += p.price * quantity;
+            list.Remove(item);
+
+            return RedirectToAction("viewShoppingCart");
+        }
+
         [HttpPost]
         public ActionResult addToCart(int quantity, int itemnumber)
         {
@@ -48,6 +67,8 @@ namespace Nettbutikk.Controllers
             return null;
         }
 
+        
+
         public ActionResult checkout()
         {
             ViewBag.Empty = false; 
@@ -62,6 +83,9 @@ namespace Nettbutikk.Controllers
             orderDB.checkout(cart);
             
             var returnCustomer= (Customer) Session["LoggedInUser"];
+            returnCustomer.shoppingcart = new ShoppingCart(returnCustomer.id);
+            Session["LoggedInUser"] = returnCustomer; 
+
             return View(new BillingDocument()
             {
                 customer = returnCustomer,
@@ -77,5 +101,6 @@ namespace Nettbutikk.Controllers
             }); 
 
         }
-    }
+    
+public  int quantity { get; set; }}
 }
