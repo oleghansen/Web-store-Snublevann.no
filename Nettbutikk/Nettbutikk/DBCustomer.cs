@@ -25,13 +25,13 @@ namespace Nettbutikk
             var db = new DatabaseContext();
             try
             {
-                var existPostalcode = db.Postalareas.Find(inCustomer.postalcode);
+                var existPostalcode = db.Postalareas.Find(Convert.ToInt16(inCustomer.postalcode));
 
                 if(existPostalcode == null )
                 {
                     var newPostalarea = new Postalareas()
                     {
-                        PostalareasId = inCustomer.postalcode,
+                        PostalareasId = Convert.ToInt16(inCustomer.postalcode),
                         Postalarea = inCustomer.postalarea
                     };
                     newCustomer.Postalareas = newPostalarea;
@@ -57,7 +57,7 @@ namespace Nettbutikk
             c.email = userFound.Email;
             c.phonenumber = userFound.Phonenumber;
             c.address = userFound.Address;
-            c.postalcode = userFound.PostalareasId;
+            c.postalcode = userFound.PostalareasId.ToString();
             c.postalarea = db.Postalareas.Find(userFound.PostalareasId).Postalarea;
             c.hashpassword = userFound.Password;
              return c;
@@ -95,13 +95,13 @@ namespace Nettbutikk
                 cust.Phonenumber = updateUser.phonenumber;
                 cust.Email = updateUser.email;
             
-                var existPostalcode = db.Postalareas.Find(updateUser.postalcode);
+                var existPostalcode = db.Postalareas.Find(Convert.ToInt16(updateUser.postalcode));
 
                 if (existPostalcode == null)
                 {
                     var newPostalarea = new Postalareas()
                     {
-                        PostalareasId = updateUser.postalcode,
+                        PostalareasId = Convert.ToInt16(updateUser.postalcode),
                         Postalarea = updateUser.postalarea
                     };
                     cust.Postalareas = newPostalarea;

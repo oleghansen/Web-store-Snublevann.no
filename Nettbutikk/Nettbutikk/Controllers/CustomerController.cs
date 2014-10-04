@@ -202,6 +202,19 @@ namespace Nettbutikk.Controllers
         {
             var customerDB = new DBCustomer(); 
             var founduser = customerDB.findCustomer(un);
+            
+            if(int.Parse(founduser.postalcode) < 1000)
+            {
+                founduser.postalcode = "0" + founduser.postalcode;
+                if (int.Parse(founduser.postalcode) < 100)
+                {
+                    founduser.postalcode = "0" + founduser.postalcode;
+                    if(int.Parse(founduser.postalcode) < 10)
+                        founduser.postalcode = "0" + founduser.postalcode;
+                }
+
+            }
+
             founduser.shoppingcart = new ShoppingCart(founduser.id);
             Session["loggedInUser"] = founduser;
             
