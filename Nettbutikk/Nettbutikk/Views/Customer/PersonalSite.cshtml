@@ -41,7 +41,11 @@
     }
     else if (TempData["pview"].Equals("orderline"))
     {
-        @Html.Partial("viewOrderHistory", Model);
+        
+        var list = TempData["list"];
+        
+
+        @Html.Partial("viewOrderHistory", list);
     }
 
 </div>

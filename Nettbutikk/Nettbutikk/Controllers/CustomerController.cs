@@ -209,7 +209,8 @@ namespace Nettbutikk.Controllers
             Debug.WriteLine(list.Count);
             //return View(list); 
             TempData["pview"] = "orderline";
-            return View("PersonalSite", list);
+            TempData["list"] = list;
+            return View("PersonalSite", user);
         }
 
         private void logInUser(String un)
