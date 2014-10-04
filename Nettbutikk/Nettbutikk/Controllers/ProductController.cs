@@ -10,12 +10,38 @@ namespace Nettbutikk.Controllers
     public class ProductController : Controller
     {
         // GET: Product
-        public ActionResult ListProducts(int? id)
+        /*public ActionResult ListProducts(int? id)
         {
             var db = new DBProduct();
             List<Product> listOfProducts;
 
             listOfProducts = db.getAll(id);
+
+            return View(listOfProducts);
+        }
+
+        public ActionResult ListProducts(int id, string random)
+        {
+            var db = new DBProduct();
+            List<Product> listOfProducts;
+
+            listOfProducts = db.getAll(id, random);
+
+            return View(listOfProducts);
+        }*/
+
+        public ActionResult ListProducts(int? id, string tull)
+        {
+            var db = new DBProduct();
+            List<Product> listOfProducts;
+            if(String.IsNullOrEmpty(tull))
+              {
+                listOfProducts = db.getAll(id);
+              }
+            else
+             {
+             listOfProducts = db.getAll(id,tull);
+             }
 
             return View(listOfProducts);
         }
