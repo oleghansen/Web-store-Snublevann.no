@@ -20,13 +20,13 @@
                     if (!status)
                         $('#NotLoggedIn').modal('show');
                     else
-                        window.location.href = '/ShoppingCart/viewShoppingCart';
+                        alert("varen ble lagt i handlekurv");
                 }
             });
             
         }
         else if ($(event.target).is($(this).find('#qtyField')))
-            console.log("tull");
+            noop();
         else
             window.location.href = '/Product/viewProduct/' + itemnumber;
     });
