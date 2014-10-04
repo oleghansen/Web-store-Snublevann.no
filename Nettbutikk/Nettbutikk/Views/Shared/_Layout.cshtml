@@ -79,7 +79,7 @@
                     <div class="collapse navbar-collapse navbar-ex1-collapse">
                         <div class="row">
                             <div class="col-sm-12 col-md-12">
-                               <img src="~/Content/img/logo/snublevann_light_transparent.png" width="500" height="96" style="margin-top: 20px; margin-left: 20px" />
+                                <a href="~/Main/Frontpage" id="homeLink"><img src="~/Content/img/logo/snublevann_light_transparent.png" id="logo" width="500" height="96" style="margin-top: 20px; margin-left: 20px" /></a> 
                             </div>
                         </div>
                         <div class="row">
@@ -143,35 +143,35 @@
                                     <div class="item pull-left" id="Subcategory">
                                         <a class="sub">Øl</a>
                                         <a href='@Url.Action("ListProducts", "Product", new { id = 1 })'> All øl</a>
-                                        <a href='@Url.Action("ListProducts", "Product", new { id = 1, tull = ""})'>Overgjæret</a>
-                                        <a href='@Url.Action("ListProducts", "Product", new { subCategory = 2 })'>Undergjæret</a>
-                                        <a href='@Url.Action("ListProducts", "Product", new { id = 1 , tull = 3})'>Spontangjæret</a>
+                                        <a href='@Url.Action("ListProducts", "Product", new { id = 1, sc = "yes"})'>Overgjæret</a>
+                                        <a href='@Url.Action("ListProducts", "Product", new { id = 2, sc = "yes" })'>Undergjæret</a>
+                                        <a href='@Url.Action("ListProducts", "Product", new { id = 3 , sc = "yes"})'>Spontangjæret</a>
                                     </div>
                                 </div>
                                 <div id="accordion">
                                     <div class="item" id="Subcategory">
                                         <a class="sub">Rødvin</a>
                                         <a href='@Url.Action("ListProducts", "Product", new { id = 2 })'> Alle</a>
-                                        <a href="#">Tørr</a>
-                                        <a href="#">Søt</a>
+                                        <a href='@Url.Action("ListProducts", "Product", new { id = 7, sc = "yes" })'>Tørr</a>
+                                        <a href='@Url.Action("ListProducts", "Product", new { id = 6, sc = "yes" })'>Søt</a>
                                     </div>
                                 </div>
                                 <div id="accordion">
                                     <div class="item" id="Subcategory">
                                         <a class="sub">Hvitvin</a>
                                         <a href='@Url.Action("ListProducts", "Product", new { id = 3 })'> Alle</a>
-                                        <a href="#">Matvin</a>
-                                        <a href="#">Drikkevin</a>
+                                        <a href='@Url.Action("ListProducts", "Product", new { id = 4, sc = "yes" })'>Fyldig</a>
+                                        <a href='@Url.Action("ListProducts", "Product", new { id = 5, sc = "yes" })'>Mild</a>
                                     </div>
                                 </div>
                                 <div id="accordion">
                                     <div class="item" id="Subcategory">
                                         <a class="sub">Brennevin</a>
                                         <a href='@Url.Action("ListProducts", "Product", new { id = 4 })'> Alle</a>
-                                        <a href="#vodka">Vodka</a>
-                                        <a href="#">Rom</a>
-                                        <a href="#">Cognac</a>
-                                        <a href="#">Wiskey</a>
+                                        <a href='@Url.Action("ListProducts", "Product", new { id = 8, sc = "yes" })'>Vodka</a>
+                                        <a href='@Url.Action("ListProducts", "Product", new { id = 9, sc = "yes" })'>Rom</a>
+                                        <a href='@Url.Action("ListProducts", "Product", new { id = 11, sc = "yes" })'>Cognac</a>
+                                        <a href='@Url.Action("ListProducts", "Product", new { id = 12, sc = "yes" })'>Wiskey</a>
                                         <a href="#">Diverse</a>
                                     </div>
                                 </div>

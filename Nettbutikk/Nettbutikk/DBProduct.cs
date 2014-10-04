@@ -13,11 +13,11 @@ namespace Nettbutikk
 
     public class DBProduct
     {
-        public List<Product> getAll(int? id, String tull)
+        public List<Product> getAll(int? id, String sc)
         {
             var db = new DatabaseContext();
             List<Product> allProducts = new List<Product>();
-            var products = db.Products.Include(p => p.SubCategories.Categories).Where(p => p.SubCategories.CategoriesId == id).ToList();
+            var products = db.Products.Include(p => p.SubCategories.Categories).Where(p => p.SubCategoriesId == id).ToList();
 
            
             foreach (var p in products)
