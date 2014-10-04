@@ -5,6 +5,14 @@
 }
     
             <div class="jumbotron">
+                <div class="productPath">
+                    <!-- BRØDSMULESTI -->
+                    <h5>
+                        @Html.ActionLink("Produkter", "ListProducts") 
+                        > @Html.ActionLink(Model[0].category, "ListProducts" + "/" + Model[0].categoryid + "?sc=no")
+                    </h5>
+                </div>
+
                     @foreach (var item in Model)
                     {
                        // <a href='@Url.Action("viewProduct","Product",new {id = item.itemnumber })'>

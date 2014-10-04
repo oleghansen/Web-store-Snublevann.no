@@ -5,12 +5,15 @@
 }
     <div class="jumbotron">
     
-        <!-- BRØDSMULESTI -->
-        <h5>@Html.ActionLink("Produkter", "ListProducts") 
-        > @Html.ActionLink(Model.category, "ListProducts" + "/" + Model.categoryid)
-        <!-- Kommentert ut så lenge. subCategory gir samme navn som category.name. (4.10, kl 1605) > @Html.ActionLink(Model.subCategory, "ListProducts" + "/" + Model.subCategoryid)-->  
-        > @Html.ActionLink(Model.name, "viewProduct" + "/" + Model.itemnumber)</h5>
-
+        <div class="productPath">
+            <!-- BRØDSMULESTI -->
+            <h5>
+              @Html.ActionLink("Produkter", "ListProducts")
+            > @Html.ActionLink(Model.category, "ListProducts" + "/" + Model.categoryid+"?sc=no")
+            > @Html.ActionLink(Model.subCategory, "ListProducts" + "/" + Model.subCategoryid +"?sc=yes")
+            > @Html.ActionLink(Model.name, "viewProduct" + "/" + Model.itemnumber)
+        </h5>
+        </div>
 
         <hr />
         <div class="row">
