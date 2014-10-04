@@ -17,7 +17,6 @@ namespace Nettbutikk
                 Lastname = inCustomer.lastname,
                 Address = inCustomer.address,
                 PostalareasId = Convert.ToInt16(inCustomer.postalcode),
-                Username = inCustomer.username,
                 Password = hashedPassword,
                 Phonenumber = inCustomer.phonenumber,
                 Email = inCustomer.email
@@ -47,10 +46,10 @@ namespace Nettbutikk
             }
         }
     
-        public Customer findCustomer(String username)
+        public Customer findCustomer(String email)
         {
             var db = new DatabaseContext();
-            Customers userFound =  db.Customers.FirstOrDefault(u => u.Username == username);
+            Customers userFound =  db.Customers.FirstOrDefault(u => u.Email == email);
             Customer c = new Customer();
             c.id = userFound.Id;
             c.firstname = userFound.Firstname;
@@ -60,20 +59,17 @@ namespace Nettbutikk
             c.address = userFound.Address;
             c.postalcode = userFound.PostalareasId;
             c.postalarea = db.Postalareas.Find(userFound.PostalareasId).Postalarea;
-            c.username = userFound.Username;
             c.hashpassword = userFound.Password;
-            
-
-            return c;
+             return c;
         }
 
-        public bool validate(String username, byte[] hashedPassword)
+        public bool validate(String email, byte[] hashedPassword)
         {
             var db = new DatabaseContext();
 
             try
             {
-                Customers validated = db.Customers.FirstOrDefault(u => u.Password == hashedPassword && u.Username == username);
+                Customers validated = db.Customers.FirstOrDefault(u => u.Password == hashedPassword && u.Email == email);
                 if (validated == null)
                     return false;
                 else
@@ -96,7 +92,6 @@ namespace Nettbutikk
                 cust.Lastname = updateUser.lastname;
                 cust.Address = updateUser.address;
                 cust.PostalareasId = Convert.ToInt16(updateUser.postalcode);
-                cust.Username = updateUser.username;
                 cust.Phonenumber = updateUser.phonenumber;
                 cust.Email = updateUser.email;
             
@@ -138,23 +133,14 @@ namespace Nettbutikk
  
         }
 
-        public bool checkEmail(string email)
+        public bool checkEmail(string email, int? id)
         {
             var db = new DatabaseContext();
             Customers cust = db.Customers.FirstOrDefault(u => u.Email.Equals(email));
 
-            if (cust == null)
+            if ((cust == null) || (cust != null && cust.Id == id))
                 return true;
             else return false;  
-        }
-
-        public bool checkUsername(string username)
-        {
-            var db = new DatabaseContext();
-            Customers cust = db.Customers.FirstOrDefault(u => u.Username.Equals(username));
-            if (cust == null)
-                return true;
-            else return false;
         }
     }
 }
