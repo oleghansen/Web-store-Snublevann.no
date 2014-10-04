@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Nettbutikk.Models;
+using System.Diagnostics;
 
 namespace Nettbutikk.Controllers
 {
@@ -30,17 +31,19 @@ namespace Nettbutikk.Controllers
             return View(listOfProducts);
         }*/
 
-        public ActionResult ListProducts(int? id, string tull)
+        public ActionResult ListProducts(int? id, string sc)
         {
             var db = new DBProduct();
             List<Product> listOfProducts;
-            if(String.IsNullOrEmpty(tull))
+            if(sc.Equals("yes"))
               {
-                listOfProducts = db.getAll(id);
+                Debug.WriteLine("SubCategory");
+                listOfProducts = db.getAll(id,sc);
               }
             else
              {
-             listOfProducts = db.getAll(id,tull);
+                Debug.WriteLine("Category");
+             listOfProducts = db.getAll(id);
              }
 
             return View(listOfProducts);
