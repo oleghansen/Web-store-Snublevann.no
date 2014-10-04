@@ -45,7 +45,7 @@ namespace Nettbutikk.Models
         public String country { get; set; }
         // TODO: trenger vi disse? 
         //public int producerid { get; set; }
-        //public int categoryid { get; set; }
+        public int categoryid { get; set; }
       
         
         // for handlekurven.. 
