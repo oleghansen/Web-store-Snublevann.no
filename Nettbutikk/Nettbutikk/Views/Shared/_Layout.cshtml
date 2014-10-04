@@ -85,20 +85,20 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-12 col-md-12">
-                                <ul class="nav navbar-nav navbar-right">
+                                <div class="navUl pull-right">
                                         @if (Session["loggedInUser"] == null)
                                         {
-                                            <li>@Html.ActionLink("Registrer", "Register", "Customer")</li>
-                                            <li><a href="#LoginModal" id="loginBtn" data-login="true" data-toggle="modal">Logg Inn</a></li>
+                                            @Html.ActionLink("Registrer", "Register", "Customer")
+                                            <a href="#LoginModal" id="loginBtn" data-login="true" data-toggle="modal">Logg Inn</a>
                                             //<li>@Html.ActionLink("Logg Inn", "LogIn", "Customer")</li>
                                         }
                                         else
                                         {
-                                            <li>@Html.ActionLink("Handlekurv", "viewShoppingCart", "ShoppingCart")</li>
-                                            <li>@Html.ActionLink("MinSide", "PersonalSite", "Customer")</li>
-                                            <li>@Html.ActionLink("Logg ut", "LogOut", "Customer")</li>
+                                            @Html.ActionLink("Handlekurv", "viewShoppingCart", "ShoppingCart")
+                                            @Html.ActionLink("MinSide", "PersonalSite", "Customer")
+                                            @Html.ActionLink("Logg ut", "LogOut", "Customer")
                                         }
-                                </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -121,7 +121,7 @@
                                                 <div class="form-group">
                                                     <div class="input-group">
 
-                                                        @Html.TextBox("searchString", null, new { id = "txtSearch", @class = "form-control", @style = "margin-top:12px", placeholder = "Søk etter vare..." })
+                                                        @Html.TextBox("searchString", null, new { id = "txtSearch", @class = "form-control", @style = "margin-top:12px; background-color: #dfc8ab; border-color:#a5862c ", placeholder = "Søk etter vare..." })
                                                     </div>
                                                 </div>                                            </div>
                                             <div class="input-group-btn pull-left">

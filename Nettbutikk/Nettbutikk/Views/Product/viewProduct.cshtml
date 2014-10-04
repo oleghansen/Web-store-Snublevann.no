@@ -9,10 +9,10 @@
         <h4>(sett inn tittel her)</h4>
         <hr />
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-2" style="background: #4cff00">
                         <img src=@Url.Content("~/Content/img/products/" + Model.itemnumber + ".png") height="280" width="140">
             </div>
-            <div class="col-md-6 pull-left">
+            <div class="col-md-6 pull-left" style="background: #ff6a00">
                 <dl class="pull-left">
                     <dt>
                         @Html.DisplayNameFor(model => model.name)
@@ -72,7 +72,7 @@
 
                 </dl>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4" style="background: #ffd800">
                 @using (Html.BeginForm("addToCart", "ShoppingCart"))
                 {
                     <div class="form-group pull-right" id="antiLink">
