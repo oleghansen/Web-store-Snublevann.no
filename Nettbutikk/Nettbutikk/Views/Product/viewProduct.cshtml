@@ -5,12 +5,17 @@
 }
     <div class="jumbotron">
     
+        <!-- BRØDSMULESTI -->
+        <h5>@Html.ActionLink("Produkter", "ListProducts") 
+        > @Html.ActionLink(Model.category, "ListProducts" + "/" + Model.categoryid)
+        <!-- Kommentert ut så lenge. subCategory gir samme navn som category.name. (4.10, kl 1605) > @Html.ActionLink(Model.subCategory, "ListProducts" + "/" + Model.subCategoryid)-->  
+        > @Html.ActionLink(Model.name, "viewProduct" + "/" + Model.itemnumber)</h5>
 
-        <h5>@Html.ActionLink("Produkter", "ListProducts") > @Html.ActionLink(Model.category,"ListProducts" + "/" + Model.categoryid) > @Html.ActionLink(Model.name, "viewProduct" + "/" + Model.itemnumber)</h5>
+
         <hr />
         <div class="row">
             <h3>
-                @Html.DisplayFor(model => model.name)
+                @Html.DisplayFor(model => model.name) (@Html.DisplayFor(model => model.volum) cl)
             </h3>
         </div>
         <div class="row">
@@ -19,8 +24,10 @@
             </h4>
         </div>
             <div class="row">
-                <div class="col-md-3">
-                    <img src=@Url.Content("~/Content/img/products/" + Model.itemnumber + ".png") height="280" width="140">
+                <div class="col-md-3"> 
+                    <a href='@Url.Content("~/Content/img/products/" + Model.itemnumber + ".png")'> 
+                        <img src=@Url.Content("~/Content/img/products/" + Model.itemnumber + ".png") height="280" width="180">
+                    </a>
                 </div>
                 <div class="col-md-4 pull-left">
                     <div class="row">
