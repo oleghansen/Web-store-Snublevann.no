@@ -19,6 +19,22 @@ namespace Nettbutikk.Controllers
                 return RedirectToAction("Frontpage", "Main");
 
         }
+
+        public ActionResult removeItem(int quantity, int itemnumber)
+        {
+            var db = new DBProduct();
+            Product p = db.get(itemnumber);
+            ShoppingCart cart = getCart();
+            if (cart == null)
+                return Json(false);
+            ShoppingCartItem item = new ShoppingCartItem(p, quantity);
+            List<ShoppingCartItem> list = cart.shoppingCartItems;
+            cart.sum += p.price * quantity;
+            list.Remove(item);
+
+            return RedirectToAction("ViewShoppingCart");
+        }
+
         [HttpPost]
         public ActionResult addToCart(int quantity, int itemnumber)
         {
@@ -47,6 +63,8 @@ namespace Nettbutikk.Controllers
             }
             return null;
         }
+
+        
 
         public ActionResult checkout()
         {
