@@ -107,7 +107,6 @@ namespace Nettbutikk.Models
         public String Address { get; set; }
         public int PostalareasId { get; set; }
         public Postalareas Postalareas { get; set; }
-        public String Username { get; set; }
         public byte[] Password { get; set; }
         public virtual List<Orders> Orders { get; set; }
     }

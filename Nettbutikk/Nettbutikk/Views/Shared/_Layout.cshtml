@@ -37,6 +37,14 @@
             });
         });
     </script>
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/nb_NO/sdk.js#xfbml=1&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
 
 
@@ -49,6 +57,15 @@
 
 </head>
 <body>
+    <div id="fb-root"></div>
+    <script>
+(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/nb_NO/sdk.js#xfbml=1&version=v2.0";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
     <div class="container">
             <div class="navbar navbar-inner" role="navigation">
                 <div class="navbar-header">
@@ -96,6 +113,7 @@
                         <div class="pull-left">
                             <div id="menu_container">
                                 <div id="accordion">
+                                    <div class="fb-like" data-href="https://www.facebook.com/snublevann" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
                                     @using (Html.BeginForm("Search", "Product", FormMethod.Get, new { @class = "form-inline", @role = "form", @style="margin-top:0px; padding-bottom:12px" }))
                                     {
                                         <div class="row">
@@ -105,10 +123,9 @@
 
                                                         @Html.TextBox("searchString", null, new { id = "txtSearch", @class = "form-control", @style = "margin-top:12px", placeholder = "Søk etter vare..." })
                                                     </div>
-                                                </div>
-                                            </div>
+                                                </div>                                            </div>
                                             <div class="input-group-btn pull-left">
-                                                <button class="btn btn-success" type="submit" style="background-color:#a5862c; border-color:#a5862c">
+                                                <button class="btn btn-success" type="submit" style="background-color:#a5862c; width: 35px; border-color:#a5862c">
                                                     <span class="glyphicon glyphicon-search"></span>
                                                 </button>
                                             </div>
@@ -118,9 +135,9 @@
                                     <div class="item pull-left" id="Subcategory">
                                         <a class="sub">Øl</a>
                                         <a href='@Url.Action("ListProducts", "Product", new { id = 1 })'> All Øl</a>
-                                        <a href='@Url.Action("ListProducts", "Product", new { subCategory = 1 })'>Overgjæret</a>
+                                        <a href='@Url.Action("ListProducts", "Product", new { id = 1, tull = ""})'>Overgjæret</a>
                                         <a href='@Url.Action("ListProducts", "Product", new { subCategory = 2 })'>Undergjæret</a>
-                                        <a href='@Url.Action("ListProducts", "Product", new { subCategory = 3 })'>Spontangjæret</a>
+                                        <a href='@Url.Action("ListProducts", "Product", new { id = 1 , tull = 3})'>Spontangjæret</a>
                                     </div>
                                 </div>
                                 <div id="accordion">
