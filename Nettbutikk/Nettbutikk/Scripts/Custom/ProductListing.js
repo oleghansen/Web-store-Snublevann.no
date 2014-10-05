@@ -5,6 +5,8 @@
         var itemnumber = parseInt($(this).find('#itemnumber').text());
         var quantity = parseInt($(this).find('#qtyField').val());
         var itemname = $(this).find('#productName').text();
+        if (itemname == "")
+            itemname = $('#productName').text();
 
         if ($(event.target).is($('.shoppingBtn'))) {
             $.ajax({
