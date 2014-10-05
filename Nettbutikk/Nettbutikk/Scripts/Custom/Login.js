@@ -15,7 +15,7 @@
                 if(status)
                 {
                     $('#LoginModal').hide();
-                    window.location.href = '/Customer/PersonalSite/';
+                    location.reload(); 
                 }
                 else
                 {
