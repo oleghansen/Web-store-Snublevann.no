@@ -3,73 +3,65 @@
     ViewBag.Title = "Forsiden";
 }
 
-<script>
-    $('.carousel').carousel({
-        interval: 500
-    })
-</script>
+    <script>
+        $('.carousel').carousel({
+            interval: 500
+        })
+    </script>
     <link href="~/Content/Custom/MainSheet.css" rel="stylesheet" />
     <div id="carousel-mainpage" class="carousel slide" data-ride="carousel" style="width:943px; margin:0 auto;">
 
-    <ol class="carousel-indicators">
-        <li data-target="#carousel-mainpage" data-slide-to="0" class="active"></li>
-        <li data-target="#carousel-mainpage" data-slide-to="1"></li>
-        <li data-target="#carousel-mainpage" data-slide-to="2"></li>
-    </ol>
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-mainpage" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-mainpage" data-slide-to="1"></li>
+            <li data-target="#carousel-mainpage" data-slide-to="2"></li>
+        </ol>
 
-    <div class="carousel-inner">
-        <div class="item active">
-            <a href="~/Product/ListProducts?sc=no"> <img src="~/Content/img/carousel/1.png" alt="..."></a>
-            <div class="carousel-caption">
-            </div>
-        </div>
-        <div class="item">
-            <a href="~/Product/ListProducts?sc=no"> <img src="~/Content/img/carousel/2.png" alt="..."></a>
-            <div class="carousel-caption">
-            </div>
-        </div>
-        <div class="item">
-            <a href="~/Product/ListProducts?sc=no"><img src="~/Content/img/carousel/3.png" alt="..."></a>
-            <div class="carousel-caption">
-            </div>
-        </div>
-    </div>
-    </div>
-        <div class="jumbotron">
-    <h3> Snublevann anbefaler</h3>
-@foreach (var item in Model)
-{
-    <div class="panel panel-default clickable" style="background: #FFFFFF;margin-bottom:0px">
-        <div class="panel-body">
-            <p id="itemnumber" style="display:none;">@Html.DisplayFor(modelItem => item.itemnumber)</p>
-            <div class="col-md-2">
-                <img src=@Url.Content("~/Content/img/products/" + item.itemnumber + ".png") height="140" width="90">
-            </div>
-            <div class="col-md-10">
-                <div class="row">
-                    <div class="col-md-10">
-                        (@Html.DisplayFor(modelItem => item.volum, "#smallGray")) cl
-                        <h3 id="productName">
-                            @Html.DisplayFor(modelItem => item.name)
-                        </h3>
-
-                    </div>
-                    <div class="col-md-2">
-                        <h3>
-                            @Html.DisplayFor(modelItem => item.price) ,-
-                        </h3>
-                    </div>
+        <div class="carousel-inner">
+            <div class="item active">
+                <a href="~/Product/ListProducts?sc=no"> <img src="~/Content/img/carousel/1.png" alt="..."></a>
+                <div class="carousel-caption">
                 </div>
-                <div class="row">
-                    <div class="col-md-9">
-                        @Html.DisplayFor(modelItem => item.description, new { @id = "smallGray" })
-                    </div>
-                    <div class="col-md-3">
+            </div>
+            <div class="item">
+                <a href="~/Product/ListProducts?sc=no"> <img src="~/Content/img/carousel/2.png" alt="..."></a>
+                <div class="carousel-caption">
+                </div>
+            </div>
+            <div class="item">
+                <a href="~/Product/ListProducts?sc=no"><img src="~/Content/img/carousel/3.png" alt="..."></a>
+                <div class="carousel-caption">
                 </div>
             </div>
         </div>
     </div>
-
- </div>
-}
+<div class="jumbotron" style="height:500px;">
+    <h3>Populære produkter:</h3>
+    @foreach (var item in Model)
+    {
+        <div class="panel panel-default clickable" style="background: #FFFFFF;margin-bottom:0px; width: 50%; float:left; height:180px;">
+            <div class="panel-body">
+                <p id="itemnumber" style="display:none;">@Html.DisplayFor(modelItem => item.itemnumber)</p>
+                <div class="col-md-2">
+                    <img src=@Url.Content("~/Content/img/products/" + item.itemnumber + ".png") height="140" width="90">
+                </div>
+                <div class="col-md-10">
+                    <div class="row">
+                        <div class="col-md-3" style="width:100%; margin-left:15px;">
+                            <h3 id="productName">
+                                @Html.DisplayFor(modelItem => item.name)
+                            </h3>
+                        </div>
+                        <div class="col-md-2" style="margin-left: 15px;">
+                            <h3>
+                                @Html.DisplayFor(modelItem => item.price)
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
 </div>
+
+
