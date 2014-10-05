@@ -42,7 +42,6 @@ namespace Nettbutikk.Models
         [RegularExpression(@"(^[a-zA-Z0-9æÆøØåÅ]+$)", ErrorMessage = "Ugyldig passord")]
         [Required(ErrorMessage = "Passord må oppgis")]
         public String password { get; set; }
-
         public byte[] hashpassword { get; set; }
 
         public ShoppingCart shoppingcart;
