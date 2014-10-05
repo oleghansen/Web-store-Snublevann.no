@@ -7,7 +7,6 @@
             <div class="jumbotron">
 
 
-                <!-- Sorteringsknapp, mangler funksjonalitet -->
                 <div class="btn-group" style="position: absolute; right:0; top:0; margin-right:74px; margin-top: 30px">
                     <button type="button" class="btn btn-default">Sorter etter</button>
                     <button type="button" class="btn btn-default dropdown-toggle"
@@ -45,11 +44,9 @@
                         {<a href='@Url.Action("ListProducts", "Product", new { id = Model[0].subCategoryid, sc = "yes", sort = 3 })'>Pris - Høy til lav</a>}</a></li>
                     </ul>
                 </div>
-                <!----------------------------------------------->
 
 
                 <div class="productPath">
-                    <!-- BRØDSMULESTI -->
                     <h5>
                         <a href='@Url.Action("ListProducts", "Product", new { id = "", sc = "no" })'> Produkter</a>
                         @if (!Request.Url.AbsoluteUri.ToLower().Contains("s?sc")) //Ganske klønete, men har ingen bedre måte akkurat nå.
@@ -86,9 +83,9 @@
                                             </div>
                                             <div class="col-md-2">
                                                 <h3>
-                                                    @Html.DisplayFor(modelItem => item.price) ,-
+                                                    @Html.DisplayFor(modelItem => item.price)
                                                 </h3>
-                                                @Html.DisplayFor(modelItem => item.pricePerLitre),- pr liter
+                                                @Html.DisplayFor(modelItem => item.pricePerLitre) pr liter
                                             </div>
                                         </div>
                                         <div class="row">
@@ -117,7 +114,6 @@
                                     </div>
                                 </div>
                             </div>
-                        //</a>
                     }
                     <br />
                 </div>

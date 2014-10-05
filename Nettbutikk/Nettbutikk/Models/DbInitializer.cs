@@ -10,6 +10,9 @@ namespace Nettbutikk.Models
     {
         protected override void Seed(DatabaseContext context)
         {
+            context.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('Products', RESEED, 100001)");
+            context.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('Orders', RESEED, 298423)");
+
             var countries = new List<Countries>
             {
                 new Countries {Name = "Norge"},//1
@@ -107,14 +110,14 @@ namespace Nettbutikk.Models
                 new Producers {Name = "Bacardi"},//35
                 new Producers {Name = "Arcus AS"},//36
                 new Producers {Name = "Möet & Chandon"},//37
-                new Producers {Name = "Mr.Prosecco Master ASA"},
-                new Producers {Name = "Marques de monistrol"}
+                new Producers {Name = "Mr.Prosecco Master ASA"},//38
+                new Producers {Name = "Marques de monistrol"}//39
             };
             producers.ForEach(p => context.Producers.Add(p));
             context.SaveChanges();
             var products = new List<Products>
             {
-                //Øl
+
                 new Products {
                     Name="Julebukk", 
                     Description="En juleøl fra Ringnes. Vol: 8.0 % ",
@@ -189,8 +192,6 @@ namespace Nettbutikk.Models
                     Description="Undergjæret norsk øl. Vol: 4.7 %",
                     LongDescription="Frisk og god øl som passer fint sammen med fest og grilling i parken.", 
                     Price=28, Volum=33,ProducersId=1,SubCategoriesId=2, CountriesId=1},
-                //Rødvin
-                
                 new Products {
                     Name="Jacob's Creek Shiraz 2011", 
                     Description="Rødvin fra Chile. Vol: 13 %",
@@ -244,8 +245,6 @@ namespace Nettbutikk.Models
                     Description="Rødvin fra Coastal Region, Swartland, Sør-Afrika. Vol: 14 %",
                     LongDescription="Tørr, fruktdrevet, frisk.",
                     Price=165, Volum=75,ProducersId=20,SubCategoriesId=4,CountriesId=7},
-                //Hvitvin
-                
                 new Products {
                     Name="Leitz Rüdesheimer Berg Roseneck Katerloch Riesling Trocken 2012", 
                     Description="Hvitvin fra Rheingau, Øvrige, Tyskland. Vol: 11 %", 
@@ -301,8 +300,6 @@ namespace Nettbutikk.Models
                     Description="Hvitvin fra Swartland, Sør-Afrika. Vol: 12 %", 
                     LongDescription="Tørr med krydret fruktighet, god konsentrasjon og mineralitet, krydret frukt i avslutning.",
                     Price=165, Volum=75,ProducersId=20,SubCategoriesId=7,CountriesId=7},
-                
-                //Brennevin
                 new Products {
                     Name="Absolutt Vodka",
                     Description="Vodka fra Sverige. Vol: 40 %"
@@ -355,8 +352,6 @@ namespace Nettbutikk.Models
                     Description="Akevitt fra Norge. Vol: 40 %",
                     LongDescription="Fatpreget fyldig akevitt som passer godt til litt fet mat 40% alkohol",
                     Price=450,Volum=70, ProducersId=36, SubCategoriesId=14,CountriesId=1},
-
-                    //Musserende
                 new Products {
                     Name="Moët & Chandon Imperial Brut",
                     Description="Tørr, frisk champagne fra Frankrike. Vol 13%",
@@ -380,7 +375,6 @@ namespace Nettbutikk.Models
                 
             };
             products.ForEach(c => context.Products.Add(c));
-            //context.SaveChanges();
 
         }
 

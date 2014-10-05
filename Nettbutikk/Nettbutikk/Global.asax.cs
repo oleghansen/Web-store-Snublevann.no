@@ -17,7 +17,7 @@ namespace Nettbutikk
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
             Database.SetInitializer<DatabaseContext>(new DbInitializer());
-            // lagt inn denne for å sørge for at databasen blir opprettet i det programmet starter
+
             using (var db = new DatabaseContext())
             {
                 {

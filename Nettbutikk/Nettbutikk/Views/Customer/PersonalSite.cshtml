@@ -7,47 +7,45 @@
 
 <div>
     <div class="jumbotron" style="padding-top:2px">
-     <!--   <div class="container" >-->
-            <div class="row">
+        <div class="row">
 
-                <h3><span class="glyphicon glyphicon-user"></span> Velkommen, @Html.DisplayFor(model => model.firstname) @Html.DisplayFor(model => model.lastname) </h3>
+            <h3><span class="glyphicon glyphicon-user"></span> Velkommen, @Html.DisplayFor(model => model.firstname) @Html.DisplayFor(model => model.lastname) </h3>
 
-<hr />
-    <table class="table">
-        <tr>
-            <th> <span class="glyphicon glyphicon-user"></span>@Html.ActionLink(" Endre brukerinfo", "updateUserinfo", "Customer")</th>
-            <th> <span class="glyphicon glyphicon-asterisk"></span>@Html.ActionLink(" Endre Passord", "updateUserPassword", "Customer")</th>
-            <th><span class="glyphicon glyphicon-align-justify"></span>@Html.ActionLink(" Se tidligere ordre", "viewOrderHistory", "Customer")</th>
-        </tr>
-    </table>
+            <hr />
+            <table class="table">
+            <tr>
+                <th> <span class="glyphicon glyphicon-user"></span>@Html.ActionLink(" Endre brukerinfo", "updateUserinfo", "Customer")</th>
+                <th> <span class="glyphicon glyphicon-asterisk"></span>@Html.ActionLink(" Endre Passord", "updateUserPassword", "Customer")</th>
+                <th><span class="glyphicon glyphicon-align-justify"></span>@Html.ActionLink(" Se tidligere ordre", "viewOrderHistory", "Customer")</th>
+            </tr>
+            </table>
                
 
-                @if (TempData["changed"] != null)
-                {
-                    <div class="alert alert-success" role="alert">
-                        @TempData["changed"]
-                    </div>
-                }
+                    @if (TempData["changed"] != null)
+                    {
+                        <div class="alert alert-success" role="alert">
+                            @TempData["changed"]
+                        </div>
+                    }
 
-    @if (TempData["pview"].Equals("info"))
-    {
-        @Html.Partial("updateUserinfo", Model);
+            @if (TempData["pview"].Equals("info"))
+            {
+            @Html.Partial("updateUserinfo", Model);
 
-    }
-    else if (TempData["pview"].Equals("password"))
-    {
-        @Html.Partial("updateUserPassword", Model);
-    }
-    else if (TempData["pview"].Equals("orderline"))
-    {
+            }
+            else if (TempData["pview"].Equals("password"))
+            {
+            @Html.Partial("updateUserPassword", Model);
+            }
+            else if (TempData["pview"].Equals("orderline"))
+            {
         
-        var list = TempData["list"];
+            var list = TempData["list"];
         
 
-        @Html.Partial("viewOrderHistory", list);
-    }
+            @Html.Partial("viewOrderHistory", list);
+            }
 
-</div>
         </div>
-<!--    </div>-->
+    </div>
 </div>

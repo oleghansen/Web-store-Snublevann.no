@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -9,6 +10,7 @@ namespace Nettbutikk.Models
     {
         public int userID;
         public List<ShoppingCartItem> shoppingCartItems;
+        [DisplayFormat(DataFormatString = "{0:C}")]
         public int sum { get; set; }
         public ShoppingCart(int id)
         {
@@ -24,6 +26,7 @@ namespace Nettbutikk.Models
     {
         public Product product;
         public int quantity;
+        [DisplayFormat(DataFormatString = "{0:C0}")]
         public int price;
 
         public ShoppingCartItem(Product p, int qty)
