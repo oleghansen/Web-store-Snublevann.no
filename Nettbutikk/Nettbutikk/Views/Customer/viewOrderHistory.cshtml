@@ -30,7 +30,7 @@
                             @Html.HiddenFor(modelItem => item.id)
                             @Html.HiddenFor(modelItem => item.orderdate)
                             <input type="hidden" name="viewOrder" value="true"  />
-                             <u> @Html.ActionLink("Se ordre", "checkout", "ShoppingCart", item, new { })</u>
+                             <u> @Html.ActionLink("Se ordre", "checkout", "ShoppingCart", item, new { target="_blank" })</u>
                             //<button type="submit">Detaljer</button>
                         }
                     </td>
