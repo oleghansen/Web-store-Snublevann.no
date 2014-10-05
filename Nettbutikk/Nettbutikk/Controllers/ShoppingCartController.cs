@@ -20,7 +20,7 @@ namespace Nettbutikk.Controllers
 
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
+
         public ActionResult addToCart(int quantity, int itemnumber)
         {
             var db = new DBProduct();
