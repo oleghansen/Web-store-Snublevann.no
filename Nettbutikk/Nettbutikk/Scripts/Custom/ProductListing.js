@@ -8,9 +8,6 @@
         if (itemname == "")
             itemname = $('#productName').text();
 
-        console.log(window.location.pathname);
-        console.log(location.host);
-
         if ($(event.target).is($('.shoppingBtn'))) {
             $.ajax({
                 url: addtocart,
