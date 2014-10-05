@@ -8,9 +8,12 @@
         if (itemname == "")
             itemname = $('#productName').text();
 
+        console.log(window.location.pathname);
+        console.log(location.host);
+
         if ($(event.target).is($('.shoppingBtn'))) {
             $.ajax({
-                url: '/ShoppingCart/addToCart',
+                url: addtocart,
                 type: 'POST',
                 data: {
                     quantity: quantity,
@@ -46,7 +49,7 @@
         else if ($(event.target).is($(this).find('#qtyField')))
             $.noop();
         else
-            window.location.href = '/Product/viewProduct/' + itemnumber;
+            window.location.href = viewproduct.replace('__id__', itemnumber);
     });
     $('#modalLogInBtn').click(function () {
         $('#LoginModal').modal('show');
