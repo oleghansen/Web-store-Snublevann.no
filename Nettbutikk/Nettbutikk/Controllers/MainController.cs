@@ -9,7 +9,6 @@ namespace Nettbutikk.Controllers
 {
     public class MainController : Controller
     {
-        // GET: Product
         public ActionResult Frontpage()
         {
             DBOrder order = new DBOrder();

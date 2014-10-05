@@ -32,7 +32,6 @@ namespace Nettbutikk.Controllers
             cart.sum += p.price * quantity;
             list.Add(item);
 
-
             return RedirectToAction("viewShoppingCart");
         }
 
@@ -75,7 +74,6 @@ namespace Nettbutikk.Controllers
 
             if (order.id != 0)
             {
-                Debug.WriteLine("Order er ikke null");
                 return View(showOrder(order));
             }
                 

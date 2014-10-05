@@ -368,11 +368,6 @@ namespace Nettbutikk.Models
                     LongDescription="Tørr of frisk cava fra spania. Passer godt som apertif og til fiskesuppe.",
                     Price=95,Volum=75, ProducersId=39, SubCategoriesId=16,CountriesId=8},
                 
-
-
-
-
-                
             };
             products.ForEach(c => context.Products.Add(c));
 
