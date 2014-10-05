@@ -17,7 +17,24 @@
                     if (!status)
                         $('#NotLoggedIn').modal('show');
                     else
-                        alert("varen ble lagt i handlekurv");
+                    {
+                        var notification = $.notify.create(quantity + $('#productName').text() +" ble lagt til i handlekurven", {
+                            style: 'box',
+                            type: 'success',
+                            opacity: 0.8,
+                            displayTime: 2000,
+                            autoShow: true
+                        });
+                       
+                        setTimeout(function () {
+                            
+                            notification.notify("hide");
+                        },
+                        2000
+                        );
+                        return false; 
+
+                    }
                 }
             });
             
