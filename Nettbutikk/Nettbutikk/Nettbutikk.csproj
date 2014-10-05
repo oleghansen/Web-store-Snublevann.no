@@ -154,6 +154,9 @@
     <Content Include="Content\img\products\41.png" />
     <Content Include="Content\img\products\42.png" />
     <Content Include="Content\img\products\43.png" />
+    <Content Include="Content\img\products\44.png" />
+    <Content Include="Content\img\products\45.png" />
+    <Content Include="Content\img\products\46.png" />
     <Content Include="Content\img\products\5.png" />
     <Content Include="Content\img\products\6.png" />
     <Content Include="Content\img\products\7.png" />
@@ -170,6 +173,8 @@
     <Content Include="Content\jquery-ui.structure.min.css" />
     <Content Include="Content\jquery-ui.theme.css" />
     <Content Include="Content\jquery-ui.theme.min.css" />
+    <Content Include="Content\notify.css" />
+    <Content Include="Content\notify.min.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -187,6 +192,8 @@
     <Content Include="Scripts\jquery-1.9.0.js" />
     <Content Include="Scripts\jquery-1.9.0.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-notify.js" />
+    <Content Include="Scripts\jquery-notify.min.js" />
     <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery-ui.min.js" />
     <Content Include="Scripts\jquery.validate.js" />

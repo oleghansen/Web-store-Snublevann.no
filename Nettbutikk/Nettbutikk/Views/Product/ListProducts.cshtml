@@ -73,13 +73,13 @@
                                 <div class="panel-body">
                                     <p id="itemnumber" style="display:none;">@Html.DisplayFor(modelItem => item.itemnumber)</p>
                                     <div class="col-md-2">
-                                        <img src=@Url.Content("~/Content/img/products/" + item.itemnumber + ".png") height="140" width="80">
+                                        <img src=@Url.Content("~/Content/img/products/" + item.itemnumber + ".png") height="140" width="90">
                                     </div>
                                     <div class="col-md-10">
                                         <div class="row">
                                             <div class="col-md-10">
                                                 (@Html.DisplayFor(modelItem => item.volum, "#smallGray")) cl
-                                                <h3>
+                                                <h3 id="productName">
                                                     @Html.DisplayFor(modelItem => item.name)
                                                 </h3>
 

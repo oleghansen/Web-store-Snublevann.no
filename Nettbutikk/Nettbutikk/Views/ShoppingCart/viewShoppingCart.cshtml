@@ -15,21 +15,33 @@
                 <th></th>
             </tr>
 
+   
             @foreach (var item in Model.shoppingCartItems)
             {
+ 
                 <tr>
+ @using (Html.BeginForm("updateCart", "ShoppingCart", FormMethod.Post)) { 
                     <td>
                         @Html.DisplayFor(modelItem => item.product.name)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.quantity)
+                        @Html.TextBoxFor(modelItem => item.quantity, new { Name = "quantity" })
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.price)
                     </td>
                     <td>
-                        <span class="glyphicon glyphicon-remove" style=" color:red"> @Html.ActionLink(" ", "removeItem", new { item = item.product.itemnumber })</span>
+                        @Html.ActionLink("Fjern", "removeItem", new { id = @Model.shoppingCartItems.IndexOf(item) })
                     </td>
+                    <td>
+                         
+                            <input type="hidden" name="id" value="@Model.shoppingCartItems.IndexOf(item)" />
+                            
+                        <input type="submit" />
+                        
+                    </td>
+                    }
+                
 
                 </tr>
             }
@@ -44,6 +56,7 @@
             </h4> 
                    <button class="btn btn-success"> @Html.ActionLink("Skjekk ut ", "checkout", "ShoppingCart", new { target = "_blank" })
                     <span class="glyphicon glyphicon-shopping-cart"></span></button>
+
                
            
         </footer>

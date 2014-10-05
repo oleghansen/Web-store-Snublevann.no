@@ -4,6 +4,7 @@
         event.preventDefault();
         var itemnumber = parseInt($(this).find('#itemnumber').text());
         var quantity = parseInt($(this).find('#qtyField').val());
+        var itemname = $(this).find('#productName').text();
 
         if ($(event.target).is($('.shoppingBtn'))) {
             $.ajax({
@@ -17,7 +18,24 @@
                     if (!status)
                         $('#NotLoggedIn').modal('show');
                     else
-                        alert("varen ble lagt i handlekurv");
+                    {
+                        var notification = $.notify.create(quantity + itemname +" ble lagt til i handlekurven", {
+                            style: 'box',
+                            type: 'success',
+                            opacity: 0.95,
+                            displayTime: 2000,
+                            autoShow: true
+                        });
+                       
+                        setTimeout(function () {
+                            
+                            notification.notify("hide");
+                        },
+                        2000
+                        );
+                        return false; 
+
+                    }
                 }
             });
             
