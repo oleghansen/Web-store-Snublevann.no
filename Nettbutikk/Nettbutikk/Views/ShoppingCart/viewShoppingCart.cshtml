@@ -33,8 +33,11 @@
             SUM:
             @Html.DisplayFor(modelItem => Model.sum)
             ,-
+        
+            <div class="form-group pull-right">
+                @Html.ActionLink("Sjekk ut! ", "checkout","ShoppingCart", new { target = "_blank" })
+                <span class="glyphicon glyphicon-shopping-cart"></span>
+            </div>
         </h4>
-
-        @Html.ActionLink("Sjekkut!", "checkout","ShoppingCart", new { target = "_blank" })
     </footer>
     
