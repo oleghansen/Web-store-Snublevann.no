@@ -206,15 +206,13 @@
                 @RenderBody()
             </div>
         </div>
-            <hr />
-            <footer class="footerBot">
-                <p>
-                    &copy;@DateTime.Now.Year - Gruppe 12345
-              <!-- Kommentert ut midlertidig, tar litt tid å laste inn.    <div class="fb-like" data-href="https://www.facebook.com/snublevann" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
-                 --> 
-                  </p>
-            </footer>
         </div>
+    <div class="navbar navbar-default navbar-fixed-bottom">
+
+        <div class="container">
+            <p class="navbar-text text-center"> Nettbutikk for de flinkeste dataingeniørstudentene - 2014</p>
+        </div>
+    </div>
 
     @Html.Partial("~/Views/Customer/LoginModal.cshtml")
     @Html.Partial("~/Views/Customer/NotLoggedInModal.cshtml")
