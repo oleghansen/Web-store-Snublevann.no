@@ -25,7 +25,7 @@
                         @Html.DisplayFor(modelItem => item.product.name)
                     </td>
                     <td>
-                        @Html.TextBoxFor(modelItem => item.quantity, new { Name = "quantity" })
+                        @Html.TextBoxFor(modelItem => item.quantity, new { @class="form-control", Name = "quantity", style="width: 50px" })
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.price)
@@ -34,12 +34,10 @@
                         @Html.ActionLink("Fjern", "removeItem", new { id = @Model.shoppingCartItems.IndexOf(item) })
                     </td>
                     <td>
-                         
+                        <button class="btn btn-primary" style="margin-top:0px" type="submit"><i class="glyphicon glyphicon-refresh"></i></button>
                             <input type="hidden" name="id" value="@Model.shoppingCartItems.IndexOf(item)" />
-                            
-                        <input type="submit" />
-                        
-                    </td>
+
+</td>
                     }
                 
 
@@ -54,11 +52,14 @@
                 ,-
 
             </h4> 
-            <button class="btn btn-large btn-success" value="Sjekk ut">
-                @Html.ActionLink("checkout", "ShoppingCart", new { target = "_blank" })
-                Sjekk ut
-                <span class="glyphicon glyphicon-shopping-cart"></span>
-            </button>
+                    <a href='@Url.Action("checkout", "ShoppingCart", new { target = "_blank" })'>
+                       
+                        <button class="btn btn-success">
+                            <span class="glyphicon glyphicon-shopping-cart"></span> Sjekk ut
+                        </button>
+                        
+                    </a>
+
                
            
         </footer>
