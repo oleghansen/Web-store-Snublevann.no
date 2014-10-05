@@ -8,8 +8,9 @@
                 <div class="productPath">
                     <!-- BRØDSMULESTI -->
                     <h5>
-                        @Html.ActionLink("Produkter", "ListProducts") 
-                        > @Html.ActionLink(Model[0].category, "ListProducts" + "/" + Model[0].categoryid + "?sc=no")
+                        <a href='@Url.Action("ListProducts", "Product", new { id = "", sc = "no" })'> Produkter</a>
+                        > <a href='@Url.Action("ListProducts", "Product", new { id = Model[0].categoryid, sc = "no" })'> @Model[0].category</a>
+                        > <a href='@Url.Action("ListProducts", "Product", new { id = Model[0].subCategoryid, sc = "yes" })'> @Model[0].subCategory</a>
                     </h5>
                 </div>
 
