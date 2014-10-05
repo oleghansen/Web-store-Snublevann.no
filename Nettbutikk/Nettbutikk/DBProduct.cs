@@ -143,7 +143,6 @@ namespace Nettbutikk
         {
             var db = new DatabaseContext();
             Products products = db.Products.Include(p => p.SubCategories.Categories).Where(p=> p.Id == id).First<Products>();
-            //Products products = db.Products.Where(p=> p.Id == id).First<Products>();
             return new Product()
             {
                 itemnumber = products.Id,

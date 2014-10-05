@@ -10,7 +10,6 @@ namespace Nettbutikk.Controllers
 {
     public class ShoppingCartController : Controller
     {
-        // GET: ShoppingCart
         public ActionResult viewShoppingCart()
         {
             ShoppingCart cart = getCart();
@@ -34,7 +33,6 @@ namespace Nettbutikk.Controllers
             list.Add(item);
 
 
-            //TODO hva skal returneres hvor her?
             return RedirectToAction("viewShoppingCart");
         }
 
