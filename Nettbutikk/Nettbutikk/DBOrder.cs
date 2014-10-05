@@ -10,7 +10,7 @@ namespace Nettbutikk
 {
     public class DBOrder
     {
-        public void checkout(ShoppingCart cart)
+        public int checkout(ShoppingCart cart)
         {
             var db = new DatabaseContext();
 
@@ -35,6 +35,7 @@ namespace Nettbutikk
             }
             db.SaveChanges();
 
+            return newOrder.Id;
         }
 
         public List<Order> getOrders(int id)

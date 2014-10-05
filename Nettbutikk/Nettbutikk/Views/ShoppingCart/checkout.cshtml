@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Ordre</title>
+    <title>Ordrenr: @Html.DisplayFor( m => m.order.id)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
@@ -33,8 +33,12 @@
             <div class="row">
                 <div class="col-md-8">
                     <p>
-                        <img src="~/Content/img/logo/snublevann_dark_transparent.png" width="500" height="96" style="margin-top: 5px; margin-left: 5px" />
-                    </p>
+                        <img src="~/Content/img/logo/snublevann_dark_transparent.png" width="500" height="96" style="margin-top: 5px; margin-left: 5px" /><br />
+                  
+                        <b> Ordrenummer:</b>   @Html.DisplayFor(model => model.order.id),
+                        <b>  Betalt:</b>  @Html.DisplayFor(model => model.order.orderdate) <br />
+                  
+                    </p>       
                 </div>
                 <div class="col-md-4">
                     <div class="row">
@@ -74,6 +78,7 @@
                     </div>
                 </div>
             </div>
+            
             <div class="row">
                 <div class="col-md-8">
                     @Html.DisplayFor(model => model.customer.firstname) @Html.DisplayFor( model => model.customer.lastname)<br />
@@ -84,6 +89,7 @@
 
                 </div>
             </div>
+             
             <div class="row">
                 <div class="col-md-12" >
                     <table class="table">
@@ -136,6 +142,7 @@
                 </div>
             </div>
             <div class="row col-md-12 foten" >
+                
                 <hr />
                 <div class="col-md-4">
                     SUM eks mva: @Html.DisplayFor(model => model.exmva) NOK

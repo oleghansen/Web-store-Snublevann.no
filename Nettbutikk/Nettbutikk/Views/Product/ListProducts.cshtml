@@ -5,6 +5,26 @@
 }
     
             <div class="jumbotron">
+
+
+                <!-- Sorteringsknapp, mangler funksjonalitet -->
+                <div class="btn-group" style="position: absolute; right:0; top:0; margin-right:74px; margin-top: 30px">
+                    <button type="button" class="btn btn-default">Sorter etter</button>
+                    <button type="button" class="btn btn-default dropdown-toggle"
+                            data-toggle="dropdown">
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Navn</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Pris - Høy til lav</a></li>
+                        <li><a href="#">Pris - Lav til høy</a></li>
+                    </ul>
+                </div>
+                <!----------------------------------------------->
+
+
                 <div class="productPath">
                     <!-- BRØDSMULESTI -->
                     <h5>
@@ -20,13 +40,13 @@
                         }
                     </h5>
                 </div>
-
+                <hr />
                     @foreach (var item in Model)
                     {
                        // <a href='@Url.Action("viewProduct","Product",new {id = item.itemnumber })'>
                         //HACK: superduperuglyhack! 
                        
-                            <div class="panel panel-default clickable" style="background: #FFFFFF; margin-top: 0px">
+                            <div class="panel panel-default clickable" style="background: #FFFFFF;margin-bottom:0px">
                                 <div class="panel-body">
                                     <p id="itemnumber" style="display:none;">@Html.DisplayFor(modelItem => item.itemnumber)</p>
                                     <div class="col-md-2">
@@ -61,7 +81,7 @@
                                                         <div class="form-group pull-right">
                                                             <div class="input-group">
                                                                 <label for="count" class="pull-left" style="margin-top: 25px; margin-right: 5px">Antall  </label>
-                                                                @Html.EditorFor(modelItem => item.quantity, new { htmlAttributes = new { @class = "form-control", id="qtyField", type="number", min="0", placeholder = "Antall", style = "width: 60px; margin-top: 12px" } })
+                                                                @Html.EditorFor(modelItem => item.quantity, new {htmlAttributes = new { @class = "form-control", id="qtyField", type="number", min="1", style = "width: 60px; margin-top: 12px" } })
                                                                 <div class="input-group-btn pull-left">
                                                                     <button class="btn btn-success shoppingBtn" type="submit"><span class="glyphicon glyphicon-shopping-cart shoppingBtn"></span></button>
                                                                 </div>
@@ -78,9 +98,4 @@
                     }
                     <br />
                 </div>
-        <div class="navbar navbar-default navbar-fixed-bottom">
 
-            <div class="container">
-                <p class ="navbar-text text-center"> Nettbutikk for de flinkeste dataingeniørstudentene - 2014</p>
-            </div>
-        </div>

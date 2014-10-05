@@ -49,7 +49,19 @@ namespace Nettbutikk.Models
         public int categoryid { get; set; }
       
         
-        // for handlekurven.. 
-        public int quantity { get; set; }
+        // for handlekurven.. (gjør det på denne måten for å få default value i view)
+        private int _quantity = 1;
+        public int quantity 
+        {
+            get
+            {
+                return _quantity;
+            }
+            set
+            {
+                _quantity = value;
+            }
+        }
+         
     }
 }

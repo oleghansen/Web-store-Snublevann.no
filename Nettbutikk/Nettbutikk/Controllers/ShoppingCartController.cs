@@ -68,7 +68,7 @@ namespace Nettbutikk.Controllers
             }
 
             var orderDB = new DBOrder();
-            orderDB.checkout(cart);
+            var OrderId = orderDB.checkout(cart);
             
             var returnCustomer= (Customer) Session["LoggedInUser"];
             returnCustomer.shoppingcart = new ShoppingCart(returnCustomer.id);
@@ -80,6 +80,7 @@ namespace Nettbutikk.Controllers
                 shoppingcart = cart,
                 order = new Order()
                 {
+                    id = OrderId,
                     customerid = returnCustomer.id,
                     orderdate = DateTime.Now
                 },
@@ -96,14 +97,23 @@ namespace Nettbutikk.Controllers
             var orderDB = new DBOrder();
             List<OrderLine> list = orderDB.getOrder(id.id);
             List<ShoppingCartItem> cartItems = new List<ShoppingCartItem>();
+            var cartSum = 0;
             foreach(var item in list){
                 cartItems.Add(new ShoppingCartItem(item.product, item.quantity));
+                cartSum += item.product.price * item.quantity;
+            };
+            var cart = new ShoppingCart(id.customerid)
+            {
+                shoppingCartItems = cartItems,
+                sum = cartSum
             };
             var billingDoc = new BillingDocument(){
+                order = id,
                 customer = (Customer) Session["LoggedInUser"],
-                shoppingcart = new ShoppingCart(id.customerid){
-                    shoppingCartItems = cartItems
-                }
+                shoppingcart = cart,
+                sum = cart.sum, 
+                exmva = cart.sum * 0.8,
+                mva = cart.sum * 0.2
 
             };
             return billingDoc;

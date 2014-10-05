@@ -1,7 +1,10 @@
 ﻿@model IEnumerable<Nettbutikk.Models.Order>
-<div class="jumbotron">
+<div class="panel panel-default userpanel">
     <div class="container">
-
+        <h3>
+            <span class="glyphicon glyphicon-align-justify"></span> Min ordrehistorikk
+        </h3>
+        <br />
         <table class="table">
             <tr>
                 <th>
@@ -30,7 +33,7 @@
                             @Html.HiddenFor(modelItem => item.id)
                             @Html.HiddenFor(modelItem => item.orderdate)
                             <input type="hidden" name="viewOrder" value="true"  />
-                             <u> @Html.ActionLink("Se ordre", "checkout", "ShoppingCart", item, new { })</u>
+                             <u> @Html.ActionLink("Se ordre", "checkout", "ShoppingCart", item, new { target="_blank" })</u>
                             //<button type="submit">Detaljer</button>
                         }
                     </td>

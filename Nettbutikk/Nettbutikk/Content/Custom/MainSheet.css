@@ -90,13 +90,30 @@ box-shadow:         0px 3px 10px 0px rgba(50, 50, 50, 0.75);
         text-decoration: none;
 }
 
-.panel-default
+.carousel
 {
--webkit-box-shadow: 0px 1px 2px 0px rgba(50, 50, 50, 0.24);
--moz-box-shadow:    0px 1px 2px 0px rgba(50, 50, 50, 0.24);
-box-shadow:         0px 1px 2px 0px rgba(50, 50, 50, 0.24);
+    -webkit-box-shadow: 0px 3px 10px 0px rgba(50, 50, 50, 0.75);
+-moz-box-shadow:    0px 3px 10px 0px rgba(50, 50, 50, 0.75);
+box-shadow:         0px 3px 10px 0px rgba(50, 50, 50, 0.75);
 }
 
+.panel-default
+{
+ background:#fff;
+ margin-top: 0px;
+-webkit-box-shadow: 0px 1px 2px 0px rgba(50, 50, 50, 0.24);
+-moz-box-shadow:    0px 1px 2px 0px rgba(50, 50, 50, 0.24);
+ box-shadow:         0px 1px 2px 0px rgba(50, 50, 50, 0.24);
+}
+
+.userpanel
+{
+    background: #f9f9f9;
+-webkit-box-shadow: 0px 5px 8px 0px rgba(50, 50, 50, 0.27);
+-moz-box-shadow:    0px 5px 8px 0px rgba(50, 50, 50, 0.27);
+box-shadow:         0px 5px 8px 0px rgba(50, 50, 50, 0.27);
+    padding-bottom: 20px;
+}
 .nav navbar-nav navbar-right
 {
   color: #fff;
