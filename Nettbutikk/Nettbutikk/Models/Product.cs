@@ -46,12 +46,9 @@ namespace Nettbutikk.Models
         public String subCategory { get; set; }
         public int subCategoryid { get; set; }
         public String country { get; set; }
-        // TODO: trenger vi disse? 
-        //public int producerid { get; set; }
         public int categoryid { get; set; }
-      
-        
-        // for handlekurven.. (gjør det på denne måten for å få default value i view)
+
+
         private int _quantity = 1;
         public int quantity 
         {

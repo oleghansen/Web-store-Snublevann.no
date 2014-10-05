@@ -10,26 +10,6 @@ namespace Nettbutikk.Controllers
 {
     public class ProductController : Controller
     {
-        // GET: Product
-        /*public ActionResult ListProducts(int? id)
-        {
-            var db = new DBProduct();
-            List<Product> listOfProducts;
-
-            listOfProducts = db.getAll(id);
-
-            return View(listOfProducts);
-        }
-
-        public ActionResult ListProducts(int id, string random)
-        {
-            var db = new DBProduct();
-            List<Product> listOfProducts;
-
-            listOfProducts = db.getAll(id, random);
-
-            return View(listOfProducts);
-        }*/
 
         public ActionResult ListProducts(int? id, string sc, int? sort)
         {
@@ -49,18 +29,6 @@ namespace Nettbutikk.Controllers
             return View(listOfProducts);
         }
 
-      /*  public ActionResult ListSub(int? id)
-        {
-            var db = new DBProduct();
-            List<Product> listSub;
-
-            if (id.HasValue)
-                listSub = db.getAll(id);
-            else
-                listSub = db.getAll(id);
-
-            return View(listSub);
-        }*/
 
         public ActionResult Search(string searchString)
         {

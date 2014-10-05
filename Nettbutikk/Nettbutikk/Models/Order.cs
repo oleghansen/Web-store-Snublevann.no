@@ -16,7 +16,5 @@ namespace Nettbutikk.Models
         public DateTime orderdate { get; set; }
         public int customerid { get; set; }
         public List<OrderLine> orderLine { get; set; }
-        // setter ikke opp en public Customer customer her, for vi antar at en kunde opprettes før en ordre, og ikke samtidig. 
-        //public List<OrderLine> orderline { get; set; }
     }
 }
