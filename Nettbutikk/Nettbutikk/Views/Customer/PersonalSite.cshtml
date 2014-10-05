@@ -39,6 +39,14 @@
     {
         @Html.Partial("updateUserPassword", Model);
     }
+    else if (TempData["pview"].Equals("orderline"))
+    {
+        
+        var list = TempData["list"];
+        
+
+        @Html.Partial("viewOrderHistory", list);
+    }
 
 </div>
         </div>

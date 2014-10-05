@@ -1,38 +1,44 @@
 ﻿@model IEnumerable<Nettbutikk.Models.Order>
+<div class="jumbotron">
+    <div class="container">
 
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.orderdate)
-            </th>
-            <th></th>
-        </tr>
-    
-    @foreach (var item in Model) {
-        
+        <table class="table">
             <tr>
-                
-                <td>
-                    @Html.DisplayFor(modelItem => item.id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.orderdate)
-                </td>
-                <td>
-                @using(Html.BeginForm("checkout", "ShoppingCart")){
-                    @Html.HiddenFor(modelItem => item.id)
-                    @Html.HiddenFor(modelItem => item.orderdate)
-                    <input type="hidden" name="viewOrder" value="true" />
-                    @Html.ActionLink("Se ordre", "checkout", "ShoppingCart", item, new { })
-                    //<button type="submit">Detaljer</button>
-                }
-                </td>
-            
+                <th>
+                    @Html.DisplayNameFor(model => model.id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.orderdate)
+                </th>
+                <th></th>
             </tr>
-        
-    }
-    
-    </table>
+
+            @foreach (var item in Model)
+            {
+
+                <tr>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.orderdate)
+                    </td>
+                    <td>
+                        @using (Html.BeginForm("checkout", "ShoppingCart"))
+                        {
+                            @Html.HiddenFor(modelItem => item.id)
+                            @Html.HiddenFor(modelItem => item.orderdate)
+                            <input type="hidden" name="viewOrder" value="true" />
+                            @Html.ActionLink("Se ordre", "checkout", "ShoppingCart", item, new { })
+                            //<button type="submit">Detaljer</button>
+                        }
+                    </td>
+
+                </tr>
+
+            }
+        </table>
+     </div>   
+</div>
+
