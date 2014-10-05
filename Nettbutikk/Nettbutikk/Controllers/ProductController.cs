@@ -35,7 +35,7 @@ namespace Nettbutikk.Controllers
         {
             var db = new DBProduct();
             List<Product> listOfProducts;
-            if(sc.Equals("yes"))
+            if(sc != null && sc.Equals("yes"))
               {
                 Debug.WriteLine("SubCategory");
                 listOfProducts = db.getAll(id,sc,sort);
