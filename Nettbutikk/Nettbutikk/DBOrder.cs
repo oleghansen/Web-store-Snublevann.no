@@ -79,5 +79,45 @@ namespace Nettbutikk
             }
             return list;
         }
+
+        public List<Product> getMostSold()
+        {
+            var db = new DatabaseContext();
+            List<int> topOrders = db.OrderLines
+                                    .GroupBy(p => p.ProductsId)
+                                    .OrderByDescending(gp => gp.Count())
+                                    .Take(5)
+                                    .Select(g => g.Key).ToList();
+            List<Products> products = new List<Products>(); 
+            
+            foreach (var i in topOrders)
+            {
+
+                products.Add(db.Products.Where(p => p.Id == i).First());
+             
+            }
+            List<Product> prod = new List<Product>();
+            foreach (var p in products)
+            {
+                
+                 var product = new Product()
+                {
+                    itemnumber = p.Id,
+                    name = p.Name,
+                    description = p.Description,
+                    price = p.Price,
+                    volum = p.Volum,
+                    producer = p.Producers.Name,
+                    subCategory = p.SubCategories.Name,
+                    subCategoryid = p.SubCategories.Id,
+                    country = p.Countries.Name
+                };
+                prod.Add(product);
+            }
+
+            
+            return prod;
+        }
+            
     }
 }

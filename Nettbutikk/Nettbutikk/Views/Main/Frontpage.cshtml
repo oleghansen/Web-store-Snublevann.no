@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<Nettbutikk.Models.Product>
+@{
     ViewBag.Title = "Forsiden";
 }
 
@@ -43,6 +44,40 @@
             </a>
         -->
         <div class="jumbotron">
-            <h3> Snublevann anbefaler</h3>
+    <h3> Snublevann anbefaler</h3>
+@foreach (var item in Model)
+{
+    <div class="panel panel-default clickable" style="background: #FFFFFF;margin-bottom:0px">
+        <div class="panel-body">
+            <p id="itemnumber" style="display:none;">@Html.DisplayFor(modelItem => item.itemnumber)</p>
+            <div class="col-md-2">
+                <img src=@Url.Content("~/Content/img/products/" + item.itemnumber + ".png") height="140" width="90">
+            </div>
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-10">
+                        (@Html.DisplayFor(modelItem => item.volum, "#smallGray")) cl
+                        <h3 id="productName">
+                            @Html.DisplayFor(modelItem => item.name)
+                        </h3>
+
+                    </div>
+                    <div class="col-md-2">
+                        <h3>
+                            @Html.DisplayFor(modelItem => item.price) ,-
+                        </h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-9">
+                        @Html.DisplayFor(modelItem => item.description, new { @id = "smallGray" })
+                    </div>
+                    <div class="col-md-3">
+                </div>
+            </div>
         </div>
-    
+    </div>
+
+ </div>
+}
+</div>

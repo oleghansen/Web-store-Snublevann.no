@@ -12,8 +12,12 @@ namespace Nettbutikk.Controllers
         // GET: Product
         public ActionResult Frontpage()
         {
-            return View();
+            DBOrder order = new DBOrder();
+            List<Product> topFive  = order.getMostSold();
+            return View(topFive);
 
         }
+
+
     }
 }
