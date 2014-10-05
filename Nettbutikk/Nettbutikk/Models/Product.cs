@@ -32,6 +32,7 @@ namespace Nettbutikk.Models
         public double volum { get; set;}
 
         [Display(Name = "Pris per liter")]
+        [DisplayFormat(DataFormatString = "{0:C0}")]
         public double pricePerLitre { get; set; }
 
         [Display(Name = "Produsent")]
