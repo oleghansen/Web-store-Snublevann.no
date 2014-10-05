@@ -97,12 +97,15 @@ namespace Nettbutikk.Controllers
             var orderDB = new DBOrder();
             List<OrderLine> list = orderDB.getOrder(id.id);
             List<ShoppingCartItem> cartItems = new List<ShoppingCartItem>();
+            var cartSum = 0;
             foreach(var item in list){
                 cartItems.Add(new ShoppingCartItem(item.product, item.quantity));
+                cartSum += item.product.price * item.quantity;
             };
             var cart = new ShoppingCart(id.customerid)
             {
-                shoppingCartItems = cartItems
+                shoppingCartItems = cartItems,
+                sum = cartSum
             };
             var billingDoc = new BillingDocument(){
                 order = id,
