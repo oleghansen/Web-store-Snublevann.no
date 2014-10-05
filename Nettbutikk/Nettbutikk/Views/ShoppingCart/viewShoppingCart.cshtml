@@ -59,13 +59,9 @@
                     }
                     else
                     {
-                        <a href='@Url.Action("checkout", "ShoppingCart", new { target = "_blank" })'>
-
-                            <button class="btn btn-success" id="checkoutButton">
-                                <span class="glyphicon glyphicon-shopping-cart"></span> Sjekk ut
-                            </button>
-
-                        </a>
+                            <a href="@Url.Action("checkout", "ShoppingCart", null)" class="btn btn-success" target="_blank">
+                                 <span class="glyphicon glyphicon-shopping-cart"></span> Sjekk ut
+                            </a>
                     }           
         </footer>
 
