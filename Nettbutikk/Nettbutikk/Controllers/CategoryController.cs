@@ -11,7 +11,7 @@ namespace Nettbutikk.Controllers
     {
 
         private DatabaseContext db = new DatabaseContext();
-        // GET: Category
+  
         public ActionResult Categories()
         {
             var db = new DBCategory();
@@ -41,42 +41,6 @@ namespace Nettbutikk.Controllers
             }
             ViewData.Model = productsByCat;
             return View("Category");
-
-
-            
-
-
-            /*//linq to lambda
-            var productsByCategory = Products
-                .Join(Categories, p => p.Id, pc => pc.ProdId, (p, pc) => new { p, pc })
-                .Select(m => new { 
-                    ProdId = m.ppc.p.Id, 
-                    CatId = m.c.CatId
-                });
-             */
-            /*
-            var query = db.Products
-                .Join(db.Categories.Where)
-
-
-            return null;
-            */
-            /*
-            var db = new DatabaseContext();
-            Products products = db.Products.Where(p => p.CategoriesID == id).First<Products>();
-            Categories categories = db.Categories.Where(c => c.ID == id).First<Categories>();
-            new Product()
-            {
-                itemnumber = products.Itemnumber,
-                name = products.Name,
-                description = products.Description,
-                longDescription = products.LongDescription,
-                price = products.Price,
-                producer = products.Producers.Name,
-                category = products.Categories.Name
-            };
-            return null;
-             * */
         }
     }
 }

@@ -207,9 +207,6 @@ namespace Nettbutikk.Controllers
             var user = (Customer) Session["LoggedInUser"];
             var db = new DBOrder();
             List<Order> list = db.getOrders(user.id);
-            Debug.WriteLine("Antal ordre");
-            Debug.WriteLine(list.Count);
-            //return View(list); 
             TempData["pview"] = "orderline";
             TempData["list"] = list;
             return View("PersonalSite", user);

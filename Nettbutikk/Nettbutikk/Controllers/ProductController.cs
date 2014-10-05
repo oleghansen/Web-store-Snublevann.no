@@ -17,13 +17,12 @@ namespace Nettbutikk.Controllers
             List<Product> listOfProducts;
             if(sc != null && sc.Equals("yes"))
               {
-                Debug.WriteLine("SubCategory");
                 listOfProducts = db.getAll(id,sc,sort);
               }
             else
              {
-                Debug.WriteLine("Category");
-             listOfProducts = db.getAll(id,sort);
+                
+                listOfProducts = db.getAll(id,sort);
              }
             
             return View(listOfProducts);

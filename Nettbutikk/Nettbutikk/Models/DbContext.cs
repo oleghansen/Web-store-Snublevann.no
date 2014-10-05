@@ -74,7 +74,7 @@ namespace Nettbutikk.Models
         public List<SubCategories> SubCategories { get; set; }
     }
 
-    public class OrderLines //noen som har et bedre ord for ordrelinje?! 
+    public class OrderLines 
     {
         [Key]
         public int Id { get; set; }
