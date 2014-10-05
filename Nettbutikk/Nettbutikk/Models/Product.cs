@@ -23,6 +23,7 @@ namespace Nettbutikk.Models
         public String longDescription { get; set; }
 
         [Display(Name = "Pris")]
+        [DisplayFormat(DataFormatString = "{0:C0}")]
         [Required(ErrorMessage = "Pris må oppgis")]
         public int price { get; set; }
 
@@ -31,6 +32,7 @@ namespace Nettbutikk.Models
         public double volum { get; set;}
 
         [Display(Name = "Pris per liter")]
+        [DisplayFormat(DataFormatString = "{0:C0}")]
         public double pricePerLitre { get; set; }
 
         [Display(Name = "Produsent")]
