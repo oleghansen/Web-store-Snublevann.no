@@ -3,38 +3,50 @@
 @{
     ViewBag.Title = "Handlevogn";
 }
-    <table class="table">
-        <tr>
-            <th>Antall</th>
-            <th>Vare</th>
-            <th>Pris</th>
-        </tr>
-   
-        @foreach (var item in Model.shoppingCartItems) { 
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.product.name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.quantity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.price)
-            </td>
-            <td>
-                @Html.ActionLink("Fjern", "removeItem", new { item = item.product.itemnumber })
-            </td>
-        </tr>
-        }
+<div class="jumbotron">
+    <div class="container">
+        <h3><span class="glyphicon glyphicon-shopping-cart"></span> Min handlekurv</h3>
 
-    </table>
-    <footer>
-        <h4>    
-            SUM:
-            @Html.DisplayFor(modelItem => Model.sum)
-            ,-
-        </h4>
+        <table class="table">
+            <tr>
+                <th>Vare</th>
+                <th>Antall</th>
+                <th>Pris</th>
+                <th></th>
+            </tr>
 
-        @Html.ActionLink("Sjekkut!", "checkout","ShoppingCart", new { target = "_blank" })
-    </footer>
-    
+            @foreach (var item in Model.shoppingCartItems)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.product.name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.quantity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.price)
+                    </td>
+                    <td>
+                        <span class="glyphicon glyphicon-remove" style=" color:red"> @Html.ActionLink(" ", "removeItem", new { item = item.product.itemnumber })</span>
+                    </td>
+
+                </tr>
+            }
+
+        </table>
+        <footer style="float:right">
+            <h4>
+                SUM:
+                @Html.DisplayFor(modelItem => Model.sum)
+                ,-
+
+            </h4> 
+                   <button class="btn btn-success"> @Html.ActionLink("Skjekk ut ", "checkout", "ShoppingCart", new { target = "_blank" })
+                    <span class="glyphicon glyphicon-shopping-cart"></span></button>
+               
+           
+        </footer>
+
+    </div>
+</div> 
