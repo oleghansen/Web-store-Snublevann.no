@@ -120,10 +120,16 @@ box-shadow:         0px 5px 8px 0px rgba(50, 50, 50, 0.27);
   background-color: transparent;
 }
 
-.footerBot {
-   position:absolute;
-   bottom:0;
+
+.navbar-fixed-bottom
+{
+    width:750px;
+    position: fixed;
+    margin-left: auto;
+    margin-right: auto  ;
 }
+
+
 
 .navbar-nav-text
 {
