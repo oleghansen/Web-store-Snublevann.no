@@ -26,7 +26,8 @@
                             type: 'success',
                             opacity: 0.95,
                             displayTime: 2000,
-                            autoShow: true
+                            autoShow: true,
+                            adjustScroll: true
                         });
                        
                         setTimeout(function () {
