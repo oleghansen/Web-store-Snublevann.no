@@ -54,9 +54,11 @@
                 ,-
 
             </h4> 
-                   <button class="btn btn-success"> @Html.ActionLink("Skjekk ut ", "checkout", "ShoppingCart", new { target = "_blank" })
-                    <span class="glyphicon glyphicon-shopping-cart"></span></button>
-
+            <button class="btn btn-large btn-success" value="Sjekk ut">
+                @Html.ActionLink("checkout", "ShoppingCart", new { target = "_blank" })
+                Sjekk ut
+                <span class="glyphicon glyphicon-shopping-cart"></span>
+            </button>
                
            
         </footer>
