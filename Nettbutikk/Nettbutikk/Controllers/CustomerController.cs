@@ -20,6 +20,7 @@ namespace Nettbutikk.Controllers
 
         //Her kommer man dersom man har registrert en ny bruker 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Register(Customer newUser, String password_confirmation)
         {
             if (ModelState.IsValid)
@@ -45,9 +46,7 @@ namespace Nettbutikk.Controllers
                     {
                         logInUser(newUser.email);
                         return RedirectToAction("PersonalSite");
-
                     }
-
                 }
             }
             return View();
@@ -58,7 +57,7 @@ namespace Nettbutikk.Controllers
             DBOrder order = new DBOrder();
             List<Product> topFive = order.getMostSold();
             Session["loggedInUser"] = null;
-            return View("../Main/Frontpage",topFive);
+            return RedirectToAction("Frontpage","Main",topFive);
 
         }
         
@@ -73,14 +72,12 @@ namespace Nettbutikk.Controllers
             var hashedPassword = makeHash(pw); 
             if (customerDB.validate(un, hashedPassword))
             {
-                 logInUser(un);
-                ViewBag.loggedIn = true;
+                logInUser(un);
                 return Json(true);
             }
             else
             {
                 Session["loggedInUser"] = null;
-                ViewBag.loggedIn = false;
                 return Json(false);
             }
 
@@ -89,14 +86,13 @@ namespace Nettbutikk.Controllers
         //Dersom man går inn i den personlige siden så viser man denne siden, ellers må man logge inn.
         public ActionResult PersonalSite()
         {
-        
             if (Session["loggedInUser"] != null )
             {
                 TempData["pview"] = "none";
                 Customer c = (Customer)Session["loggedInUser"];
                 return View("PersonalSite",c);
            }
-            return View("../Main/Frontpage");
+            return RedirectToAction("Frontpage","Main");
         }
 
         //Hasher passordet
@@ -109,14 +105,15 @@ namespace Nettbutikk.Controllers
             return outData;
         }
 
-          [HttpPost]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult updateUserPassword(String op, String np, String bp)
         {
+            if(Session["loggedInUser"]==null)
+                return RedirectToAction("Frontpage", "Home");
             if (ModelState.IsValid)
             {
-                
                 Customer c = (Customer)Session["loggedInUser"];
-
                 byte[] hpass = makeHash(op);
                 if (Enumerable.SequenceEqual(c.hashpassword, hpass))
                 {
@@ -137,7 +134,7 @@ namespace Nettbutikk.Controllers
                         else
                         {
                             ViewBag.correct = "klarte ikke oppdatere";
-                            Customer old = (Customer)Session["loggedInUser"];
+                            
                             return View();
                         }
                     } ViewBag.correct = "bekreftet ikke passordet riktig";
@@ -149,7 +146,10 @@ namespace Nettbutikk.Controllers
 
         public ActionResult updateUserPassword()
         {
+
             Customer c = (Customer)Session["loggedInUser"];
+            if (c == null)
+                return RedirectToAction("Frontpage", "Home");
             TempData["pview"] = "password";
             return View("PersonalSite",c);
         }
@@ -157,11 +157,14 @@ namespace Nettbutikk.Controllers
         public ActionResult updateUserinfo()
         {
             Customer c = (Customer)Session["loggedInUser"];
+            if (c == null)
+                return RedirectToAction("Frontpage", "Home");
             TempData["pview"] = "info";
             return View("PersonalSite",c);
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult updateUserinfo(Customer newUser)
         {
 
@@ -205,6 +208,8 @@ namespace Nettbutikk.Controllers
         public ActionResult viewOrderHistory()
         {
             var user = (Customer) Session["LoggedInUser"];
+            if (user == null)
+                return RedirectToAction("Frontpage", "Home");
             var db = new DBOrder();
             List<Order> list = db.getOrders(user.id);
             TempData["pview"] = "orderline";
