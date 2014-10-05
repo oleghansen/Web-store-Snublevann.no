@@ -61,7 +61,7 @@
                                                         <div class="form-group pull-right">
                                                             <div class="input-group">
                                                                 <label for="count" class="pull-left" style="margin-top: 25px; margin-right: 5px">Antall  </label>
-                                                                @Html.EditorFor(modelItem => item.quantity, new { htmlAttributes = new { @class = "form-control", id="qtyField", placeholder = "Antall", style = "width: 60px; margin-top: 12px" } })
+                                                                @Html.EditorFor(modelItem => item.quantity, new { htmlAttributes = new { @class = "form-control", id="qtyField", type="number", min="0", placeholder = "Antall", style = "width: 60px; margin-top: 12px" } })
                                                                 <div class="input-group-btn pull-left">
                                                                     <button class="btn btn-success shoppingBtn" type="submit"><span class="glyphicon glyphicon-shopping-cart shoppingBtn"></span></button>
                                                                 </div>

@@ -12,62 +12,63 @@
                 > <a href='@Url.Action("ListProducts", "Product", new { id = Model.categoryid, sc = "no" })'> @Model.category</a>
                 > <a href='@Url.Action("ListProducts", "Product", new { id = Model.subCategoryid, sc = "yes" })'> @Model.subCategory</a>
                 > @Html.ActionLink(Model.name, "viewProduct" + "/" + Model.itemnumber)
-            </h5>
+        </h5>
         </div>
 
         <hr />
         <div class="panel panel-default" style="background: #FFFFFF">
             <div class="row" style="margin-left:20px">
-                <h3>
-                    @Html.DisplayFor(model => model.name) (@Html.DisplayFor(model => model.volum) cl)
+            <h3>
+                @Html.DisplayFor(model => model.name) (@Html.DisplayFor(model => model.volum) cl)
                     
-                </h3>
-            </div>
+            </h3>
+        </div>
             <div class="row" style="margin-left:20px">
-                <h4>
+            <h4>
                     <small>(@Html.DisplayFor(model => model.producer))</small>
-                </h4>
+            </h4>
                 <hr />
-            </div>
+        </div>
             <div class="row" style="margin-left:10px">
-                <div class="col-md-3">
-                    <a href='@Url.Content("~/Content/img/products/" + Model.itemnumber + ".png")'>
+                <div class="col-md-3"> 
+                    <a href='@Url.Content("~/Content/img/products/" + Model.itemnumber + ".png")'> 
                         <img src=@Url.Content("~/Content/img/products/" + Model.itemnumber + ".png") height="280" width="180" style="margin-bottom: 20px">
                     </a>
                 </div>
                 <div class="col-md-4 pull-left">
                     <div class="row">
-                        <h3>
-                            @Html.DisplayFor(model => model.price) ,-
-                        </h3>
-                    </div>
+                            <h3>
+                                @Html.DisplayFor(model => model.price) ,-
+                            </h3>
+                        </div>
 
-                    <div class="row">
+                        <div class="row">
                         <small>@Html.DisplayFor(model => model.pricePerLitre) ,- pr liter</small>
                         <hr />
                     </div>
                     <div class="row">
                         @Html.DisplayFor(model => model.longDescription)
                         <hr />
-                    </div>
+                        </div>
                     <div class="row">
                         @using (Html.BeginForm("addToCart", "ShoppingCart"))
                         {
                             <div class="form-group" id="antiLink">
                                 <div class="row">
                                     <div class="input-group">
+                                        <p id="itemnumber" style="display:none;">@Model.itemnumber</p>
                                         <label for="count" class="pull-left" style="margin-top: 25px; margin-right: 5px">Antall  </label>
-                                        @Html.EditorFor(model => model.quantity, new { htmlAttributes = new { @class = "form-control", placeholder = "Antall", style = "width: 60px; margin-top: 12px" } })
-                                        <div class="input-group-btn pull-left">
-                                            <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-shopping-cart"></span></button>
+                                        @Html.EditorFor(model => model.quantity, new { htmlAttributes = new { @class = "form-control", id="qtyField", type="number", min="0", placeholder = "Antall", style = "width: 60px; margin-top: 12px" } })
+                                        <div class="input-group-btn pull-left  shoppingBtn">
+                                            <button class="btn btn-success  shoppingBtn" type="submit"><span class="glyphicon glyphicon-shopping-cart shoppingBtn"></span></button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         }
-                        </div>
                     </div>
             </div>
+        </div>
         </div>
 </div>
 
