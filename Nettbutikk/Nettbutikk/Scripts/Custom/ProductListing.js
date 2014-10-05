@@ -4,6 +4,7 @@
         event.preventDefault();
         var itemnumber = parseInt($(this).find('#itemnumber').text());
         var quantity = parseInt($(this).find('#qtyField').val());
+        var itemname = $(this).find('#productName').text();
 
         if ($(event.target).is($('.shoppingBtn'))) {
             $.ajax({
@@ -18,10 +19,10 @@
                         $('#NotLoggedIn').modal('show');
                     else
                     {
-                        var notification = $.notify.create(quantity + $('#productName').text() +" ble lagt til i handlekurven", {
+                        var notification = $.notify.create(quantity + itemname +" ble lagt til i handlekurven", {
                             style: 'box',
                             type: 'success',
-                            opacity: 0.8,
+                            opacity: 0.95,
                             displayTime: 2000,
                             autoShow: true
                         });
