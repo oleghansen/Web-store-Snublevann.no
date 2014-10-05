@@ -45,7 +45,7 @@ namespace Nettbutikk.Controllers
                 Debug.WriteLine("Category");
              listOfProducts = db.getAll(id);
              }
-
+            
             return View(listOfProducts);
         }
 
