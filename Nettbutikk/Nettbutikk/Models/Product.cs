@@ -23,6 +23,7 @@ namespace Nettbutikk.Models
         public String longDescription { get; set; }
 
         [Display(Name = "Pris")]
+        [DisplayFormat(DataFormatString = "{0:C0}")]
         [Required(ErrorMessage = "Pris må oppgis")]
         public int price { get; set; }
 

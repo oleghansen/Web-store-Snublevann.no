@@ -10,6 +10,9 @@ namespace Nettbutikk.Models
     {
         protected override void Seed(DatabaseContext context)
         {
+            context.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('Products', RESEED, 100001)");
+            context.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('Orders', RESEED, 298423)");
+
             var countries = new List<Countries>
             {
                 new Countries {Name = "Norge"},//1
