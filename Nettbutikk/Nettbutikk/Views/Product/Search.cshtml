@@ -7,7 +7,13 @@
 
 
 <div class="jumbotron">
-        <p>Søkeresultater</p>
+        <h3>Søkeresultater</h3>
+        <hr/>
+
+        @if (Model.Count == 0)
+        {
+            <h4><i>Beklager, fant ingen varer som matchet ditt søk.</i></h4>
+        }
         @foreach (var item in Model)
         {
             <div class="panel panel-default clickable" style="background: #FFFFFF; margin-bottom:0px">
@@ -64,9 +70,3 @@
         <br />
     </div>
 
-<div class="navbar navbar-default navbar-fixed-bottom">
-
-    <div class="container">
-        <p class="navbar-text text-center"> Nettbutikk for de flinkeste dataingeniørstudentene - 2014</p>
-    </div>
-</div>
