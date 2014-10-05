@@ -5,7 +5,7 @@
 
     <script>
         $('.carousel').carousel({
-            interval: 500
+            interval: 250
         })
     </script>
     <link href="~/Content/Custom/MainSheet.css" rel="stylesheet" />
@@ -36,10 +36,10 @@
         </div>
     </div>
 <div class="jumbotron" style="height:500px;">
-    <h3>Populære produkter:</h3>
+    <h3>Våre mest populære produkter:</h3>
     @foreach (var item in Model)
     {
-        <div class="panel panel-default clickable" style="background: #FFFFFF;margin-bottom:0px; width: 50%; float:left; height:180px;">
+        <div class="panel panel-default clickable" style="background: #FFFFFF;margin-bottom:8px; margin-left:1%; width: 49%; float:left; height:180px;">
             <div class="panel-body">
                 <p id="itemnumber" style="display:none;">@Html.DisplayFor(modelItem => item.itemnumber)</p>
                 <div class="col-md-2">
@@ -52,7 +52,9 @@
                                 @Html.DisplayFor(modelItem => item.name)
                             </h3>
                         </div>
-                        <div class="col-md-2" style="margin-left: 15px;">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2" style="margin-left: 15px; margin-right: 10px; margin-bottom: 0px; float:right;">
                             <h3>
                                 @Html.DisplayFor(modelItem => item.price)
                             </h3>
