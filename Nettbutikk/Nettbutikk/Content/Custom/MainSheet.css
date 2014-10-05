@@ -27,6 +27,12 @@ a:hover {
 	-webkit-transition: .3s;
 	transition: .3s;
 }
+a:active
+{
+    color: #a5862c;
+    background-color:transparent;
+}
+
 #homeLink:hover
 {
     -webkit-transition: all .2s ease-in-out; 
