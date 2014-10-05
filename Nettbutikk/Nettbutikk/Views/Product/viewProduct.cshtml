@@ -12,42 +12,48 @@
                 > <a href='@Url.Action("ListProducts", "Product", new { id = Model.categoryid, sc = "no" })'> @Model.category</a>
                 > <a href='@Url.Action("ListProducts", "Product", new { id = Model.subCategoryid, sc = "yes" })'> @Model.subCategory</a>
                 > @Html.ActionLink(Model.name, "viewProduct" + "/" + Model.itemnumber)
-        </h5>
+            </h5>
         </div>
 
         <hr />
-        <div class="row">
-            <h3>
-                @Html.DisplayFor(model => model.name) (@Html.DisplayFor(model => model.volum) cl)
-            </h3>
-        </div>
-        <div class="row">
-            <h4>
-                (@Html.DisplayFor(model => model.producer))
-            </h4>
-        </div>
-            <div class="row">
-                <div class="col-md-3"> 
-                    <a href='@Url.Content("~/Content/img/products/" + Model.itemnumber + ".png")'> 
-                        <img src=@Url.Content("~/Content/img/products/" + Model.itemnumber + ".png") height="280" width="180">
+        <div class="panel panel-default" style="background: #FFFFFF">
+            <div class="row" style="margin-left:20px">
+                <h3>
+                    @Html.DisplayFor(model => model.name) (@Html.DisplayFor(model => model.volum) cl)
+                    
+                </h3>
+            </div>
+            <div class="row" style="margin-left:20px">
+                <h4>
+                    <small>(@Html.DisplayFor(model => model.producer))</small>
+                </h4>
+                <hr />
+            </div>
+            <div class="row" style="margin-left:10px">
+                <div class="col-md-3">
+                    <a href='@Url.Content("~/Content/img/products/" + Model.itemnumber + ".png")'>
+                        <img src=@Url.Content("~/Content/img/products/" + Model.itemnumber + ".png") height="280" width="180" style="margin-bottom: 20px">
                     </a>
                 </div>
                 <div class="col-md-4 pull-left">
                     <div class="row">
-                         @Html.DisplayFor(model => model.longDescription)
+                        <h3>
+                            @Html.DisplayFor(model => model.price) ,-
+                        </h3>
                     </div>
-                        <div class="row">
-                            <h3>
-                                @Html.DisplayFor(model => model.price) ,-
-                            </h3>
-                        </div>
 
-                        <div class="row">
-                            @Html.DisplayFor(model => model.pricePerLitre) ,- pr liter
-                        </div>
+                    <div class="row">
+                        <small>@Html.DisplayFor(model => model.pricePerLitre) ,- pr liter</small>
+                        <hr />
+                    </div>
+                    <div class="row">
+                        @Html.DisplayFor(model => model.longDescription)
+                        <hr />
+                    </div>
+                    <div class="row">
                         @using (Html.BeginForm("addToCart", "ShoppingCart"))
                         {
-                            <div class="form-group pull-left" id="antiLink">
+                            <div class="form-group" id="antiLink">
                                 <div class="row">
                                     <div class="input-group">
                                         <label for="count" class="pull-left" style="margin-top: 25px; margin-right: 5px">Antall  </label>
@@ -59,8 +65,11 @@
                                 </div>
                             </div>
                         }
+                        </div>
                     </div>
             </div>
         </div>
+</div>
+
     @Html.ActionLink("Tilbake", "ListProducts")
 

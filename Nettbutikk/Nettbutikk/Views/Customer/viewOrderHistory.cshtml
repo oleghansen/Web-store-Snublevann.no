@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<Nettbutikk.Models.Order>
-<div class="jumbotron">
+<div class="panel panel-default userpanel">
     <div class="container">
 
         <table class="table">
@@ -29,8 +29,8 @@
                         {
                             @Html.HiddenFor(modelItem => item.id)
                             @Html.HiddenFor(modelItem => item.orderdate)
-                            <input type="hidden" name="viewOrder" value="true"  />
-                             <u> @Html.ActionLink("Se ordre", "checkout", "ShoppingCart", item, new { })</u>
+                            <input type="hidden" name="viewOrder" value="true" />
+                            <u> @Html.ActionLink("Se ordre", "checkout", "ShoppingCart", item, new { })</u>
                             //<button type="submit">Detaljer</button>
                         }
                     </td>
@@ -39,6 +39,6 @@
 
             }
         </table>
-     </div>   
+    </div>
 </div>
 
