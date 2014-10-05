@@ -31,25 +31,25 @@ namespace Nettbutikk.Controllers
             return View(listOfProducts);
         }*/
 
-        public ActionResult ListProducts(int? id, string sc)
+        public ActionResult ListProducts(int? id, string sc, int? sort)
         {
             var db = new DBProduct();
             List<Product> listOfProducts;
             if(sc.Equals("yes"))
               {
                 Debug.WriteLine("SubCategory");
-                listOfProducts = db.getAll(id,sc);
+                listOfProducts = db.getAll(id,sc,sort);
               }
             else
              {
                 Debug.WriteLine("Category");
-             listOfProducts = db.getAll(id);
+             listOfProducts = db.getAll(id,sort);
              }
             
             return View(listOfProducts);
         }
 
-        public ActionResult ListSub(int? id)
+      /*  public ActionResult ListSub(int? id)
         {
             var db = new DBProduct();
             List<Product> listSub;
@@ -60,7 +60,7 @@ namespace Nettbutikk.Controllers
                 listSub = db.getAll(id);
 
             return View(listSub);
-        }
+        }*/
 
         public ActionResult Search(string searchString)
         {

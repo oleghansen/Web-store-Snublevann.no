@@ -16,10 +16,33 @@
                         <span class="sr-only">Toggle Dropdown</span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Navn</a></li>
+                        <li>
+                            @if (!Request.Url.AbsoluteUri.ToLower().Contains("?sc=yes")) 
+                            {
+                                <a href='@Url.Action("ListProducts", "Product", new { id = Model[0].categoryid , sc = "no", sort = 1 })'>Navn</a>
+                            }
+                            else
+                            {
+                                <a href='@Url.Action("ListProducts", "Product", new { id = Model[0].subCategoryid, sc = "yes", sort = 1 })'>Navn</a>
+                            }
+                        </li>
                         <li class="divider"></li>
-                        <li><a href="#">Pris - Høy til lav</a></li>
-                        <li><a href="#">Pris - Lav til høy</a></li>
+                        <li>@if (!Request.Url.AbsoluteUri.ToLower().Contains("?sc=yes"))
+                        {
+                            <a href='@Url.Action("ListProducts", "Product", new { id = Model[0].categoryid , sc = "no", sort = 2 })'>Pris - Lav til høy</a>
+                        }
+                        else
+                        {
+                                <a href='@Url.Action("ListProducts", "Product", new { id = Model[0].subCategoryid, sc = "yes", sort = 2 })'>Pris - Lav til høy</a>
+                        }
+                        </a>
+                        </li>
+                        <li>@if (!Request.Url.AbsoluteUri.ToLower().Contains("?sc=yes"))
+                        {
+                            <a href='@Url.Action("ListProducts", "Product", new { id = Model[0].categoryid , sc = "no", sort = 3 })'>Pris - Høy til lav</a>
+                        }
+                        else 
+                        {<a href='@Url.Action("ListProducts", "Product", new { id = Model[0].subCategoryid, sc = "yes", sort = 3 })'>Pris - Høy til lav</a>}</a></li>
                     </ul>
                 </div>
                 <!----------------------------------------------->
