@@ -13,12 +13,24 @@ namespace Nettbutikk
 
     public class DBProduct
     {
-        public List<Product> getAll(int? id, String sc)
+        public List<Product> getAll(int? id, String sc, int? sort)
         {
+           
             var db = new DatabaseContext();
             List<Product> allProducts = new List<Product>();
             var products = db.Products.Include(p => p.SubCategories.Categories).Where(p => p.SubCategoriesId == id).OrderBy(p => p.Name).ToList();
-
+            switch (sort)
+            {
+                case 1:
+                    products = db.Products.Include(p => p.SubCategories.Categories).Where(p => p.SubCategoriesId == id).OrderBy(p => p.Name).ToList();
+                    break;
+                case 2:
+                    products = db.Products.Include(p => p.SubCategories.Categories).Where(p => p.SubCategoriesId == id).OrderBy(p => p.Price).ToList();
+                    break;
+                case 3:
+                    products = db.Products.Include(p => p.SubCategories.Categories).Where(p => p.SubCategoriesId == id).OrderByDescending(p => p.Price).ToList();
+                    break;
+            }
            
             foreach (var p in products)
             {
@@ -41,17 +53,29 @@ namespace Nettbutikk
                 };
                 allProducts.Add(product);
             }
+
             return allProducts;
         }
         
-        public List<Product> getAll(int? id)
+        public List<Product> getAll(int? id, int? sort)
         {
             var db = new DatabaseContext();
             List<Product> allProducts = new List<Product>();
             if (id.HasValue)
             {
-
                 var products = db.Products.Include(p => p.SubCategories.Categories).Where(p => p.SubCategories.CategoriesId == id).OrderBy(p=>p.Name).ToList();
+                switch (sort)
+                {
+                    case 1:
+                        products = db.Products.Include(p => p.SubCategories.Categories).Where(p => p.SubCategories.CategoriesId == id).OrderBy(p => p.Name).ToList();
+                        break;
+                    case 2:
+                        products = db.Products.Include(p => p.SubCategories.Categories).Where(p => p.SubCategories.CategoriesId == id).OrderBy(p => p.Price).ToList();
+                        break;
+                    case 3:
+                        products = db.Products.Include(p => p.SubCategories.Categories).Where(p => p.SubCategories.CategoriesId == id).OrderByDescending(p => p.Price).ToList();
+                        break;
+                }
 
                 foreach (var p in products)
                 {
@@ -77,7 +101,21 @@ namespace Nettbutikk
             }
             else
             {
-                var products = db.Products.Include(p => p.SubCategories.Categories).ToList();
+                var products = db.Products.Include(p => p.SubCategories.Categories).OrderBy(p => p.Name).ToList();
+
+                switch (sort)
+                {
+                    case 1:
+                        products = db.Products.Include(p => p.SubCategories.Categories).OrderBy(p => p.Name).ToList();
+                        break;
+                    case 2:
+                        products = db.Products.Include(p => p.SubCategories.Categories).OrderBy(p=>p.Price).ToList();  
+                        break;
+                    case 3:
+                        db.Products.Include(p => p.SubCategories.Categories).OrderByDescending(p => p.Price).ToList(); 
+                       break;
+                }
+
                 foreach (var p in products)
                 {
                     var product = new Product()
@@ -156,5 +194,7 @@ namespace Nettbutikk
             }
             return foundProducts;
         }
+
+        
     }
 }
