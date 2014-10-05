@@ -17,7 +17,7 @@ namespace Nettbutikk
         {
             var db = new DatabaseContext();
             List<Product> allProducts = new List<Product>();
-            var products = db.Products.Include(p => p.SubCategories.Categories).Where(p => p.SubCategoriesId == id).ToList();
+            var products = db.Products.Include(p => p.SubCategories.Categories).Where(p => p.SubCategoriesId == id).OrderBy(p => p.Name).ToList();
 
            
             foreach (var p in products)
@@ -51,7 +51,7 @@ namespace Nettbutikk
             if (id.HasValue)
             {
 
-                var products = db.Products.Include(p => p.SubCategories.Categories).Where(p => p.SubCategories.CategoriesId == id).ToList();
+                var products = db.Products.Include(p => p.SubCategories.Categories).Where(p => p.SubCategories.CategoriesId == id).OrderBy(p=>p.Name).ToList();
 
                 foreach (var p in products)
                 {
