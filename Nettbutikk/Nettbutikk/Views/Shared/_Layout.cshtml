@@ -25,7 +25,11 @@
     <script src="~/Scripts/jquery-notify.min.js"></script>
     <script src="~/Scripts/Custom/Login.js"></script>
     <script src="~/Scripts/Custom/ProductListing.js"></script>
-
+    <!--workaround for urler på server, da url.action ikke fungerer i js-filer, og hardkoding er ikke et alternativ siden siten publiseres på dotnetserver-->
+    <script type="text/javascript">
+        var viewproduct = '@Url.Action("viewProduct", "Product", new { id = "__id__" })';
+        var addtocart = '@Url.Action("addToCart","ShoppingCart")';
+    </script>
     <script type="text/javascript">
         $(function () {
             $("#txtSearch").autocomplete({

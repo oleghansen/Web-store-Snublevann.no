@@ -2,7 +2,9 @@
 @{
     ViewBag.Title = "Forsiden";
 }
-
+<script type="text/javascript">
+    var baseUrl = "<%= Request.Url.GetLeftPart(UriPartial.Authority) %>";
+</script>
     <script>
         $('.carousel').carousel({
             interval: 500
