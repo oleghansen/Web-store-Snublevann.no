@@ -55,8 +55,10 @@ namespace Nettbutikk.Controllers
 
         public ActionResult LogOut()
         {
+            DBOrder order = new DBOrder();
+            List<Product> topFive = order.getMostSold();
             Session["loggedInUser"] = null;
-            return View("../Main/Frontpage");
+            return View("../Main/Frontpage",topFive);
 
         }
         

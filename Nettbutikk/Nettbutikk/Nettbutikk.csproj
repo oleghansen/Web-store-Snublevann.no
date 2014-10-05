@@ -121,6 +121,10 @@
     <Content Include="Content\img\carousel\2.png" />
     <Content Include="Content\img\carousel\3.png" />
     <Content Include="Content\img\logo\snublevann_light_transparent.png" />
+    <Content Include="Content\img\logo\snublevann_liten_lys.ico" />
+    <Content Include="Content\img\logo\snublevann_liten_lys.png" />
+    <Content Include="Content\img\logo\snublevann_liten_mork.ico" />
+    <Content Include="Content\img\logo\snublevann_liten_mork.png" />
     <Content Include="Content\img\products\100001.png" />
     <Content Include="Content\img\products\100002.png" />
     <Content Include="Content\img\products\100003.png" />
