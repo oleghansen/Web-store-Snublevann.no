@@ -5,10 +5,6 @@
         var itemnumber = parseInt($(this).find('#itemnumber').text());
         var quantity = parseInt($(this).find('#qtyField').val());
 
-        console.log(itemnumber);
-        console.log(quantity);
-        console.log($(event.target))
-
         if ($(event.target).is($('.shoppingBtn'))) {
             $.ajax({
                 url: '/ShoppingCart/addToCart',
@@ -27,7 +23,7 @@
             
         }
         else if ($(event.target).is($(this).find('#qtyField')))
-            noop();
+            $.noop();
         else
             window.location.href = '/Product/viewProduct/' + itemnumber;
     });
