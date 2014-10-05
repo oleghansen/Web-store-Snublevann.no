@@ -100,23 +100,24 @@
                             <div class="pull-left">
                                 <div id="menu_container">
                                     <div id="accordion">
-                                        @using (Html.BeginForm("Search", "Product", FormMethod.Get, new { @class = "form-inline", @role = "form", @style="margin-top:0px; padding-bottom:12px" }))
-                                    {
-                                        <div class="row">
+                                        @using (Html.BeginForm("Search", "Product", FormMethod.Get, new { @class = "form-inline", @role = "form", @style = "margin-top:0px; padding-bottom:12px" }))
+                                        {
+                                            <div class="row">
                                                 <div class="col-sm-9 col-md-9" style="padding-right:0px">
                                                     <div class="form-group">
                                                         <div class="input-group">
 
                                                             @Html.TextBox("searchString", null, new { id = "txtSearch", @class = "form-control", @style = "margin-top:12px; background-color: #dfc8ab; border-color:#a5862c ", placeholder = "Søk etter vare..." })
                                                         </div>
-                                                    </div>                                            </div>
+                                                    </div>
+                                                </div>
                                                 <div class="input-group-btn pull-left">
                                                     <button class="btn btn-success" type="submit" style="background-color:#a5862c; width: 35px; border-color:#a5862c">
                                                         <span class="glyphicon glyphicon-search"></span>
                                                     </button>
                                                 </div>
                                             </div>
-                                    }
+                                        }
                                         <h4>Kategori</h4>
                                         <div class="item pull-left" id="Subcategory">
                                             <a class="sub">Øl</a>
@@ -171,10 +172,10 @@
                                         <div class="item" id="Subcategory">
                                             @Html.ActionLink("Om oss", "About", "About")
                                         </div>
-                                        </div>
-
-
                                     </div>
+
+
+                                </div>
 
                             </div>
                         </div>
@@ -182,18 +183,35 @@
                 </div>
 
                         <div class="col-md-10">
-                            @RenderBody()
-
+                            
+                                @RenderBody()
+                           
+                            <div class="row">
+                                <div class="footer">
+                                    <div class="jumbotron footerjumbo">
+                                         Copyright &copy; @DateTime.Now.Year  All rights reserved.</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
             </div>
-            <div class="navbar navbar-default navbar-fixed-bottom">
-                 Nettbutikk for de flinkeste dataingeniørstudentene - 2014
-            </div>
+        <!--<div id="container" style="background:#a5862c; height: 100px; width:1170px; margin-left:auto; margin-right:auto;">
+            <div class="footer" style="background:#ff0000; height:40px; width:945px; margin-left:18%">
+                HEIHEIH
+            </div>-->
+          <!-- <div class="navbar navbar-default navbar-fixed-bottom" style="margin-left:20px">
+                <div class="nav navbar-text text-center">
+                    Nettbutikk for de flinkeste dataingeniørstudentene - 2014
+                </div>
+            </div>--> 
+        <div class="space" style="width:100%; height:10px">
 
-                        @Html.Partial("~/Views/Customer/LoginModal.cshtml")
-                        @Html.Partial("~/Views/Customer/NotLoggedInModal.cshtml")
-    </body>
+        </div>
+
+            @Html.Partial("~/Views/Customer/LoginModal.cshtml")
+            @Html.Partial("~/Views/Customer/NotLoggedInModal.cshtml")
+</body>
 
     </html>
 
