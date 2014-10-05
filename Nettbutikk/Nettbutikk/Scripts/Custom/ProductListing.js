@@ -7,7 +7,8 @@
 
         console.log(itemnumber);
         console.log(quantity);
-        
+        console.log($(event.target))
+
         if ($(event.target).is($('.shoppingBtn'))) {
             $.ajax({
                 url: '/ShoppingCart/addToCart',
