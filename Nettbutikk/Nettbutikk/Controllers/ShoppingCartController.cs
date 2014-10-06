@@ -20,6 +20,7 @@ namespace Nettbutikk.Controllers
 
         }
         [HttpPost]
+
         public ActionResult addToCart(int quantity, int itemnumber)
         {
             var db = new DBProduct();

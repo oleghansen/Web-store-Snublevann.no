@@ -142,7 +142,7 @@ namespace Nettbutikk
         public Product get(int id)
         {
             var db = new DatabaseContext();
-            Products products = db.Products.Include(p => p.SubCategories.Categories).Where(p=> p.Id == id).First<Products>();
+            Products products = db.Products.Include(p => p.SubCategories.Categories).Where(p=> p.Id == id).FirstOrDefault<Products>();
             return new Product()
             {
                 itemnumber = products.Id,
@@ -194,6 +194,13 @@ namespace Nettbutikk
             return foundProducts;
         }
 
-        
+        public List<string> getAutoComplete(string term)
+        {
+            DatabaseContext db = new DatabaseContext();
+            List<string> foundProducts;
+            foundProducts = db.Products.Where(x => x.Name.StartsWith(term))
+                                               .Select(y => y.Name).ToList();
+            return foundProducts;
+        }
     }
 }
