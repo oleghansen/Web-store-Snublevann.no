@@ -35,7 +35,10 @@
             </div>
         </div>
     </div>
-<div class="jumbotron" style="height:500px;">
+@if(Model != null)
+{ 
+    <div class="jumbotron" style="height:500px;">
+
     <h3>Populære produkter:</h3>
     <hr />
     @foreach (var item in Model)
@@ -69,6 +72,8 @@
             </div>
         </div>
     }
-</div>
+    </div>
+}
+
 
 
