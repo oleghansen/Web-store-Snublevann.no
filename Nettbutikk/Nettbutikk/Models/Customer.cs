@@ -23,7 +23,7 @@ namespace Nettbutikk.Models
         [RegularExpression(@"(^[a-zA-ZæÆøØåÅ][\w\.-]*[a-zA-Z0-9æÆøØåÅ]@[a-zA-ZæÆøØåÅ][\w\.-]*[a-zA-Z0-9æÆøØåÅ]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$)", ErrorMessage = "Ugyldig email")]
         public String email { get; set; }
          [Display(Name = "Telefonnummer")]
-         [RegularExpression(@"(^[0-9\+\(\)\s]+$)", ErrorMessage = "Ugyldig telefonnummer")]
+         [RegularExpression(@"(^[0-9\+\(\)\s]{8,}$)", ErrorMessage = "Ugyldig telefonnummer")]
          [Required(ErrorMessage = "Telefonnummer må oppgis")]
         public String phonenumber { get; set; }
         [Display(Name = "Adresse")]
@@ -39,7 +39,7 @@ namespace Nettbutikk.Models
         [Required(ErrorMessage = "Poststed må oppgis")]
         public String postalarea { get; set; }
         [Display(Name = "Passord")]
-        [RegularExpression(@"(^[a-zA-Z0-9æÆøØåÅ]+$)", ErrorMessage = "Ugyldig passord")]
+        [RegularExpression(@"(^[a-zA-Z0-9æÆøØåÅ]{8,}$)", ErrorMessage = "Ugyldig passord, må ha minst 8 tegn")]
         [Required(ErrorMessage = "Passord må oppgis")]
         public String password { get; set; }
         public byte[] hashpassword { get; set; }
