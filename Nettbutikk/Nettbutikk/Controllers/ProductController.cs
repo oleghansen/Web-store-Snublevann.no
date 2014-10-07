@@ -55,10 +55,8 @@ namespace Nettbutikk.Controllers
 
         public JsonResult getResults(string term)
         {
-            DatabaseContext db = new DatabaseContext();
-            List<string> foundProducts;
-            foundProducts = db.Products.Where(x=>x.Name.StartsWith(term))
-                                               .Select(y => y.Name).ToList();
+            var db = new DBProduct();
+            List<string> foundProducts = db.getAutoComplete(term);
 
             return Json(foundProducts, JsonRequestBehavior.AllowGet);
         }

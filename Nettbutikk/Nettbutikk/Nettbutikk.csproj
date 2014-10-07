@@ -213,7 +213,6 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AboutController.cs" />
-    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -244,7 +243,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\About\About.cshtml" />
     <Content Include="Views\Main\Frontpage.cshtml" />
-    <Content Include="Views\Category\Categories.cshtml" />
     <Content Include="Views\Customer\Register.cshtml" />
     <Content Include="Views\Customer\PersonalSite.cshtml" />
     <Content Include="Views\Product\viewProduct.cshtml" />

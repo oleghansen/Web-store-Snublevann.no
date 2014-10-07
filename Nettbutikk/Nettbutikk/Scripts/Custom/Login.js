@@ -26,8 +26,6 @@
                 }
             }
         }); 
-        console.log("tull");
-        console.log($(this).data('url'));
         return false;
     });
 });
