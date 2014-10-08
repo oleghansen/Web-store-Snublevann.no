@@ -18,7 +18,7 @@
                         <li>
                             @if (Request.Url.AbsoluteUri.ToLower().Contains("?sc=yes")) 
                             {
-                                <a href='@Url.Action("ListProducts", "Product", new { id = Model[0].categoryid , sc = "yes", sort = 1 })'>Navn</a>
+                                <a href='@Url.Action("ListProducts", "Product", new { id = Model[0].subCategoryid , sc = "yes", sort = 1 })'>Navn</a>
                             }
                             else if(Request.Url.AbsoluteUri.ToLower().Contains("s?sc=no"))
                             {
@@ -26,14 +26,14 @@
                             }
                             else
                             {
-                                <a href='@Url.Action("ListProducts", "Product", new { id = Model[0].subCategoryid, sc = "no", sort = 1 })'>Navn</a>
+                                <a href='@Url.Action("ListProducts", "Product", new { id = Model[0].categoryid, sc = "no", sort = 1 })'>Navn</a>
                             }
                         </li>
                         <li class="divider"></li>
                         <li>
                             @if (Request.Url.AbsoluteUri.ToLower().Contains("?sc=yes"))
                         {
-                            <a href='@Url.Action("ListProducts", "Product", new { id = Model[0].categoryid , sc = "yes", sort = 2 })'>Pris - Lav til høy</a>
+                            <a href='@Url.Action("ListProducts", "Product", new { id = Model[0].subCategoryid , sc = "yes", sort = 2 })'>Pris - Lav til høy</a>
                         }
                             else if (Request.Url.AbsoluteUri.ToLower().Contains("s?sc=no"))
                             {
@@ -41,14 +41,14 @@
                             }
                             else
                             {
-                                <a href='@Url.Action("ListProducts", "Product", new { id = Model[0].subCategoryid, sc = "no", sort = 2 })'>Pris - Lav til høy</a>
+                                <a href='@Url.Action("ListProducts", "Product", new { id = Model[0].categoryid, sc = "no", sort = 2 })'>Pris - Lav til høy</a>
 
                             }
                         </a>
                         </li>
                         <li>@if (Request.Url.AbsoluteUri.ToLower().Contains("?sc=yes"))
                         {
-                            <a href='@Url.Action("ListProducts", "Product", new { id = Model[0].categoryid , sc = "yes", sort = 3 })'>Pris - Høy til lav</a>
+                            <a href='@Url.Action("ListProducts", "Product", new { id = Model[0].subCategoryid , sc = "yes", sort = 3 })'>Pris - Høy til lav</a>
                         }
                             else if (Request.Url.AbsoluteUri.ToLower().Contains("s?sc=no"))
                             {
@@ -57,7 +57,7 @@
                             }
                             else
                             {
-                            <a href='@Url.Action("ListProducts", "Product", new { id = Model[0].subCategoryid, sc = "no", sort = 3 })'>Pris - Høy til lav</a>
+                            <a href='@Url.Action("ListProducts", "Product", new { id = Model[0].categoryid, sc = "no", sort = 3 })'>Pris - Høy til lav</a>
                         }
                         </a></li>
                     </ul>
