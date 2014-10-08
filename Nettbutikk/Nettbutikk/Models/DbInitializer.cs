@@ -31,7 +31,6 @@ namespace Nettbutikk.Models
             };
             countries.ForEach(c => context.Countries.Add(c));
 
-
             var categories = new List<Categories>
             {
                 new Categories {Name="Øl"},//1
@@ -42,10 +41,8 @@ namespace Nettbutikk.Models
             };
 
             // add data into context and save to db
-
-
             categories.ForEach(c => context.Categories.Add(c));
-
+           
             var subcategories = new List<SubCategories>
             {
                 new SubCategories {Name="Overgjæret", CategoriesId=1},//1
@@ -67,10 +64,10 @@ namespace Nettbutikk.Models
                 new SubCategories {Name="Prosecco", CategoriesId=5},//17
 
 
-            }; 
+            };
 
             subcategories.ForEach(s => context.SubCategories.Add(s));
-            
+
             var producers = new List<Producers>
             {
                 new Producers {Name = "Ringnes"},//1
@@ -370,8 +367,38 @@ namespace Nettbutikk.Models
                 
             };
             products.ForEach(c => context.Products.Add(c));
+/*
+            var customers = new List<Customers>
+            {
+                new Customers {Firstname = "Test", Lastname="Test",Email="test@test.com",Phonenumber="12345678",Address="Testveien 34", PostalareasId=0166, Password= System.Security.Cryptography.SHA256.Create().ComputeHash(System.Text.Encoding.ASCII.GetBytes("test1234")) }
+               
+            };
+            customers.ForEach(c => context.Customers.Add(c));
 
+            var orders = new List<Orders>
+            {
+                new Orders {Id=298423, OrderDate=DateTime.Now, CustomersId=0}
+            };
+            orders.ForEach(c => context.Orders.Add(c));
+
+            var postalareas = new List<Postalareas> 
+            {
+                new Postalareas{PostalareasId=0166, Postalarea="Oslo"}
+            };
+            postalareas.ForEach(c => context.Postalareas.Add(c));
+            var orderlines = new List<OrderLines>
+            {
+                new OrderLines {ProductsId=100001, Quantity = 1, OrdersId=298423},
+                new OrderLines {ProductsId=100001, Quantity = 1, OrdersId=298423},
+                new OrderLines {ProductsId=100001, Quantity = 1, OrdersId=298423}
+            }; orderlines.ForEach(c => context.OrderLines.Add(c));*/
+
+          
         }
+
+
+
 
     }
 }
+
