@@ -81,19 +81,22 @@
                                
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
+                                        
                                         @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control input-lg", type = "password", id = "password", placeholder = "Passord", tabindex = "9" } })
                                         @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
                                     </div>
+                                    <h5>Passord: minst 8 tegn</h5>
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
-                                        <input type="password" name="password_confirmation" id="verify" class="form-control input-lg" placeholder="Bekreft passord" tabindex="10"><span id="verifynote" class="warn hidden" style="color:red">Passordet er feil!</span>
-                                       @if(ViewBag.confirmation != null)
+                                       
+                                            <input type="password" name="password_confirmation" id="verify" class="form-control input-lg" placeholder="Bekreft passord" tabindex="10"><span id="verifynote" class="warn hidden" style="color:red">Passordet er feil!</span>
+                                            @if(ViewBag.confirmation != null)
                                        {
-                                           <div class="alert alert-danger" role="alert">Ikke korrekt</div> 
+                                                <div class="alert alert-danger" role="alert">Ikke korrekt</div>
                                        }
-                                         
-                                    </div>
+
+</div>
                                 </div>
                             </div>
                         <div class="row">

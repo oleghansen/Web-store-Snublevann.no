@@ -39,15 +39,18 @@ namespace Nettbutikk.Controllers
 
         public ActionResult updateCart(int id, int quantity)
         {
-            Customer cust = (Customer) Session["LoggedInUser"];
-            ShoppingCart cart = cust.shoppingcart;
-            cart.sum -= cart.shoppingCartItems[id].price;
-            cart.shoppingCartItems[id].price = cart.shoppingCartItems[id].product.price * quantity;
-            cart.shoppingCartItems[id].quantity = quantity;
-            
-            cart.sum += cart.shoppingCartItems[id].price;
-            Session["LoggedInUser"] = cust; 
-            return RedirectToAction("viewShoppingCart");
+            if (id != 0 && quantity != 0)
+            {
+                Customer cust = (Customer)Session["LoggedInUser"];
+                ShoppingCart cart = cust.shoppingcart;
+                cart.sum -= cart.shoppingCartItems[id].price;
+                cart.shoppingCartItems[id].price = cart.shoppingCartItems[id].product.price * quantity;
+                cart.shoppingCartItems[id].quantity = quantity;
+
+                cart.sum += cart.shoppingCartItems[id].price;
+                Session["LoggedInUser"] = cust;
+                return RedirectToAction("viewShoppingCart");
+            } return RedirectToAction("viewShoppingCart");
         }
         public ActionResult removeItem(int id)
         {
@@ -72,7 +75,7 @@ namespace Nettbutikk.Controllers
 
         public ActionResult checkout(Order order)
         {
-
+            RedirectToAction("viewShoppingCart");
             if (order.id != 0)
             {
                 return View(showOrder(order));
