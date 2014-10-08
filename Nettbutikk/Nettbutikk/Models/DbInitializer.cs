@@ -386,12 +386,13 @@ namespace Nettbutikk.Models
                 new Postalareas{PostalareasId=0166, Postalarea="Oslo"}
             };
             postalareas.ForEach(c => context.Postalareas.Add(c));
-          /*  var orderlines = new List<OrderLines>
+          /* var orderlines = new List<OrderLines>
             {
                 new OrderLines {ProductsId=100001, Quantity = 1, OrdersId=298423},
-                new OrderLines {ProductsId=100001, Quantity = 1, OrdersId=298423},
-                new OrderLines {ProductsId=100001, Quantity = 1, OrdersId=298423}
+                new OrderLines {ProductsId=100002, Quantity = 3, OrdersId=298423},
+                new OrderLines {ProductsId=100003, Quantity = 1, OrdersId=298423}
             }; orderlines.ForEach(c => context.OrderLines.Add(c));*/
+
 
           
         }
