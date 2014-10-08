@@ -3,16 +3,20 @@
     $('.clickable').click(function (event) {
         event.preventDefault();
         var itemnumber = parseInt($(this).find('#itemnumber').text());
-        var quantity = parseInt($(this).find('#qtyField').val());
+        var quantity = Math.abs(parseInt($(this).find('#qtyField').val()));
         var itemname = $(this).find('#productName').text();
         if (itemname == "")
             itemname = $('#productName').text();
 
         if ($(event.target).is($('.shoppingBtn'))) {
+            
+            var form = $('#__AjaxAntiForgeryForm');
+            var token = $('input[name="__RequestVerificationToken"]', form).val();
             $.ajax({
                 url: addtocart,
                 type: 'POST',
                 data: {
+                    __RequestVerificationToken: token,
                     quantity: quantity,
                     itemnumber: itemnumber
                 },
@@ -51,4 +55,5 @@
     $('#modalLogInBtn').click(function () {
         $('#LoginModal').modal('show');
     });
+
 });

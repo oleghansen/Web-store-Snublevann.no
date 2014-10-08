@@ -20,7 +20,7 @@ namespace Nettbutikk.Controllers
 
         }
         [HttpPost]
-
+        [ValidateAntiForgeryToken]
         public ActionResult addToCart(int quantity, int itemnumber)
         {
             var db = new DBProduct();
@@ -35,23 +35,21 @@ namespace Nettbutikk.Controllers
 
             return RedirectToAction("viewShoppingCart");
         }
-
-
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult updateCart(int id, int quantity)
         {
-            if (id != 0 && quantity != 0)
-            {
-                Customer cust = (Customer)Session["LoggedInUser"];
-                ShoppingCart cart = cust.shoppingcart;
-                cart.sum -= cart.shoppingCartItems[id].price;
-                cart.shoppingCartItems[id].price = cart.shoppingCartItems[id].product.price * quantity;
-                cart.shoppingCartItems[id].quantity = quantity;
+            Customer cust = (Customer)Session["LoggedInUser"];
+            ShoppingCart cart = cust.shoppingcart;
+            cart.sum -= cart.shoppingCartItems[id].price;
+            cart.shoppingCartItems[id].price = cart.shoppingCartItems[id].product.price * Math.Abs(quantity);
+            cart.shoppingCartItems[id].quantity = Math.Abs(quantity);
 
-                cart.sum += cart.shoppingCartItems[id].price;
-                Session["LoggedInUser"] = cust;
-                return RedirectToAction("viewShoppingCart");
-            } return RedirectToAction("viewShoppingCart");
+            cart.sum += cart.shoppingCartItems[id].price;
+            Session["LoggedInUser"] = cust;
+            return RedirectToAction("viewShoppingCart");
         }
+
         public ActionResult removeItem(int id)
         {
             Customer cust = (Customer)Session["LoggedInUser"];
@@ -72,6 +70,7 @@ namespace Nettbutikk.Controllers
             }
             return null;
         }
+
 
         public ActionResult checkout(Order order)
         {

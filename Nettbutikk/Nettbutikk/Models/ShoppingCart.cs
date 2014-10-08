@@ -25,7 +25,8 @@ namespace Nettbutikk.Models
     public class ShoppingCartItem
     {
         public Product product;
-        public int quantity;
+
+        public int quantity {get; set;}
         [DisplayFormat(DataFormatString = "{0:C0}")]
         public int price;
 
