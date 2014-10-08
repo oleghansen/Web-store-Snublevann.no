@@ -226,7 +226,6 @@
     <Compile Include="Models\BillingDocument.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Customer.cs" />
-    <Compile Include="Models\DBCategory.cs" />
     <Compile Include="Models\DbContext.cs" />
     <Compile Include="Models\DbInitializer.cs" />
     <Compile Include="Models\Order.cs" />
