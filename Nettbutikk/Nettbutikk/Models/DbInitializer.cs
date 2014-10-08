@@ -350,16 +350,19 @@ namespace Nettbutikk.Models
                     LongDescription="Fatpreget fyldig akevitt som passer godt til litt fet mat 40% alkohol",
                     Price=450,Volum=70, ProducersId=36, SubCategoriesId=14,CountriesId=1},
                 new Products {
+                    Id = 100044,
                     Name="Moët & Chandon Imperial Brut",
                     Description="Tørr, frisk champagne fra Frankrike. Vol 13%",
                     LongDescription="Frisk og tørr musserende vin som passer til reker",
                     Price=450, Volum=75,ProducersId=37, SubCategoriesId=15,CountriesId=3},
                 new Products {
+                    Id = 100045,
                     Name="Valdobbiane Prosecco",
                     Description="Tørr, frisk prosecco fra Italia. Vol 12,5 %",
                     LongDescription="Deilig prosecco med hint av pære i ettersmaken.",
                     Price=125,Volum=75, ProducersId=38, SubCategoriesId=17,CountriesId=9},
                 new Products {
+                    Id = 100046,
                     Name="Marques Monistrol Cava Brut",
                     Description="Tørr frisk Cava fra Spania. Vol 13 %",
                     LongDescription="Tørr of frisk cava fra spania. Passer godt som apertif og til fiskesuppe.",
@@ -380,18 +383,17 @@ namespace Nettbutikk.Models
                 new Orders {Id=298423, OrderDate=DateTime.Now, CustomersId=0}
             };
             orders.ForEach(c => context.Orders.Add(c));
-
             var postalareas = new List<Postalareas> 
             {
                 new Postalareas{PostalareasId=0166, Postalarea="Oslo"}
             };
             postalareas.ForEach(c => context.Postalareas.Add(c));
-          /* var orderlines = new List<OrderLines>
+           var orderlines = new List<OrderLines>
             {
-                new OrderLines {ProductsId=100001, Quantity = 1, OrdersId=298423},
-                new OrderLines {ProductsId=100002, Quantity = 3, OrdersId=298423},
-                new OrderLines {ProductsId=100003, Quantity = 1, OrdersId=298423}
-            }; orderlines.ForEach(c => context.OrderLines.Add(c));*/
+                new OrderLines {ProductsId=100044, Quantity = 1, OrdersId=298423},
+                new OrderLines {ProductsId=100045, Quantity = 3, OrdersId=298423},
+                new OrderLines {ProductsId=100046, Quantity = 1, OrdersId=298423}
+            }; orderlines.ForEach(c => context.OrderLines.Add(c));
 
 
           
