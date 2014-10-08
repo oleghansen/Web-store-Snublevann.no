@@ -367,7 +367,7 @@ namespace Nettbutikk.Models
                 
             };
             products.ForEach(c => context.Products.Add(c));
-/*
+
             var customers = new List<Customers>
             {
                 new Customers {Firstname = "Test", Lastname="Test",Email="test@test.com",Phonenumber="12345678",Address="Testveien 34", PostalareasId=0166, Password= System.Security.Cryptography.SHA256.Create().ComputeHash(System.Text.Encoding.ASCII.GetBytes("test1234")) }
@@ -386,7 +386,7 @@ namespace Nettbutikk.Models
                 new Postalareas{PostalareasId=0166, Postalarea="Oslo"}
             };
             postalareas.ForEach(c => context.Postalareas.Add(c));
-            var orderlines = new List<OrderLines>
+          /*  var orderlines = new List<OrderLines>
             {
                 new OrderLines {ProductsId=100001, Quantity = 1, OrdersId=298423},
                 new OrderLines {ProductsId=100001, Quantity = 1, OrdersId=298423},
