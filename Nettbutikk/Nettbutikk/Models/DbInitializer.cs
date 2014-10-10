@@ -373,7 +373,7 @@ namespace Nettbutikk.Models
 
             var customers = new List<Customers>
             {
-                new Customers {Firstname = "Test", Lastname="Test",Email="test@test.com",Phonenumber="12345678",Address="Testveien 34", PostalareasId=0166, Password= System.Security.Cryptography.SHA256.Create().ComputeHash(System.Text.Encoding.ASCII.GetBytes("test1234")) }
+                new Customers {Firstname = "Per", Lastname="Hansen",Email="Per@Hansen.com",Phonenumber="91827364",Address="Pilestredet 35", PostalareasId=0170, Password= System.Security.Cryptography.SHA256.Create().ComputeHash(System.Text.Encoding.ASCII.GetBytes("mappeinnlevering1")) }
                
             };
             customers.ForEach(c => context.Customers.Add(c));
@@ -385,7 +385,7 @@ namespace Nettbutikk.Models
             orders.ForEach(c => context.Orders.Add(c));
             var postalareas = new List<Postalareas> 
             {
-                new Postalareas{PostalareasId=0166, Postalarea="Oslo"}
+                new Postalareas{PostalareasId=0170, Postalarea="Oslo"}
             };
             postalareas.ForEach(c => context.Postalareas.Add(c));
            var orderlines = new List<OrderLines>
