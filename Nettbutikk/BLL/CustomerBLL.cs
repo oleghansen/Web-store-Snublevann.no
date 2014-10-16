@@ -8,7 +8,7 @@ using Nettbutikk.Model;
 
 namespace Nettbutikk.BLL
 {
-    public class CustomerBLL
+    public class CustomerBLL : BLL.ICustomerBLL
     {
         private ICustomerDAL _customer;
 

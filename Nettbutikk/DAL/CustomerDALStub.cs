@@ -11,7 +11,7 @@ namespace Nettbutikk.DAL
     {
         public List<Customer> getAll()
         {
-            return null;
+            return new List<Customer>();
         }
         public bool add(Customer inCustomer, byte[] hashedPassword)
         {
