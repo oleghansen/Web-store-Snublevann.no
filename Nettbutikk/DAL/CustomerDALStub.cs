@@ -9,6 +9,10 @@ namespace Nettbutikk.DAL
 {
     public class CustomerDALStub : DAL.ICustomerDAL
     {
+        public List<Customer> getAll()
+        {
+            return null;
+        }
         public bool add(Customer inCustomer, byte[] hashedPassword)
         {
             return true;

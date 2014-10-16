@@ -9,11 +9,12 @@ namespace Nettbutikk.DAL
 {
     public class OrderDALStub : DAL.IOrderDAL       
     {
+        /*
         public int checkout(ShoppingCart cart)
         {
             return 0;
         }
-
+        */
         public List<Order> getOrders(int id)
         {
             return null;

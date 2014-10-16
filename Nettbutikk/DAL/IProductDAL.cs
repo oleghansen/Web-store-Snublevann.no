@@ -1,7 +1,7 @@
 ﻿using System;
 namespace Nettbutikk.DAL
 {
-    interface IProductDAL
+    public interface IProductDAL
     {
         Nettbutikk.Model.Product get(int id);
         System.Collections.Generic.List<Nettbutikk.Model.Product> getAll(int? id, int? sort);

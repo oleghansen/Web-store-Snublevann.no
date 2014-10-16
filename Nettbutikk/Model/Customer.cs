@@ -44,8 +44,8 @@ namespace Nettbutikk.Model
         public String password { get; set; }
         public byte[] hashpassword { get; set; }
 
-        public ShoppingCart shoppingcart;
-        public List<Orders> Orders { get; set; }
+        //public ShoppingCart shoppingcart;
+        //spublic List<Orders> Orders { get; set; }
 
     }
 }

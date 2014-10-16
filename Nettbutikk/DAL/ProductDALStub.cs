@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Nettbutikk.DAL
 {
-    public class ProductDAL : DAL.IProductDAL
+    public class ProductDALStub : DAL.IProductDAL
     {
         public List<Product> getAll(int? id, String sc, int? sort)
         {
