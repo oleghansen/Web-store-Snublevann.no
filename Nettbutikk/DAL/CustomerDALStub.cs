@@ -11,7 +11,22 @@ namespace Nettbutikk.DAL
     {
         public List<Customer> getAll()
         {
-            return new List<Customer>();
+            var cust = new Customer()
+            {
+                id = 1,
+                firstname = "Gunnar",
+                lastname = "Hansen",
+                address = "Golia",
+                email = "klin@kokkos.no",
+                postalarea = "Gollie",
+                postalcode = "1232",
+                phonenumber = "94499449",
+                password = "tullball123"
+
+            };
+            List<Customer> custList = new List<Customer>();
+            custList.Add(cust);
+            return custList;
         }
         public bool add(Customer inCustomer, byte[] hashedPassword)
         {
