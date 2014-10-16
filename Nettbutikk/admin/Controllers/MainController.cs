@@ -4,14 +4,20 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace admin.Controllers
+namespace Nettbutikk.admin.Controllers
 {
     public class MainController : Controller
     {
         // GET: Main
-        public ActionResult Index()
+        public ActionResult Main()
         {
             return View();
         }
+
+        public ActionResult LogIn()
+        {
+            return View();
+        }
+
     }
 }
