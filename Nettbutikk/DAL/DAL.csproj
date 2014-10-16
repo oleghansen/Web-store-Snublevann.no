@@ -47,9 +47,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomerDAL.cs" />
+    <Compile Include="CustomerDALStub.cs" />
     <Compile Include="DbContext.cs" />
+    <Compile Include="ICustomerDAL.cs" />
+    <Compile Include="IOrderDAL.cs" />
+    <Compile Include="IProductDAL.cs" />
     <Compile Include="OrderDAL.cs" />
+    <Compile Include="OrderDALStub.cs" />
     <Compile Include="ProductDAL.cs" />
+    <Compile Include="ProductDALStub.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

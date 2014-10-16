@@ -1,14 +1,13 @@
 ﻿using Nettbutikk.Model;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Web;
-using System.Data.Entity;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Nettbutikk.DAL
 {
-    public class OrderDAL : DAL.IOrderDAL
+    public class OrderDALStub : DAL.IOrderDAL       
     {
         public int checkout(ShoppingCart cart)
         {

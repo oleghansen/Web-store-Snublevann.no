@@ -1,17 +1,17 @@
 ﻿using Nettbutikk.Model;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Nettbutikk.DAL
 {
-    public class CustomerDAL : DAL.ICustomerDAL
+    public class CustomerDALStub : DAL.ICustomerDAL
     {
         public bool add(Customer inCustomer, byte[] hashedPassword)
         {
-                return true;
+            return true;
         }
 
         public Customer findCustomer(String email)
@@ -21,12 +21,12 @@ namespace Nettbutikk.DAL
 
         public bool validate(String email, byte[] hashedPassword)
         {
-                return false;
+            return false;
         }
 
         public bool update(int id, Customer updateUser)
         {
-                return false;
+            return false;
         }
 
         public bool updatePw(int id, byte[] newPassword)
@@ -37,9 +37,8 @@ namespace Nettbutikk.DAL
 
         public bool checkEmail(string email, int? id)
         {
-     
-         return false;
+
+            return false;
         }
     }
 }
-
