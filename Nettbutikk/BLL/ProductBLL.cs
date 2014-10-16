@@ -1,0 +1,31 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Nettbutikk.DAL;
+using Nettbutikk.Model;
+
+namespace Nettbutikk.BLL
+{
+    public class ProductBLL : BLL.IProductBLL
+    {
+        private IProductDAL _product;
+        public ProductBLL()
+        {
+            _product = new ProductDAL(); 
+        }
+        public ProductBLL(IProductDAL stub)
+        {
+            _product = stub;
+        }
+
+        public List<Product> getAll()
+        {
+            return _product.getAll(); 
+        }
+
+
+
+    }
+}
