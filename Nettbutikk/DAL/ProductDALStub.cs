@@ -18,6 +18,10 @@ namespace Nettbutikk.DAL
         {
             return null;
         }
+        public List<Product> getAll()
+        {
+            return new List<Product>(); 
+        }
         public Product get(int id)
         {
             return null;

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Nettbutikk.BLL;
+using Nettbutikk.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +10,17 @@ namespace admin.Controllers
 {
     public class ProductController : Controller
     {
+        private IProductBLL _product;
+
+        public ProductController()
+        {
+            _product = new ProductBLL(); 
+        }
+        public ProductController(IProductBLL stub)
+        {
+            _product = stub; 
+        }
+
         // GET: Product
         public ActionResult Index()
         {
@@ -16,7 +29,8 @@ namespace admin.Controllers
 
         public ActionResult ListProducts()
         {
-            return View();
+            List<Product> allProducts = _product.getAll();
+            return View(allProducts);
         }
     }
 }
