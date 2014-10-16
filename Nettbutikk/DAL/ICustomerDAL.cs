@@ -1,5 +1,6 @@
 ﻿using Nettbutikk.Model;
 using System;
+
 namespace Nettbutikk.DAL
 {
     interface ICustomerDAL
