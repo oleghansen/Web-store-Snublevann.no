@@ -30,5 +30,10 @@ namespace Nettbutikk.DAL
             return null;
         }
 
+        public List<Order> getAll()
+        {
+            return new List<Order>();
+        }
+
     }
 }
