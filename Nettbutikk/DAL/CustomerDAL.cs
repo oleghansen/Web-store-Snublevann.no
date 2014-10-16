@@ -11,8 +11,11 @@ namespace Nettbutikk.DAL
     {
         public List<Customer> getAll()
         {
+            var db = new DatabaseContext();
+            List<Customer> allCustomers = new List<Customer>();
+            var customers = db.Customers.ToList();
 
-            return new List<Customer>(); 
+            }
         }
         public bool add(Customer inCustomer, byte[] hashedPassword)
         {
