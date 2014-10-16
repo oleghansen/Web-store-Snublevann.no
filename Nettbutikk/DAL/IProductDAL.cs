@@ -1,13 +1,11 @@
-﻿using Nettbutikk.Model;
-using System;
-using System.Collections.Generic;
+﻿using System;
 namespace Nettbutikk.DAL
 {
     public interface IProductDAL
     {
-        Product get(int id);
-        List<Product> getAll(int? id, int? sort);
-        List<Product> getAll(int? id, string sc, int? sort);
-        List<string> getAutoComplete(string term);
+        Nettbutikk.Model.Product get(int id);
+        System.Collections.Generic.List<Nettbutikk.Model.Product> getAll(int? id, int? sort);
+        System.Collections.Generic.List<Nettbutikk.Model.Product> getAll(int? id, string sc, int? sort);
+        System.Collections.Generic.List<string> getAutoComplete(string term);
     }
 }
