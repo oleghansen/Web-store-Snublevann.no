@@ -7,7 +7,7 @@
     <ProjectGuid>{3D2A34F6-BE21-41E1-A9D9-E07208CFAF22}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BLL</RootNamespace>
+    <RootNamespace>Nettbutikk</RootNamespace>
     <AssemblyName>BLL</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -41,7 +41,6 @@
   <ItemGroup>
     <Compile Include="CustomerBLL.cs" />
     <Compile Include="ICustomerBLL.cs" />
-    <Compile Include="IProductBLL.cs" />
     <Compile Include="ProductBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

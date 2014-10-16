@@ -6,7 +6,7 @@
     <ProjectGuid>{67DEACCF-59D4-4F0F-9733-87F7072088F7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>admin.Tests</RootNamespace>
+    <RootNamespace>Nettbutikk.Tests</RootNamespace>
     <AssemblyName>admin.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -77,7 +77,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomerBLLTest.cs" />
-    <Compile Include="ProductControllerTest.cs" />
+    <Compile Include="OrderTestController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace admin.Controllers
+namespace Nettbutikk.Controllers
 {
     public class MainController : Controller
     {
