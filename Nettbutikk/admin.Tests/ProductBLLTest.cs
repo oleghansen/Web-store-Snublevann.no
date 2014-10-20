@@ -39,13 +39,17 @@ namespace Nettbutikk.Tests
         [TestMethod]
         public void Contains_Products()
         {
+            TestControllerBuilder builder = new TestControllerBuilder();
+
             var allProd = new ProductController(new ProductBLL(new ProductDALStub()));
+            builder.InitializeController(allProd);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
             List<Product> expected = new List<Product>();
             var prod = new Product()
             {
                 itemnumber = 1,
-                description = "Tullball",
-                name = "Tull"
+                description = "Tull",
+                name = "Ball"
             };
 
             expected.Add(prod);
@@ -62,7 +66,11 @@ namespace Nettbutikk.Tests
         [TestMethod]
         public void Find_Product_By_Id()
         {
+            TestControllerBuilder builder = new TestControllerBuilder();
+
             var bll = new ProductController(new ProductBLL(new ProductDALStub()));
+            builder.InitializeController(bll);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
             var expected = new Product()
             {
                 itemnumber = 1,
