@@ -36,7 +36,7 @@ namespace Nettbutikk.admin.Controllers
         public ActionResult Details(int id)
         {
             Order orderDetails = _orderbll.getOne(id);
-            return View();
+            return View(orderDetails);
         }
     }
 }

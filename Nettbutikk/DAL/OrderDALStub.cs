@@ -22,8 +22,14 @@ namespace Nettbutikk.DAL
         }
 
         public Order findOrder(int id)
-        {
-            return null;
+       { 
+            var order = new Order()
+            {
+                id = 1,
+                customerid = 1001,
+                orderdate = DateTime.Now,
+            };
+            return order;
         }
 
         public bool checkOrder(int? id)
