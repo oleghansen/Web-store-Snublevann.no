@@ -58,5 +58,28 @@ namespace Nettbutikk.Tests
             Assert.IsTrue(result.Count > 0);
 
         }
+        
+        [TestMethod]
+        public void Find_Product_By_Id()
+        {
+            var bll = new ProductController(new ProductBLL(new ProductDALStub()));
+            var expected = new Product()
+            {
+                itemnumber = 1,
+                name = "Tull",
+                description = "Ball"
+            };
+
+            var action = (ViewResult)bll.ProductDetails(1);
+            var result = (Product)action.Model;
+
+
+            Assert.AreEqual(action.ViewName, "");
+            Assert.AreEqual(expected.itemnumber, result.itemnumber);
+            Assert.AreEqual(expected.name, result.name);
+            Assert.AreEqual(expected.description, result.description);
+
+        }
+        
     }
 }

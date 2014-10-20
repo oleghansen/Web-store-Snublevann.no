@@ -28,6 +28,17 @@ namespace Nettbutikk.DAL
             return null;
         }
 
+        public Product findProduct(int id)
+        {
+            var product = new Product()
+            {
+                itemnumber = 1,
+                name = "Tull",
+                description = "Ball"
+            };
+            return product;
+        }
+
         public List<string> getAutoComplete(string term)
         {
             return null;

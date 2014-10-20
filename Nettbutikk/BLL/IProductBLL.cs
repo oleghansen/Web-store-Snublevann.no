@@ -1,8 +1,12 @@
-﻿using System;
+﻿using Nettbutikk.Model;
+using System;
+using System.Collections.Generic;
 namespace Nettbutikk.BLL
 {
     public interface IProductBLL
     {
-        System.Collections.Generic.List<Nettbutikk.Model.Product> getAll();
+        List<Product> getAll();
+
+        Product seeDetails(int i);
     }
 }
