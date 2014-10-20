@@ -24,17 +24,23 @@ namespace Nettbutikk.admin.Controllers
 
         public ActionResult ListOrders()
         {
+            if (!isAdmin())
+                return RedirectToAction("Main", "Main"); 
             List<Order> allOrders = _orderbll.getAll();
             return View(allOrders);
         }
         // GET: OrderTest
         public ActionResult Index()
         {
+            if (!isAdmin())
+                return RedirectToAction("Main", "Main"); 
             return View();
         }
 
         public ActionResult Details(int id)
         {
+            if (!isAdmin())
+                return RedirectToAction("Main", "Main"); 
             Order orderDetails = _orderbll.getOne(id);
             return View(orderDetails);
         }

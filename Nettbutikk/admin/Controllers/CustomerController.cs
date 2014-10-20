@@ -25,12 +25,17 @@ namespace Nettbutikk.admin.Controllers
 
         public ActionResult ListCustomers()
         {
+            if (!isAdmin())
+                return RedirectToAction("Main", "Main"); 
+
             List<Customer> allCustomers = _customerbll.getAll();
             return View(allCustomers);
         }
         // GET: Customer
         public ActionResult Index()
         {
+            if (!isAdmin())
+                return RedirectToAction("Main", "Main"); 
             return View();
         }
         private bool isAdmin(){
