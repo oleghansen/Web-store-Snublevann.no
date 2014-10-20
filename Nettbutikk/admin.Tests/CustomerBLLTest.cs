@@ -77,14 +77,16 @@ namespace Nettbutikk.Tests
         {
             //Arrange
             var bll = new CustomerBLL();
-            var hp = System.Security.Cryptography.SHA256.Create().ComputeHash(System.Text.Encoding.ASCII.GetBytes("yo"));
-            string p = "yo";
+            var hp = System.Security.Cryptography.SHA256.Create().ComputeHash(System.Text.Encoding.ASCII.GetBytes("admin"));
+            string p = "admin";
 
             //Act
             var result = bll.makeHash(p);
 
+            if(System.Linq.Enumerable.)
+
             //Assert
-            Assert.AreSame(hp, result);
+            Assert.IsTrue(hp.Equals(result));
             
 
         }

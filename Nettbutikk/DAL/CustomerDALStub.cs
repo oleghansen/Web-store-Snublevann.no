@@ -40,27 +40,28 @@ namespace Nettbutikk.DAL
 
         public Customer findUser(String email)
         {
-            Customer c = new Customer();
-            c.id = 1;
-            c.email = "hei";
-            c.password = "yo";
-            return c;
-
+            var db = new DatabaseContext();
+            Customers userFound = db.Customers.FirstOrDefault(u => u.Email == email);
+             Customer c = new Customer();
+                c.id = userFound.Id;
+                c.email = userFound.Email;
+                c.hashpassword = userFound.Password;
+                return c;
         }
 
         public bool validate(String email, byte[] hashedPassword)
         {
-            Customer c = new Customer();
-            c.email = "Hei";
-            c.hashpassword = System.Security.Cryptography.SHA256.Create().ComputeHash(System.Text.Encoding.ASCII.GetBytes("yo"));
+            var db = new DatabaseContext();
+            Customers userFound = db.Customers.FirstOrDefault(u => u.Email == email);
 
-            if (c.email.Equals(email) && c.hashpassword.Equals(hashedPassword))
+            if (userFound.Admin == true)
             {
-                return true;
+                if (email.Equals(userFound.Email) && hashedPassword.Equals(userFound.Password))
+                {
+                    return true;
+                }
             }
-
-            return false;
-                
+            return false;        
         }
 
         public bool update(int id, Customer updateUser)

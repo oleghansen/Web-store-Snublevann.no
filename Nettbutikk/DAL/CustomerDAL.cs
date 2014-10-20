@@ -42,13 +42,29 @@ namespace Nettbutikk.DAL
 
         public Customer findUser(String email)
         {
-            return new Customer();
+            var db = new DatabaseContext();
+            Customers userFound = db.Customers.FirstOrDefault(u => u.Email == email);
+            Customer c = new Customer();
+            c.id = userFound.Id;
+            c.email = userFound.Email;
+            c.hashpassword = userFound.Password;
+            return c;
 
         }
 
         public bool validate(String email, byte[] hashedPassword)
         {
-                return false;
+            var db = new DatabaseContext();
+            Customers userFound = db.Customers.FirstOrDefault(u => u.Email == email);
+
+            if (userFound.Admin == true)
+            {
+                if (email.Equals(userFound.Email) && hashedPassword.Equals(userFound.Password))
+                {
+                    return true;
+                }
+            }
+            return false;   
         }
 
         public bool update(int id, Customer updateUser)
