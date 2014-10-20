@@ -88,6 +88,14 @@ namespace Nettbutikk.Tests
             Assert.AreEqual(expected.description, result.description);
 
         }
+
+        /*
+        [TestMethod]
+        public void Add_New_Product_To_Database()
+        {
+
+        }
+         * */
         
     }
 }
