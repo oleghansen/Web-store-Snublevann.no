@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Nettbutikk.Model;
+using Nettbutikk.admin.Models;
 using Nettbutikk.admin.Controllers;
 using Nettbutikk.BLL;
 using System.Web.Mvc;
@@ -23,8 +24,8 @@ namespace Nettbutikk.Tests
             builder.InitializeController(bll);
             builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true }; 
 
-            List<Customer> expected = new List<Customer>();
-            var cust = new Customer()
+            List<UserInfo> expected = new List<UserInfo>();
+            var cust = new UserInfo()
             {
                 id = 1,
                 firstname = "Gunnar",
@@ -42,7 +43,7 @@ namespace Nettbutikk.Tests
 
             // Act
             var actrow = (ViewResult)bll.ListCustomers();
-            var result = (List<Customer>)actrow.Model;
+            var result = (List<UserInfo>)actrow.Model;
 
                      
             // Assert
@@ -146,7 +147,7 @@ namespace Nettbutikk.Tests
             builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
             // act
             var actual = (ViewResult)bll.ListCustomers();
-            var result = (List<Customer>)actual.Model;
+            var result = (List<UserInfo>)actual.Model;
 
             //Assert
             Assert.IsTrue(result.Count > 0);
