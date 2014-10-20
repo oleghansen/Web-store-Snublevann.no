@@ -46,7 +46,8 @@ namespace Nettbutikk.admin.Tests
             //Arrange
             var bll = new OrderController(new OrderBLL(new OrderDALStub()));
             List<Order> expected = new List<Order>();
-            var o = new Order(){
+            var o = new Order()
+            {
                 id = 1,
                 customerid = 1001
             };
@@ -61,5 +62,28 @@ namespace Nettbutikk.admin.Tests
             // Assert
             Assert.AreEqual(expected.Count, result.Count);
         }
+
+        /*
+        [TestMethod]
+        public void Find_Order_By_Id()
+        {
+            // Arrange
+            var bll = new OrderController(new OrderBLL(new OrderDALStub()));
+            var expected = new Order()
+            {
+                id = 1,
+                customerid = 1001
+            };
+
+            // Act
+            var actionResult = (ViewResult)bll.Details(1);
+            var result = (Order)actionResult.Model;
+
+            // Assert
+            Assert.AreEqual(actionResult.ViewName, "");
+            Assert.AreEqual(expected.id, result.id);
+            Assert.AreEqual(expected.customerid, result.customerid);
+        }
+         */
     }
 }

@@ -6,5 +6,7 @@ namespace Nettbutikk.BLL
     public interface IOrderBLL
     {
         List<Order> getAll();
+
+        Order getOne(int id);
     }
 }

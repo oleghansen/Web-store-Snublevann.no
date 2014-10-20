@@ -26,6 +26,11 @@ namespace Nettbutikk.BLL
         {
             List<Order> allOrders = _order.getAll();
             return allOrders;
-        }    
+        }
+
+        public Order getOne(int id)
+        {
+            return _order.findOrder(id);
+        }
     }
 }
