@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MvcContrib.TestHelper;
 using Nettbutikk.admin.Controllers;
 using Nettbutikk.BLL;
 using Nettbutikk.DAL;
@@ -19,7 +20,10 @@ namespace Nettbutikk.admin.Tests
         public void Order_List_Is_Not_Null()
         {
             // Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
             var bll = new OrderController(new OrderBLL(new OrderDALStub()));
+            builder.InitializeController(bll);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
             List<Order> expected = new List<Order>();
             var o = new Order()
             {
@@ -42,9 +46,11 @@ namespace Nettbutikk.admin.Tests
         [TestMethod]
         public void Order_List_Contains_Orders()
         {
-
+            TestControllerBuilder builder = new TestControllerBuilder();
             //Arrange
             var bll = new OrderController(new OrderBLL(new OrderDALStub()));
+            builder.InitializeController(bll);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
             List<Order> expected = new List<Order>();
             var o = new Order()
             {
@@ -68,7 +74,10 @@ namespace Nettbutikk.admin.Tests
         public void Find_Order_By_Id()
         {
             // Arrange
+            TestControllerBuilder builder = new TestControllerBuilder(); 
             var bll = new OrderController(new OrderBLL(new OrderDALStub()));
+            builder.InitializeController(bll);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true }; 
             var expected = new Order()
             {
                 id = 1,
