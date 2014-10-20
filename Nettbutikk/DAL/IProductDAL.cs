@@ -10,5 +10,6 @@ namespace Nettbutikk.DAL
         List<Product> getAll(int? id, int? sort);
         List<Product> getAll(int? id, string sc, int? sort);
         List<string> getAutoComplete(string term);
+        Product findProduct(int id);
     }
 }

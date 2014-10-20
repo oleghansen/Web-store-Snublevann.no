@@ -26,6 +26,11 @@ namespace Nettbutikk.BLL
             return allProducts;
         }
 
+        public Product seeDetails(int id)
+        {
+            return _product.findProduct(id);
+        }
+
 
 
     }

@@ -42,5 +42,15 @@ namespace Nettbutikk.admin.Controllers
             var user = (Customer)Session["loggedInUser"];
             return user.admin;
         }
+
+        public ActionResult ProductDetails(int id)
+        {
+            if (!isAdmin())
+            {
+                return RedirectToAction("Main", "Main");
+            }
+            Product productDetails = _product.seeDetails(id);
+            return View(productDetails); 
+        }
     }
 }
