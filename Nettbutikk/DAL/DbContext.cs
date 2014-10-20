@@ -19,7 +19,7 @@ namespace Nettbutikk.DAL
         public DatabaseContext()
             : base("name=Nettbutikk")
         {
-
+           // Database.SetInitializer<DatabaseContext>(new CreateDatabaseIfNotExists<DatabaseContext>());
         }
 
         // Add a DbSet for each entity type that you want to include in your model. For more information 
@@ -110,6 +110,7 @@ namespace Nettbutikk.DAL
         public Postalareas Postalareas { get; set; }
         public byte[] Password { get; set; }
         public virtual List<Orders> Orders { get; set; }
+        public bool Admin { get; set; }
     }
 
     public class Postalareas

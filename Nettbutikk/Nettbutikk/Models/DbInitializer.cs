@@ -373,14 +373,14 @@ namespace Nettbutikk.Models
 
             var customers = new List<Customers>
             {
-                new Customers {Firstname = "Per", Lastname="Hansen",Email="Per@Hansen.com",Phonenumber="91827364",Address="Pilestredet 35", PostalareasId=0170, Password= System.Security.Cryptography.SHA256.Create().ComputeHash(System.Text.Encoding.ASCII.GetBytes("mappeinnlevering1")) }
-               
+                new Customers {Id=1,Firstname = "Per", Lastname="Hansen",Email="Per@Hansen.com",Phonenumber="91827364",Address="Pilestredet 35", PostalareasId=0170, Password= System.Security.Cryptography.SHA256.Create().ComputeHash(System.Text.Encoding.ASCII.GetBytes("mappeinnlevering1"))},
+                new Customers {Id=2,Firstname = "Admin", Lastname="Istrator",Email="admin@istrat.or",Phonenumber="13371337",Address="Systemveien 20",PostalareasId=0170, Password = System.Security.Cryptography.SHA256.Create().ComputeHash(System.Text.Encoding.ASCII.GetBytes("admin")),Admin=true}
             };
             customers.ForEach(c => context.Customers.Add(c));
 
             var orders = new List<Orders>
             {
-                new Orders {Id=298423, OrderDate=DateTime.Now, CustomersId=0}
+                new Orders {Id=298423, OrderDate=DateTime.Now, CustomersId=1}
             };
             orders.ForEach(c => context.Orders.Add(c));
             var postalareas = new List<Postalareas> 

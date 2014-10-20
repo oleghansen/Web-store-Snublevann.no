@@ -11,8 +11,24 @@ namespace Nettbutikk.DAL
     {
         public List<Customer> getAll()
         {
-
-            return new List<Customer>(); 
+            var db = new DatabaseContext();
+            var customers = db.Customers.ToList();
+            var list = new List<Customer>();
+            foreach(var item in customers){
+                list.Add(new Customer()
+                {
+                    firstname = item.Firstname,
+                    lastname = item.Lastname,
+                    address = item.Address,
+                    email = item.Email,
+                    postalcode = item.PostalareasId.ToString(), 
+                    postalarea = db.Postalareas.Find(item.PostalareasId).Postalarea,
+                    phonenumber = item.Phonenumber
+                    
+                });
+            }
+            return list; 
+             
         }
         public bool add(Customer inCustomer, byte[] hashedPassword)
         {
