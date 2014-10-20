@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Nettbutikk.Model
+namespace Nettbutikk.admin.Models
 {
     public class Product
     {
