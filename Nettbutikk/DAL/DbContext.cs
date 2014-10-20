@@ -110,6 +110,7 @@ namespace Nettbutikk.DAL
         public Postalareas Postalareas { get; set; }
         public byte[] Password { get; set; }
         public virtual List<Orders> Orders { get; set; }
+        public bool Admin { get; set; }
     }
 
     public class Postalareas
