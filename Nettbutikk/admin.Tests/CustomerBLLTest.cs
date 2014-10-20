@@ -6,6 +6,8 @@ using Nettbutikk.BLL;
 using System.Web.Mvc;
 using Nettbutikk.DAL;
 using System.Collections.Generic;
+using MvcContrib.TestHelper;
+using System.Web;
 
 namespace Nettbutikk.Tests
 {
@@ -16,7 +18,11 @@ namespace Nettbutikk.Tests
         public void List_All_Customers()
         {
             // Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
             var bll = new CustomerController(new CustomerBLL(new CustomerDALStub()));
+            builder.InitializeController(bll);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true }; 
+
             List<Customer> expected = new List<Customer>();
             var cust = new Customer()
             {
@@ -114,10 +120,11 @@ namespace Nettbutikk.Tests
         [TestMethod]
         public void test_database()
         {
-
+            TestControllerBuilder builder = new TestControllerBuilder(); 
             //arrange
             var bll = new CustomerController();
-
+            builder.InitializeController(bll);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
             // act
             var actual = (ViewResult)bll.ListCustomers();
             var result = (List<Customer>)actual.Model;

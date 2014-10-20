@@ -6,6 +6,7 @@ using Nettbutikk.BLL;
 using System.Web.Mvc;
 using Nettbutikk.DAL;
 using System.Collections.Generic;
+using MvcContrib.TestHelper;
 
 namespace Nettbutikk.Tests
 {
@@ -15,7 +16,10 @@ namespace Nettbutikk.Tests
         [TestMethod]
         public void List_All_Products_Not_Null()
         {
+            TestControllerBuilder builder = new TestControllerBuilder();
             var allProd = new ProductController(new ProductBLL(new ProductDALStub()));
+            builder.InitializeController(allProd);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
             List<Product> expected = new List<Product>();
             var prod = new Product()
             {

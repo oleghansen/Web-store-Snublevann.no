@@ -39,8 +39,6 @@ namespace Nettbutikk.admin.Controllers
             return View();
         }
         private bool isAdmin(){
-            //TODO fikse slik at man kan unit teste session
-            return true; 
             if (Session == null)
                 return false;
             var user = (Customer) Session["loggedInUser"];
