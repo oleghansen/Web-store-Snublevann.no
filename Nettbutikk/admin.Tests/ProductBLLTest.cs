@@ -35,5 +35,28 @@ namespace Nettbutikk.Tests
 
             Assert.IsNotNull(result);
         }
+
+        [TestMethod]
+        public void Contains_Products()
+        {
+            var allProd = new ProductController(new ProductBLL(new ProductDALStub()));
+            List<Product> expected = new List<Product>();
+            var prod = new Product()
+            {
+                itemnumber = 1,
+                description = "Tullball",
+                name = "Tull"
+            };
+
+            expected.Add(prod);
+            expected.Add(prod);
+            expected.Add(prod);
+
+            var action = (ViewResult)allProd.ListProducts();
+            var result = (List<Product>)action.Model;
+
+            Assert.IsTrue(result.Count > 0);
+
+        }
     }
 }

@@ -33,16 +33,15 @@ namespace Nettbutikk.admin.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult logIn(String email, String password)
         {
             if (ModelState.IsValid)
             {
-                var admin = _customerbll.logIn(email,password);
+                var admin = _customerbll.logIn(email, password);
                 Session["loggedInUser"] = admin;
-                return RedirectToAction("Main",admin);
-            }
-            return View();
-
+                return RedirectToAction("Main");
+            } return View();
         }
     }
 }

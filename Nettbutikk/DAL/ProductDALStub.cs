@@ -20,7 +20,15 @@ namespace Nettbutikk.DAL
         }
         public List<Product> getAll()
         {
-            return new List<Product>(); 
+            var prod = new Product()
+            {
+                itemnumber = 1,
+                name = "Tullball",
+                description = "Hei"
+            };
+            List<Product> productlist = new List<Product>();
+            productlist.Add(prod);
+            return productlist;
         }
         public Product get(int id)
         {

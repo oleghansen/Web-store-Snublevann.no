@@ -49,8 +49,8 @@ namespace Nettbutikk.BLL
        public Customer logIn(String email, String password)
         {
 
-            byte[] hadhpassword = makeHash(password);
-            bool ok = validate(email, hadhpassword);
+            byte[] hashpassword = makeHash(password);
+            bool ok = validate(email, hashpassword);
             if (ok)
             {
                 return findUser(email);
