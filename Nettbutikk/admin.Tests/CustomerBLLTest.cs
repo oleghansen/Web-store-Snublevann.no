@@ -35,13 +35,26 @@ namespace Nettbutikk.Tests
             expected.Add(cust);
 
             // Act
-            var actrow = (ViewResult)bll.ListAll();
+            var actrow = (ViewResult)bll.ListCustomers();
             var result = (List<Customer>)actrow.Model;
 
                      
             // Assert
             Assert.IsNotNull(result);
             //Assert.AreEqual(expected.Count, result.Count);
+        }
+
+        [TestMethod]
+        public void test_database()
+        {
+            //arrange
+            var bll = new CustomerController();
+            
+            // act
+            var actual = (ViewResult)bll.ListCustomers();
+            var result = (List<Customer>)actual.Model;
+            Assert.IsTrue(result.Count > 0);
+
         }
     }
 }

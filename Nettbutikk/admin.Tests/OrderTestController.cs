@@ -31,7 +31,7 @@ namespace Nettbutikk.admin.Tests
 
             // Act 
 
-            var actrow = (ViewResult)bll.ListAll();
+            var actrow = (ViewResult)bll.ListOrders();
             var result = (List<Order>)actrow.Model;
 
 
@@ -55,7 +55,7 @@ namespace Nettbutikk.admin.Tests
             expected.Add(o);
             // Act
 
-            var actrow = (ViewResult)bll.ListAll();
+            var actrow = (ViewResult)bll.ListOrders();
             var result = (List<Order>)actrow.Model;
 
 

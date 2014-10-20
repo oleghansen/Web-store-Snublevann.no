@@ -19,7 +19,7 @@ namespace Nettbutikk.DAL
         public DatabaseContext()
             : base("name=Nettbutikk")
         {
-
+           // Database.SetInitializer<DatabaseContext>(new CreateDatabaseIfNotExists<DatabaseContext>());
         }
 
         // Add a DbSet for each entity type that you want to include in your model. For more information 

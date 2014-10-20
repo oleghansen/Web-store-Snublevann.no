@@ -22,7 +22,7 @@ namespace Nettbutikk.admin.Controllers
             _orderbll = stud;
         }
 
-        public ActionResult ListAll()
+        public ActionResult ListOrders()
         {
             List<Order> allOrders = _orderbll.getAll();
             return View(allOrders);
