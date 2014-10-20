@@ -6,9 +6,8 @@ using System.Web;
 
 namespace Nettbutikk.admin.Models
 {
-    public class User
+    public class UserInfo
     {
-       
         public int id { get; set; }
         public String firstname { get; set; }
         public String lastname { get; set; }
