@@ -92,7 +92,7 @@ namespace Nettbutikk.Tests
      
 
 
-        [TestMethod]
+   //     [TestMethod]
   /*     public void validate_login()
         {
             //Arrange
