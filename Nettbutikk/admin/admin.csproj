@@ -90,7 +90,13 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Custom\customNav.css" />
     <Content Include="Content\Custom\MainSheet.css" />
+    <Content Include="Content\img\snublevann_liten_lys.ico" />
+    <Content Include="Content\img\snublevann_liten_lys.png" />
+    <Content Include="Content\img\snublevann_liten_mork.ico" />
+    <Content Include="Content\img\snublevann_liten_mork.png" />
+    <Content Include="Content\img\snuble_admin.png" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

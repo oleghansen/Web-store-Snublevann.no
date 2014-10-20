@@ -4,42 +4,68 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Snublevann.no -Admin</title>
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/Custom/MainSheet.css" rel="stylesheet" />
+    <link href="~/Content/Custom/customNav.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
+    <div class="container">
+        <div class="navbar navbar-inner" role="navigation">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Admin", "Main", "Main", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                </ul>
+            <div class="row">
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12">
+                           <img src="~/Content/img/snuble_admin.png" id="logo" width="500" height="96" style="margin-top: 20px; margin-left: 20px" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12">
+                            <div class="navUl pull-right">
+                                @if (Session["loggedInUser"] == null)
+                                {
+                                    <a href="#LoginModal" id="loginBtn" data-login="true" data-toggle="modal"><i class="glyphicon glyphicon-log-in"> </i> Logg Inn</a>
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("viewShoppingCart", "ShoppingCart")">
+                                        <i class="glyphicon glyphicon-shopping-cart"> </i> Handlekurv
+                                    </a>
+
+                                    <a href="@Url.Action("PersonalSite", "Customer")">
+                                        <i class="glyphicon glyphicon-user"> </i> MinSide
+                                    </a>
+
+                                    <a href="@Url.Action("LogOut", "Customer")">
+                                        <i class="glyphicon glyphicon-log-out"> </i> Logg ut
+                                    </a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-      
+        <div class="container body-content">
+            @RenderBody()
+
+
             <div class="footer">
                 <div class="jumbotron footerjumbo">
                     Copyright &copy; @DateTime.Now.Year Snublevann - All rights reserved.
                 </div>
             </div>
-      
-    </div>
 
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-</body>
+        </div>
+    </body>
 </html>

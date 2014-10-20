@@ -3,15 +3,14 @@
     height: 100%;
 }
 body {
-background: #b58e5f; 
-background: -moz-linear-gradient(left,  #b58e5f 0%, #dfc8ab 15%, #dfc8ab 85%, #b58e5f 100%); 
-background: -webkit-gradient(linear, left top, right top, color-stop(0%,#b58e5f), color-stop(15%,#dfc8ab), color-stop(85%,#dfc8ab), color-stop(100%,#b58e5f)); 
-background: -webkit-linear-gradient(left,  #b58e5f 0%,#dfc8ab 15%,#dfc8ab 85%,#b58e5f 100%); 
-background: -o-linear-gradient(left,  #b58e5f 0%,#dfc8ab 15%,#dfc8ab 85%,#b58e5f 100%);
-background: -ms-linear-gradient(left,  #b58e5f 0%,#dfc8ab 15%,#dfc8ab 85%,#b58e5f 100%);
-background: linear-gradient(to right,  #b58e5f 0%,#dfc8ab 15%,#dfc8ab 85%,#b58e5f 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b58e5f', endColorstr='#b58e5f',GradientType=1 );
-
+background: #cbebff; /* Old browsers */
+background: -moz-linear-gradient(-45deg,  #cbebff 1%, #cbebff 1%, #f0f9ff 20%, #f0f9ff 80%, #cbebff 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right bottom, color-stop(1%,#cbebff), color-stop(1%,#cbebff), color-stop(20%,#f0f9ff), color-stop(80%,#f0f9ff), color-stop(100%,#cbebff)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(-45deg,  #cbebff 1%,#cbebff 1%,#f0f9ff 20%,#f0f9ff 80%,#cbebff 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(-45deg,  #cbebff 1%,#cbebff 1%,#f0f9ff 20%,#f0f9ff 80%,#cbebff 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(-45deg,  #cbebff 1%,#cbebff 1%,#f0f9ff 20%,#f0f9ff 80%,#cbebff 100%); /* IE10+ */
+background: linear-gradient(135deg,  #cbebff 1%,#cbebff 1%,#f0f9ff 20%,#f0f9ff 80%,#cbebff 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cbebff', endColorstr='#cbebff',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
 a
 {
@@ -69,6 +68,7 @@ opacity: 1;
     color: #bbbbbb;
 }
 
+
 .containerMargain
 {
     margin-left: 145px;
@@ -76,8 +76,9 @@ opacity: 1;
 
 .jumbotron
 {
-    margin-bottom:15px;
-    min-height:415px;
+    background-color:#eeeeee;
+ margin-bottom:15px;
+ min-height:415px;
 -webkit-box-shadow: 0px 3px 10px 0px rgba(50, 50, 50, 0.75);
 -moz-box-shadow:    0px 3px 10px 0px rgba(50, 50, 50, 0.75);
 box-shadow:         0px 3px 10px 0px rgba(50, 50, 50, 0.75);
@@ -92,7 +93,7 @@ box-shadow:         0px 3px 10px 0px rgba(50, 50, 50, 0.75);
 
 .panel-default
 {
- background:#fff;
+ background:#ffffff;
  margin-top: 0px;
 -webkit-box-shadow: 0px 1px 2px 0px rgba(50, 50, 50, 0.24);
 -moz-box-shadow:    0px 1px 2px 0px rgba(50, 50, 50, 0.24);
