@@ -12,7 +12,7 @@ namespace Nettbutikk.DAL
     {
         public List<Product> getAll(int? id, String sc, int? sort)
         {
-            return null;
+            return new List<Product>();
         }
 
         public List<Product> getAll(int? id, int? sort)
