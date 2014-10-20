@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Nettbutikk.admin.Models
 {
-    public class Customer
+    public class User
     {
        
         public int id { get; set; }
