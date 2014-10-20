@@ -21,7 +21,7 @@ namespace Nettbutikk.DAL
         }
         public List<Product> getAll()
         {
-            return null;
+            return new List<Product>();
         }
         public Product get(int id)
         {
