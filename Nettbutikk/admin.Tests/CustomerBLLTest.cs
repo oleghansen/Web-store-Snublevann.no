@@ -35,7 +35,7 @@ namespace Nettbutikk.Tests
             expected.Add(cust);
 
             // Act
-            var actrow = (ViewResult)bll.ListAll();
+            var actrow = (ViewResult)bll.ListCustomers();
             var result = (List<Customer>)actrow.Model;
 
                      
@@ -127,6 +127,21 @@ namespace Nettbutikk.Tests
 
         }
 
+        [TestMethod]
+        public void test_database()
+        {
+
+            //arrange
+            var bll = new CustomerController();
+
+            // act
+            var actual = (ViewResult)bll.ListCustomers();
+            var result = (List<Customer>)actual.Model;
+
+            //Assert
+            Assert.IsTrue(result.Count > 0);
+        }
+        
        
 
     }
