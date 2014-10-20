@@ -85,6 +85,7 @@
   <ItemGroup>
     <Compile Include="CustomerBLLTest.cs" />
     <Compile Include="OrderTestController.cs" />
+    <Compile Include="ProductBLLTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
