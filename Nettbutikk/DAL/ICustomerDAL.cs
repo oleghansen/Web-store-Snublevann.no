@@ -14,5 +14,7 @@ namespace Nettbutikk.DAL
         bool update(int id, Customer updateUser);
         bool updatePw(int id, byte[] newPassword);
         bool validate(string email, byte[] hashedPassword);
+
+        Customer findUser(String email);
     }
 }

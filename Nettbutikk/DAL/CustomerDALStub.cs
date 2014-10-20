@@ -38,9 +38,29 @@ namespace Nettbutikk.DAL
             return null;
         }
 
+        public Customer findUser(String email)
+        {
+            Customer c = new Customer();
+            c.id = 1;
+            c.email = "hei";
+            c.password = "yo";
+            return c;
+
+        }
+
         public bool validate(String email, byte[] hashedPassword)
         {
+            Customer c = new Customer();
+            c.email = "Hei";
+            c.hashpassword = System.Security.Cryptography.SHA256.Create().ComputeHash(System.Text.Encoding.ASCII.GetBytes("yo"));
+
+            if (c.email.Equals(email) && c.hashpassword.Equals(hashedPassword))
+            {
+                return true;
+            }
+
             return false;
+                
         }
 
         public bool update(int id, Customer updateUser)
