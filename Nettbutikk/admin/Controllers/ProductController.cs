@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace admin.Controllers
+namespace Nettbutikk.admin.Controllers
 {
     public class ProductController : Controller
     {
@@ -14,11 +14,11 @@ namespace admin.Controllers
 
         public ProductController()
         {
-            _product = new ProductBLL(); 
+            _product = new ProductBLL();
         }
         public ProductController(IProductBLL stub)
         {
-            _product = stub; 
+            _product = stub;
         }
 
         // GET: Product

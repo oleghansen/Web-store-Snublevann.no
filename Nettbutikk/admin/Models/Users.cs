@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace Nettbutikk.Models
+namespace Nettbutikk.admin.Models
 {
-    public class Customer
+    public class User
     {
        
         public int id { get; set; }
