@@ -63,7 +63,7 @@ namespace Nettbutikk.admin.Tests
             Assert.AreEqual(expected.Count, result.Count);
         }
 
-        /*
+        
         [TestMethod]
         public void Find_Order_By_Id()
         {
@@ -72,7 +72,8 @@ namespace Nettbutikk.admin.Tests
             var expected = new Order()
             {
                 id = 1,
-                customerid = 1001
+                customerid = 1001,
+                orderdate = DateTime.Now
             };
 
             // Act
@@ -83,7 +84,7 @@ namespace Nettbutikk.admin.Tests
             Assert.AreEqual(actionResult.ViewName, "");
             Assert.AreEqual(expected.id, result.id);
             Assert.AreEqual(expected.customerid, result.customerid);
+            Assert.AreEqual(expected.orderLine, result.orderLine);
         }
-         */
     }
 }
