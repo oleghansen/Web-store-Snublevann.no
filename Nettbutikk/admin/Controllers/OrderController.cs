@@ -38,5 +38,10 @@ namespace Nettbutikk.admin.Controllers
             Order orderDetails = _orderbll.getOne(id);
             return View(orderDetails);
         }
+        private bool isAdmin()
+        {
+            var user = (Customer)Session["loggedInUser"];
+            return user.admin;
+        }
     }
 }

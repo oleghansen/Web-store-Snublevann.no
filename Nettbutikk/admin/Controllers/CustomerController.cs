@@ -1,5 +1,6 @@
 ﻿using Nettbutikk.BLL;
-using Nettbutikk.Model;
+using Nettbutikk.admin.Models;
+using Nettbutikk.Model; 
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,10 @@ namespace Nettbutikk.admin.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+        private bool isAdmin(){
+            var user = (Customer) Session["loggedInUser"];
+            return user.admin; 
         }
     }
 }

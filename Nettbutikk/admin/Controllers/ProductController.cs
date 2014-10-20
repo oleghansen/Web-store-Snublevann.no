@@ -32,5 +32,10 @@ namespace Nettbutikk.admin.Controllers
             List<Product> allProducts = _product.getAll();
             return View(allProducts);
         }
+        private bool isAdmin()
+        {
+            var user = (Customer)Session["loggedInUser"];
+            return user.admin;
+        }
     }
 }
