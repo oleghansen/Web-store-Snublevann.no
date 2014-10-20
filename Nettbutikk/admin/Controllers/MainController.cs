@@ -35,13 +35,12 @@ namespace Nettbutikk.admin.Controllers
         [HttpPost]
         public ActionResult logIn(String email, String password)
         {
-            if (ModelState.IsValid)
-            {
+            
                 var admin = _customerbll.logIn(email,password);
                 Session["loggedInUser"] = admin;
                 return RedirectToAction("Main",admin);
-            }
-            return View();
+            
+            
 
         }
     }

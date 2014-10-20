@@ -93,7 +93,7 @@ namespace Nettbutikk.Tests
 
 
         [TestMethod]
-  /*     public void validate_login()
+       public void validate_login()
         {
             //Arrange
             var bll = new MainController(new CustomerBLL(new CustomerDALStub()));
@@ -109,7 +109,7 @@ namespace Nettbutikk.Tests
             //Assert
             Assert.IsNotNull(result);
 
-        }*/
+        }
 
         [TestMethod]
         public void test_database()
