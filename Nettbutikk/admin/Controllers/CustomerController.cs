@@ -29,7 +29,28 @@ namespace Nettbutikk.admin.Controllers
                 return RedirectToAction("Main", "Main"); 
 
             List<Customer> allCustomers = _customerbll.getAll();
-            return View(allCustomers);
+            List<UserInfo> list = new List<UserInfo>();
+            foreach(var item in allCustomers)
+            {
+                list.Add(
+                    new UserInfo()
+                    {
+                        id = item.id,
+                        firstname = item.firstname,
+                        lastname = item.lastname,
+                        email = item.email,
+                        address = item.address,
+                        phonenumber = item.phonenumber,
+                        password = item.password,
+                        hashpassword = item.hashpassword,
+                        postalarea = item.postalarea,
+                        postalcode = item.postalcode
+                    });
+                
+
+             
+            }
+            return View(list);
         }
         // GET: Customer
         public ActionResult Index()
