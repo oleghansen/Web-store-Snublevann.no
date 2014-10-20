@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Nettbutikk.BLL;
+using Nettbutikk.Model;
 
 namespace Nettbutikk.admin.Controllers
 {
@@ -12,6 +13,9 @@ namespace Nettbutikk.admin.Controllers
         // GET: Main
         public ActionResult Main()
         {
+            if (!isAdmin())
+                RedirectToAction("logIn");
+
             return View();
         }
 
@@ -42,6 +46,14 @@ namespace Nettbutikk.admin.Controllers
                 Session["loggedInUser"] = admin;
                 return RedirectToAction("Main");
             } return View();
+        }
+
+        private bool isAdmin()
+        {
+            if (Session == null)
+                return false;
+            var user = (Customer)Session["loggedInUser"];
+            return (user == null) ? false : user.admin;
         }
     }
 }

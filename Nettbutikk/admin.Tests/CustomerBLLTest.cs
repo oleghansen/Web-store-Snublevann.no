@@ -117,6 +117,25 @@ namespace Nettbutikk.Tests
 
         }
         */
+
+       
+
+        [TestMethod]
+        public void logged_inn_Main()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            //arrange
+            var bll = new MainController();
+            builder.InitializeController(bll);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+         
+            //Act
+            var result = (ViewResult)bll.Main();
+            //Assert
+            Assert.AreEqual(result.ViewName, "");
+        }
+
         [TestMethod]
         public void test_database()
         {
