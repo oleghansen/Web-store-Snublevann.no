@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Diagnostics;
 
 namespace Nettbutikk.admin.Controllers
 {
@@ -25,6 +26,8 @@ namespace Nettbutikk.admin.Controllers
 
         public ActionResult ListCustomers()
         {
+            Debug.WriteLine("admin?");
+            Debug.WriteLine(isAdmin());
             if (!isAdmin())
                 return RedirectToAction("Main", "Main"); 
 
@@ -61,8 +64,12 @@ namespace Nettbutikk.admin.Controllers
         }
         private bool isAdmin(){
             if (Session == null)
+            {
+                Debug.WriteLine("her?");
                 return false;
+            }
             var user = (Customer) Session["loggedInUser"];
+            Debug.WriteLine(user.admin);
             return (user == null)?false:user.admin; 
         }
     }

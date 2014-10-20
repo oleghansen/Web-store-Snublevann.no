@@ -60,7 +60,7 @@ namespace Nettbutikk.DAL
 
             if (userFound.Admin == true)
             {
-                if (email.Equals(userFound.Email) && hashedPassword.Equals(userFound.Password))
+                if (email.Equals(userFound.Email) && Enumerable.SequenceEqual(hashedPassword,userFound.Password))
                 {
                     return true;
                 }
