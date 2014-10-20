@@ -45,16 +45,104 @@ namespace Nettbutikk.Tests
         }
 
         [TestMethod]
+        public void Hashed_password_Not_Null()
+        {
+            //Arrange
+            var bll = new CustomerBLL();
+            String password = "yo";
+
+            //Act
+            var result = bll.makeHash(password);
+
+            //Assert
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void Hashed_password_Not_empty()
+        {
+            //Arrange
+            var bll = new CustomerBLL();
+            var array = System.Security.Cryptography.SHA256.Create().ComputeHash(System.Text.Encoding.ASCII.GetBytes("yo"));
+            String password = "yo";
+
+            //Act
+            var result = bll.makeHash(password);
+
+            //Assert
+            Assert.AreNotEqual(array, result);
+        }
+        [TestMethod]
+        public void hashed_Password_is_correct()
+        {
+            //Arrange
+            var bll = new CustomerBLL();
+            var hp = System.Security.Cryptography.SHA256.Create().ComputeHash(System.Text.Encoding.ASCII.GetBytes("yo"));
+            string p = "yo";
+
+            //Act
+            var result = bll.makeHash(p);
+
+            //Assert
+            Assert.AreSame(hp, result);
+            
+
+        }
+
+        [TestMethod]
+        public void find_user()
+        {
+            //Arrange 
+            var bll = new CustomerBLL(new CustomerDALStub());
+            string email = "Hei";
+           
+            
+            //Act 
+            var result = bll.findUser(email);
+
+            //Assert
+            Assert.IsNotNull(result.id);
+
+
+        }
+     
+
+
+        [TestMethod]
+        public void validate_login()
+        {
+            //Arrange
+            var bll = new MainController(new CustomerBLL(new CustomerDALStub()));
+            String email =  "hei";
+            String p = "yo";
+            byte[] password = System.Security.Cryptography.SHA256.Create().ComputeHash(System.Text.Encoding.ASCII.GetBytes("yo"));
+
+            //Act
+            var actrow = (ViewResult)bll.logIn(email, p);
+            var result = actrow.Model;
+            
+            
+            //Assert
+            Assert.IsNotNull(result);
+
+        }
+
+        [TestMethod]
         public void test_database()
         {
+
             //arrange
             var bll = new CustomerController();
-            
+
             // act
             var actual = (ViewResult)bll.ListCustomers();
             var result = (List<Customer>)actual.Model;
-            Assert.IsTrue(result.Count > 0);
 
+            //Assert
+            Assert.IsTrue(result.Count > 0);
         }
+        
+       
+
     }
 }
