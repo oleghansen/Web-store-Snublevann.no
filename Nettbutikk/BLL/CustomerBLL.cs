@@ -30,6 +30,7 @@ namespace Nettbutikk.BLL
         public Customer findUser(String email)
         {
             return _customer.findUser(email);
+            
         }
 
         public bool validate(String email, byte[] hashedpassword)
@@ -53,7 +54,8 @@ namespace Nettbutikk.BLL
             bool ok = validate(email, hashpassword);
             if (ok)
             {
-                return findUser(email);
+                Customer c = findUser(email);
+                return c;
             }
             return null;
            
