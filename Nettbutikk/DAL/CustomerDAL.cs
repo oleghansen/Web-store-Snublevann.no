@@ -48,6 +48,7 @@ namespace Nettbutikk.DAL
             c.id = userFound.Id;
             c.email = userFound.Email;
             c.hashpassword = userFound.Password;
+            c.admin = true;
             return c;
 
         }
