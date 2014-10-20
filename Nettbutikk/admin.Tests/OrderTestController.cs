@@ -27,6 +27,8 @@ namespace Nettbutikk.admin.Tests
                 customerid = 1001
             };
 
+            
+
             // Act 
 
             var actrow = (ViewResult)bll.ListAll();
@@ -35,6 +37,29 @@ namespace Nettbutikk.admin.Tests
 
             // Assert
             Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void Order_List_Contains_Orders()
+        {
+
+            //Arrange
+            var bll = new OrderController(new OrderBLL(new OrderDALStub()));
+            List<Order> expected = new List<Order>();
+            var o = new Order(){
+                id = 1,
+                customerid = 1001
+            };
+
+            expected.Add(o);
+            // Act
+
+            var actrow = (ViewResult)bll.ListAll();
+            var result = (List<Order>)actrow.Model;
+
+
+            // Assert
+            Assert.AreEqual(expected.Count, result.Count);
         }
     }
 }
