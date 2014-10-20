@@ -43,5 +43,18 @@ namespace Nettbutikk.Tests
             Assert.IsNotNull(result);
             //Assert.AreEqual(expected.Count, result.Count);
         }
+
+        [TestMethod]
+        public void test_database()
+        {
+            //arrange
+            var bll = new CustomerController();
+            
+            // act
+            var actual = (ViewResult)bll.ListAll();
+            var result = (List<Customer>)actual.Model;
+            Assert.IsTrue(result.Count > 0);
+
+        }
     }
 }
