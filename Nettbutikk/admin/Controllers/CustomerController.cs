@@ -39,8 +39,10 @@ namespace Nettbutikk.admin.Controllers
             return View();
         }
         private bool isAdmin(){
+            if (Session == null)
+                return false;
             var user = (Customer) Session["loggedInUser"];
-            return user.admin; 
+            return (user == null)?false:user.admin; 
         }
     }
 }
