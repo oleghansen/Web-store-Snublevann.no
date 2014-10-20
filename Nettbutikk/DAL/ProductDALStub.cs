@@ -50,5 +50,29 @@ namespace Nettbutikk.DAL
             };
             return product;   
         }
+
+
+        // Har ikke testet denne metoden
+        public bool updateProduct(int id, Product update)
+        {
+            var db = new DatabaseContext();
+            try
+            {
+                Products products = db.Products.FirstOrDefault(u => u.Id == id);
+
+                products.Name = update.name;
+                products.Description = update.description;
+                products.LongDescription = update.longDescription;
+                products.Price = update.price;
+                products.Volum = update.volum;
+
+                db.SaveChanges();
+                return true;
+            }
+            catch(Exception fail)
+            {
+                return false;
+            }
+        }
     }
 }
