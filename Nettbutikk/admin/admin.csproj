@@ -121,6 +121,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -133,6 +135,12 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Main\Main.cshtml" />
     <Content Include="Views\Main\LogIn.cshtml" />
+    <Content Include="Views\Customer\ListCustomers.cshtml" />
+    <Content Include="Views\Customer\SettingsCustomer.cshtml" />
+    <Content Include="Views\Product\ListProducts.cshtml" />
+    <Content Include="Views\Order\ListOrders.cshtml" />
+    <Content Include="Views\Product\AddProduct.cshtml" />
+    <Content Include="Views\Product\SettingsProduct.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -142,8 +150,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
-    <Folder Include="Views\Customer\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL\BLL.csproj">
