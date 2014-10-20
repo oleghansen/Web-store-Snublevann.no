@@ -10,31 +10,26 @@ namespace Nettbutikk.DAL
 {
     public class OrderDAL : DAL.IOrderDAL
     {
-        /*
-        public int checkout(ShoppingCart cart)
+          public List<Order> getAll()
         {
-            return 0;
-        }
-        */
-        public List<Order> getOrders(int id)
-        {
-            return null;
-        }
-        public List<OrderLine> getOrder(int id)
-        {
-
-            return null;
+            var order = new Order()
+            {
+                id = 1,
+                customerid = 1001,
+            };
+            List<Order> orderlist = new List<Order>();
+            orderlist.Add(order);
+            return orderlist;
         }
 
-        public List<Product> getMostSold()
+        public Order findOrder(int id)
         {
             return null;
         }
 
-        public List<Order> getAll()
+        public bool checkOrder(int? id)
         {
-            return new List<Order>();
+            return false;
         }
-
     }
 }
