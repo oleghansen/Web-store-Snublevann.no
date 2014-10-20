@@ -38,8 +38,8 @@ namespace Nettbutikk.admin.Controllers
             if (ModelState.IsValid)
             {
                 var admin = _customerbll.logIn(email,password);
-                Session["admin"] = admin;
-                return RedirectToAction("Main");
+                Session["loggedInUser"] = admin;
+                return RedirectToAction("Main",admin);
             }
             return View();
 

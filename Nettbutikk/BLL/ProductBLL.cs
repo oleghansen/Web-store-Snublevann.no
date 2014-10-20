@@ -22,7 +22,8 @@ namespace Nettbutikk.BLL
 
         public List<Product> getAll()
         {
-            return _product.getAll(); 
+            List<Product> allProducts = _product.getAll();
+            return allProducts;
         }
 
 

@@ -46,7 +46,7 @@ namespace Nettbutikk.BLL
             return outData;
         }
 
-        public Customer logIn(String email, String password)
+       public Customer logIn(String email, String password)
         {
 
             byte[] hadhpassword = makeHash(password);
