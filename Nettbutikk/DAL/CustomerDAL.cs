@@ -40,6 +40,12 @@ namespace Nettbutikk.DAL
             return null;
         }
 
+        public Customer findUser(String email)
+        {
+            return new Customer();
+
+        }
+
         public bool validate(String email, byte[] hashedPassword)
         {
                 return false;
