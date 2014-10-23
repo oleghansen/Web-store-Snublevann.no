@@ -32,9 +32,6 @@
                             <div class="navUl pull-right">
                                 @if (Session["loggedInUser"] != null)
                                 {
-                                    <a href="@Url.Action("LogOut", "Main")">
-                                        <i class="glyphicon glyphicon-log-out"> </i> Logg ut
-                                    </a>
                                     <a href="@Url.Action("ListCustomers", "Customer")">
                                         <i class="glyphicon glyphicon-user"> </i> Brukere
                                     </a>
@@ -45,6 +42,9 @@
 
                                     <a href="@Url.Action("ListOrders", "Order")">
                                         <i class="glyphicon glyphicon-align-justify"> </i> Ordre
+                                    </a>
+                                    <a href="@Url.Action("LogOut", "Main")">
+                                        <i class="glyphicon glyphicon-log-out"> </i> Logg ut
                                     </a>
                                 }
                             </div>
