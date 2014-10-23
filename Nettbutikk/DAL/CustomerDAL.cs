@@ -58,11 +58,14 @@ namespace Nettbutikk.DAL
             var db = new DatabaseContext();
             Customers userFound = db.Customers.FirstOrDefault(u => u.Email == email);
 
-            if (userFound.Admin == true)
+            if (userFound != null)
             {
-                if (email.Equals(userFound.Email) && Enumerable.SequenceEqual(hashedPassword,userFound.Password))
+                if (email.Equals(userFound.Email) && Enumerable.SequenceEqual(hashedPassword, userFound.Password))
                 {
-                    return true;
+                    if (userFound.Admin == true)
+                    {
+                        return true;
+                    }
                 }
             }
             return false;   

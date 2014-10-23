@@ -9,16 +9,13 @@ namespace Nettbutikk.DAL
 {
     public class OrderDALStub : DAL.IOrderDAL       
     {
-        public List<Order> getAll()
+        public List<Order> getAllOrders()
         {
-            var order = new Order()
-            {
-                id = 1,
-                customerid = 1001,
-            };
-            List<Order> orderlist = new List<Order>();
-            orderlist.Add(order);
-            return orderlist;
+            return null;
+        }
+        List<OrderLine> getAllOrderLines(int id)
+        {
+            return null;
         }
 
         public Order findOrder(int id)

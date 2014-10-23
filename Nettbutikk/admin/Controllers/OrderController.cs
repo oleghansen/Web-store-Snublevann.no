@@ -1,4 +1,5 @@
-﻿using Nettbutikk.BLL;
+﻿using Nettbutikk.admin.Models;
+using Nettbutikk.BLL;
 using Nettbutikk.Model;
 using System;
 using System.Collections.Generic;
@@ -25,9 +26,26 @@ namespace Nettbutikk.admin.Controllers
         public ActionResult ListOrders()
         {
             if (!isAdmin())
-                return RedirectToAction("Main", "Main"); 
-            List<Order> allOrders = _orderbll.getAll();
-            return View(allOrders);
+                return RedirectToAction("Main", "Main");
+
+
+            List<Order> allOrders = _orderbll.getAllOrders();
+            List<Orders> list = new List<Orders>();
+            if (allOrders == null)
+                return RedirectToAction("Main", "Main");
+            foreach (var item in allOrders)
+            {
+                
+                list.Add(new Orders()
+                {
+                     id = item.id,
+                     orderdate = item.orderdate,
+                     customerid = item.customerid,
+                     firnstname = item
+                       
+                });
+            }
+            return View(list);
         }
         // GET: OrderTest
         public ActionResult Index()

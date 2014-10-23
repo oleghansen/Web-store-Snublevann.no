@@ -22,10 +22,16 @@ namespace Nettbutikk.BLL
             _order = stub;
         }
 
-        public List<Order> getAll()
+        public List<Order> getAllOrders()
         {
-            List<Order> allOrders = _order.getAll();
+            List<Order> allOrders = _order.getAllOrders();
             return allOrders;
+        }
+
+        List<OrderLine> getAllOrderLines(int id)
+        {
+            List<OrderLine> allOrderLines = _order.getAllOrderLines(id);
+            return allOrderLines;
         }
 
         public Order getOne(int id)
