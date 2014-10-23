@@ -149,6 +149,18 @@ tr.rows
     border-bottom: 1px solid #eeeeee;
     padding-bottom: 1em;
     padding-left: 20px;
+     -webkit-transition: .1s;
+     transition: .1s;
+}
+
+tr.rows:hover
+{
+    background-color: #d0edff;
+	-o-transition: .7s;
+	-ms-transition: .7s;
+	-moz-transition: .7s;
+	-webkit-transition: .7s;
+	transition: .7s;
 }
 
 .navbar-fixed-bottom
