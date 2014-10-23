@@ -60,6 +60,33 @@ namespace Nettbutikk.DAL
             return null;
         }
 
+        public List<Product> getResult(string searchString)
+        {
+            var db = new DatabaseContext();
+            var foundProducts = new List<Product>();
+            var products = db.Products.Include(p => p.SubCategories.Categories).Where(p => p.Name.ToUpper().Contains(searchString.ToUpper())
+                            || p.Description.ToUpper().Contains(searchString.ToUpper())).ToList();
+            foreach (var p in products)
+            {
+                var product = new Product()
+                {
+                    itemnumber = p.Id,
+                    name = p.Name,
+                    description = p.Description,
+                    price = p.Price,
+                    volum = p.Volum,
+                    producer = p.Producers.Name,
+                    category = p.SubCategories.Categories.Name,
+                    categoryid = p.SubCategories.Categories.Id,
+                    subCategory = p.SubCategories.Name,
+                    subCategoryid = p.SubCategories.Id,
+                    country = p.Countries.Name
+                };
+                foundProducts.Add(product);
+            }
+            return foundProducts;
+        }
+
         public Product findProduct(int id)
         {
             var product = new Product()
