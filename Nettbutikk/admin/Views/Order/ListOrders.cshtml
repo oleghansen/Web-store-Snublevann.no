@@ -1,16 +1,66 @@
-﻿@{
+﻿@model List<Nettbutikk.admin.Models.Orders>
+@{
     ViewBag.Title = "ListOrders";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div>
     <div class="jumbotron" style="padding-top:2px">
         <div class="row">
 
             <h3><span class="glyphicon glyphicon-align-justify"></span> Ordreoversikt </h3>
 
             <hr />
+            <div class="panel panel-default">
+                <table>
+                    <tr>
+                        <td>
+                            <b>@Html.DisplayNameFor(modelItem => Model[0].id)</b>
+                        </td>
+                        <td>
+                           
+                        </td>
+                        <td>
+                            
+                       </td>
+                        <td>
+                           
+                        </td>
+                        <td>
+                           
+                        </td>
+                        <td>
+                            <b> @Html.DisplayNameFor(modelItem => Model[0].quantity)</b>
+                        </td>
+                        <td>
+                            <b> @Html.DisplayNameFor(modelItem => Model[0].sum)</b>
+                        </td>
+                     
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr class="rows">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.orderdate)
+                            </td>
+                            <td>
+                         
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.quantity)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.sum)
+                            </td>
+                            
+                            <td>
+                         </tr>
+                    }
+                </table>
 
-        </div>
+            </div>
     </div>
 </div>
+

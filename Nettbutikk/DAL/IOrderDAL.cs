@@ -11,7 +11,9 @@ namespace Nettbutikk.DAL
        // System.Collections.Generic.List<Nettbutikk.Model.Order> getOrders(int id);
        // System.Collections.Generic.List<Nettbutikk.Model.Order> getAll();
 
-        List<Order> getAll();
+
+        List<Order> getAllOrders();
+        List<OrderLine> getAllOrderLines(int id);
         bool checkOrder(int? id);
         Order findOrder(int id);
     }

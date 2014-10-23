@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
 
-namespace Nettbutikk
+namespace Nettbutikk.admin.Models
 {
-    class logIn
+    public class LogIn
     {
         [Display(Name = "Email")]
         [Required(ErrorMessage = "Email må oppgis")]
