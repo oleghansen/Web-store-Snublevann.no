@@ -1,4 +1,5 @@
-﻿using Nettbutikk.BLL;
+﻿using Nettbutikk.admin.Models;
+using Nettbutikk.BLL;
 using Nettbutikk.Model;
 using System;
 using System.Collections.Generic;
@@ -34,7 +35,26 @@ namespace Nettbutikk.admin.Controllers
             if (!isAdmin())
                 return RedirectToAction("Main", "Main"); 
             List<Product> allProducts = _product.getAll();
-            return View(allProducts);
+            List<ProductInfo> list = new List<ProductInfo>();
+            foreach(var item in allProducts)
+            {
+                list.Add(
+                    new ProductInfo()
+                    {
+                        itemnumber = item.itemnumber,
+                        name = item.name,
+                        description = item.description,
+                        category = item.category,
+                        subCategory = item.subCategory,
+                        country = item.country,
+                        price = item.price,
+                        producer = item.producer,
+                        volum = item.volum,
+                        longDescription = item.longDescription,
+                        pricePerLitre = item.pricePerLitre
+                    });
+            }
+            return View(list);
         }
         private bool isAdmin()
         {

@@ -21,7 +21,23 @@ namespace Nettbutikk.DAL
         }
         public List<Product> getAll()
         {
-            return new List<Product>();
+            var db = new DatabaseContext();
+            var products = db.Products.ToList();
+            var list = new List<Product>();
+            foreach (var item in products)
+            {
+                list.Add(new Product()
+                    {
+                        itemnumber = item.Id,
+                        name = item.Name,
+                        description = item.Description,
+                        price = item.Price,
+                        volum = item.Volum,
+                        producer = item.Producers.Name,
+                        country = item.Countries.Name
+                    });
+            }
+            return list;
         }
         public Product get(int id)
         {
