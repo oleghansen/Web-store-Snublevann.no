@@ -41,7 +41,7 @@ namespace Nettbutikk.admin.Controllers
                      id = item.id,
                      orderdate = item.orderdate,
                      customerid = item.customerid,
-                     firnstname = item
+                     
                        
                 });
             }
