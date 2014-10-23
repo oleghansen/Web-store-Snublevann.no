@@ -4,6 +4,25 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link href="~/Content/Custom/MainSheet.css" rel="stylesheet" />
+    <div class="submenu">
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <div class="navUl pull-right">
+                    @if (Session["loggedInUser"] != null)
+                    {
+                        <a href="@Url.Action("ListCustomers", "Customer")">
+                            <i class="glyphicon glyphicon-user"> </i> Undermeny 1
+                        </a>
+
+                        <a href="@Url.Action("ListProducts", "Product")" id="product">
+                            <i class="glyphicon glyphicon-user"> </i> List alle
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="jumbotron" style="padding-top:2px">
         <div class="container">
 
