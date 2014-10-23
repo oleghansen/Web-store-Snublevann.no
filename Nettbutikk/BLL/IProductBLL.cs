@@ -5,8 +5,8 @@ namespace Nettbutikk.BLL
 {
     public interface IProductBLL
     {
-        List<Product> getAll();
-
+        List<Category> getAllCategories();
+        List<Product> getAll(int? id);
         Product seeDetails(int i);
 
         bool updateProduct(int id, Product p);

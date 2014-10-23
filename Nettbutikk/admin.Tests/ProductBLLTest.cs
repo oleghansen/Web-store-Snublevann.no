@@ -30,7 +30,7 @@ namespace Nettbutikk.Tests
 
             expected.Add(prod);
 
-            var actrow = (ViewResult)allProd.ListProducts();
+            var actrow = (ViewResult)allProd.ListProducts(null);
             var result = (List<Product>)actrow.Model;
 
             Assert.IsNotNull(result);
@@ -56,7 +56,7 @@ namespace Nettbutikk.Tests
             expected.Add(prod);
             expected.Add(prod);
 
-            var action = (ViewResult)allProd.ListProducts();
+            var action = (ViewResult)allProd.ListProducts(null);
             var result = (List<Product>)action.Model;
 
             Assert.IsTrue(result.Count > 0);
