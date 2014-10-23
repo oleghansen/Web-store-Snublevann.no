@@ -8,5 +8,7 @@ namespace Nettbutikk.BLL
         List<Product> getAll();
 
         Product seeDetails(int i);
+
+        bool updateProduct(int id, Product p);
     }
 }

@@ -62,7 +62,7 @@ namespace Nettbutikk.Tests
             Assert.IsTrue(result.Count > 0);
 
         }
-        
+
         [TestMethod]
         public void Find_Product_By_Id()
         {
@@ -89,13 +89,49 @@ namespace Nettbutikk.Tests
 
         }
 
+       [TestMethod]
+        public void Product_Update_Not_Null()
+        {
+            TestControllerBuilder builder = new TestControllerBuilder();
+
+            var bll = new ProductController(new ProductBLL(new ProductDALStub()));
+            builder.InitializeController(bll);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+            var expected = new Product()
+            {
+                itemnumber = 1,
+                name = "Tull",
+                description = "Ball"
+            };
+
+            var action = (ViewResult)bll.Updated(1, expected);
+            var result = (Product)action.Model;
+
+            Assert.IsNotNull(result);
+        }
+
+
+
+        // TODO: Test for sletting
         /*
         [TestMethod]
-        public void Add_New_Product_To_Database()
-        {
+       public void Delete_Product_By_Id()
+       {
+           TestControllerBuilder builder = new TestControllerBuilder();
 
-        }
-         * */
-        
+           var bll = new ProductController(new ProductBLL(new ProductDALStub()));
+           builder.InitializeController(bll);
+           builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+           var expected = new Product()
+           {
+               itemnumber = 1,
+               name = "Tull",
+               description = "Ball"
+           };
+
+           var action = (ViewResult)bll.Remove(1);
+           var result = (Product)action.Model;
+       }
+         */
     }
 }

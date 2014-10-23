@@ -86,5 +86,36 @@ namespace Nettbutikk.DAL
         {
             return null;
         }
+
+
+        // TODO: Denne skal testes på web når siden er oppe!
+
+        public bool updateProduct(int id, Product update)
+        {
+            return false;
+        }
+            /*
+            var db = new DatabaseContext();
+            try
+            {
+                Products prod = db.Products.FirstOrDefault(u => u.Id == id);
+
+                prod.Name = update.name;
+                prod.Description = update.description;
+                prod.LongDescription = update.longDescription;
+                prod.Price = update.price;
+                prod.Volum = update.volum;
+
+                    
+                // TODO: Trenger mer i denne metoden
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception fail)
+            {
+                return false;
+            }
+        }
+         */
     }
 }

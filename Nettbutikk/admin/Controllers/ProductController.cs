@@ -71,7 +71,20 @@ namespace Nettbutikk.admin.Controllers
                 return RedirectToAction("Main", "Main");
             }
             Product productDetails = _product.seeDetails(id);
-            return View(productDetails); 
+            return View(productDetails);
+               
+        }
+
+
+
+        public ActionResult Updated(int id, Product p)
+        {
+            if (!isAdmin())
+            {
+                return RedirectToAction("Main", "Main");
+            }
+            bool updated = _product.updateProduct(id, p);
+            return View(updated);
         }
     }
 }

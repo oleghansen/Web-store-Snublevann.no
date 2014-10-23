@@ -31,6 +31,11 @@ namespace Nettbutikk.BLL
             return _product.findProduct(id);
         }
 
+        public bool updateProduct(int id, Product p)
+        {
+            return _product.updateProduct(id, p);
+        }
+
 
 
     }
