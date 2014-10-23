@@ -9,16 +9,16 @@ namespace Nettbutikk.DAL
 {
     public class ProductDALStub : DAL.IProductDAL
     {
+        public List<Category> getAllCategories()
+        {
+            return null;
+        }
         public List<Product> getAll(int? id, String sc, int? sort)
         {
             return new List<Product>();
         }
 
-        public List<Product> getAll(int? id, int? sort)
-        {
-            return null;
-        }
-        public List<Product> getAll()
+        public List<Product> getAll(int? id)
         {
             var prod = new Product()
             {
@@ -30,6 +30,7 @@ namespace Nettbutikk.DAL
             productlist.Add(prod);
             return productlist;
         }
+
         public Product get(int id)
         {
             return null;

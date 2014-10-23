@@ -18,9 +18,9 @@ a
     color: #2E2E2E;
 }
 
-.submenu
+#submenuUsers, #submenuProducts, #submenuOrders
 {
-    background: #1e5799; /* Old browsers */
+ background: #1e5799; /* Old browsers */
 background: -moz-linear-gradient(top,  #1e5799 0%, #004182 100%); /* FF3.6+ */
 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#1e5799), color-stop(100%,#004182)); /* Chrome,Safari4+ */
 background: -webkit-linear-gradient(top,  #1e5799 0%,#004182 100%); /* Chrome10+,Safari5.1+ */
@@ -35,7 +35,6 @@ border-radius: 5px; /* future proofing */
 -khtml-border-radius: 3px; /* for old Konqueror browsers */
 
     padding-top: 10px;   
-    background-color: #000;
 }
 a:hover {
 	color: #a5862c;

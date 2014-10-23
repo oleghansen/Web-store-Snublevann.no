@@ -8,8 +8,24 @@
     <link href="~/Content/Custom/customNav.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="~/Scripts/jquery-1.9.0.min.js"></script>
+    <script type="text/javascript">
+    function toggle_visibility(id, id2, id3) {
+        var e = document.getElementById(id);
+        var e2 = document.getElementById(id2);
+        var e3 = document.getElementById(id3);
+
+        if (e.style.display == 'block')
+          e.style.display = 'none';
+       else
+            e.style.display = 'block'
+            e2.style.display = 'none'
+            e3.style.display = 'none';
+    }
+    </script>
 </head>
 <body>
+
     <div class="container">
         <div class="navbar navbar-inner" role="navigation">
             <div class="navbar-header">
@@ -32,22 +48,23 @@
                             <div class="navUl pull-right">
                                 @if (Session["loggedInUser"] != null)
                                 {
-                                    <a href="@Url.Action("ListCustomers", "Customer")">
+                                    <a href="#" onclick="toggle_visibility('submenuUsers', 'submenuProducts', 'submenuOrders');">
                                         <i class="glyphicon glyphicon-user"> </i> Brukere
                                     </a>
 
-                                    <a href="@Url.Action("ListProducts", "Product")" id="product">
-                                        <i class="glyphicon glyphicon-glass"> </i> Produkter
+                                    <a href="#" onclick="toggle_visibility('submenuProducts', 'submenuUsers', 'submenuOrders');">
+                                        <i class=" glyphicon glyphicon-glass"> </i> Produkter
                                     </a>
 
-                                    <a href="@Url.Action("ListOrders", "Order")">
-                                        <i class="glyphicon glyphicon-align-justify"> </i> Ordre
+                                    <a href="#" onclick="toggle_visibility('submenuOrders', 'submenuProducts', 'submenuUsers');">
+                                      <i class="glyphicon glyphicon-align-justify"> </i> Ordre
                                     </a>
+                                    
                                     <a href="@Url.Action("LogOut", "Main")">
                                         <i class="glyphicon glyphicon-log-out"> </i> Logg ut
                                     </a>
                                 }
-                            </div>
+</div>
                         </div>
                     </div>
                 </div>
@@ -55,18 +72,79 @@
         </div>
     </div>
 
+    <!-- SUBMENY USER-->
         <div class="container body-content">
-            @RenderBody()
+            <div id="submenuUsers" style="display:none">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12">
+                        <div class="navUl pull-right">
+                            @if (Session["loggedInUser"] != null)
+                            {
+                                <a href="@Url.Action("ListCustomers", "Customer")">
+                                    <i class="glyphicon glyphicon-user"> </i> Undermeny 1
+                                </a>
 
-
-         <!-- TRENGER KANSKJE IKKE FOOTER HER?
-
-             <div class="footer">
-                <div class="jumbotron footerjumbo">
-                    Copyright &copy; @DateTime.Now.Year Snublevann - All rights reserved.
+                                <a href="@Url.Action("ListCustomers", "Customer")" id="product">
+                                    <i class="glyphicon glyphicon-user"> </i> List alle
+                                </a>
+                            }
+                        </div>
+                    </div>
                 </div>
-            </div>-->   
+            </div>
 
-        </div>
+            <!-- SUBMENY PRODUCT-->
+                <div id="submenuProducts" style="display:none">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12">
+                            <div class="navUl pull-right">
+                                @if (Session["loggedInUser"] != null)
+                                {
+                                    <a href="@Url.Action("ListProducts", "Product")">
+                                        <i class="glyphicon glyphicon-glass"> </i> Undermeny 1
+                                    </a>
+
+                                    <a href="@Url.Action("ListProducts", "Product")" id="product">
+                                        <i class="glyphicon glyphicon-glass"> </i> List alle
+                                    </a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SUBMENY ORDERS-->
+                    <div id="submenuOrders" style="display:none">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12">
+                                <div class="navUl pull-right">
+                                    @if (Session["loggedInUser"] != null)
+                                    {
+                                        <a href="@Url.Action("ListOrders", "Order")">
+                                            <i class="glyphicon glyphicon-align-justify"> </i> Undermeny 1
+                                        </a>
+
+                                        <a href="@Url.Action("ListOrders", "Order")" id="product">
+                                            <i class="glyphicon glyphicon-align-justify"> </i> List alle
+                                        </a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    @RenderBody()
+
+
+                    <!-- TRENGER KANSKJE IKKE FOOTER HER?
+
+         <div class="footer">
+            <div class="jumbotron footerjumbo">
+                Copyright &copy; @DateTime.Now.Year Snublevann - All rights reserved.
+            </div>
+        </div>-->
+
+                </div>
     </body>
 </html>

@@ -20,9 +20,10 @@ namespace Nettbutikk.BLL
             _product = stub;
         }
 
-        public List<Product> getAll()
+        public List<Product> getAll(int? id)
         {
-            List<Product> allProducts = _product.getAll();
+            List<Product> allProducts = _product.getAll(id);
+
             return allProducts;
         }
 
@@ -31,7 +32,11 @@ namespace Nettbutikk.BLL
             return _product.findProduct(id);
         }
 
-
+        public List<Category> getAllCategories()
+        {
+            List<Category> allCategories = _product.getAllCategories();
+            return allCategories;
+        }
 
     }
 }
