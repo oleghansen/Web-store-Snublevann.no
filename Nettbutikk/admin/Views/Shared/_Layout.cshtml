@@ -8,8 +8,18 @@
     <link href="~/Content/Custom/customNav.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script type="text/javascript">
+    function toggle_visibility(id) {
+       var e = document.getElementById(id);
+       if(e.style.display == 'block')
+          e.style.display = 'none';
+       else
+          e.style.display = 'block';
+    }
+    </script>
 </head>
 <body>
+
     <div class="container">
         <div class="navbar navbar-inner" role="navigation">
             <div class="navbar-header">
@@ -32,7 +42,7 @@
                             <div class="navUl pull-right">
                                 @if (Session["loggedInUser"] != null)
                                 {
-                                    <a href="@Url.Action("ListCustomers", "Customer")">
+                                    <a href="#" onclick="toggle_visibility('submenuUsers');">
                                         <i class="glyphicon glyphicon-user"> </i> Brukere
                                     </a>
 
@@ -55,7 +65,26 @@
         </div>
     </div>
 
+
         <div class="container body-content">
+            <div id="submenuUsers" style="display:none">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12">
+                        <div class="navUl pull-right">
+                            @if (Session["loggedInUser"] != null)
+                            {
+                                <a href="@Url.Action("ListCustomers", "Customer")">
+                                    <i class="glyphicon glyphicon-user"> </i> Undermeny 1
+                                </a>
+
+                                <a href="@Url.Action("ListCustomers", "Customer")" id="product">
+                                    <i class="glyphicon glyphicon-user"> </i> List alle
+                                </a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
             @RenderBody()
 
 
