@@ -11,7 +11,7 @@ namespace Nettbutikk.admin.Models
         public int id { get; set; }
         public DateTime orderdate { get; set; }
         public int customerid { get; set; }
-        public String firnstname { get; set; }
+        public String firstname { get; set; }
         public String lastname { get; set; }
         public int quantity { get; set; }
         public int sum { get; set; }

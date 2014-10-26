@@ -13,7 +13,7 @@ namespace Nettbutikk.DAL
         {
             return null;
         }
-        public List<OrderLine> getAllOrderLines(int id)
+        public List<OrderLine> getAllOrderLines()
         {
             return null;
         }

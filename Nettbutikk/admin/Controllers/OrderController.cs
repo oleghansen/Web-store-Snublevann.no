@@ -27,22 +27,23 @@ namespace Nettbutikk.admin.Controllers
         {
             if (!isAdmin())
                 return RedirectToAction("Main", "Main");
-
-
-            List<Order> allOrders = _orderbll.getAllOrders();
+     
             List<Orders> list = new List<Orders>();
-            if (allOrders == null)
+            List<OrderLine> allOrderLines = _orderbll.getAllOrderLines();
+             if (allOrderLines == null)
                 return RedirectToAction("Main", "Main");
-            foreach (var item in allOrders)
-            {
-                
+
+             foreach (var item in allOrderLines)
+            { 
                 list.Add(new Orders()
                 {
-                     id = item.id,
-                     orderdate = item.orderdate,
-                     customerid = item.customerid,
-                     
-                       
+                      id = item.id,
+                      customerid = item.order.customerid,
+                      firstname = item.order.customer.firstname,
+                      lastname = item.order.customer.lastname,
+                      orderdate = item.order.orderdate,
+                      quantity = item.quantity,
+                      sum = (item.product.price * item.quantity)
                 });
             }
             return View(list);

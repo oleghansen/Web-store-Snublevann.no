@@ -15,6 +15,7 @@ namespace Nettbutikk.Model
         [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}")]
         public DateTime orderdate { get; set; }
         public int customerid { get; set; }
+        public Customer customer { get; set; }
         public List<OrderLine> orderLine { get; set; }
     }
 }

@@ -13,7 +13,7 @@ namespace Nettbutikk.DAL
 
 
         List<Order> getAllOrders();
-        List<OrderLine> getAllOrderLines(int id);
+        List<OrderLine> getAllOrderLines();
         bool checkOrder(int? id);
         Order findOrder(int id);
     }

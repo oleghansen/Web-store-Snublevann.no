@@ -28,9 +28,9 @@ namespace Nettbutikk.BLL
             return allOrders;
         }
 
-        public List<OrderLine> getAllOrderLines(int id)
+        public List<OrderLine> getAllOrderLines()
         {
-            List<OrderLine> allOrderLines = _order.getAllOrderLines(id);
+            List<OrderLine> allOrderLines = _order.getAllOrderLines();
             return allOrderLines;
         }
 

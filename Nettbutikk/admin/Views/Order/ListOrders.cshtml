@@ -17,17 +17,18 @@
                             <b>@Html.DisplayNameFor(modelItem => Model[0].id)</b>
                         </td>
                         <td>
-                           
+                            <b>@Html.DisplayNameFor(modelItem => Model[0].orderdate)</b>
                         </td>
                         <td>
-                            
+                            <b>@Html.DisplayNameFor(modelItem => Model[0].customerid )</b>
+                        </td>
+                        <td>
+                            <b>@Html.DisplayNameFor(modelItem => Model[0].firstname)</b>
                        </td>
                         <td>
-                           
+                            <b>@Html.DisplayNameFor(modelItem => Model[0].lastname)</b>
                         </td>
-                        <td>
-                           
-                        </td>
+                        
                         <td>
                             <b> @Html.DisplayNameFor(modelItem => Model[0].quantity)</b>
                         </td>
@@ -46,7 +47,13 @@
                                 @Html.DisplayFor(modelItem => item.orderdate)
                             </td>
                             <td>
-                         
+                                @Html.DisplayFor(modelItem => item.customerid)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.firstname)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.lastname)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.quantity)
