@@ -53,27 +53,22 @@ namespace Nettbutikk.DAL
         }
 
 
-        // Har ikke testet denne metoden
-        public bool updateProduct(int id, Product update)
+        public bool updateProduct(int id, Product p)
         {
-            var db = new DatabaseContext();
-            try
-            {
-                Products products = db.Products.FirstOrDefault(u => u.Id == id);
-
-                products.Name = update.name;
-                products.Description = update.description;
-                products.LongDescription = update.longDescription;
-                products.Price = update.price;
-                products.Volum = update.volum;
-
-                db.SaveChanges();
-                return true;
-            }
-            catch(Exception fail)
-            {
+            if (id == 0 || p == null)
                 return false;
-            }
+            return true;
+        }
+
+        public Product deleteProduct(int id)
+        {
+            var product = new Product()
+            {
+                itemnumber = 1,
+                name = "dfsdf",
+                description = " dfsfsf"
+            };
+            return product;
         }
     }
 }
