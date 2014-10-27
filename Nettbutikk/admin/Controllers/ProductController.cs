@@ -107,7 +107,7 @@ namespace Nettbutikk.admin.Controllers
             }
 
 
-            return View(list.ToPagedList(pageNumber: page ?? 1, pageSize: itemsPerPage ?? 10));
+            return View(list.ToPagedList(pageNumber: page ?? 1, pageSize: itemsPerPage ?? 15));
         }
       
  
