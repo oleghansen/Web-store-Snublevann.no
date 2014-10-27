@@ -77,41 +77,6 @@ namespace Nettbutikk.admin.Controllers
 
             return View( list.ToPagedList(pageNumber, itemsPerPage));
         }
-
-        public ActionResult ListPartial(int? page)
-        {
-       
-            if (!isAdmin())
-                return RedirectToAction("Main", "Main");
-
-            int pageNumber = page ?? 1;
-            int itemsPerPage = 25; 
-            List<Product> allProducts = _product.getAll(null);
-
-            List<ProductInfo> list = new List<ProductInfo>();
-            foreach (var item in allProducts)
-            {
-                list.Add(
-                    new ProductInfo()
-                    {
-                        itemnumber = item.itemnumber,
-                        name = item.name,
-                        description = item.description,
-                        category = item.category,
-                        subCategory = item.subCategory,
-                        country = item.country,
-                        price = item.price,
-                        producer = item.producer,
-                        volum = item.volum,
-                        longDescription = item.longDescription,
-                        pricePerLitre = item.pricePerLitre
-                    });
-            }
-
-
-
-            return PartialView("ListPartial",list.ToPagedList(pageNumber, itemsPerPage));
-        }
       
         private bool isAdmin()
         {
