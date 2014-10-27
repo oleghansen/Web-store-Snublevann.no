@@ -166,6 +166,7 @@
     <Content Include="Views\Product\AddProduct.cshtml" />
     <Content Include="Views\Product\SettingsProduct.cshtml" />
     <Content Include="Views\Order\ListOrderLines.cshtml" />
+    <Content Include="Views\ProductDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
