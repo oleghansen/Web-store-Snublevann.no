@@ -20,34 +20,32 @@
                         <div class="row">
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="form-group">
+                                    <h3>Varenummer: "@Html.DisplayFor(model => model.itemnumber)"</h3>
                                     <h4>Produktnavn:</h4>
                                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                     @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Produkt", tabindex = "1", autofocus = "" } })
-                                    @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })                                     
+                                    @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })         
                                     <h4>Pris:</h4>
-                                    @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Pris", tabindex = "2" } })
-                                    @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
-                                </div>
-                                <div class="col-xs-6 col-sm-6 col-md-6">
-                                </div>
-                                <div class="form-group">
-                                    @Html.EditorFor(model => model.producer, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Adresse", tabindex = "3" } })
+                                    @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Beskrivelse", tabindex = "1", autofocus = "" } })
+                                    @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })                           
+                                    <h4>Produsent:</h4>
+                                    @Html.EditorFor(model => model.producer, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Produsent", tabindex = "3" } })
                                     @Html.ValidationMessageFor(model => model.producer, "", new { @class = "text-danger" })
-                                </div>
-                                <div class="col-xs-6 col-sm-6 col-md-6">
-                                    <div class="form-group">
-                                        @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Postnummer", tabindex = "4" } })
+                                    <div class="form-group" style="width:800px;">
+                                        <h4>Beskrivelse:</h4>
+                                        @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Beskrivelse", tabindex = "1", autofocus = "" } })
                                         @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="col-xs-6 col-sm-6 col-md-6">
-                                    <div class="form-group">
-                                        @Html.EditorFor(model => model.longDescription, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Poststed", tabindex = "5" } })
+                                        <h4>Lang beskrivelse:</h4>
+                                        @Html.EditorFor(model => model.longDescription, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Beskrivelse", tabindex = "1", autofocus = "" } })
                                         @Html.ValidationMessageFor(model => model.longDescription, "", new { @class = "text-danger" })
                                     </div>
+                                    <h4>Volum:</h4>
+                                    @Html.EditorFor(model => model.volum, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Beskrivelse", tabindex = "1", autofocus = "" } })
+                                    @Html.ValidationMessageFor(model => model.volum, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                         </div>
+                        <div class=""></div>
                     </form>
                 </div>
             </div>

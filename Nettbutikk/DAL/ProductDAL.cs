@@ -107,7 +107,6 @@ namespace Nettbutikk.DAL
                 subCategoryid = products.SubCategories.Id,
                 country = products.Countries.Name
             };
-            return product;
         }
 
         public List<string> getAutoComplete(string term)
@@ -125,6 +124,7 @@ namespace Nettbutikk.DAL
         {
             return false;
         }
+
             /*
             var db = new DatabaseContext();
             try
@@ -146,6 +146,7 @@ namespace Nettbutikk.DAL
             {
                 return false;
             }
-        }
+             */
     }
 }
+
