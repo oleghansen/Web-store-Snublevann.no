@@ -155,6 +155,7 @@
     <Content Include="Views\Product\AddProduct.cshtml" />
     <Content Include="Views\Product\SettingsProduct.cshtml" />
     <Content Include="Views\Product\ListPartial.cshtml" />
+    <Content Include="Views\Product\ProductDetailsView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -108,9 +108,6 @@ namespace Nettbutikk.DAL
 
         public bool updateProduct(int id, Product update)
         {
-            return false;
-        }
-            /*
             var db = new DatabaseContext();
             try
             {
@@ -132,6 +129,5 @@ namespace Nettbutikk.DAL
                 return false;
             }
         }
-         */
     }
 }
