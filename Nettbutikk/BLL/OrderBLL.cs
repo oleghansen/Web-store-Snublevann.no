@@ -24,19 +24,78 @@ namespace Nettbutikk.BLL
 
         public List<Order> getAllOrders()
         {
+            ICustomerDAL _customer = new CustomerDAL();
+            IProductDAL _product = new ProductDAL();
             List<Order> allOrders = _order.getAllOrders();
-            return allOrders;
+            List<Order> list = new List<Order>();
+            
+            foreach (var item in allOrders)
+            {
+                List<OrderLine> orderlineslist = new List<OrderLine>();
+                List<OrderLine> OLlist = _order.getAllOrderLinesOfOrder(item.id);
+                foreach (var OrderLineItems in OLlist)
+                {
+                    var prod = _product.findProduct(OrderLineItems.productid);
+
+                    orderlineslist.Add(new OrderLine()
+                    {
+                        id = OrderLineItems.id,
+                        productid = OrderLineItems.productid,
+                        quantity = OrderLineItems .quantity,
+                        product = prod,
+                        order = OrderLineItems.order,
+                        orderid =  OrderLineItems.orderid 
+                        
+                    });
+                }
+                var cust = _customer.getCustomer(item.customerid);
+                list.Add(new Order() 
+                {
+                    id = item.id,
+                    orderdate = item.orderdate,
+                    customerid = item.customerid ,
+                    customer = cust,
+                    orderLine = orderlineslist
+                });
+            }
+            return list;
         }
 
-        public List<OrderLine> getAllOrderLines()
+        public List<OrderLine> getAllOrderLinesOfOrder(int id)
         {
-            List<OrderLine> allOrderLines = _order.getAllOrderLines();
+            List<OrderLine> allOrderLines = _order.getAllOrderLinesOfOrder(id);
             return allOrderLines;
+        }
+
+        public  Customer getCustomer(int id)
+        {
+            return null;
         }
 
         public Order getOne(int id)
         {
             return _order.findOrder(id);
         }
+        public int getNumItems(Order o)
+        {
+            var num = 0;
+            foreach(var item in o.orderLine)
+            {
+                num += item.quantity;
+            }
+            return num;
+        }
+
+        public int getSum(Order o)
+        {
+            var sum = 0;
+            foreach (var item in o.orderLine )
+            {
+                sum += item.quantity * item.product.price;
+            }
+            return sum;
+        }
+
+
     }
 }

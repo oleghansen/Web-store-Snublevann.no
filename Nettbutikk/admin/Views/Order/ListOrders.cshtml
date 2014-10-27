@@ -1,4 +1,4 @@
-﻿@model List<Nettbutikk.admin.Models.Orders>
+﻿@model List<Nettbutikk.admin.Models.OrderViewModel>
 @{
     ViewBag.Title = "ListOrders";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -23,10 +23,10 @@
                             <b>@Html.DisplayNameFor(modelItem => Model[0].customerid )</b>
                         </td>
                         <td>
-                            <b>@Html.DisplayNameFor(modelItem => Model[0].firstname)</b>
+                            <b>@Html.DisplayNameFor(modelItem => Model[0].customer.firstname )</b>
                        </td>
                         <td>
-                            <b>@Html.DisplayNameFor(modelItem => Model[0].lastname)</b>
+                            <b>@Html.DisplayNameFor(modelItem => Model[0].customer.lastname)</b>
                         </td>
                         
                         <td>
@@ -50,10 +50,10 @@
                                 @Html.DisplayFor(modelItem => item.customerid)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.firstname)
+                                @Html.DisplayFor(modelItem => item.customer.firstname)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.lastname)
+                                @Html.DisplayFor(modelItem => item.customer.lastname)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.quantity)
