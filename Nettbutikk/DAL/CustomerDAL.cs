@@ -32,6 +32,30 @@ namespace Nettbutikk.DAL
              
         }
 
+        public List<Customer> getResult(string searchString)
+        {
+            var db = new DatabaseContext();
+            var foundUsers = new List<Customer>();
+            var users = db.Customers.Where(p => p.Firstname.ToUpper().Contains(searchString.ToUpper())
+                            || p.Lastname.ToUpper().Contains(searchString.ToUpper())).ToList();
+            foreach (var p in users)
+            {
+                var user = new Customer()
+                {
+                    id = p.Id,
+                    firstname = p.Firstname,
+                    lastname = p.Lastname,
+                    address = p.Address,
+                    email = p.Email,
+                    postalcode = p.PostalareasId.ToString(),
+                    postalarea = db.Postalareas.Find(p.PostalareasId).Postalarea,
+                    phonenumber = p.Phonenumber
+                };
+                foundUsers.Add(user);
+            }
+            return foundUsers;
+        }
+
         public Customer getCustomer(int id)
         {
             var db = new DatabaseContext();

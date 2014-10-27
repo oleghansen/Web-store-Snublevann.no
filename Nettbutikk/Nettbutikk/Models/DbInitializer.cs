@@ -116,18 +116,21 @@ namespace Nettbutikk.Models
             {
 
                 new Products {
+                    Id = 100001,
                     Name="Julebukk", 
                     Description="En juleøl fra Ringnes. Vol: 8.0 % ",
                     LongDescription="En meget god Juleøl fra Ringnes som fungerer godt til Juleribbe og til Pinnekjøtt!", 
                     Price=200, Volum=33, ProducersId=1,SubCategoriesId=2, CountriesId=1
                 },
                 new Products {
+                    Id = 100002,
                     Name="Carlsberg Pilsner", 
                     Description="En dansk øl. Vol: 4.7 %", 
                     LongDescription="En god dansk øl, som passer godt til god dansk pølse", 
                     Price=32,Volum=50, ProducersId=2,SubCategoriesId=2, CountriesId=10
                 },
                 new Products {
+                    Id = 100003,
                     Name="Nøgne Ø TWO CAPTAINS", Description="Dobbel IPA. Vol: 6.8 %", 
                     LongDescription="Passer godt til fet mat. Fruktig øl med god bitterhet", 
                     Price=80, 
@@ -137,6 +140,7 @@ namespace Nettbutikk.Models
                     CountriesId=1
                 },
                 new Products {
+                    Id = 100004,
                     Name="Aass Bock",
                     Description="Undergjæret og mørk øl. Vol: 7.0 %", 
                     LongDescription="Kremet, mørk og litt sødmefull. Fint innslag av vørterkake og honning.", 
@@ -147,6 +151,7 @@ namespace Nettbutikk.Models
                     CountriesId=1
                 },
                 new Products {
+                    Id = 100005,
                     Name="Haandbryggeriet Rips", 
                     Description="Overgjæret rips øl. Vol: 5.5 %",
                     LongDescription="Syrlig øl laget på rips 7% alkohol", 
@@ -157,11 +162,14 @@ namespace Nettbutikk.Models
                     CountriesId=1
                 },
                 new Products {
+                    Id = 100006,
                     Name="Kinn Ivar Aasen-øl", 
                     Description="Norsk overgjæret øl. Vol: 11.0 %",
                     LongDescription="Kremet og halvtørr. Preg av ristet korn, hint av urter og honning, lang ettersmak.", 
                     Price=130, Volum=75, ProducersId=8,SubCategoriesId=1,CountriesId=1},
-                new Products {Name="Duchesse de Bourgogne", Description="Overgjæret belgisk øl. Vol: 6.2 %", 
+                new Products {
+                    Id = 100007,
+                    Name="Duchesse de Bourgogne", Description="Overgjæret belgisk øl. Vol: 6.2 %", 
                     LongDescription="Fruktig nese i retning kirsebær, humle og malt. Smak av syrlig frukt, kirsebær og bringebær, tydelig karamellmalt. 6,2% alkohol", 
                     Price=147,
                     Volum=50,
@@ -170,181 +178,217 @@ namespace Nettbutikk.Models
                     CountriesId=4
                 },
                 new Products {
+                    Id = 100008,
                     Name="Oude Geuze Boon",
                     Description="Spontangjæret belgisk surøl. Vol: 6.2 %", 
                     LongDescription="Kompleks, frisk og saftig stil. Lang ettersmak.", 
                     Price=53,Volum=25, ProducersId=10,SubCategoriesId=3, CountriesId=4},
                 new Products {
+                    Id = 100009,
                     Name="Midtfyns Bryghus Chili Tripel", 
                     Description="Overgjæret dansk øl. Vol: 9.2 %", 
                     LongDescription="God fylde, mild humlesmak avrunder smaksbildet. Chili gir en varm følelse i avslutningen.",
                     Price=80, Volum=50,ProducersId=11,SubCategoriesId=1, CountriesId=10},
                 new Products {
+                    Id = 100010,
                     Name="Nøgne Ø Indian Pale Ale",
                     Description="Overgjæret norsk øl. Vol: 7.2 %", 
                     LongDescription="God og fyldig IPA med god rund bitterhet.", 
                     Price=74, Volum=50,ProducersId=5,SubCategoriesId=1, CountriesId=1},
                 new Products {
+                    Id = 100011,
                     Name="Ringnes pilsner",
                     Description="Undergjæret norsk øl. Vol: 4.7 %",
                     LongDescription="Frisk og god øl som passer fint sammen med fest og grilling i parken.", 
                     Price=28, Volum=33,ProducersId=1,SubCategoriesId=2, CountriesId=1},
                 new Products {
+                    Id = 100012,
                     Name="Jacob's Creek Shiraz 2011", 
                     Description="Rødvin fra Chile. Vol: 13 %",
                     LongDescription="En rød vin som er billig",
                     Price=80, Volum=75,ProducersId=11, SubCategoriesId=5, CountriesId=1},
                 new Products {
+                    Id = 100013,
                     Name="Doppio Passo",
                     Description="Rødvin fra Puglia, Italia. Vol: 12 %",
                     LongDescription="Krydret søtlig rødvin med mye fruktighet.",
                     Price=105, Volum=75,ProducersId=12,SubCategoriesId=5, CountriesId=9},
                 new Products {
+                    Id = 100014,
                     Name="Vallone Graticciaia 2008",
                     Description="Rødvin fra Puglia, Italia. Vol: 12 %", 
                     LongDescription="Myke tanniner, med balansert struktur.",
                     Price=500,Volum=75, ProducersId=13,SubCategoriesId=4, CountriesId=9},
                 new Products {
+                    Id = 100015,
                     Name="Vajra Langhe Rosso 2010/2011",
                     Description="Rødvin fra Piermonte, Italia. Vol: 14 %", 
                     LongDescription="Litt utviklet, preg av røde bær, litt tørket frukt og lakris, litt varm ettersmak.",
                     Price=135,Volum=75, ProducersId=14,SubCategoriesId=4, CountriesId=9},
-                new Products {Name="Hudelot-Noellat Clos de Vougeot Richebourg Grand Cru 2011. Vol: 13 %",
+                new Products {
+                    Id = 100016,
+                    Name="Hudelot-Noellat Clos de Vougeot Richebourg Grand Cru 2011. Vol: 13 %",
                     Description="Rødvin fra Burgund, Frankrike", LongDescription="Dyp med god frukt og konsentrasjon.", 
                     Price=2952, Volum=75,ProducersId=15,SubCategoriesId=4, CountriesId=3},
                 new Products {
+                    Id = 100017,
                     Name="Lucien Le Moine Bonnes Mares Grand Cru 2011. Vol: 13.5 %",
                     Description="Rødvin fra Burgund, Frankrike",
                     LongDescription="Balansert, mineralsk og lang.", 
                     Price=1800, Volum=75,ProducersId=16,SubCategoriesId=4, CountriesId=3},
                 new Products {
+                    Id = 100018,
                     Name="Avent Tempranillo 2012", 
                     Description="Rødvin fra Castilla y León, Spania. Vol: 12.5 %",
                     LongDescription="Frisk og fruktig, mørke skogsbær med myke tanniner.", 
                     Price=89, Volum=75,ProducersId=17,SubCategoriesId=5, CountriesId=8},
                 new Products {
+                    Id = 100019,
                     Name="Eric Texier Adéle Côtes du Rhône 2013",
                     Description="Frankrike, Rhône Sør, Côtes du Rhône. Vol: 13 %",
                     LongDescription="Frisk med god struktur.",
                     Price=180, Volum=75,ProducersId=18,SubCategoriesId=4,CountriesId=3},
                 new Products {
+                    Id = 100020,
                     Name="Eric Texier Brézème Roussanne 2012",
                     Description="Frankrike, Rhône Sør, Côtes du Rhône. Vol: 13 %",
                     LongDescription="", 
                     Price=71, Volum=75,ProducersId=18,SubCategoriesId=4,CountriesId=3},
                 new Products {
+                    Id = 100021,
                     Name="Angove Deep Creek Shiraz 2013", 
                     Description="Rødvin fra South Eastern Austra, Australia. Vol: 12 %",
                     LongDescription="Ung og saftig, preg av mørke bær, lakris og urter.", 
                     Price=280,Volum=75, ProducersId=19,SubCategoriesId=5,CountriesId=12},
                 new Products {
+                    Id = 100022,
                     Name="Lammershoek Lam Syrah 2013", 
                     Description="Rødvin fra Coastal Region, Swartland, Sør-Afrika. Vol: 14 %",
                     LongDescription="Tørr, fruktdrevet, frisk.",
                     Price=165, Volum=75,ProducersId=20,SubCategoriesId=4,CountriesId=7},
                 new Products {
+                    Id = 100023,
                     Name="Leitz Rüdesheimer Berg Roseneck Katerloch Riesling Trocken 2012", 
                     Description="Hvitvin fra Rheingau, Øvrige, Tyskland. Vol: 11 %", 
                     LongDescription="Tørr, mineral konsentrasjon.", 
                     Price=275,Volum=75, ProducersId=21,SubCategoriesId=7,CountriesId=5},
                 new Products {
+                    Id = 100024,
                     Name="AD Dauvissat Chablis 1er cru Beauroy 2012",
                     Description="Hitvin fra Burgund, Frankrike. Vol: 13 %",
                     LongDescription="Flott fylde, kompleks, stram og lang ettersmak.", 
                     Price=250,Volum=75, ProducersId=22,SubCategoriesId=7,CountriesId=3},
                 new Products {
+                    Id = 100025,
                     Name="Viña Izadi Blanco 2008", 
                     Description="Hvitvin fra Rioja, Spania. Vol: 14 %",
                     LongDescription="Strågul farge, frisk og fruktig med noe floral aroma samt noe toast- og nøttepreg. Rund og bløt med lang ettersmak.",
                     Price=99, Volum=75,ProducersId=23,SubCategoriesId=7,CountriesId=8},
                 new Products {
+                    Id = 100026,
                     Name="Urbina Viura 2011/2012",
                     Description="Hvitvin fra Rioja, Spania. Vol: 12.5 %", 
                     LongDescription="Saftig og moden frukt, preg av eple og sitrus.",
                     Price=165,Volum=75, ProducersId=24,SubCategoriesId=6,CountriesId=8},
                 new Products {
+                    Id = 100027,
                     Name="Amore Bianco 2012", 
                     Description="Hvitvin fra Sicilia, Italia. Vol: 13 %",
                     LongDescription="Frisk, med god fruktkonsentrasjon og lett bitterhet i avslutningen.",
                     Price=89,Volum=75, ProducersId=25,SubCategoriesId=7,CountriesId=9},
                 new Products {
+                    Id = 100028,
                     Name="Graci Etna Bianco 2013",
                     Description="Hvitvin fra Etna, Italia. Vol: 14.5 %",
                     LongDescription="Håndhøstet, gjæret med stedegengjær i sement og brukte fat, lagring på lees i 12 mnd.", 
                     Price=200,Volum=75, ProducersId=26,SubCategoriesId=7,CountriesId=9},
                 new Products {
+                    Id = 100029,
                     Name="Jacob's Creek Chardonnay 2012", 
                     Description="Hvitvin fra South Eastern Austra, Australia. Vol: 12 %",
                     LongDescription="Ren og fruktig, preget av sitrus og tropisk frukt, antydning til vanilje.", 
                     Price=108,Volum=75, ProducersId=11,SubCategoriesId=6,CountriesId=12},
                 new Products {
+                    Id = 100030,
                     Name="Pewsey Vale Riesling 2011",
                     Description="Hvitvin fra Eden Valley, Australia. Vol: 14 %",
                     LongDescription="Halmgul farge. Fruktaromaer av knust og lime. God lengde og dybde med sitron og lime.", 
                     Price=175,Volum=75, ProducersId=27,SubCategoriesId=6,CountriesId=12},
                 new Products {
+                    Id = 100031,
                     Name="Allram Grüner Veltliner Eiswein 2012",
                     Description="Hvitvin fra Niederösterreich, Østerike. Vol: 13 %", 
                     LongDescription="Gyllen farge. Aroma av hvit pepper, nektar, honning, moden sitrus og lime.",
                     Price=205,Volum=75, ProducersId=28,SubCategoriesId=7,CountriesId=6},
                 new Products {
+                    Id = 100032,
                     Name="Fritsch Windspiel Riesling 2010", 
                     Description="Hvitvin fra Niederösterreich, Østerike. Vol: 13.5 %",
                     LongDescription="Frisk, delikat og mineralsk med god konsentrasjon og fin lengde. Sitrus og eplepreget frukt. ", 
                     Price=145,Volum=75, ProducersId=29,SubCategoriesId=7,CountriesId=6},
                 new Products {
+                    Id = 100033,
                     Name="Lammershoek Roulette Blanc 2011", 
                     Description="Hvitvin fra Swartland, Sør-Afrika. Vol: 12 %", 
                     LongDescription="Tørr med krydret fruktighet, god konsentrasjon og mineralitet, krydret frukt i avslutning.",
                     Price=165, Volum=75,ProducersId=20,SubCategoriesId=7,CountriesId=7},
                 new Products {
+                    Id = 100034,
                     Name="Absolutt Vodka",
                     Description="Vodka fra Sverige. Vol: 40 %"
                     , LongDescription="Ren vodka.",
                     Price=300,Volum=100, ProducersId=30, SubCategoriesId=8,CountriesId=10},
                 new Products {
+                    Id = 100035,
                     Name="Jameson", 
                     Description="Wiskey fra Irland. Vol: 40 %", 
                     LongDescription="En ren wiskey med hint av korn.", 
                     Price=400,Volum=70,
                     ProducersId=31, SubCategoriesId=12,CountriesId=1},
                 new Products {
+                    Id = 100036,
                     Name="Thor Heyerdal X.O",
                     Description="Cognac fra Frankrike. Vol: 40 %", 
                     LongDescription="Bitter og fyldig cognac med tydelig preg av fat, 40% alkohol",
                     Price=450,Volum=100, ProducersId=32, SubCategoriesId=11,CountriesId=3},
                 new Products {
+                    Id = 100037,
                     Name="Baileys",
                     Description="Likør fra Irland. Vol: 19 %",
                     LongDescription="Tydelig sjokolade preg. Godt i kaffe. 17% alkohol", 
                     Price=200,Volum=50, ProducersId=33, SubCategoriesId=10,CountriesId=1},
-                
                 new Products {
+                    Id = 100038,
                     Name="Absolut Citron",
                     Description="Vodka fra Sverige. Vol: 40 %",
                     LongDescription="Vodka med hint av Sitron. 40% alkohol",
                     Price=310,Volum=70, ProducersId=30, SubCategoriesId=8,CountriesId=10},
                 new Products {
+                    Id = 100039,
                     Name="Absolutt Mango",
                     Description="Vodka fra Sverige. Vol: 40 %", 
                     LongDescription="Vodka med hint av Mango. 40% alkohol", 
                     Price=310,Volum=70, ProducersId=30, SubCategoriesId=8,CountriesId=10},
                 new Products {
+                    Id = 100040,
                     Name="Captain Morgan",
                     Description="Rom fra Cuba. Vol: 40 %",
                     LongDescription="Søtelig rom som passer godt med cola og isbiter. 40% alkohol",
                     Price=320,Volum=70, ProducersId=34, SubCategoriesId=9,CountriesId=11},
                 new Products {
+                    Id = 100041,
                     Name="Bacardi Razz", 
                     Description="Søtt dritt fra Cuba Vol: 37.5 %",
                     LongDescription="Søt festdrikke for de som liker det. 37,5% alkohol",
                     Price=300,Volum=70, ProducersId=35, SubCategoriesId=9,CountriesId=11},
                 new Products {
+                    Id = 100042,
                     Name="Gammel dansk", 
                     Description="Bitter fra Danmark. Vol: 40 %",
                     LongDescription="En bitter drikke som fungerer bra som shot",
                     Price=410,Volum=100, ProducersId=36, SubCategoriesId=13,CountriesId=10},
                 new Products {
+                    Id = 100043,
                     Name="Løyten Linie Akevitt",
                     Description="Akevitt fra Norge. Vol: 40 %",
                     LongDescription="Fatpreget fyldig akevitt som passer godt til litt fet mat 40% alkohol",
@@ -374,34 +418,117 @@ namespace Nettbutikk.Models
             var customers = new List<Customers>
             {
                 new Customers {Id=1,Firstname = "Per", Lastname="Hansen",Email="Per@Hansen.com",Phonenumber="91827364",Address="Pilestredet 35", PostalareasId=0170, Password= System.Security.Cryptography.SHA256.Create().ComputeHash(System.Text.Encoding.ASCII.GetBytes("mappeinnlevering1"))},
-                new Customers {Id=2,Firstname = "Admin", Lastname="Istrator",Email="admin@istrat.or",Phonenumber="13371337",Address="Systemveien 20",PostalareasId=0170, Password = System.Security.Cryptography.SHA256.Create().ComputeHash(System.Text.Encoding.ASCII.GetBytes("admin")),Admin=true}
+                new Customers {Id=2,Firstname = "Admin", Lastname="Istrator",Email="admin@istrat.or",Phonenumber="13371337",Address="Systemveien 20",PostalareasId=0170, Password = System.Security.Cryptography.SHA256.Create().ComputeHash(System.Text.Encoding.ASCII.GetBytes("admin")),Admin=true},
+                new Customers {Id=3,Firstname = "Erlend", Lastname="Rognes",Email="erlend@rognes.no",Phonenumber="98878986",Address="Frydenlundgata 20",PostalareasId=0169, Password = System.Security.Cryptography.SHA256.Create().ComputeHash(System.Text.Encoding.ASCII.GetBytes("hemmelig"))},
+                new Customers {Id=4,Firstname = "Julie", Lastname="Roa",Email="horselady91@hotmail.com",Phonenumber="45859211",Address="Lørenvegen 20B",PostalareasId=1874, Password = System.Security.Cryptography.SHA256.Create().ComputeHash(System.Text.Encoding.ASCII.GetBytes("horseisbest"))},
+                new Customers {Id=5,Firstname = "Karl", Lastname="Hagen",Email="karlihagen@staten.no",Phonenumber="49879901",Address="Stortingsgata 120",PostalareasId=0170, Password = System.Security.Cryptography.SHA256.Create().ComputeHash(System.Text.Encoding.ASCII.GetBytes("politiker"))},
+                new Customers {Id=6,Firstname = "Franz", Lastname="Ferdinant",Email="musikk@yolo.com",Phonenumber="98765432",Address="Musikalsklia 10",PostalareasId=0180, Password = System.Security.Cryptography.SHA256.Create().ComputeHash(System.Text.Encoding.ASCII.GetBytes("musikk12345"))},
+                new Customers {Id=7,Firstname = "Lionel", Lastname="Messi",Email="barcelona@fotball.es",Phonenumber="20020050",Address="Camp Nou 1",PostalareasId=9170, Password = System.Security.Cryptography.SHA256.Create().ComputeHash(System.Text.Encoding.ASCII.GetBytes("fotball"))}
             };
             customers.ForEach(c => context.Customers.Add(c));
 
             var orders = new List<Orders>
             {
+                new Orders {Id=298449, OrderDate=DateTime.Now, CustomersId=7},
+                new Orders {Id=298448, OrderDate=DateTime.Now, CustomersId=7},
+                new Orders {Id=298447, OrderDate=DateTime.Now, CustomersId=7},
+                new Orders {Id=298446, OrderDate=DateTime.Now, CustomersId=7},
+                new Orders {Id=298445, OrderDate=DateTime.Now, CustomersId=7},
+                new Orders {Id=298444, OrderDate=DateTime.Now, CustomersId=6},
+                new Orders {Id=298443, OrderDate=DateTime.Now, CustomersId=6},
+                new Orders {Id=298442, OrderDate=DateTime.Now, CustomersId=6},
+                new Orders {Id=298441, OrderDate=DateTime.Now, CustomersId=6},
+                new Orders {Id=298440, OrderDate=DateTime.Now, CustomersId=6},
+                new Orders {Id=298439, OrderDate=DateTime.Now, CustomersId=5},
+                new Orders {Id=298438, OrderDate=DateTime.Now, CustomersId=5},
+                new Orders {Id=298437, OrderDate=DateTime.Now, CustomersId=5},
+                new Orders {Id=298436, OrderDate=DateTime.Now, CustomersId=5},
+                new Orders {Id=298435, OrderDate=DateTime.Now, CustomersId=5},
+                new Orders {Id=298434, OrderDate=DateTime.Now, CustomersId=4},
+                new Orders {Id=298433, OrderDate=DateTime.Now, CustomersId=4},
+                new Orders {Id=298432, OrderDate=DateTime.Now, CustomersId=4},
+                new Orders {Id=298431, OrderDate=DateTime.Now, CustomersId=4},
+                new Orders {Id=298430, OrderDate=DateTime.Now, CustomersId=4},
+                new Orders {Id=298429, OrderDate=DateTime.Now, CustomersId=3},
+                new Orders {Id=298428, OrderDate=DateTime.Now, CustomersId=3},
+                new Orders {Id=298427, OrderDate=DateTime.Now, CustomersId=3},
+                new Orders {Id=298426, OrderDate=DateTime.Now, CustomersId=3},
+                new Orders {Id=298425, OrderDate=DateTime.Now, CustomersId=3},
+                new Orders {Id=298424, OrderDate=DateTime.Now, CustomersId=3},  
                 new Orders {Id=298423, OrderDate=DateTime.Now, CustomersId=1}
             };
             orders.ForEach(c => context.Orders.Add(c));
             var postalareas = new List<Postalareas> 
             {
+                new Postalareas{PostalareasId=0169, Postalarea="Oslo"},
+                new Postalareas{PostalareasId=1874, Postalarea="Lørenskog"},
+                new Postalareas{PostalareasId=0180, Postalarea="Oslo"},
+                new Postalareas{PostalareasId=9170, Postalarea="Barcelona"},
                 new Postalareas{PostalareasId=0170, Postalarea="Oslo"}
             };
             postalareas.ForEach(c => context.Postalareas.Add(c));
            var orderlines = new List<OrderLines>
             {
+                new OrderLines {ProductsId=100015, Quantity = 2, OrdersId=298449},
+                new OrderLines {ProductsId=100016, Quantity = 3, OrdersId=298448},
+                new OrderLines {ProductsId=100025, Quantity = 3, OrdersId=298447},
+                new OrderLines {ProductsId=100032, Quantity = 4, OrdersId=298447},
+                new OrderLines {ProductsId=100021, Quantity = 4, OrdersId=298446},
+                new OrderLines {ProductsId=100011, Quantity = 5, OrdersId=298445},
+                new OrderLines {ProductsId=100009, Quantity = 1, OrdersId=298444},
+                new OrderLines {ProductsId=100022, Quantity = 2, OrdersId=298443},
+                new OrderLines {ProductsId=100044, Quantity = 3, OrdersId=298443},
+                new OrderLines {ProductsId=100012, Quantity = 2, OrdersId=298442},
+                new OrderLines {ProductsId=100028, Quantity = 2, OrdersId=298441},
+                new OrderLines {ProductsId=100025, Quantity = 3, OrdersId=298440},
+                new OrderLines {ProductsId=100001, Quantity = 5, OrdersId=298439},
+                new OrderLines {ProductsId=100010, Quantity = 3, OrdersId=298439},
+                new OrderLines {ProductsId=100023, Quantity = 5, OrdersId=298439},
+                new OrderLines {ProductsId=100021, Quantity = 4, OrdersId=298439},
+                new OrderLines {ProductsId=100033, Quantity = 2, OrdersId=298439},
+                new OrderLines {ProductsId=100005, Quantity = 3, OrdersId=298438},
+                new OrderLines {ProductsId=100038, Quantity = 5, OrdersId=298438},
+                new OrderLines {ProductsId=100040, Quantity = 7, OrdersId=298438},
+                new OrderLines {ProductsId=100006, Quantity = 1, OrdersId=298437},
+                new OrderLines {ProductsId=100025, Quantity = 9, OrdersId=298437},
+                new OrderLines {ProductsId=100002, Quantity = 5, OrdersId=298436},
+                new OrderLines {ProductsId=100004, Quantity = 1, OrdersId=298436},
+                new OrderLines {ProductsId=100018, Quantity = 3, OrdersId=298435},
+                new OrderLines {ProductsId=100019, Quantity = 3, OrdersId=298435},
+                new OrderLines {ProductsId=100022, Quantity = 6, OrdersId=298435},
+                new OrderLines {ProductsId=100017, Quantity = 3, OrdersId=298434},
+                new OrderLines {ProductsId=100022, Quantity = 3, OrdersId=298434},
+                new OrderLines {ProductsId=100029, Quantity = 7, OrdersId=298434},
+                new OrderLines {ProductsId=100014, Quantity = 3, OrdersId=298433},
+                new OrderLines {ProductsId=100002, Quantity = 1, OrdersId=298433},
+                new OrderLines {ProductsId=100011, Quantity = 1, OrdersId=298432},
+                new OrderLines {ProductsId=100011, Quantity = 6, OrdersId=298431},
+                new OrderLines {ProductsId=100011, Quantity = 2, OrdersId=298431},
+                new OrderLines {ProductsId=100001, Quantity = 2, OrdersId=298430},
+                new OrderLines {ProductsId=100013, Quantity = 3, OrdersId=298429},
+                new OrderLines {ProductsId=100041, Quantity = 1, OrdersId=298428},
+                new OrderLines {ProductsId=100013, Quantity = 2, OrdersId=298427},
+                new OrderLines {ProductsId=100003, Quantity = 2, OrdersId=298427},
+                new OrderLines {ProductsId=100001, Quantity = 1, OrdersId=298427},
+                new OrderLines {ProductsId=100034, Quantity = 3, OrdersId=298426},
+                new OrderLines {ProductsId=100025, Quantity = 4, OrdersId=298426},
+                new OrderLines {ProductsId=100033, Quantity = 2, OrdersId=298426},
+                new OrderLines {ProductsId=100013, Quantity = 4, OrdersId=298425},
+                new OrderLines {ProductsId=100010, Quantity = 5, OrdersId=298425},
+                new OrderLines {ProductsId=100029, Quantity = 2, OrdersId=298425},
+                new OrderLines {ProductsId=100027, Quantity = 8, OrdersId=298425},
+                new OrderLines {ProductsId=100013, Quantity = 3, OrdersId=298424},
+                new OrderLines {ProductsId=100004, Quantity = 1, OrdersId=298424},
                 new OrderLines {ProductsId=100044, Quantity = 1, OrdersId=298423},
                 new OrderLines {ProductsId=100045, Quantity = 3, OrdersId=298423},
                 new OrderLines {ProductsId=100046, Quantity = 1, OrdersId=298423}
-            }; orderlines.ForEach(c => context.OrderLines.Add(c));
-
-
-          
+            }; orderlines.ForEach(c => context.OrderLines.Add(c)); 
         }
-
-
-
-
     }
 }
 
+
+/*
+,
+                
+*/

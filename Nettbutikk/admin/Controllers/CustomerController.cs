@@ -50,8 +50,7 @@ namespace Nettbutikk.admin.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                //allCustomers = _customerbll.getResult(searchString); 
-                allCustomers = _customerbll.getAll();
+                allCustomers = _customerbll.getResult(searchString); 
             }
             else
                 allCustomers = _customerbll.getAll(); 

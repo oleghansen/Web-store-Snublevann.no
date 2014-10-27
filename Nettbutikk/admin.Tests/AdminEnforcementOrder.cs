@@ -17,7 +17,7 @@ namespace Nettbutikk.Tests
             var controller = new OrderController(new OrderBLL(new OrderDALStub()));
 
             //Act
-            var result = (RedirectToRouteResult)controller.ListOrders(); 
+            var result = (RedirectToRouteResult)controller.ListOrders(null, null, null, null); 
 
             //Assert
             Assert.AreEqual("Main", result.RouteValues["Action"]);
