@@ -60,7 +60,7 @@ namespace Nettbutikk.DAL
             return null;
         }
 
-        public List<Product> getResult(string searchString)
+        public List<Product> getResult(int? id, string searchString)
         {
             var db = new DatabaseContext();
             var foundProducts = new List<Product>();
@@ -107,7 +107,10 @@ namespace Nettbutikk.DAL
 
         public List<string> getAutoComplete(string term)
         {
-            return null;
+            var db = new DatabaseContext();
+            List<string> searchList = new List<string>();
+            searchList = db.Products.Where(x => x.Name.StartsWith(term)).Select(y => y.Name).ToList();
+            return searchList;
         }
 
 

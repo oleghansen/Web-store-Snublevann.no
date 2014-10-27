@@ -23,6 +23,13 @@ namespace Nettbutikk.BLL
         public List<Product> getAll(int? id)
         {
             List<Product> allProducts = _product.getAll(id);
+            return allProducts;
+        }
+
+
+        public List<Product> getResult(int? id, string s)
+        {
+            List<Product> allProducts = _product.getResult(id, s);
 
             return allProducts;
         }
@@ -32,10 +39,17 @@ namespace Nettbutikk.BLL
             return _product.findProduct(id);
         }
 
+
         public List<Category> getAllCategories()
         {
             List<Category> allCategories = _product.getAllCategories();
             return allCategories;
+        }
+
+        public List<string> getAutoComplete(string term)
+        {
+            List<string> searchList = _product.getAutoComplete(term);
+            return searchList; 
         }
 
         public bool updateProduct(int id, Product p)

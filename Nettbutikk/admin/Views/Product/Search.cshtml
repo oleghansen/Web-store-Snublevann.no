@@ -1,7 +1,7 @@
 ﻿@model PagedList.IPagedList<Nettbutikk.admin.Models.ProductInfo>
 @using PagedList.Mvc;
 @{
-    ViewBag.Title = "ListProducts";
+    ViewBag.Title = "Search";
     Layout = "~/Views/Shared/_Layout.cshtml";
     SelectList itemsPerPageList = DefaultValues.ItemsPerPageList;
 }
@@ -25,51 +25,39 @@
     <div class="jumbotron" style="padding-top:2px">
         <div class="container">
 
-            <h3><span class="glyphicon glyphicon-user"></span> Produktoversikt </h3>
+            <h3><span class="glyphicon glyphicon-user"></span> Søkeresultater </h3>
             <hr />
-        <div class="menu_container">
-            <div class="row">
-                @using (Html.BeginForm("Search", "Product", FormMethod.Get, new { @class = "form-inline", @role = "form", @style = "margin-top:0px; padding-bottom:12px" }))
-                {
 
-                    <div class="col-sm-3 col-md-3" style="padding-right:0px">
-                        <div class="form-group">
-                            <div class="input-group">
-                                @Html.TextBox("searchString", null, new { id = "txtSearch", @class = "form-control", @style = "margin-top:12px;", placeholder = "Søk etter vare" })
-                            </div>
-
-                        </div>
-                        <div class="input-group-btn pull-left">
-                            <button class="btn btn-success" type="submit" style="width: 35px">
-                                <span class="glyphicon glyphicon-search"></span>
-                            </button>
-                        </div>
-                    </div>
-                }
-                <div>
-                    @using (Html.BeginForm("ListProducts", "Product", FormMethod.Post))
-                    {
-                        @Html.DropDownList("ItemsPerPage", itemsPerPageList, new { @id = "ItemsPerPageList", onchange = "this.form.submit();" })
-                    }
+            <div class="form-group">
+                <div class="input-group">
+                    @Html.TextBox("searchString", null, new { id = "userSearch", @class = "form-control", @style = "margin-top:12px;", placeholder = "Søk (Mangler funksjon)" })
 
                 </div>
             </div>
-
             <div>
+                @using (Html.BeginForm("ListProducts", "Product", FormMethod.Post))
+                    {
+                    @Html.DropDownList("ItemsPerPage", itemsPerPageList, new { @id = "ItemsPerPageList", onchange = "this.form.submit();" })
+                    }
+
+            </div>
+            <div>
+                
+
                 <div id="tullbal" class="panel panel-default partialView">
                     <table>
                         <tr>
                             <td>
-                                <b><a href="@Url.Action("ListProducts", new { sortOrder = ViewBag.ItemSortParm})">@Html.DisplayNameFor(modelItem => Model[0].itemnumber)</a></b>
+                                <b>@Html.DisplayNameFor(modelItem => Model[0].itemnumber)</b>
                             </td>
                             <td>
-                                <b><a href="@Url.Action("ListProducts", new { sortOrder = ViewBag.NameSortParm })">@Html.DisplayNameFor(modelItem => Model[0].name)</a></b>
+                                <b>@Html.DisplayNameFor(modelItem => Model[0].name)</b>
                             </td>
                             <td>
-                                <b><a href="@Url.Action("ListProducts", new { sortOrder = ViewBag.ProducerSortParm })"> @Html.DisplayNameFor(modelItem => Model[0].producer)</a></b>
+                                <b> @Html.DisplayNameFor(modelItem => Model[0].producer)</b>
                             </td>
                             <td>
-                                <b><a href="@Url.Action("ListProducts", new { sortOrder = ViewBag.PriceSortParm })"> @Html.DisplayNameFor(modelItem => Model[0].price)</a></b>
+                                <b> @Html.DisplayNameFor(modelItem => Model[0].price)</b>
                             </td>
                             <td>
                                 <b> @Html.DisplayNameFor(modelItem => Model[0].volum)</b>
@@ -102,7 +90,7 @@
                     </table>
                     Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
-                    @Html.PagedListPager(Model, page => Url.Action("ListProducts",new { page, itemsPerPage = ViewBag.CurrentItemsPerPage, sortOrder = ViewBag.CurrentSort }));
+                    @Html.PagedListPager(Model, page => Url.Action("ListProducts", new { page }))
 
 
                 </div>

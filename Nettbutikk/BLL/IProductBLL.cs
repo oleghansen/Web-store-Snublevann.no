@@ -7,6 +7,9 @@ namespace Nettbutikk.BLL
     {
         List<Category> getAllCategories();
         List<Product> getAll(int? id);
+        List<Product> getResult(int? id, string sc);
+        
+        List<string> getAutoComplete(string term);
         Product seeDetails(int i);
 
         bool updateProduct(int id, Product p);
