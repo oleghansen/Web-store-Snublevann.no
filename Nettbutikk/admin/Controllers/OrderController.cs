@@ -113,27 +113,25 @@ namespace Nettbutikk.admin.Controllers
             List<OrderLineViewModel> list = new List<OrderLineViewModel>();
 
             List<Order> allOrders = _orderbll.getAllOrders(id);
-           
+            int linje = 1;
             foreach(var item in allOrders){
             
                 foreach(var olItem in item.orderLine)
                 {
-                     var order = new Order(){
-                          orderdate = item.orderdate,
-                           
-                     };
 
                     list.Add(new OrderLineViewModel() 
                     {
-                        id = item.id,
+                        id = linje,
                         customer = item.customer,
-                        order = order,
+                        orderdate  = item.orderdate, 
+                        orderId = item.id, 
                         product = olItem.product,
                         quantity = olItem.quantity,
-                        orderlineSum = (olItem.quantity * olItem.product.price)                      
+                        orderlineSum = (olItem.quantity * olItem.product.price) ,
+                        customerid = item.customerid 
 
                     });
-                
+                    linje++;
                 }
             }
             return View(list);

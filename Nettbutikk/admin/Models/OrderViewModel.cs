@@ -17,10 +17,15 @@ namespace Nettbutikk.admin.Models
         public DateTime orderdate { get; set; }
        [DisplayName("KundeId")]
         public int customerid { get; set; }
+         [DisplayName("Fornavn")]
+       public String firstname { get; set; }
+         [DisplayName("Etternavn")]
+         public String lastname { get; set; }
         public Customer customer { get; set; }
         [DisplayName("Antall")]
         public int quantity { get; set; }
         [DisplayName("Sum")]
+        [DisplayFormat(DataFormatString = "{0:C0}")]
         public int sum { get; set; }
       
     }

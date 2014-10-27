@@ -32,7 +32,12 @@ namespace Nettbutikk.DAL
         public List<Order> getAllOrders(int? id)
         {
             var db = new DatabaseContext();
-            var lines = db.Orders.ToList();
+            List<Orders> lines;
+            if(id != null)
+                 lines = db.Orders.Where(o => o.Id  == id).ToList();
+            else
+             lines = db.Orders.ToList();
+
             List<Order> list = new List<Order>();
             foreach (var item in lines)
             {             
