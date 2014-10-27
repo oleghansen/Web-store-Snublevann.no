@@ -101,7 +101,7 @@ namespace Nettbutikk.admin.Controllers
 
 
 
-            return PartialView(list);
+            return PartialView("ListPartial",list);
         }
       
         private bool isAdmin()
