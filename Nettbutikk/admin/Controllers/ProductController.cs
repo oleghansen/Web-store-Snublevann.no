@@ -129,7 +129,7 @@ namespace Nettbutikk.admin.Controllers
             }
             Product productDetails = _product.seeDetails(id);
 
-            ProductInfo pif = new ProductInfo()
+            ProductInfo prodinfo = new ProductInfo()
             {
                 itemnumber = productDetails.itemnumber,
                 name = productDetails.name,
@@ -142,7 +142,7 @@ namespace Nettbutikk.admin.Controllers
                 producer = productDetails.producer,
                 pricePerLitre = productDetails.pricePerLitre,
             };
-            return View(pif);
+            return View(prodinfo);
         }
 
 
