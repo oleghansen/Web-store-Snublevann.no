@@ -17,7 +17,7 @@ namespace Nettbutikk.Tests
             var controller = new ProductController(new ProductBLL(new ProductDALStub()));
 
             //Act
-            var result = (RedirectToRouteResult)controller.ListProducts(null);
+            var result = (RedirectToRouteResult)controller.ListProducts(null,null);
 
             //Assert
             Assert.AreEqual("Main", result.RouteValues["Action"]);

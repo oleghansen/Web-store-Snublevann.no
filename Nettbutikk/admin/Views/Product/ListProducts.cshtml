@@ -1,8 +1,11 @@
-﻿@model Nettbutikk.admin.Models.ProductMenu
+﻿@model PagedList.IPagedList<Nettbutikk.admin.Models.ProductInfo>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "ListProducts";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    SelectList itemsPerPageList = DefaultValues.ItemsPerPageList;
 }
+
 
 <div class="submenu">
     <div class="row">
@@ -30,20 +33,66 @@
             <div class="form-group">
                 <div class="input-group">
                     @Html.TextBox("searchString", null, new { id = "userSearch", @class = "form-control", @style = "margin-top:12px;", placeholder = "Søk (Mangler funksjon)" })
-
-@{
-    var categoryList = Model.categories.Select(c => new SelectListItem
-        {
-            Value = c.SelectedCategoryId.ToString(),
-            Text = c.CategoriesName
-        });
-       
-    //list for other Drop Down
-}
-@(Html.DropDownList("categoryDrop", categoryList, "-----Select-----"))
                 </div>
             </div>
-            <div id="tullbal"></div>
+            <div>
+                @using (Html.BeginForm("ListProducts","Product",FormMethod.Post)) { 
+                    @Html.DropDownList("ItemsPerPage", itemsPerPageList, new { @id = "ItemsPerPageList" ,onchange="this.form.submit();"})
+                }
+               
+
+                <div id="tullbal" class="panel panel-default partialView">
+                    <table>
+                        <tr>
+                            <td>
+                                <b><a href="@Url.Action("ListProducts", new { sortOrder = ViewBag.ItemSortParm})">@Html.DisplayNameFor(modelItem => Model[0].itemnumber)</a></b>
+                            </td>
+                            <td>
+                                <b><a href="@Url.Action("ListProducts", new { sortOrder = ViewBag.NameSortParm })">@Html.DisplayNameFor(modelItem => Model[0].name)</a></b>
+                            </td>
+                            <td>
+                                <b><a href="@Url.Action("ListProducts", new { sortOrder = ViewBag.ProducerSortParm })"> @Html.DisplayNameFor(modelItem => Model[0].producer)</a></b>
+                            </td>
+                            <td>
+                                <b><a href="@Url.Action("ListProducts", new { sortOrder = ViewBag.PriceSortParm })"> @Html.DisplayNameFor(modelItem => Model[0].price)</a></b>
+                            </td>
+                            <td>
+                                <b> @Html.DisplayNameFor(modelItem => Model[0].volum)</b>
+                            </td>
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            <tr class="rows">
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.itemnumber)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.producer)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.price)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.volum)
+                                </td>
+                                <td>
+                                    <button class="btn btn-xs btn-default" style="margin-top:0px" type="submit"><i class="glyphicon glyphicon-pencil"></i></button>
+                                    <button class="btn btn-xs btn-default" style="margin-top:0px" type="submit"><i class="glyphicon glyphicon-align-justify"></i></button>
+                                    <button class="btn btn-xs btn-danger" style="margin-top:0px" type="submit"><i class="glyphicon glyphicon-trash"></i></button>
+                            </tr>
+                        }
+                    </table>
+                    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+                    @Html.PagedListPager(Model, page => Url.Action("ListProducts",new { page, itemsPerPage = ViewBag.CurrentItemsPerPage, sortOrder = ViewBag.CurrentSort }));
+
+
+                </div>
+
+            </div>
         </div>
     </div>
 

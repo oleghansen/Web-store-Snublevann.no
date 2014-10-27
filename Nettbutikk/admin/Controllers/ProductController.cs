@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace Nettbutikk.admin.Controllers
 {
@@ -26,58 +27,53 @@ namespace Nettbutikk.admin.Controllers
         public ActionResult Index()
         {
             if (!isAdmin())
-                return RedirectToAction("Main", "Main"); 
+                return RedirectToAction("Main", "Main");
             return View();
         }
-        
-        public ActionResult ListProducts(int? id)
+
+        public ActionResult ListProducts(int? page, int? itemsPerPage, string sortOrder)
         {
-            ProductMenu returnValue = new ProductMenu(); 
             if (!isAdmin())
                 return RedirectToAction("Main", "Main");
-            List<Product> allProducts = _product.getAll(id);
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.ItemSortParm = String.IsNullOrEmpty(sortOrder) ? "item_desc" : ""; 
+            ViewBag.NameSortParm = sortOrder == "Name" ? "name_desc" : "Name";
+            ViewBag.PriceSortParm = sortOrder == "Price" ? "price_desc" : "Price";
+            ViewBag.ProducerSortParm = sortOrder == "Producer" ? "producer_desc" : "Producer";
+            var allProducts = _product.getAll(null);
 
-            List<ProductInfo> list = new List<ProductInfo>();
-            foreach(var item in allProducts)
+            switch (sortOrder)
             {
-                list.Add(
-                    new ProductInfo()
-                    {
-                        itemnumber = item.itemnumber,
-                        name = item.name,
-                        description = item.description,
-                        category = item.category,
-                        subCategory = item.subCategory,
-                        country = item.country,
-                        price = item.price,
-                        producer = item.producer,
-                        volum = item.volum,
-                        longDescription = item.longDescription,
-                        pricePerLitre = item.pricePerLitre
-                    });
-            }
-            returnValue.productInfo = list;
-
-            returnValue.categories = new List<CategoryViewModel>();
-            List<Category> allCategories = _product.getAllCategories(); 
-            foreach(var c in allCategories)
-            {
-                returnValue.categories.Add(new CategoryViewModel()
-                {
-                    SelectedCategoryId = c.ID,
-                    CategoriesName = c.name
-                });
+                case "item_desc":
+                    allProducts = allProducts.OrderByDescending(s => s.itemnumber).ToList();
+                    break;
+                case "name_desc":
+                    allProducts = allProducts.OrderByDescending(s => s.name).ToList();
+                    break;
+                case "Name":
+                    allProducts = allProducts.OrderBy(s => s.name).ToList();
+                    break;
+                case "Price":
+                    allProducts = allProducts.OrderBy(s => s.price).ToList();
+                    break;
+                case "price_desc":
+                    allProducts = allProducts.OrderByDescending(s => s.price).ToList();
+                    break;
+                case "Producer":
+                    allProducts = allProducts.OrderBy(s => s.producer).ToList();
+                    break;
+                case "producer_desc":
+                    allProducts = allProducts.OrderByDescending(s => s.producer).ToList();
+                    break; 
+                default:
+                    allProducts = allProducts.OrderBy(s => s.itemnumber).ToList();
+                    break;
             }
 
-            return View(returnValue);
-        }
 
-        public ActionResult ListPartial(int? id)
-        {
-       
-            if (!isAdmin())
-                return RedirectToAction("Main", "Main");
-            List<Product> allProducts = _product.getAll(id);
+            ViewBag.CurrentItemsPerPage = itemsPerPage;
+
+            
 
             List<ProductInfo> list = new List<ProductInfo>();
             foreach (var item in allProducts)
@@ -100,10 +96,9 @@ namespace Nettbutikk.admin.Controllers
             }
 
 
-
-            return PartialView(list);
+            return View(list.ToPagedList(pageNumber: page ?? 1, pageSize: itemsPerPage ?? 10));
         }
-      
+
         private bool isAdmin()
         {
             if (Session == null)
@@ -120,7 +115,7 @@ namespace Nettbutikk.admin.Controllers
             }
             Product productDetails = _product.seeDetails(id);
             return View(productDetails);
-               
+
         }
 
 
@@ -133,6 +128,7 @@ namespace Nettbutikk.admin.Controllers
             }
             bool updated = _product.updateProduct(id, p);
             return View(updated);
+
         }
     }
 }
