@@ -163,6 +163,7 @@
     <Content Include="Views\Product\SettingsProduct.cshtml" />
     <Content Include="Views\Product\ListPartial.cshtml" />
     <Content Include="Views\Product\ProductDetailsView.cshtml" />
+    <Content Include="Views\Product\ProductDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

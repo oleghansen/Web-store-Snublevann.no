@@ -82,7 +82,6 @@ namespace Nettbutikk.Tests
             var result = (Product)action.Model;
 
 
-            Assert.AreEqual(action.ViewName, "");
             Assert.AreEqual(expected.itemnumber, result.itemnumber);
             Assert.AreEqual(expected.name, result.name);
             Assert.AreEqual(expected.description, result.description);

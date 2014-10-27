@@ -1,6 +1,56 @@
-﻿
+﻿@model Nettbutikk.admin.Models.ProductInfo
+
+
 @{
-    ViewBag.Title = "ProductDetails";
+    ViewBag.Title = "SettingsProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="jumbotron">
+        <div class="container">
+            <div class="row">
+                <div class="formTitle">
+                    <h2><span class="glyphicon glyphicon-glass"></span>Oppdater produkt</h2>    
+                </div>
+                <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+                    <form role="form">
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <h4>Produktnavn:</h4>
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Produkt", tabindex = "1", autofocus = "" } })
+                                    @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })                                     
+                                    <h4>Pris:</h4>
+                                    @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Pris", tabindex = "2" } })
+                                    @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                </div>
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.producer, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Adresse", tabindex = "3" } })
+                                    @Html.ValidationMessageFor(model => model.producer, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Postnummer", tabindex = "4" } })
+                                        @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        @Html.EditorFor(model => model.longDescription, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Poststed", tabindex = "5" } })
+                                        @Html.ValidationMessageFor(model => model.longDescription, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+}
