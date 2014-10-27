@@ -29,7 +29,7 @@ namespace Nettbutikk.admin.Controllers
             Debug.WriteLine("admin?");
             Debug.WriteLine(isAdmin());
             if (!isAdmin())
-                return RedirectToAction("Main", "Main"); 
+                return RedirectToAction("LogIn", "Main"); 
 
             List<Customer> allCustomers = _customerbll.getAll();
             List<UserInfo> list = new List<UserInfo>();
@@ -59,7 +59,7 @@ namespace Nettbutikk.admin.Controllers
         public ActionResult Index()
         {
             if (!isAdmin())
-                return RedirectToAction("Main", "Main"); 
+                return RedirectToAction("LogIn", "Main"); 
             return View();
         }
         private bool isAdmin(){
