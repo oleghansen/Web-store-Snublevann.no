@@ -13,15 +13,33 @@
             <h3><span class="glyphicon glyphicon-user"></span> Brukeroversikt </h3>
             <hr />
 
-            <div class="form-group">
-                <div class="input-group">
-                    @Html.TextBox("searchString", null, new { id = "userSearch", @class = "form-control", @style = "margin-top:12px;", placeholder = "Søk (Mangler funksjon)" })
+            <div class="row">
+                @using (Html.BeginForm("ListCustomers", "Customer", FormMethod.Get, new { @class = "form-inline", @role = "form", @style = "margin-top:0px; padding-bottom:12px" }))
+                {
+
+                    <div class="col-sm-3 col-md-3" style="padding-right:0px">
+                        <div class="form-group">
+                            <div class="input-group">
+                                @Html.TextBox("searchString", ViewBag.CurrentFilter as string, new { id = "txtSearch", @class = "form-control", @style = "margin-top:12px;", placeholder = "Søk etter bruker" })
+                            </div>
+
+                        </div>
+                        <div class="input-group-btn pull-left">
+                            <button class="btn btn-success" type="submit" style="width: 35px">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </div>
+                    </div>
+                }
+                <div>
+                    @using (Html.BeginForm("ListCustomers", "Customer", FormMethod.Post))
+                    {
+                        @Html.DropDownList("ItemsPerPage", itemsPerPageList, new { @id = "ItemsPerPageList", onchange = "this.form.submit();" })
+                    }
+
                 </div>
             </div>
-            @using(Html.BeginForm("ListCustomers","Customer",FormMethod.Post))
-            {
-                @Html.DropDownList("ItemsPerPage", itemsPerPageList, new { @id = "ItemsPerPageList", onchange="this.form.submit();"})
-            }
+
             <div class="panel panel-default">
                 <table>
                     <tr>
