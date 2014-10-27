@@ -94,7 +94,7 @@
                                     @Html.DisplayFor(modelItem => item.volum)
                                 </td>
                                 <td>
-                                    <button class="btn btn-xs btn-default" style="margin-top:0px" type="submit"><i class="glyphicon glyphicon-pencil"></i></button>
+                                    <button class="btn btn-xs btn-default" style="margin-top:0px" type="submit"><span class="glyphicon glyphicon-pencil">@Html.ActionLink("Endre", "ProductDetails",  new { id = item.itemnumber })</span></button>
                                     <button class="btn btn-xs btn-default" style="margin-top:0px" type="submit"><i class="glyphicon glyphicon-align-justify"></i></button>
                                     <button class="btn btn-xs btn-danger" style="margin-top:0px" type="submit"><i class="glyphicon glyphicon-trash"></i></button>
                             </tr>
