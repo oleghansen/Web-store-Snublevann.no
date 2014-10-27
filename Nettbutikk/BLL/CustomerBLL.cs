@@ -27,6 +27,12 @@ namespace Nettbutikk.BLL
             return allCustomers;
         }
 
+        public List<Customer> getResult(string s)
+        {
+            List<Customer> allCustomers = _customer.getResult(s);
+            return allCustomers;
+        }
+
         public Customer findUser(String email)
         {
             return _customer.findUser(email);

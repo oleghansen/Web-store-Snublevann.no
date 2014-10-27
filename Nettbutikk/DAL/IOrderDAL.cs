@@ -12,10 +12,10 @@ namespace Nettbutikk.DAL
        // System.Collections.Generic.List<Nettbutikk.Model.Order> getAll();
 
 
-        List<Order> getAllOrders();
+        List<Order> getAllOrders(int? id);
         List<OrderLine> getAllOrderLinesOfOrder(int id);
-       
-        
+
+        Order getOrder(int id);
         bool checkOrder(int? id);
         Order findOrder(int id);
     }

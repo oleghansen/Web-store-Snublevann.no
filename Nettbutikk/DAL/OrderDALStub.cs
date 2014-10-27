@@ -9,7 +9,7 @@ namespace Nettbutikk.DAL
 {
     public class OrderDALStub : DAL.IOrderDAL       
     {
-        public List<Order> getAllOrders()
+        public List<Order> getAllOrders(int? id)
         {
             List<Order> list = new List<Order>();
             
@@ -19,7 +19,6 @@ namespace Nettbutikk.DAL
             {
                  
                 id = 298423,
-                
                 customerid = 1,   
                 orderdate = DateTime.Now
             };
@@ -44,6 +43,20 @@ namespace Nettbutikk.DAL
             olList.Add(orderline);
             return olList;
         }
+
+        public Order getOrder(int id)
+        {
+            Order o = new Order()
+            {
+                id = 298423,
+                customerid = 1,
+                orderdate = DateTime.Now
+
+            };
+
+            return o;
+        }
+
 
         
 

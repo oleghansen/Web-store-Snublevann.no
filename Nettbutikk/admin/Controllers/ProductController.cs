@@ -27,14 +27,14 @@ namespace Nettbutikk.admin.Controllers
         public ActionResult Index()
         {
             if (!isAdmin())
-                return RedirectToAction("Main", "Main"); 
+                return RedirectToAction("LogIn", "Main"); 
             return View();
         }
         
         public ActionResult ListProducts(int? page, int? itemsPerPage, string sortOrder, string currentFilter, string searchString)
         {
             if (!isAdmin())
-                return RedirectToAction("Main", "Main");
+                return RedirectToAction("LogIn", "Main");
             ViewBag.CurrentSort = sortOrder;
             ViewBag.ItemSortParm = String.IsNullOrEmpty(sortOrder) ? "item_desc" : ""; 
             ViewBag.NameSortParm = sortOrder == "Name" ? "name_desc" : "Name";
@@ -107,7 +107,7 @@ namespace Nettbutikk.admin.Controllers
             }
 
 
-            return View(list.ToPagedList(pageNumber: page ?? 1, pageSize: itemsPerPage ?? 10));
+            return View(list.ToPagedList(pageNumber: page ?? 1, pageSize: itemsPerPage ?? 15));
         }
       
  
@@ -125,7 +125,7 @@ namespace Nettbutikk.admin.Controllers
         {
             if (!isAdmin())
             {
-                return RedirectToAction("Main", "Main");
+                return RedirectToAction("LogIn", "Main");
             }
             Product productDetails = _product.seeDetails(id);
 
@@ -151,7 +151,7 @@ namespace Nettbutikk.admin.Controllers
         {
             if (!isAdmin())
             {
-                return RedirectToAction("Main", "Main");
+                return RedirectToAction("LogIn", "Main");
             }
             bool updated = _product.updateProduct(id, p);
             return View(updated);

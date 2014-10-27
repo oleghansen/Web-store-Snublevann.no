@@ -1,7 +1,9 @@
-﻿@model List<Nettbutikk.admin.Models.UserInfo>
+﻿@model PagedList.IPagedList<Nettbutikk.admin.Models.UserInfo>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "ListCustomers";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    SelectList itemsPerPageList = DefaultValues.ItemsPerPageList;
 }
 <link href="~/Content/Custom/MainSheet.css" rel="stylesheet" />
 
@@ -11,36 +13,64 @@
             <h3><span class="glyphicon glyphicon-user"></span> Brukeroversikt </h3>
             <hr />
 
-            <div class="form-group">
-                <div class="input-group">
-                    @Html.TextBox("searchString", null, new { id = "userSearch", @class = "form-control", @style = "margin-top:12px;", placeholder = "Søk (Mangler funksjon)" })
+            <div class="row">
+                @using (Html.BeginForm("ListCustomers", "Customer", FormMethod.Get, new { @class = "form-inline", @role = "form", @style = "margin-top:0px; padding-bottom:12px" }))
+                {
+
+                    <div class="col-sm-3 col-md-3" style="padding-right:0px">
+                        <div class="form-group">
+                            <div class="input-group">
+                                @Html.TextBox("searchString", ViewBag.CurrentFilter as string, new { id = "txtSearch", @class = "form-control", @style = "margin-top:12px;", placeholder = "Søk etter bruker" })
+                            </div>
+
+                        </div>
+                        <div class="input-group-btn pull-left">
+                            <button class="btn btn-success" type="submit" style="width: 35px">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </div>
+                    </div>
+                }
+                <div>
+                    @using (Html.BeginForm("ListCustomers", "Customer", FormMethod.Post))
+                    {
+                        @Html.DropDownList("ItemsPerPage", itemsPerPageList, new { @id = "ItemsPerPageList", onchange = "this.form.submit();" })
+                    }
+
                 </div>
             </div>
+
             <div class="panel panel-default">
                 <table>
                     <tr>
                         <td>
-                            <b>@Html.DisplayNameFor(modelItem => Model[0].firstname)</b>
+                            <b><a href="@Url.Action("ListCustomers", new { sortOrder = ViewBag.IDSortParm, currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].id)</a></b>
                         </td>
                         <td>
-                            <b>@Html.DisplayNameFor(modelItem => Model[0].lastname)</b>
+                            <b><a href="@Url.Action("ListCustomers", new { sortOrder = ViewBag.FirstNameSortParm, currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].firstname)</a></b>
                         </td>
                         <td>
-                            <b> @Html.DisplayNameFor(modelItem => Model[0].address)</b>
+                            <b><a href="@Url.Action("ListCustomers", new { sortOrder = ViewBag.LastNameSortParm, currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].lastname)</a></b>
                         </td>
                         <td>
-                            <b> @Html.DisplayNameFor(modelItem => Model[0].email)</b>
+                            <b><a href="@Url.Action("ListCustomers", new { sortOrder = ViewBag.AddressSortParm, currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].address)</a></b>
                         </td>
                         <td>
-                            <b> @Html.DisplayNameFor(modelItem => Model[0].postalarea)</b>
+                            <b><a href="@Url.Action("ListCustomers", new { sortOrder = ViewBag.EMailSortParm, currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].email)</a></b>
                         </td>
                         <td>
-                            <b> @Html.DisplayNameFor(modelItem => Model[0].postalcode)</b>
+                            <b><a href="@Url.Action("ListCustomers", new { sortOrder = ViewBag.PostAreaSortParm, currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].postalarea)</a></b>
+                        </td>
+                        <td>
+                            <b><a href="@Url.Action("ListCustomers", new { sortOrder = ViewBag.PostCodeSortParm, currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].postalcode)</a></b>
                         </td>
                     </tr>
                     @foreach (var item in Model)
                     {
                         <tr class="rows">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.id)
+                            </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.firstname)
                             </td>
@@ -66,6 +96,11 @@
                         </tr>
                     }
                 </table>
+                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+                @Html.PagedListPager(Model, page => Url.Action("ListCustomers", new { page, itemsPerPage = ViewBag.CurrentItemsPerPage, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }));
+
+
             </div>
 
 
