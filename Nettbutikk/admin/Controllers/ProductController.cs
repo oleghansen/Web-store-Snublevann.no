@@ -31,15 +31,15 @@ namespace Nettbutikk.admin.Controllers
             return View();
         }
         
-        public ActionResult ListProducts(int? page)
+        public ActionResult ListProducts(int? page, int? itemsPerPage)
         {
 
             ProductMenu returnValue = new ProductMenu(); 
             if (!isAdmin())
                 return RedirectToAction("Main", "Main");
 
-            int pageNumber = page ?? 1;
-            int itemsPerPage = 25;
+            
+            ViewBag.CurrentItemsPerPage = itemsPerPage;
 
             List<Product> allProducts = _product.getAll(null);
 
@@ -75,7 +75,7 @@ namespace Nettbutikk.admin.Controllers
                 });
             }
 
-            return View( list.ToPagedList(pageNumber, itemsPerPage));
+            return View( list.ToPagedList(pageNumber: page ?? 1, pageSize: itemsPerPage ?? 10));
         }
       
         private bool isAdmin()

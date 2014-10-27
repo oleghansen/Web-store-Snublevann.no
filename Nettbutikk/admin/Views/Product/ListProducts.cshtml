@@ -1,8 +1,11 @@
 ﻿@model PagedList.IPagedList<Nettbutikk.admin.Models.ProductInfo>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "ListProducts";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    SelectList itemsPerPageList = DefaultValues.ItemsPerPageList;
 }
+
 
 <div class="submenu">
     <div class="row">
@@ -34,7 +37,10 @@
                 </div>
             </div>
             <div>
-                
+                @using (Html.BeginForm("ListProducts","Product",FormMethod.Post)) { 
+                    @Html.DropDownList("ItemsPerPage", itemsPerPageList, new { @id = "ItemsPerPageList" ,onchange="this.form.submit();"})
+                }
+               
 
                 <div id="tullbal" class="panel panel-default partialView">
                     <table>
@@ -82,7 +88,7 @@
                     </table>
                     Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
-                    @Html.PagedListPager(Model, page => Url.Action("ListProducts", new { page }))
+                    @Html.PagedListPager(Model, page => Url.Action("ListProducts",new { page, itemsPerPage = ViewBag.CurrentItemsPerPage }));
 
 
                 </div>
