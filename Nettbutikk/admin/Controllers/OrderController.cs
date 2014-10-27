@@ -1,7 +1,6 @@
 ﻿using Nettbutikk.admin.Models;
 using Nettbutikk.BLL;
 using Nettbutikk.Model;
-using Nettbutikk.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,7 +47,8 @@ namespace Nettbutikk.admin.Controllers
             return View(list);
         }
 
-       /* public ActionResult ListOrderLines(int id)
+        [HttpGet]
+        public ActionResult ListOrderLines(int id)
         {
             if (!isAdmin())
                 return RedirectToAction("Main", "Main");
@@ -56,22 +56,32 @@ namespace Nettbutikk.admin.Controllers
             List<OrderLineViewModel> list = new List<OrderLineViewModel>();
 
             List<Order> allOrders = _orderbll.getAllOrders(id);
-
-            foreach (var item in allOrders)
-            {
-                list.Add(new OrderLineViewModel() 
+           
+            foreach(var item in allOrders){
+            
+                foreach(var olItem in item.orderLine)
                 {
-                    id = item.id,
-                    customer = item.customer,
-                     order = item.
-                     
+                     var order = new Order(){
+                          orderdate = item.orderdate,
+                           
+                     };
 
-                });
+                    list.Add(new OrderLineViewModel() 
+                    {
+                        id = item.id,
+                        customer = item.customer,
+                        order = order,
+                        product = olItem.product,
+                        quantity = olItem.quantity,
+                        orderlineSum = (olItem.quantity * olItem.product.price)                      
+
+                    });
                 
+                }
             }
             return View(list);
             
-        }*/
+        }
 
         // GET: OrderTest
         public ActionResult Index()
