@@ -33,7 +33,7 @@ namespace Nettbutikk.Tests
 
             expected.Add(prod);
 
-            var actual = (ViewResult)allProd.ListProducts(null,null);
+            var actual = (ViewResult)allProd.ListProducts(null,null,null);
             var result = (PagedList<ProductInfo>)actual.Model;
 
             Assert.IsNotNull(result);
@@ -59,7 +59,7 @@ namespace Nettbutikk.Tests
             expected.Add(prod);
             expected.Add(prod);
 
-            var action = (ViewResult)allProd.ListProducts(null,null);
+            var action = (ViewResult)allProd.ListProducts(null,null,null);
             var result = (IPagedList)action.Model;
             
             Assert.IsTrue(result.TotalItemCount > 0);
