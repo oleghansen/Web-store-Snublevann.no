@@ -79,7 +79,7 @@
                             <div class="navUl pull-right">
                                 @if (Session["loggedInUser"] != null)
                                 {
-                                    <a href="#" id="usersLink" onclick="toggle_visibility('submenuUsers', 'submenuProducts', 'submenuOrders');">
+                                    <a href="@Url.Action("ListCustomers", "Customer")" id="usersLink" onclick="toggle_visibility('submenuUsers', 'submenuProducts', 'submenuOrders');">
                                         <i class="glyphicon glyphicon-user"> </i> Brukere
                                     </a>
 
@@ -103,8 +103,9 @@
         </div>
     </div>
 
-    <!-- SUBMENY USER-->
+    
         <div class="container body-content">
+            <!-- SUBMENY USER
             <div id="submenuUsers" style="display:none">
                 <div class="row">
                     <div class="col-sm-12 col-md-12">
@@ -119,7 +120,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>-->
 
             <!-- SUBMENY PRODUCT-->
                 <div id="submenuProducts" style="display:none">
