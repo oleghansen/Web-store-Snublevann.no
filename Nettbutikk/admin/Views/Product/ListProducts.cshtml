@@ -33,7 +33,6 @@
             <div class="form-group">
                 <div class="input-group">
                     @Html.TextBox("searchString", null, new { id = "userSearch", @class = "form-control", @style = "margin-top:12px;", placeholder = "Søk (Mangler funksjon)" })
-
                 </div>
             </div>
             <div>
@@ -46,16 +45,16 @@
                     <table>
                         <tr>
                             <td>
-                                <b>@Html.DisplayNameFor(modelItem => Model[0].itemnumber)</b>
+                                <b><a href="@Url.Action("ListProducts", new { sortOrder = ViewBag.ItemSortParm})">@Html.DisplayNameFor(modelItem => Model[0].itemnumber)</a></b>
                             </td>
                             <td>
-                                <b>@Html.DisplayNameFor(modelItem => Model[0].name)</b>
+                                <b><a href="@Url.Action("ListProducts", new { sortOrder = ViewBag.NameSortParm })">@Html.DisplayNameFor(modelItem => Model[0].name)</a></b>
                             </td>
                             <td>
-                                <b> @Html.DisplayNameFor(modelItem => Model[0].producer)</b>
+                                <b><a href="@Url.Action("ListProducts", new { sortOrder = ViewBag.ProducerSortParm })"> @Html.DisplayNameFor(modelItem => Model[0].producer)</a></b>
                             </td>
                             <td>
-                                <b> @Html.DisplayNameFor(modelItem => Model[0].price)</b>
+                                <b><a href="@Url.Action("ListProducts", new { sortOrder = ViewBag.PriceSortParm })"> @Html.DisplayNameFor(modelItem => Model[0].price)</a></b>
                             </td>
                             <td>
                                 <b> @Html.DisplayNameFor(modelItem => Model[0].volum)</b>
@@ -88,7 +87,7 @@
                     </table>
                     Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
-                    @Html.PagedListPager(Model, page => Url.Action("ListProducts",new { page, itemsPerPage = ViewBag.CurrentItemsPerPage }));
+                    @Html.PagedListPager(Model, page => Url.Action("ListProducts",new { page, itemsPerPage = ViewBag.CurrentItemsPerPage, sortOrder = ViewBag.CurrentSort }));
 
 
                 </div>
