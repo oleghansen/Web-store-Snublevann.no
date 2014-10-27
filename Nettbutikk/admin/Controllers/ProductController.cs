@@ -77,6 +77,55 @@ namespace Nettbutikk.admin.Controllers
 
             return View( list.ToPagedList(pageNumber, itemsPerPage));
         }
+
+        public ActionResult Search(int? page, string searchString)
+        {
+            ProductMenu returnValue = new ProductMenu();
+            if (!isAdmin())
+                return RedirectToAction("Main", "Main");
+
+            int pageNumber = page ?? 1;
+            int itemsPerPage = 25;
+            List<Product> allProducts = _product.getResult(page, searchString);
+            List<ProductInfo> list = new List<ProductInfo>();
+           
+            foreach (var item in allProducts)
+            {
+                if (item.name.ToUpper().Contains(searchString.ToUpper()) || item.description.ToUpper().Contains(searchString.ToUpper()))
+                {
+                    ProductInfo produkt = new ProductInfo()
+                    {
+                        itemnumber = item.itemnumber,
+                        name = item.name,
+                        description = item.description,
+                        category = item.category,
+                        subCategory = item.subCategory,
+                        country = item.country,
+                        price = item.price,
+                        producer = item.producer,
+                        volum = item.volum,
+                        longDescription = item.longDescription,
+                        pricePerLitre = item.pricePerLitre
+                    };
+
+                    list.Add(produkt);
+                }
+            }
+            returnValue.productInfo = list;
+
+            returnValue.categories = new List<CategoryViewModel>();
+            List<Category> allCategories = _product.getAllCategories();
+            foreach (var c in allCategories)
+            {
+                returnValue.categories.Add(new CategoryViewModel()
+                {
+                    SelectedCategoryId = c.ID,
+                    CategoriesName = c.name
+                });
+            }
+
+            return View(list.ToPagedList(pageNumber, itemsPerPage));
+        }
       
         private bool isAdmin()
         {
@@ -107,6 +156,12 @@ namespace Nettbutikk.admin.Controllers
             }
             bool updated = _product.updateProduct(id, p);
             return View(updated);
+        }
+
+        public JsonResult getResults(string term)
+        {
+            List<string> foundProducts = _product.getAutoComplete(term);
+            return Json(foundProducts, JsonRequestBehavior.AllowGet);
         }
     }
 }
