@@ -120,6 +120,7 @@ namespace Nettbutikk.admin.Controllers
             return (user == null) ? false : user.admin;
         }
 
+      
         public ActionResult ProductDetails(int id)
         {
             if (!isAdmin())
@@ -127,8 +128,21 @@ namespace Nettbutikk.admin.Controllers
                 return RedirectToAction("Main", "Main");
             }
             Product productDetails = _product.seeDetails(id);
-            return View(productDetails);
-               
+
+            ProductInfo pif = new ProductInfo()
+            {
+                itemnumber = productDetails.itemnumber,
+                name = productDetails.name,
+                description = productDetails.description,
+                longDescription = productDetails.longDescription,
+                price = productDetails.price,
+                volum = productDetails.volum,
+                country = productDetails.country,
+                quantity = productDetails.quantity,
+                producer = productDetails.producer,
+                pricePerLitre = productDetails.pricePerLitre,
+            };
+            return View(pif);
         }
 
 

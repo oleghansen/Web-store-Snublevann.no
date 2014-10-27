@@ -90,19 +90,24 @@ namespace Nettbutikk.DAL
         public Product findProduct(int id)
         {
             var db = new DatabaseContext();
-            Products products = db.Products.FirstOrDefault(c => c.Id == id);
-          
-                 Product prod = new Product()
-                {
-                    itemnumber = products.Id,
-                    name = products.Name,
-                    description = products.Description,
-                    price = products.Price,
-                    volum = products.Volum,
-                    producer = products.Producers.Name,
-                    country = products.Countries.Name
-              };
-            return prod;
+            Products products = db.Products.Include(p => p.SubCategories.Categories)
+                .Where(p => p.Id == id).FirstOrDefault<Products>();
+            return new Product()
+            {
+                itemnumber = products.Id,
+                name = products.Name,
+                description = products.Description,
+                longDescription = products.LongDescription,
+                price = products.Price,
+                volum = products.Volum,
+                producer = products.Producers.Name,
+                category = products.SubCategories.Categories.Name,
+                categoryid = products.SubCategories.Categories.Id,
+                subCategory = products.SubCategories.Name,
+                subCategoryid = products.SubCategories.Id,
+                country = products.Countries.Name
+            };
+            return product;
         }
 
         public List<string> getAutoComplete(string term)
@@ -142,6 +147,5 @@ namespace Nettbutikk.DAL
                 return false;
             }
         }
-         */
     }
 }
