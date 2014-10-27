@@ -33,7 +33,7 @@ namespace Nettbutikk.Tests
 
             expected.Add(prod);
 
-            var actual = (ViewResult)allProd.ListProducts(null,null,null);
+            var actual = (ViewResult)allProd.ListProducts(null,null,null,null,null);
             var result = (PagedList<ProductInfo>)actual.Model;
 
             Assert.IsNotNull(result);
@@ -59,7 +59,7 @@ namespace Nettbutikk.Tests
             expected.Add(prod);
             expected.Add(prod);
 
-            var action = (ViewResult)allProd.ListProducts(null,null,null);
+            var action = (ViewResult)allProd.ListProducts(null,null,null,null,null);
             var result = (IPagedList)action.Model;
             
             Assert.IsTrue(result.TotalItemCount > 0);
@@ -82,7 +82,7 @@ namespace Nettbutikk.Tests
             };
 
             var action = (ViewResult)bll.ProductDetails(1);
-            var result = (Product)action.Model;
+            var result = (ProductInfo)action.Model;
 
 
             Assert.AreEqual(expected.itemnumber, result.itemnumber);
