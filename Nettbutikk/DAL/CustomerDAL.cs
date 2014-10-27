@@ -69,10 +69,27 @@ namespace Nettbutikk.DAL
             customer.email = cust.Email;
             customer.address = cust.Address;
             customer.hashpassword = cust.Password;
-            customer.postalcode = cust.PostalareasId.ToString();
-            
+            customer.postalarea = getPostalarea(cust.PostalareasId);
 
+            if (cust.PostalareasId < 1000)
+            {
+                customer.postalcode = "0"+cust.PostalareasId.ToString();
+                if (cust.PostalareasId < 100)
+                {
+                    customer.postalcode = "00" + cust.PostalareasId.ToString();
+                    if (cust.PostalareasId < 10)
+                        customer.postalcode = "000" + cust.PostalareasId.ToString();
+                }
+
+            }
             return customer;
+        }
+
+        public String getPostalarea(int id)
+        {
+            var db = new DatabaseContext();
+            var postalarea = (Postalareas)db.Postalareas.FirstOrDefault(p => p.PostalareasId == id);
+            return postalarea.Postalarea;
         }
 
         
