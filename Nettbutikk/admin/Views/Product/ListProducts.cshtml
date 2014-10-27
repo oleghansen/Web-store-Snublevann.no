@@ -1,7 +1,9 @@
 ﻿@model PagedList.IPagedList<Nettbutikk.admin.Models.ProductInfo>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "ListProducts";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    SelectList itemsPerPageList = DefaultValues.ItemsPerPageList;
 }
 <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 <script src="~/Scripts/jquery-1.9.0.min.js"></script>
@@ -30,19 +32,23 @@
             {
                 <div class="row">
                     <div class="col-sm-3 col-md-3" style="padding-right:0px">
-                        <div class="form-group">
-                            <div class="input-group">
+            <div class="form-group">
+                <div class="input-group">
                                 @Html.TextBox("searchString", null, new { id = "txtSearch", @class = "form-control", @style = "margin-top:12px;", placeholder = "Søk etter vare" })
                             </div>
 
-                        </div>
+                </div>
                         <div class="input-group-btn pull-left">
                             <button class="btn btn-success" type="submit" style="width: 35px">
                                 <span class="glyphicon glyphicon-search"></span>
                             </button>
                         </div>
-                    </div>
-
+            </div>
+            <div>
+                @using (Html.BeginForm("ListProducts","Product",FormMethod.Post)) { 
+                    @Html.DropDownList("ItemsPerPage", itemsPerPageList, new { @id = "ItemsPerPageList" ,onchange="this.form.submit();"})
+                }
+                
                 </div>
             }
         </div>
@@ -52,16 +58,16 @@
                     <table>
                         <tr>
                             <td>
-                                <b>@Html.DisplayNameFor(modelItem => Model[0].itemnumber)</b>
+                                <b><a href="@Url.Action("ListProducts", new { sortOrder = ViewBag.ItemSortParm})">@Html.DisplayNameFor(modelItem => Model[0].itemnumber)</a></b>
                             </td>
                             <td>
-                                <b>@Html.DisplayNameFor(modelItem => Model[0].name)</b>
+                                <b><a href="@Url.Action("ListProducts", new { sortOrder = ViewBag.NameSortParm })">@Html.DisplayNameFor(modelItem => Model[0].name)</a></b>
                             </td>
                             <td>
-                                <b> @Html.DisplayNameFor(modelItem => Model[0].producer)</b>
+                                <b><a href="@Url.Action("ListProducts", new { sortOrder = ViewBag.ProducerSortParm })"> @Html.DisplayNameFor(modelItem => Model[0].producer)</a></b>
                             </td>
                             <td>
-                                <b> @Html.DisplayNameFor(modelItem => Model[0].price)</b>
+                                <b><a href="@Url.Action("ListProducts", new { sortOrder = ViewBag.PriceSortParm })"> @Html.DisplayNameFor(modelItem => Model[0].price)</a></b>
                             </td>
                             <td>
                                 <b> @Html.DisplayNameFor(modelItem => Model[0].volum)</b>
@@ -94,7 +100,7 @@
                     </table>
                     Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
-                    @Html.PagedListPager(Model, page => Url.Action("ListProducts", new { page }))
+                    @Html.PagedListPager(Model, page => Url.Action("ListProducts",new { page, itemsPerPage = ViewBag.CurrentItemsPerPage, sortOrder = ViewBag.CurrentSort }));
 
 
                 </div>

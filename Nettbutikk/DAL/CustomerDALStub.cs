@@ -80,5 +80,10 @@ namespace Nettbutikk.DAL
 
             return false;
         }
+
+        public Customer getCustomer(int id)
+        {
+            return new Customer();
+        }
     }
 }

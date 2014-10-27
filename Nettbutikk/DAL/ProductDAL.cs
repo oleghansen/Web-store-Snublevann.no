@@ -89,13 +89,20 @@ namespace Nettbutikk.DAL
 
         public Product findProduct(int id)
         {
-            var product = new Product()
-            {
-                itemnumber = 1,
-                name = "Tull",
-                description = "Ball"
-            };
-            return product;
+            var db = new DatabaseContext();
+            Products products = db.Products.FirstOrDefault(c => c.Id == id);
+          
+                 Product prod = new Product()
+                {
+                    itemnumber = products.Id,
+                    name = products.Name,
+                    description = products.Description,
+                    price = products.Price,
+                    volum = products.Volum,
+                    producer = products.Producers.Name,
+                    country = products.Countries.Name
+              };
+            return prod;
         }
 
         public List<string> getAutoComplete(string term)

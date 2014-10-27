@@ -16,5 +16,6 @@ namespace Nettbutikk.DAL
         bool validate(string email, byte[] hashedPassword);
 
         Customer findUser(String email);
+        Customer getCustomer(int id);
     }
 }

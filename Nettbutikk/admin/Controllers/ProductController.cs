@@ -31,20 +31,52 @@ namespace Nettbutikk.admin.Controllers
             return View();
         }
         
-        public ActionResult ListProducts(int? page)
+        public ActionResult ListProducts(int? page, int? itemsPerPage, string sortOrder)
         {
-
-            ProductMenu returnValue = new ProductMenu(); 
             if (!isAdmin())
                 return RedirectToAction("Main", "Main");
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.ItemSortParm = String.IsNullOrEmpty(sortOrder) ? "item_desc" : ""; 
+            ViewBag.NameSortParm = sortOrder == "Name" ? "name_desc" : "Name";
+            ViewBag.PriceSortParm = sortOrder == "Price" ? "price_desc" : "Price";
+            ViewBag.ProducerSortParm = sortOrder == "Producer" ? "producer_desc" : "Producer";
+            var allProducts = _product.getAll(null);
 
-            int pageNumber = page ?? 1;
-            int itemsPerPage = 25;
+            switch (sortOrder)
+            {
+                case "item_desc":
+                    allProducts = allProducts.OrderByDescending(s => s.itemnumber).ToList();
+                    break;
+                case "name_desc":
+                    allProducts = allProducts.OrderByDescending(s => s.name).ToList();
+                    break;
+                case "Name":
+                    allProducts = allProducts.OrderBy(s => s.name).ToList();
+                    break;
+                case "Price":
+                    allProducts = allProducts.OrderBy(s => s.price).ToList();
+                    break;
+                case "price_desc":
+                    allProducts = allProducts.OrderByDescending(s => s.price).ToList();
+                    break;
+                case "Producer":
+                    allProducts = allProducts.OrderBy(s => s.producer).ToList();
+                    break;
+                case "producer_desc":
+                    allProducts = allProducts.OrderByDescending(s => s.producer).ToList();
+                    break; 
+                default:
+                    allProducts = allProducts.OrderBy(s => s.itemnumber).ToList();
+                    break;
+            }
 
-            List<Product> allProducts = _product.getAll(null);
+
+            ViewBag.CurrentItemsPerPage = itemsPerPage;
+
+            
 
             List<ProductInfo> list = new List<ProductInfo>();
-            foreach(var item in allProducts)
+            foreach (var item in allProducts)
             {
                 list.Add(
                     new ProductInfo()
@@ -62,22 +94,11 @@ namespace Nettbutikk.admin.Controllers
                         pricePerLitre = item.pricePerLitre
                     });
             }
-            returnValue.productInfo = list;
 
-            returnValue.categories = new List<CategoryViewModel>();
-            List<Category> allCategories = _product.getAllCategories(); 
-            foreach(var c in allCategories)
-            {
-                returnValue.categories.Add(new CategoryViewModel()
-                {
-                    SelectedCategoryId = c.ID,
-                    CategoriesName = c.name
-                });
-            }
 
-            return View( list.ToPagedList(pageNumber, itemsPerPage));
+            return View(list.ToPagedList(pageNumber: page ?? 1, pageSize: itemsPerPage ?? 10));
         }
-
+      
         public ActionResult Search(int? page, string searchString)
         {
             ProductMenu returnValue = new ProductMenu();
@@ -156,6 +177,7 @@ namespace Nettbutikk.admin.Controllers
             }
             bool updated = _product.updateProduct(id, p);
             return View(updated);
+
         }
 
         public JsonResult getResults(string term)
