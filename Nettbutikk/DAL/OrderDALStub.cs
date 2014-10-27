@@ -27,6 +27,23 @@ namespace Nettbutikk.DAL
             list.Add(order);
             return list;
         }
+
+        public List<Order> getAllOrdersbyCust(int id)
+        {
+            List<Order> list = new List<Order>();
+
+            var order = new Order()
+            {
+
+                id = 298423,
+                customerid = 1,
+                orderdate = DateTime.Now
+            };
+            list.Add(order);
+            list.Add(order);
+            list.Add(order);
+            return list;
+        }
         public List<OrderLine> getAllOrderLinesOfOrder(int id)
         {
             List<OrderLine> olList = new List<OrderLine>();

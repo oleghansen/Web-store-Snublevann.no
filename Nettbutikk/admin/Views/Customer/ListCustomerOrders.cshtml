@@ -1,0 +1,77 @@
+﻿@model List<Nettbutikk.admin.Models.OrderViewModel>
+
+@{
+    ViewBag.Title = "Customers Orders";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<div class="jumbotron" style="padding-top:2px">
+    <div class="row">
+
+        <h3><span class="glyphicon glyphicon-align-justify"></span> Ordreoversikt </h3>
+
+        <hr />
+
+        <div class="panel panel-default">
+            <table>
+                <tr>
+                    <td>
+                        <b>@Html.DisplayNameFor(modelItem => Model[0].id)</a></b>
+                    </td>
+                    <td>
+                        <b>@Html.DisplayNameFor(modelItem => Model[0].orderdate)</a></b>
+                    </td>
+                    <td>
+                        <b>@Html.DisplayNameFor(modelItem => Model[0].customerid)</a></b>
+                    </td>
+                    <td>
+                        <b>@Html.DisplayNameFor(modelItem => Model[0].firstname)</a></b>
+                    </td>
+                    <td>
+                        <b>@Html.DisplayNameFor(modelItem => Model[0].lastname)</a></b>
+                    </td>
+
+                    <td>
+                        <b>@Html.DisplayNameFor(modelItem => Model[0].quantity)</a></b>
+                    </td>
+                    <td>
+                        <b>@Html.DisplayNameFor(modelItem => Model[0].sum)</a></b>
+                    </td>
+
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr class="rows">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.orderdate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.customerid)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.customer.firstname)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.customer.lastname)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.quantity)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.sum)
+                        </td>
+                        <td>
+                            <button class="btn btn-xs btn-default" style="margin-top:0px" type="submit"><i class="glyphicon glyphicon-list"></i><a href="@Url.Action("ListOrderLines", "Order", new { id = item.id })">se ordrelinje</button>
+                            <button class="btn btn-xs btn-default" style="margin-top:0px" type="submit"><i class="glyphicon glyphicon-print"></i></button>
+
+                    </tr>
+                }
+            </table>
+
+        </div>
+    </div>
+</div>

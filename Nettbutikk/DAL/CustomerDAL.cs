@@ -24,7 +24,8 @@ namespace Nettbutikk.DAL
                     email = item.Email,
                     postalcode = item.PostalareasId.ToString(), 
                     postalarea = db.Postalareas.Find(item.PostalareasId).Postalarea,
-                    phonenumber = item.Phonenumber
+                    phonenumber = item.Phonenumber,
+                    admin = item.Admin
                     
                 });
             }
@@ -50,6 +51,7 @@ namespace Nettbutikk.DAL
                     postalcode = p.PostalareasId.ToString(),
                     postalarea = db.Postalareas.Find(p.PostalareasId).Postalarea,
                     phonenumber = p.Phonenumber
+                    
                 };
                 foundUsers.Add(user);
             }
@@ -61,7 +63,7 @@ namespace Nettbutikk.DAL
             var db = new DatabaseContext();
             Customers cust = (Customers)db.Customers.FirstOrDefault(c => c.Id == id);
             Customer customer = new Customer();
-
+             
             customer.id = cust.Id;
             customer.firstname = cust.Firstname;
             customer.lastname = cust.Lastname;
@@ -69,6 +71,7 @@ namespace Nettbutikk.DAL
             customer.email = cust.Email;
             customer.address = cust.Address;
             customer.hashpassword = cust.Password;
+            customer.admin = cust.Admin; 
             customer.postalarea = getPostalarea(cust.PostalareasId);
 
             if (cust.PostalareasId < 1000)
@@ -132,6 +135,49 @@ namespace Nettbutikk.DAL
                 }
             }
             return false;   
+        }
+
+        public bool makeAdmin(int id)
+        {
+            var db = new DatabaseContext();
+            try
+            {
+                Customers cust = db.Customers.FirstOrDefault(u => u.Id == id);
+                cust.Admin = true;
+                db.SaveChanges();
+
+
+                //Skriv endring til logDatabase
+                return true;
+            }
+            catch (Exception fail)
+            {
+                //Skriv feil til fil
+                return false;
+
+            }
+
+        }
+
+        public bool revokeAdmin(int id)
+        {
+            var db = new DatabaseContext();
+            try
+            {
+                Customers cust = db.Customers.FirstOrDefault(u => u.Id == id);
+                cust.Admin = false;
+                db.SaveChanges();
+
+
+                //Skriv endring til logDatabase
+                return true;
+            }
+            catch (Exception fail)
+            {
+                //Skriv feil til fil
+                return false;
+
+            }
         }
 
         public bool update(int id, Customer updateUser)

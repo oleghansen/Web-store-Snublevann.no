@@ -14,5 +14,11 @@ namespace Nettbutikk.BLL
 
         Customer findUser(String email);
         Customer logIn(String email, String password);
+
+        bool makeAdmin(int id);
+
+        bool revokeAdmin(int id);
+
+        List<Order> getAllOrdersbyCust(int id);
     }
 }

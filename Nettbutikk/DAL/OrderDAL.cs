@@ -53,6 +53,26 @@ namespace Nettbutikk.DAL
             return list;
         }
 
+        public List<Order> getAllOrdersbyCust(int id)
+        {
+            var db = new DatabaseContext();
+            List<Orders>  lines = db.Orders.Where(o => o.CustomersId == id).ToList();
+       
+            List<Order> list = new List<Order>();
+            foreach (var item in lines)
+            {
+
+                list.Add(new Order()
+                {
+                    id = item.Id,
+                    orderdate = item.OrderDate,
+                    customerid = item.CustomersId
+
+                });
+            }
+            return list;
+        }
+
         public Order getOrder(int id)
         {
             var db = new DatabaseContext();

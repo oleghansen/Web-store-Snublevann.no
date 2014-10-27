@@ -118,7 +118,10 @@ namespace Nettbutikk.admin.Controllers
                         password = item.password,
                         hashpassword = item.hashpassword,
                         postalarea = item.postalarea,
-                        postalcode = item.postalcode
+                        postalcode = item.postalcode,
+                        admin = item.admin
+
+                        
                     });
                 
 
@@ -144,5 +147,46 @@ namespace Nettbutikk.admin.Controllers
             Debug.WriteLine(user.admin);
             return (user == null)?false:user.admin; 
         }
+
+        [HttpGet]
+        public ActionResult  makeAdmin(int id)
+        {
+            var b =  _customerbll.makeAdmin(id);
+             return RedirectToAction("ListCustomers");
+        }
+
+        [HttpGet]
+        public ActionResult revokeAdmin(int id)
+        {
+            var b = _customerbll.revokeAdmin(id);
+            return RedirectToAction("ListCustomers");
+        }
+
+        public ActionResult ListCustomerOrders(int id)
+        {
+             if (!isAdmin())
+                return RedirectToAction("LogIn", "Main");
+
+            IOrderBLL _orderbll = new OrderBLL();
+           List<Order> orders =  _customerbll.getAllOrdersbyCust(id);
+           
+            List<OrderViewModel> list = new List<OrderViewModel>();
+
+             foreach (var item in orders)
+             {
+                list.Add(new OrderViewModel()
+                {
+                    id = item.id,
+                    orderdate = item.orderdate,
+                    customerid = item.customerid,
+                    customer = item.customer,
+                    quantity = _orderbll.getNumItems(item),
+                    sum = _orderbll.getSum(item)
+                });
+            }
+           
+            return View(list);
+        }
+        
     }
 }

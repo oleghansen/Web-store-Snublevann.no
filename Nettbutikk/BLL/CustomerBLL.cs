@@ -53,6 +53,16 @@ namespace Nettbutikk.BLL
             return outData;
         }
 
+        public bool makeAdmin(int id)
+        {
+            return _customer.makeAdmin(id);
+        }
+
+        public bool revokeAdmin(int id)
+        {
+            return _customer.revokeAdmin(id);
+        }
+
        public Customer logIn(String email, String password)
         {
 
@@ -66,6 +76,42 @@ namespace Nettbutikk.BLL
             return null;
            
         }
+
+       public List<Order> getAllOrdersbyCust(int id)
+       {
+           IOrderDAL _order = new OrderDAL();
+           IProductDAL _product = new ProductDAL();
+           List<Order> allOrders = _order.getAllOrdersbyCust(id);
+           List<Order> list = new List<Order>();
+
+           foreach (var item in allOrders)
+           {
+               List<OrderLine> orderlineslist = new List<OrderLine>();
+               List<OrderLine> OLlist = _order.getAllOrderLinesOfOrder(item.id);
+               foreach (var OrderLineItems in OLlist)
+               {
+                   orderlineslist.Add(new OrderLine()
+                   {
+                       id = OrderLineItems.id,
+                       productid = OrderLineItems.productid,
+                       quantity = OrderLineItems.quantity,
+                       product = _product.findProduct(OrderLineItems.productid),
+                       orderid = OrderLineItems.orderid
+
+
+                   });
+               }
+               list.Add(new Order()
+               {
+                   id = item.id,
+                   orderdate = item.orderdate,
+                   customerid = item.customerid,
+                   customer = _customer.getCustomer(item.customerid),
+                   orderLine = orderlineslist
+               });
+           }
+           return list;
+       }
 
     }
 }

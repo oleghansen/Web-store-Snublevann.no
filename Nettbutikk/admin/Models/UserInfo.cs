@@ -19,6 +19,8 @@ namespace Nettbutikk.admin.Models
         public String password { get; set; }
         public byte[] hashpassword { get; set; }
 
+        public bool admin { get; set; }
+
         //public ShoppingCart shoppingcart;
         //public List<Orders> Orders { get; set; }
 
