@@ -1,4 +1,5 @@
-﻿@model List<Nettbutikk.admin.Models.ProductInfo>
+﻿@model PagedList.IPagedList<Nettbutikk.admin.Models.ProductInfo>
+
 <div id="tullbal" class="panel panel-default partialView">
     <table>
         <tr>
@@ -43,5 +44,10 @@
             </tr>
         }
     </table>
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("ListPartial", new { page }))
+
+
 </div>
 
