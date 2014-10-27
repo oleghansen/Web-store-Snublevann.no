@@ -8,6 +8,8 @@ namespace Nettbutikk.DAL
     {
         List<Customer> getAll();
 
+        List<Customer> getResult(string sc);
+
         bool add(Customer inCustomer, byte[] hashedPassword);
         bool checkEmail(string email, int? id);
         Customer findCustomer(string email);

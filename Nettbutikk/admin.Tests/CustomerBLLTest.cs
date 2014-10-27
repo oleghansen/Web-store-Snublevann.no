@@ -42,7 +42,7 @@ namespace Nettbutikk.Tests
             expected.Add(cust);
 
             // Act
-            var actrow = (ViewResult)bll.ListCustomers();
+            var actrow = (ViewResult)bll.ListCustomers(null, null, null, null, null);
             var result = (List<UserInfo>)actrow.Model;
 
                      
@@ -146,7 +146,7 @@ namespace Nettbutikk.Tests
             builder.InitializeController(bll);
             builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
             // act
-            var actual = (ViewResult)bll.ListCustomers();
+            var actual = (ViewResult)bll.ListCustomers(null, null, null, null, null);
             var result = (List<UserInfo>)actual.Model;
 
             //Assert

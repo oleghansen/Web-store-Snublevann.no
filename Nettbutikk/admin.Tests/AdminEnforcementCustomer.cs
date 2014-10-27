@@ -22,7 +22,7 @@ namespace Nettbutikk.admin.Tests
             CustomerController controller = new CustomerController(new CustomerBLL(new CustomerDALStub()));
             
             //Act
-            var result = (RedirectToRouteResult)controller.ListCustomers(); 
+            var result = (RedirectToRouteResult)controller.ListCustomers(null, null, null, null, null); 
 
             //Assert
 
