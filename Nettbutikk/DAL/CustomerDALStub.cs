@@ -35,7 +35,21 @@ namespace Nettbutikk.DAL
 
         public Customer findCustomer(String email)
         {
-            return null;
+            var cust = new Customer()
+            {
+                id = 1,
+                firstname = "Gunnar",
+                lastname = "Hansen",
+                address = "Golia",
+                email = "klin@kokkos.no",
+                postalarea = "Gollie",
+                postalcode = "1232",
+                phonenumber = "94499449",
+                password = "tullball123"
+
+            };
+
+            return cust;
         }
 
         public Customer findUser(String email)

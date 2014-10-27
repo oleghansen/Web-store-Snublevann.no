@@ -35,26 +35,22 @@ namespace Nettbutikk.BLL
                 List<OrderLine> OLlist = _order.getAllOrderLinesOfOrder(item.id);
                 foreach (var OrderLineItems in OLlist)
                 {
-                    var prod = _product.findProduct(OrderLineItems.productid);
-
                     orderlineslist.Add(new OrderLine()
                     {
                         id = OrderLineItems.id,
                         productid = OrderLineItems.productid,
                         quantity = OrderLineItems .quantity,
-                        product = prod,
-                        order = OrderLineItems.order,
+                        product = _product.findProduct(OrderLineItems.productid),
                         orderid =  OrderLineItems.orderid 
                         
                     });
                 }
-                var cust = _customer.getCustomer(item.customerid);
                 list.Add(new Order() 
                 {
                     id = item.id,
                     orderdate = item.orderdate,
                     customerid = item.customerid ,
-                    customer = cust,
+                    customer =  _customer.getCustomer(item.customerid),
                     orderLine = orderlineslist
                 });
             }

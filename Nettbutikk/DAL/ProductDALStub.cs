@@ -47,7 +47,8 @@ namespace Nettbutikk.DAL
             {
                 itemnumber = 1,
                 name = "Tull",
-                description = "Ball"
+                description = "Ball",
+                price = 230,
             };
             return product;   
         }

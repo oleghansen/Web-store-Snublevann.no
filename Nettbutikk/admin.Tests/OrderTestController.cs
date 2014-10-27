@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MvcContrib.TestHelper;
 using Nettbutikk.admin.Controllers;
+using Nettbutikk.admin.Models;
 using Nettbutikk.BLL;
 using Nettbutikk.DAL;
 using Nettbutikk.Model;
@@ -24,19 +25,12 @@ namespace Nettbutikk.admin.Tests
             var bll = new OrderController(new OrderBLL(new OrderDALStub()));
             builder.InitializeController(bll);
             builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
-            List<Order> expected = new List<Order>();
-            var o = new Order()
-            {
-                id = 1,
-                customerid = 1001
-            };
-
-            
+          
 
             // Act 
 
             var actrow = (ViewResult)bll.ListOrders();
-            var result = (List<Order>)actrow.Model;
+            var result = (List<OrderViewModel>)actrow.Model;
 
 
             // Assert
@@ -51,18 +45,21 @@ namespace Nettbutikk.admin.Tests
             var bll = new OrderController(new OrderBLL(new OrderDALStub()));
             builder.InitializeController(bll);
             builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
-            List<Order> expected = new List<Order>();
-            var o = new Order()
+            List<OrderViewModel> expected = new List<OrderViewModel>();
+            var o = new OrderViewModel()
             {
                 id = 1,
                 customerid = 1001
             };
 
             expected.Add(o);
+            expected.Add(o);
+            expected.Add(o);
+           
             // Act
 
             var actrow = (ViewResult)bll.ListOrders();
-            var result = (List<Order>)actrow.Model;
+            var result = (List<OrderViewModel>)actrow.Model;
 
 
             // Assert
