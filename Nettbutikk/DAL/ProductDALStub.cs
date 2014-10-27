@@ -31,6 +31,19 @@ namespace Nettbutikk.DAL
             return productlist;
         }
 
+        public List<Product> getResult(int? id, string sc)
+        {
+            var prod = new Product()
+            {
+                itemnumber = 1,
+                name = "Tullball",
+                description = "Hei"
+            };
+            List<Product> productlist = new List<Product>();
+            productlist.Add(prod);
+            return productlist;
+        }
+
         public Product get(int id)
         {
             return null;
@@ -47,7 +60,8 @@ namespace Nettbutikk.DAL
             {
                 itemnumber = 1,
                 name = "Tull",
-                description = "Ball"
+                description = "Ball",
+                price = 230,
             };
             return product;   
         }

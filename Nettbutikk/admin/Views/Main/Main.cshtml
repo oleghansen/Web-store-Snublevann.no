@@ -5,12 +5,35 @@
 <link href="~/Content/Custom/MainSheet.css" rel="stylesheet" />
     <div class="jumbotron" style="padding-top:2px">
         <div class="container">
-            <table>
-                <tr>
+            <table style="margin-top:60px">
+                <tr class="mainrows">
                     <td>
-
+                        <a href="@Url.Action("ListCustomers", "Customer")">
+                            <span class="glyphicon glyphicon-user main"> </span>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="@Url.Action("ListProducts", "Product")">
+                            <span class="glyphicon glyphicon-glass main"> </span>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="@Url.Action("ListOrders", "Order")">
+                            <span class="glyphicon glyphicon-align-justify main"> </span>
+                        </a>
                     </td>
                 </tr>
-            </table>
+                <tr class="mainrows">
+                    <td>
+                        BRUKERE
+                    </td>
+                    <td>
+                        PRODUKTER
+                    </td>
+                    <td>
+                        ORDRE
+                    </td>
+                </tr>
+        </table>
         </div>
     </div>

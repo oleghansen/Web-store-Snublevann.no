@@ -11,12 +11,41 @@ namespace Nettbutikk.DAL
     {
         public List<Order> getAllOrders()
         {
-            return null;
+            List<Order> list = new List<Order>();
+            
+           
+
+            var order = new Order()
+            {
+                 
+                id = 298423,
+                
+                customerid = 1,   
+                orderdate = DateTime.Now
+            };
+            list.Add(order);
+            list.Add(order);
+            list.Add(order);
+            return list;
         }
-        public List<OrderLine> getAllOrderLines()
+        public List<OrderLine> getAllOrderLinesOfOrder(int id)
         {
-            return null;
+            List<OrderLine> olList = new List<OrderLine>();
+            var orderline = new OrderLine()
+            {
+                id = 1,
+                productid = 100001,
+                quantity = 3,
+                orderid = 298423,
+
+            };
+            olList.Add(orderline);
+            olList.Add(orderline);
+            olList.Add(orderline);
+            return olList;
         }
+
+        
 
         public Order findOrder(int id)
        { 

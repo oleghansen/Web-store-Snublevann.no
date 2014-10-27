@@ -30,6 +30,25 @@ namespace Nettbutikk.DAL
             return list; 
              
         }
+
+        public Customer getCustomer(int id)
+        {
+            var db = new DatabaseContext();
+            Customers cust = (Customers)db.Customers.FirstOrDefault(c => c.Id == id);
+            Customer customer = new Customer();
+
+            customer.id = cust.Id;
+            customer.firstname = cust.Firstname;
+            customer.lastname = cust.Lastname;
+            customer.phonenumber = cust.Phonenumber;
+            customer.email = cust.Email;
+            customer.address = cust.Address;
+            customer.hashpassword = cust.Password;
+            customer.postalcode = cust.PostalareasId.ToString();
+            
+
+            return customer;
+        }
         public bool add(Customer inCustomer, byte[] hashedPassword)
         {
                 return true;

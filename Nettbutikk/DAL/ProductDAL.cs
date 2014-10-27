@@ -60,7 +60,7 @@ namespace Nettbutikk.DAL
             return null;
         }
 
-        public List<Product> getResult(string searchString)
+        public List<Product> getResult(int? id, string searchString)
         {
             var db = new DatabaseContext();
             var foundProducts = new List<Product>();
@@ -107,11 +107,15 @@ namespace Nettbutikk.DAL
                 subCategoryid = products.SubCategories.Id,
                 country = products.Countries.Name
             };
+            return product;
         }
 
         public List<string> getAutoComplete(string term)
         {
-            return null;
+            var db = new DatabaseContext();
+            List<string> searchList = new List<string>();
+            searchList = db.Products.Where(x => x.Name.StartsWith(term)).Select(y => y.Name).ToList();
+            return searchList;
         }
 
 
@@ -119,6 +123,9 @@ namespace Nettbutikk.DAL
 
         public bool updateProduct(int id, Product update)
         {
+            return false;
+        }
+            /*
             var db = new DatabaseContext();
             try
             {
