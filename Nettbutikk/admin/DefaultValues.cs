@@ -13,7 +13,7 @@ namespace Nettbutikk.admin
         { 
             get 
             { 
-                return (new SelectList(new List<int> { 5, 10, 25, 50, 100 }, selectedValue: 10)); 
+                return (new SelectList(new List<int> { 5, 10, 15, 25, 50, 100 }, selectedValue: 15)); 
             } 
         }
 

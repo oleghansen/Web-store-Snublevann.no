@@ -17,6 +17,7 @@ namespace Nettbutikk.DAL
             foreach(var item in customers){
                 list.Add(new Customer()
                 {
+                    id = item.Id,
                     firstname = item.Firstname,
                     lastname = item.Lastname,
                     address = item.Address,

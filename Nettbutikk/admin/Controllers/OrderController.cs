@@ -27,7 +27,7 @@ namespace Nettbutikk.admin.Controllers
         public ActionResult ListOrders()
         {
             if (!isAdmin())
-                return RedirectToAction("Main", "Main");
+                return RedirectToAction("LogIn", "Main");
 
             List<OrderViewModel> list = new List<OrderViewModel>();
 
@@ -77,14 +77,14 @@ namespace Nettbutikk.admin.Controllers
         public ActionResult Index()
         {
             if (!isAdmin())
-                return RedirectToAction("Main", "Main"); 
+                return RedirectToAction("LogIn", "Main"); 
             return View();
         }
 
         public ActionResult Details(int id)
         {
             if (!isAdmin())
-                return RedirectToAction("Main", "Main"); 
+                return RedirectToAction("LogIn", "Main"); 
             Order orderDetails = _orderbll.getOne(id);
             return View(orderDetails);
         }

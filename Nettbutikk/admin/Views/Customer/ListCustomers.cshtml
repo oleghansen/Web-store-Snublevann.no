@@ -1,7 +1,9 @@
-﻿@model List<Nettbutikk.admin.Models.UserInfo>
+﻿@model PagedList.IPagedList<Nettbutikk.admin.Models.UserInfo>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "ListCustomers";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    SelectList itemsPerPageList = DefaultValues.ItemsPerPageList;
 }
 <link href="~/Content/Custom/MainSheet.css" rel="stylesheet" />
 
@@ -16,31 +18,41 @@
                     @Html.TextBox("searchString", null, new { id = "userSearch", @class = "form-control", @style = "margin-top:12px;", placeholder = "Søk (Mangler funksjon)" })
                 </div>
             </div>
+            @using(Html.BeginForm("ListCustomers","Customer",FormMethod.Post))
+            {
+                @Html.DropDownList("ItemsPerPage", itemsPerPageList, new { @id = "ItemsPerPageList", onchange="this.form.submit();"})
+            }
             <div class="panel panel-default">
                 <table>
                     <tr>
                         <td>
-                            <b>@Html.DisplayNameFor(modelItem => Model[0].firstname)</b>
+                            <b><a href="@Url.Action("ListCustomers", new { sortOrder = ViewBag.IDSortParm, currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].id)</a></b>
                         </td>
                         <td>
-                            <b>@Html.DisplayNameFor(modelItem => Model[0].lastname)</b>
+                            <b><a href="@Url.Action("ListCustomers", new { sortOrder = ViewBag.FirstNameSortParm, currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].firstname)</a></b>
                         </td>
                         <td>
-                            <b> @Html.DisplayNameFor(modelItem => Model[0].address)</b>
+                            <b><a href="@Url.Action("ListCustomers", new { sortOrder = ViewBag.LastNameSortParm, currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].lastname)</a></b>
                         </td>
                         <td>
-                            <b> @Html.DisplayNameFor(modelItem => Model[0].email)</b>
+                            <b><a href="@Url.Action("ListCustomers", new { sortOrder = ViewBag.AddressSortParm, currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].address)</a></b>
                         </td>
                         <td>
-                            <b> @Html.DisplayNameFor(modelItem => Model[0].postalarea)</b>
+                            <b><a href="@Url.Action("ListCustomers", new { sortOrder = ViewBag.EMailSortParm, currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].email)</a></b>
                         </td>
                         <td>
-                            <b> @Html.DisplayNameFor(modelItem => Model[0].postalcode)</b>
+                            <b><a href="@Url.Action("ListCustomers", new { sortOrder = ViewBag.PostAreaSortParm, currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].postalarea)</a></b>
+                        </td>
+                        <td>
+                            <b><a href="@Url.Action("ListCustomers", new { sortOrder = ViewBag.PostCodeSortParm, currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].postalcode)</a></b>
                         </td>
                     </tr>
                     @foreach (var item in Model)
                     {
                         <tr class="rows">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.id)
+                            </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.firstname)
                             </td>

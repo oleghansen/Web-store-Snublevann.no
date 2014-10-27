@@ -7,6 +7,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Diagnostics;
+using PagedList;
+
 
 namespace Nettbutikk.admin.Controllers
 {
@@ -24,14 +26,84 @@ namespace Nettbutikk.admin.Controllers
             _customerbll = stud;
         }
 
-        public ActionResult ListCustomers()
+        public ActionResult ListCustomers(int? page, int? itemsPerPage, string sortOrder, string currentFilter, string searchString)
         {
-            Debug.WriteLine("admin?");
-            Debug.WriteLine(isAdmin());
             if (!isAdmin())
-                return RedirectToAction("Main", "Main"); 
+                return RedirectToAction("LogIn", "Main");
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.IDSortParm = String.IsNullOrEmpty(sortOrder) ? "id_desc" : "";
+            ViewBag.FirstNameSortParm = sortOrder == "FName" ? "fname_desc" : "FName";
+            ViewBag.LastNameSortParm = sortOrder == "LName" ? "lname_desc" : "LName";
+            ViewBag.AddressSortParm = sortOrder == "Address" ? "address_desc" : "Address";
+            ViewBag.EMailSortParm = sortOrder == "EMail" ? "email_desc" : "EMail";
+            ViewBag.PostAreaSortParm = sortOrder == "PArea" ? "parea_desc" : "PArea";
+            ViewBag.PostCodeSortParm = sortOrder == "PCode" ? "pcode_desc" : "PCode";
 
-            List<Customer> allCustomers = _customerbll.getAll();
+            if (searchString != null)
+                page = 1;
+            else
+                searchString = currentFilter;
+
+            ViewBag.CurrentFilter = searchString;
+
+            List<Customer> allCustomers;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                //allCustomers = _customerbll.getResult(searchString); 
+                allCustomers = _customerbll.getAll();
+            }
+            else
+                allCustomers = _customerbll.getAll(); 
+            
+            switch(sortOrder)
+            {
+                case "id_desc":
+                    allCustomers = allCustomers.OrderByDescending(s => s.id).ToList();
+                    break;
+                case "FName":
+                    allCustomers = allCustomers.OrderBy(s => s.firstname).ToList();
+                    break;
+                case "fname_desc":
+                    allCustomers = allCustomers.OrderByDescending(s => s.firstname).ToList();
+                    break;
+                case "LName":
+                    allCustomers = allCustomers.OrderBy(s => s.lastname).ToList();
+                    break;
+                case "lname_desc":
+                    allCustomers = allCustomers.OrderByDescending(s=> s.lastname).ToList();
+                    break;
+                case "Address":
+                    allCustomers = allCustomers.OrderBy(s => s.address).ToList();
+                    break;
+                case "address_desc":
+                    allCustomers = allCustomers.OrderByDescending(s => s.address).ToList();
+                    break;
+                case "EMail":
+                    allCustomers = allCustomers.OrderBy(s=>s.email).ToList();
+                    break;
+                case "email_desc":
+                    allCustomers = allCustomers.OrderByDescending(s => s.email).ToList();
+                    break;
+                case "PArea":
+                    allCustomers = allCustomers.OrderBy(s => s.postalarea).ToList();
+                    break;
+                case "parea_desc":
+                    allCustomers = allCustomers.OrderByDescending(s => s.postalarea).ToList();
+                    break;
+                case "PCode":
+                    allCustomers = allCustomers.OrderBy(s => s.postalcode).ToList();
+                    break;
+                case "pcode_desc":
+                    allCustomers = allCustomers.OrderByDescending(s => s.postalcode).ToList(); 
+                    break;
+                default:
+                    allCustomers = allCustomers.OrderBy(s => s.id).ToList(); 
+                    break; 
+            }
+
+            ViewBag.CurrentItemsPerPage = itemsPerPage;
+
             List<UserInfo> list = new List<UserInfo>();
             foreach(var item in allCustomers)
             {
@@ -53,13 +125,14 @@ namespace Nettbutikk.admin.Controllers
 
              
             }
-            return View(list);
+            return View(list.ToPagedList(pageNumber: page ?? 1, pageSize: itemsPerPage ?? 15));
         }
+
         // GET: Customer
         public ActionResult Index()
         {
             if (!isAdmin())
-                return RedirectToAction("Main", "Main"); 
+                return RedirectToAction("LogIn", "Main"); 
             return View();
         }
         private bool isAdmin(){
