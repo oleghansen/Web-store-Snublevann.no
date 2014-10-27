@@ -28,30 +28,32 @@
             <h3><span class="glyphicon glyphicon-user"></span> Produktoversikt </h3>
             <hr />
         <div class="menu_container">
-            @using (Html.BeginForm("Search", "Product", FormMethod.Get, new { @class = "form-inline", @role = "form", @style = "margin-top:0px; padding-bottom:12px" }))
-            {
-                <div class="row">
+            <div class="row">
+                @using (Html.BeginForm("Search", "Product", FormMethod.Get, new { @class = "form-inline", @role = "form", @style = "margin-top:0px; padding-bottom:12px" }))
+                {
+
                     <div class="col-sm-3 col-md-3" style="padding-right:0px">
-            <div class="form-group">
-                <div class="input-group">
+                        <div class="form-group">
+                            <div class="input-group">
                                 @Html.TextBox("searchString", null, new { id = "txtSearch", @class = "form-control", @style = "margin-top:12px;", placeholder = "Søk etter vare" })
                             </div>
 
-                </div>
+                        </div>
                         <div class="input-group-btn pull-left">
                             <button class="btn btn-success" type="submit" style="width: 35px">
                                 <span class="glyphicon glyphicon-search"></span>
                             </button>
                         </div>
-            </div>
-            <div>
-                @using (Html.BeginForm("ListProducts","Product",FormMethod.Post)) { 
-                    @Html.DropDownList("ItemsPerPage", itemsPerPageList, new { @id = "ItemsPerPageList" ,onchange="this.form.submit();"})
+                    </div>
                 }
-                
+                <div>
+                    @using (Html.BeginForm("ListProducts", "Product", FormMethod.Post))
+                    {
+                        @Html.DropDownList("ItemsPerPage", itemsPerPageList, new { @id = "ItemsPerPageList", onchange = "this.form.submit();" })
+                    }
+
                 </div>
-            }
-        </div>
+            </div>
 
             <div>
                 <div id="tullbal" class="panel panel-default partialView">
