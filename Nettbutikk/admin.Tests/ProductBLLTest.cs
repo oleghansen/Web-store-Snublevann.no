@@ -2,11 +2,14 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Nettbutikk.Model;
 using Nettbutikk.admin.Controllers;
+using Nettbutikk.admin.Models; 
 using Nettbutikk.BLL;
 using System.Web.Mvc;
 using Nettbutikk.DAL;
 using System.Collections.Generic;
 using MvcContrib.TestHelper;
+using PagedList.Mvc;
+using PagedList;
 
 namespace Nettbutikk.Tests
 {
@@ -30,8 +33,8 @@ namespace Nettbutikk.Tests
 
             expected.Add(prod);
 
-            var actrow = (ViewResult)allProd.ListProducts(null);
-            var result = (List<Product>)actrow.Model;
+            var actual = (ViewResult)allProd.ListProducts(null,null);
+            var result = (PagedList<ProductInfo>)actual.Model;
 
             Assert.IsNotNull(result);
         }
@@ -56,10 +59,10 @@ namespace Nettbutikk.Tests
             expected.Add(prod);
             expected.Add(prod);
 
-            var action = (ViewResult)allProd.ListProducts(null);
-            var result = (List<Product>)action.Model;
-
-            Assert.IsTrue(result.Count > 0);
+            var action = (ViewResult)allProd.ListProducts(null,null);
+            var result = (IPagedList)action.Model;
+            
+            Assert.IsTrue(result.TotalItemCount > 0);
 
         }
 

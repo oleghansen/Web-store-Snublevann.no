@@ -33,8 +33,6 @@ namespace Nettbutikk.admin.Controllers
         
         public ActionResult ListProducts(int? page, int? itemsPerPage)
         {
-
-            ProductMenu returnValue = new ProductMenu(); 
             if (!isAdmin())
                 return RedirectToAction("Main", "Main");
 
@@ -62,18 +60,7 @@ namespace Nettbutikk.admin.Controllers
                         pricePerLitre = item.pricePerLitre
                     });
             }
-            returnValue.productInfo = list;
-
-            returnValue.categories = new List<CategoryViewModel>();
-            List<Category> allCategories = _product.getAllCategories(); 
-            foreach(var c in allCategories)
-            {
-                returnValue.categories.Add(new CategoryViewModel()
-                {
-                    SelectedCategoryId = c.ID,
-                    CategoriesName = c.name
-                });
-            }
+ 
 
             return View( list.ToPagedList(pageNumber: page ?? 1, pageSize: itemsPerPage ?? 10));
         }
