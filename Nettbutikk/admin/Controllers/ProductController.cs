@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace Nettbutikk.admin.Controllers
 {
@@ -30,12 +31,17 @@ namespace Nettbutikk.admin.Controllers
             return View();
         }
         
-        public ActionResult ListProducts(int? id)
+        public ActionResult ListProducts(int? page)
         {
+
             ProductMenu returnValue = new ProductMenu(); 
             if (!isAdmin())
                 return RedirectToAction("Main", "Main");
-            List<Product> allProducts = _product.getAll(id);
+
+            int pageNumber = page ?? 1;
+            int itemsPerPage = 25;
+
+            List<Product> allProducts = _product.getAll(null);
 
             List<ProductInfo> list = new List<ProductInfo>();
             foreach(var item in allProducts)
@@ -69,15 +75,18 @@ namespace Nettbutikk.admin.Controllers
                 });
             }
 
-            return View(returnValue);
+            return View( list.ToPagedList(pageNumber, itemsPerPage));
         }
 
-        public ActionResult ListPartial(int? id)
+        public ActionResult ListPartial(int? page)
         {
        
             if (!isAdmin())
                 return RedirectToAction("Main", "Main");
-            List<Product> allProducts = _product.getAll(id);
+
+            int pageNumber = page ?? 1;
+            int itemsPerPage = 25; 
+            List<Product> allProducts = _product.getAll(null);
 
             List<ProductInfo> list = new List<ProductInfo>();
             foreach (var item in allProducts)
@@ -101,7 +110,7 @@ namespace Nettbutikk.admin.Controllers
 
 
 
-            return PartialView("ListPartial",list);
+            return PartialView("ListPartial",list.ToPagedList(pageNumber, itemsPerPage));
         }
       
         private bool isAdmin()
