@@ -29,13 +29,13 @@
             <hr />
         <div class="menu_container">
             <div class="row">
-                @using (Html.BeginForm("Search", "Product", FormMethod.Get, new { @class = "form-inline", @role = "form", @style = "margin-top:0px; padding-bottom:12px" }))
+                @using (Html.BeginForm("ListProducts", "Product", FormMethod.Get, new { @class = "form-inline", @role = "form", @style = "margin-top:0px; padding-bottom:12px" }))
                 {
 
                     <div class="col-sm-3 col-md-3" style="padding-right:0px">
                         <div class="form-group">
                             <div class="input-group">
-                                @Html.TextBox("searchString", null, new { id = "txtSearch", @class = "form-control", @style = "margin-top:12px;", placeholder = "Søk etter vare" })
+                                @Html.TextBox("searchString", ViewBag.CurrentFilter as string, new { id = "txtSearch", @class = "form-control", @style = "margin-top:12px;", placeholder = "Søk etter vare" })
                             </div>
 
                         </div>
@@ -60,16 +60,16 @@
                     <table>
                         <tr>
                             <td>
-                                <b><a href="@Url.Action("ListProducts", new { sortOrder = ViewBag.ItemSortParm})">@Html.DisplayNameFor(modelItem => Model[0].itemnumber)</a></b>
+                                <b><a href="@Url.Action("ListProducts", new { sortOrder = ViewBag.ItemSortParm, currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].itemnumber)</a></b>
                             </td>
                             <td>
-                                <b><a href="@Url.Action("ListProducts", new { sortOrder = ViewBag.NameSortParm })">@Html.DisplayNameFor(modelItem => Model[0].name)</a></b>
+                                <b><a href="@Url.Action("ListProducts", new { sortOrder = ViewBag.NameSortParm , currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].name)</a></b>
                             </td>
                             <td>
-                                <b><a href="@Url.Action("ListProducts", new { sortOrder = ViewBag.ProducerSortParm })"> @Html.DisplayNameFor(modelItem => Model[0].producer)</a></b>
+                                <b><a href="@Url.Action("ListProducts", new { sortOrder = ViewBag.ProducerSortParm, currentFilter = ViewBag.CurrentFilter })"> @Html.DisplayNameFor(modelItem => Model[0].producer)</a></b>
                             </td>
                             <td>
-                                <b><a href="@Url.Action("ListProducts", new { sortOrder = ViewBag.PriceSortParm })"> @Html.DisplayNameFor(modelItem => Model[0].price)</a></b>
+                                <b><a href="@Url.Action("ListProducts", new { sortOrder = ViewBag.PriceSortParm, currentFilter = ViewBag.CurrentFilter })"> @Html.DisplayNameFor(modelItem => Model[0].price)</a></b>
                             </td>
                             <td>
                                 <b> @Html.DisplayNameFor(modelItem => Model[0].volum)</b>
@@ -102,7 +102,7 @@
                     </table>
                     Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
-                    @Html.PagedListPager(Model, page => Url.Action("ListProducts",new { page, itemsPerPage = ViewBag.CurrentItemsPerPage, sortOrder = ViewBag.CurrentSort }));
+                    @Html.PagedListPager(Model, page => Url.Action("ListProducts",new { page, itemsPerPage = ViewBag.CurrentItemsPerPage, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }));
 
 
                 </div>
@@ -114,19 +114,3 @@
 
 </div>
 
-<script type="text/javascript">
-    $(document).ready(function () {
-
-
-    
-        $("#categoryDrop").bind("change", function () {
-            var $detailDiv = $('#tullbal');
-            var url = "/Product/ListPartial/" + $("#categoryDrop").val();
-
-            $.get(url, function (data) {
-                $detailDiv.replaceWith(data);
-            });
-
-        });
-    })
-</script>
