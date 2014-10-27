@@ -14,7 +14,7 @@ namespace Nettbutikk.admin.Controllers
         public ActionResult Main()
         {
             if (!isAdmin())
-                RedirectToAction("logIn");
+                RedirectToAction("LogIn", "Main");
 
             return View();
         }

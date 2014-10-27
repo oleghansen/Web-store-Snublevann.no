@@ -29,7 +29,7 @@ namespace Nettbutikk.admin.Controllers
         public ActionResult ListCustomers(int? page, int? itemsPerPage, string sortOrder, string currentFilter, string searchString)
         {
             if (!isAdmin())
-                return RedirectToAction("Main", "Main");
+                return RedirectToAction("LogIn", "Main");
             ViewBag.CurrentSort = sortOrder;
             ViewBag.IDSortParm = String.IsNullOrEmpty(sortOrder) ? "id_desc" : "";
             ViewBag.FirstNameSortParm = sortOrder == "FName" ? "fname_desc" : "FName";
@@ -132,7 +132,7 @@ namespace Nettbutikk.admin.Controllers
         public ActionResult Index()
         {
             if (!isAdmin())
-                return RedirectToAction("Main", "Main"); 
+                return RedirectToAction("LogIn", "Main"); 
             return View();
         }
         private bool isAdmin(){
