@@ -13,7 +13,7 @@ namespace Nettbutikk.DAL
         public List<OrderLine> getAllOrderLinesOfOrder(int id)
         {
             var db = new DatabaseContext();
-            var lines = db.OrderLines.Include(p => p.Products).Include(c => c.Orders.Customers).Where(ol =>ol.OrdersId  == id).ToList();
+            var lines = db.OrderLines.Where(ol =>ol.OrdersId  == id).ToList();
             List<OrderLine> list = new List<OrderLine>();
             foreach (var item in lines)
             {
@@ -22,18 +22,17 @@ namespace Nettbutikk.DAL
                      id = item.Id,  
                      orderid = item.OrdersId,
                      productid = item.ProductsId,   
-                     quantity = item.Quantity,
-                    
+                     quantity = item.Quantity,              
                 });
             }
             return list;
         }
 
 
-        public List<Order> getAllOrders()
+        public List<Order> getAllOrders(int? id)
         {
             var db = new DatabaseContext();
-            var lines = db.Orders.Include(c => c.Customers).Include(ol => ol.OrderLines).ToList();
+            var lines = db.Orders.ToList();
             List<Order> list = new List<Order>();
             foreach (var item in lines)
             {             
@@ -47,6 +46,22 @@ namespace Nettbutikk.DAL
                  });
             }
             return list;
+        }
+
+        public Order getOrder(int id)
+        {
+            var db = new DatabaseContext();
+            Orders order = (Orders)db.Orders.FirstOrDefault(p=> p.Id == id);
+           
+            Order o = new Order()
+            {
+               id = order.Id,
+               orderdate = order.OrderDate,
+               customerid = order.CustomersId
+
+            };
+            
+            return o;
         }
 
        

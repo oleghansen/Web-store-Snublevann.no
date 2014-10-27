@@ -49,6 +49,8 @@ namespace Nettbutikk.DAL
 
             return customer;
         }
+
+        
         public bool add(Customer inCustomer, byte[] hashedPassword)
         {
                 return true;

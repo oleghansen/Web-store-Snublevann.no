@@ -22,11 +22,11 @@ namespace Nettbutikk.BLL
             _order = stub;
         }
 
-        public List<Order> getAllOrders()
+        public List<Order> getAllOrders(int? id)
         {
             ICustomerDAL _customer = new CustomerDAL();
             IProductDAL _product = new ProductDAL();
-            List<Order> allOrders = _order.getAllOrders();
+            List<Order> allOrders = _order.getAllOrders(id);
             List<Order> list = new List<Order>();
             
             foreach (var item in allOrders)
@@ -42,6 +42,7 @@ namespace Nettbutikk.BLL
                         quantity = OrderLineItems .quantity,
                         product = _product.findProduct(OrderLineItems.productid),
                         orderid =  OrderLineItems.orderid 
+                         
                         
                     });
                 }
@@ -59,8 +60,35 @@ namespace Nettbutikk.BLL
 
         public List<OrderLine> getAllOrderLinesOfOrder(int id)
         {
-            List<OrderLine> allOrderLines = _order.getAllOrderLinesOfOrder(id);
-            return allOrderLines;
+           /*  ICustomerDAL _customer = new CustomerDAL();
+             ICustomerDAL _customer = new CustomerDAL();
+            IProductDAL _product = new ProductDAL();
+            List<OrderLine> orderlineslist = new List<OrderLine>();
+            List<OrderLine> OLlist = _order.getAllOrderLinesOfOrder(id);
+
+            foreach (var item in OLlist){
+
+                var order = new Order()
+                {
+                     id = item.id,
+                      orderdate = order.orderdate
+                };
+
+                orderlineslist.Add(new OrderLine()
+                {
+                    id = item.id,
+                    productid = item.productid,
+                    quantity = item.quantity,
+                    product = _product.findProduct(item.productid),
+                    orderid =  id,
+                    order = 
+
+                });
+
+            }
+
+                */
+            return null;
         }
 
         public  Customer getCustomer(int id)
