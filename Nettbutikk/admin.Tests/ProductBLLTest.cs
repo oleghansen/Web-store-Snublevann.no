@@ -90,7 +90,7 @@ namespace Nettbutikk.Tests
         }
 
        [TestMethod]
-        public void Product_Update_Not_Null()
+        public void Product_Update_Return_True()
         {
             TestControllerBuilder builder = new TestControllerBuilder();
 
@@ -105,9 +105,9 @@ namespace Nettbutikk.Tests
             };
 
             var action = (ViewResult)bll.Updated(1, expected);
-            var result = (Product)action.Model;
+            var result = (bool)action.Model;
 
-            Assert.IsNotNull(result);
+            Assert.IsTrue(result);
         }
 
 
