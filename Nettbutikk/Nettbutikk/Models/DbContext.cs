@@ -35,6 +35,7 @@ namespace Nettbutikk.Models
         public DbSet<Postalareas> Postalareas { get; set; }
         public DbSet<SubCategories> SubCategories { get; set; }
         public DbSet<Countries> Countries { get; set; }
+        public DbSet<AuditLog> AuditLogs { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
@@ -139,6 +140,19 @@ namespace Nettbutikk.Models
         public int Id { get; set; }
         public String Name { get; set; }
         public List<Products> Products { get; set; }
+    }
+
+    public class AuditLog
+    {
+        public int Id { get; set; }
+        public int UserId { get; set; }
+        public DateTime Changed { get; set; }
+        public String EventType { get; set; }
+        public String TableName { get; set; }
+        public String RecordId { get; set; }
+        public String ColumnName { get; set; }
+        public String OriginalValue { get; set; }
+        public String NewValue { get; set; }
     }
  
 

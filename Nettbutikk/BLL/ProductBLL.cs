@@ -61,5 +61,11 @@ namespace Nettbutikk.BLL
         {
             return _product.addProduct(id);
         }
+
+        // TODO: fjern før levering
+        public bool addCategoriesTest(int userId)
+        {
+            return _product.addCategoriesTest(userId);
+        }
     }
 }

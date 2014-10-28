@@ -1,4 +1,4 @@
-﻿using Nettbutikk.Model;
+﻿using Nettbutikk.Model; 
 using System;
 using System.Collections.Generic;
 namespace Nettbutikk.BLL
@@ -14,5 +14,7 @@ namespace Nettbutikk.BLL
 
         bool updateProduct(int id, Product p);
         bool addProduct(int id);
+        //TODO:fjern før levering
+        bool addCategoriesTest(int userId);
     }
 }

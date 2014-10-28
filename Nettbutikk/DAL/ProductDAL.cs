@@ -151,6 +151,20 @@ namespace Nettbutikk.DAL
         {
             return false;
         }
+
+        // TODO: denne metoden er kun for å teste audit trail. Må fjernes før innlevering
+
+        public bool addCategoriesTest(int userId)
+        {
+            var db = new DatabaseContext();
+            Categories b = new Categories()
+            {
+                Name = "Test"
+            };
+            db.Categories.Add(b);
+            db.SaveChanges(userId); 
+            return true; 
+        }
     }
 }
 

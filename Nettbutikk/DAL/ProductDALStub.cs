@@ -92,5 +92,11 @@ namespace Nettbutikk.DAL
                 return false;
             return true;
         }
+
+        // TODO: fjern før levering!
+        public bool addCategoriesTest(int userid)
+        {
+            return false; 
+        }
     }
 }
