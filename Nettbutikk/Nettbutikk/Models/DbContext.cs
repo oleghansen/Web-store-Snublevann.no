@@ -62,6 +62,7 @@ namespace Nettbutikk.Models
 
     public class Producers
     {
+        [Key]
         public int Id { get; set; }
         public String Name { get; set; }
         public virtual List<Products> Products { get; set; }
@@ -69,6 +70,7 @@ namespace Nettbutikk.Models
 
     public class Categories
     {
+        [Key]
         public int Id { get; set; }
         public String Name { get; set; }
         public List<SubCategories> SubCategories { get; set; }
@@ -87,7 +89,7 @@ namespace Nettbutikk.Models
 
     public class Orders
     {
-       
+        [Key]
         public int Id { get; set; }
         public DateTime OrderDate { get; set; }
         public virtual List<OrderLines> OrderLines { get; set; }
@@ -100,6 +102,7 @@ namespace Nettbutikk.Models
 
     public class Customers 
     {
+        [Key]
         public int Id { get; set; }
         public String Firstname { get; set; }
         public String Lastname { get; set; }
@@ -122,6 +125,7 @@ namespace Nettbutikk.Models
 
     public class SubCategories
     {
+        [Key]   
         public int Id { get; set; }
         public String Name { get; set; }
         public int CategoriesId { get; set; }
@@ -131,6 +135,7 @@ namespace Nettbutikk.Models
 
     public class Countries
     {
+        [Key]
         public int Id { get; set; }
         public String Name { get; set; }
         public List<Products> Products { get; set; }

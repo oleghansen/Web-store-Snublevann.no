@@ -8,10 +8,17 @@ namespace Nettbutikk.Models
 {
     public class DbInitializer : DropCreateDatabaseIfModelChanges<DatabaseContext>
     {
+        private Random prodGen = new Random();
+        private Random prodDate = new Random();
+        private Random prodQuant = new Random();
+        DateTime start = new DateTime(2012, 1, 1);
+        int dateRange;
         protected override void Seed(DatabaseContext context)
         {
             context.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('Products', RESEED, 100001)");
             context.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('Orders', RESEED, 298423)");
+
+            dateRange = (DateTime.Today - start).Days;
 
             var countries = new List<Countries>
             {
@@ -414,115 +421,215 @@ namespace Nettbutikk.Models
                 
             };
             products.ForEach(c => context.Products.Add(c));
-
-            var customers = new List<Customers>
-            {
-                new Customers {Id=1,Firstname = "Per", Lastname="Hansen",Email="Per@Hansen.com",Phonenumber="91827364",Address="Pilestredet 35", PostalareasId=0170, Password= System.Security.Cryptography.SHA256.Create().ComputeHash(System.Text.Encoding.ASCII.GetBytes("mappeinnlevering1"))},
-                new Customers {Id=2,Firstname = "Admin", Lastname="Istrator",Email="admin@istrat.or",Phonenumber="13371337",Address="Systemveien 20",PostalareasId=0170, Password = System.Security.Cryptography.SHA256.Create().ComputeHash(System.Text.Encoding.ASCII.GetBytes("admin")),Admin=true},
-                new Customers {Id=3,Firstname = "Erlend", Lastname="Rognes",Email="erlend@rognes.no",Phonenumber="98878986",Address="Frydenlundgata 20",PostalareasId=0169, Password = System.Security.Cryptography.SHA256.Create().ComputeHash(System.Text.Encoding.ASCII.GetBytes("hemmelig"))},
-                new Customers {Id=4,Firstname = "Julie", Lastname="Roa",Email="horselady91@hotmail.com",Phonenumber="45859211",Address="Lørenvegen 20B",PostalareasId=1874, Password = System.Security.Cryptography.SHA256.Create().ComputeHash(System.Text.Encoding.ASCII.GetBytes("horseisbest"))},
-                new Customers {Id=5,Firstname = "Karl", Lastname="Hagen",Email="karlihagen@staten.no",Phonenumber="49879901",Address="Stortingsgata 120",PostalareasId=0170, Password = System.Security.Cryptography.SHA256.Create().ComputeHash(System.Text.Encoding.ASCII.GetBytes("politiker"))},
-                new Customers {Id=6,Firstname = "Franz", Lastname="Ferdinant",Email="musikk@yolo.com",Phonenumber="98765432",Address="Musikalsklia 10",PostalareasId=0180, Password = System.Security.Cryptography.SHA256.Create().ComputeHash(System.Text.Encoding.ASCII.GetBytes("musikk12345"))},
-                new Customers {Id=7,Firstname = "Lionel", Lastname="Messi",Email="barcelona@fotball.es",Phonenumber="20020050",Address="Camp Nou 1",PostalareasId=9170, Password = System.Security.Cryptography.SHA256.Create().ComputeHash(System.Text.Encoding.ASCII.GetBytes("fotball"))}
-            };
-            customers.ForEach(c => context.Customers.Add(c));
-
-            var orders = new List<Orders>
-            {
-                new Orders {Id=298449, OrderDate=DateTime.Now, CustomersId=7},
-                new Orders {Id=298448, OrderDate=DateTime.Now, CustomersId=7},
-                new Orders {Id=298447, OrderDate=DateTime.Now, CustomersId=7},
-                new Orders {Id=298446, OrderDate=DateTime.Now, CustomersId=7},
-                new Orders {Id=298445, OrderDate=DateTime.Now, CustomersId=7},
-                new Orders {Id=298444, OrderDate=DateTime.Now, CustomersId=6},
-                new Orders {Id=298443, OrderDate=DateTime.Now, CustomersId=6},
-                new Orders {Id=298442, OrderDate=DateTime.Now, CustomersId=6},
-                new Orders {Id=298441, OrderDate=DateTime.Now, CustomersId=6},
-                new Orders {Id=298440, OrderDate=DateTime.Now, CustomersId=6},
-                new Orders {Id=298439, OrderDate=DateTime.Now, CustomersId=5},
-                new Orders {Id=298438, OrderDate=DateTime.Now, CustomersId=5},
-                new Orders {Id=298437, OrderDate=DateTime.Now, CustomersId=5},
-                new Orders {Id=298436, OrderDate=DateTime.Now, CustomersId=5},
-                new Orders {Id=298435, OrderDate=DateTime.Now, CustomersId=5},
-                new Orders {Id=298434, OrderDate=DateTime.Now, CustomersId=4},
-                new Orders {Id=298433, OrderDate=DateTime.Now, CustomersId=4},
-                new Orders {Id=298432, OrderDate=DateTime.Now, CustomersId=4},
-                new Orders {Id=298431, OrderDate=DateTime.Now, CustomersId=4},
-                new Orders {Id=298430, OrderDate=DateTime.Now, CustomersId=4},
-                new Orders {Id=298429, OrderDate=DateTime.Now, CustomersId=3},
-                new Orders {Id=298428, OrderDate=DateTime.Now, CustomersId=3},
-                new Orders {Id=298427, OrderDate=DateTime.Now, CustomersId=3},
-                new Orders {Id=298426, OrderDate=DateTime.Now, CustomersId=3},
-                new Orders {Id=298425, OrderDate=DateTime.Now, CustomersId=3},
-                new Orders {Id=298424, OrderDate=DateTime.Now, CustomersId=3},  
-                new Orders {Id=298423, OrderDate=DateTime.Now, CustomersId=1}
-            };
-            orders.ForEach(c => context.Orders.Add(c));
+            context.SaveChanges();
             var postalareas = new List<Postalareas> 
             {
+                new Postalareas{PostalareasId=0001, Postalarea="Oslo"},
+                new Postalareas{PostalareasId=0123, Postalarea="Oslo"},
                 new Postalareas{PostalareasId=0169, Postalarea="Oslo"},
-                new Postalareas{PostalareasId=1874, Postalarea="Lørenskog"},
+                new Postalareas{PostalareasId=0170, Postalarea="Oslo"},
                 new Postalareas{PostalareasId=0180, Postalarea="Oslo"},
+                new Postalareas{PostalareasId=0482, Postalarea="Oslo"},
+                new Postalareas{PostalareasId=1874, Postalarea="Lørenskog"},
+                new Postalareas{PostalareasId=5060, Postalarea="Bergen"},
                 new Postalareas{PostalareasId=9170, Postalarea="Barcelona"},
-                new Postalareas{PostalareasId=0170, Postalarea="Oslo"}
+                new Postalareas{PostalareasId=9898, Postalarea="Sydpolen"}
+                
             };
             postalareas.ForEach(c => context.Postalareas.Add(c));
-           var orderlines = new List<OrderLines>
+            context.SaveChanges();
+            var customers = new List<Customers>
             {
-                new OrderLines {ProductsId=100015, Quantity = 2, OrdersId=298449},
-                new OrderLines {ProductsId=100016, Quantity = 3, OrdersId=298448},
-                new OrderLines {ProductsId=100025, Quantity = 3, OrdersId=298447},
-                new OrderLines {ProductsId=100032, Quantity = 4, OrdersId=298447},
-                new OrderLines {ProductsId=100021, Quantity = 4, OrdersId=298446},
-                new OrderLines {ProductsId=100011, Quantity = 5, OrdersId=298445},
-                new OrderLines {ProductsId=100009, Quantity = 1, OrdersId=298444},
-                new OrderLines {ProductsId=100022, Quantity = 2, OrdersId=298443},
-                new OrderLines {ProductsId=100044, Quantity = 3, OrdersId=298443},
-                new OrderLines {ProductsId=100012, Quantity = 2, OrdersId=298442},
-                new OrderLines {ProductsId=100028, Quantity = 2, OrdersId=298441},
-                new OrderLines {ProductsId=100025, Quantity = 3, OrdersId=298440},
-                new OrderLines {ProductsId=100001, Quantity = 5, OrdersId=298439},
-                new OrderLines {ProductsId=100010, Quantity = 3, OrdersId=298439},
-                new OrderLines {ProductsId=100023, Quantity = 5, OrdersId=298439},
-                new OrderLines {ProductsId=100021, Quantity = 4, OrdersId=298439},
-                new OrderLines {ProductsId=100033, Quantity = 2, OrdersId=298439},
-                new OrderLines {ProductsId=100005, Quantity = 3, OrdersId=298438},
-                new OrderLines {ProductsId=100038, Quantity = 5, OrdersId=298438},
-                new OrderLines {ProductsId=100040, Quantity = 7, OrdersId=298438},
-                new OrderLines {ProductsId=100006, Quantity = 1, OrdersId=298437},
-                new OrderLines {ProductsId=100025, Quantity = 9, OrdersId=298437},
-                new OrderLines {ProductsId=100002, Quantity = 5, OrdersId=298436},
-                new OrderLines {ProductsId=100004, Quantity = 1, OrdersId=298436},
-                new OrderLines {ProductsId=100018, Quantity = 3, OrdersId=298435},
-                new OrderLines {ProductsId=100019, Quantity = 3, OrdersId=298435},
-                new OrderLines {ProductsId=100022, Quantity = 6, OrdersId=298435},
-                new OrderLines {ProductsId=100017, Quantity = 3, OrdersId=298434},
-                new OrderLines {ProductsId=100022, Quantity = 3, OrdersId=298434},
-                new OrderLines {ProductsId=100029, Quantity = 7, OrdersId=298434},
-                new OrderLines {ProductsId=100014, Quantity = 3, OrdersId=298433},
-                new OrderLines {ProductsId=100002, Quantity = 1, OrdersId=298433},
-                new OrderLines {ProductsId=100011, Quantity = 1, OrdersId=298432},
-                new OrderLines {ProductsId=100011, Quantity = 6, OrdersId=298431},
-                new OrderLines {ProductsId=100011, Quantity = 2, OrdersId=298431},
-                new OrderLines {ProductsId=100001, Quantity = 2, OrdersId=298430},
-                new OrderLines {ProductsId=100013, Quantity = 3, OrdersId=298429},
-                new OrderLines {ProductsId=100041, Quantity = 1, OrdersId=298428},
-                new OrderLines {ProductsId=100013, Quantity = 2, OrdersId=298427},
-                new OrderLines {ProductsId=100003, Quantity = 2, OrdersId=298427},
-                new OrderLines {ProductsId=100001, Quantity = 1, OrdersId=298427},
-                new OrderLines {ProductsId=100034, Quantity = 3, OrdersId=298426},
-                new OrderLines {ProductsId=100025, Quantity = 4, OrdersId=298426},
-                new OrderLines {ProductsId=100033, Quantity = 2, OrdersId=298426},
-                new OrderLines {ProductsId=100013, Quantity = 4, OrdersId=298425},
-                new OrderLines {ProductsId=100010, Quantity = 5, OrdersId=298425},
-                new OrderLines {ProductsId=100029, Quantity = 2, OrdersId=298425},
-                new OrderLines {ProductsId=100027, Quantity = 8, OrdersId=298425},
-                new OrderLines {ProductsId=100013, Quantity = 3, OrdersId=298424},
-                new OrderLines {ProductsId=100004, Quantity = 1, OrdersId=298424},
-                new OrderLines {ProductsId=100044, Quantity = 1, OrdersId=298423},
-                new OrderLines {ProductsId=100045, Quantity = 3, OrdersId=298423},
-                new OrderLines {ProductsId=100046, Quantity = 1, OrdersId=298423}
-            }; orderlines.ForEach(c => context.OrderLines.Add(c)); 
+                new Customers {Firstname = "Per", Lastname="Hansen",Email="Per@Hansen.com",Phonenumber="91827364",Address="Pilestredet 35", PostalareasId=0170, Password= System.Security.Cryptography.SHA256.Create().ComputeHash(System.Text.Encoding.ASCII.GetBytes("mappeinnlevering1"))},
+                new Customers {Firstname = "Admin", Lastname="Istrator",Email="admin@istrat.or",Phonenumber="13371337",Address="Systemveien 20",PostalareasId=0170, Password = System.Security.Cryptography.SHA256.Create().ComputeHash(System.Text.Encoding.ASCII.GetBytes("admin")),Admin=true},
+                new Customers {Firstname = "Erlend", Lastname="Rognes",Email="erlend@rognes.no",Phonenumber="98878986",Address="Frydenlundgata 20",PostalareasId=0169, Password = System.Security.Cryptography.SHA256.Create().ComputeHash(System.Text.Encoding.ASCII.GetBytes("hemmelig"))},
+                new Customers {Firstname = "Julie", Lastname="Roa",Email="horselady91@hotmail.com",Phonenumber="45859211",Address="Lørenvegen 20B",PostalareasId=1874, Password = System.Security.Cryptography.SHA256.Create().ComputeHash(System.Text.Encoding.ASCII.GetBytes("horseisbest"))},
+                new Customers {Firstname = "Karl", Lastname="Hagen",Email="karlihagen@staten.no",Phonenumber="49879901",Address="Stortingsgata 120",PostalareasId=0170, Password = System.Security.Cryptography.SHA256.Create().ComputeHash(System.Text.Encoding.ASCII.GetBytes("politiker"))},
+                new Customers {Firstname = "Franz", Lastname="Ferdinant",Email="musikk@yolo.com",Phonenumber="98765432",Address="Musikalsklia 10",PostalareasId=0180, Password = System.Security.Cryptography.SHA256.Create().ComputeHash(System.Text.Encoding.ASCII.GetBytes("musikk12345"))},
+                new Customers {Firstname = "Lionel", Lastname="Messi",Email="barcelona@fotball.es",Phonenumber="20020050",Address="Camp Nou 1",PostalareasId=9170, Password = System.Security.Cryptography.SHA256.Create().ComputeHash(System.Text.Encoding.ASCII.GetBytes("fotball"))},
+                new Customers {Firstname = "Erik", Lastname="Forsen", Email="erik@forsen.no",Phonenumber="47050032",Address="Nils Huus' gate 11", PostalareasId=0482, Password = System.Security.Cryptography.SHA256.Create().ComputeHash(System.Text.Encoding.ASCII.GetBytes("tullball"))},
+                new Customers {Firstname = "Jarle", Lastname="Andøy", Email="jarle@berserk.no",Phonenumber="98238933",Address="Sydpolen 1", PostalareasId=9898, Password = System.Security.Cryptography.SHA256.Create().ComputeHash(System.Text.Encoding.ASCII.GetBytes("tullball"))},
+                new Customers {Firstname = "Erna", Lastname="Solberg", Email="stats@minister.no",Phonenumber="45238932",Address="Løvebakken 5", PostalareasId=0001, Password = System.Security.Cryptography.SHA256.Create().ComputeHash(System.Text.Encoding.ASCII.GetBytes("høyre"))},
+                new Customers {Firstname = "Herman", Lastname="Friele", Email="kaffe@bergen.no",Phonenumber="97232424",Address="Fløybanen 23", PostalareasId=5060, Password = System.Security.Cryptography.SHA256.Create().ComputeHash(System.Text.Encoding.ASCII.GetBytes("kaffe<3<3"))},
+                new Customers {Firstname = "Harald", Lastname="Rex", Email="konge@norge.no",Phonenumber="99999999",Address="Karl Johans gate 1", PostalareasId=0123, Password = System.Security.Cryptography.SHA256.Create().ComputeHash(System.Text.Encoding.ASCII.GetBytes("rulez"))}
+            };
+            customers.ForEach(c => context.Customers.Add(c));
+            context.SaveChanges();
+            var orders = new List<Orders>
+            {
+                new Orders {OrderDate=RandomDay(), CustomersId=11},
+                new Orders {OrderDate=RandomDay(), CustomersId=12},
+                new Orders {OrderDate=RandomDay(), CustomersId=8},
+                new Orders {OrderDate=RandomDay(), CustomersId=9},
+                new Orders {OrderDate=RandomDay(), CustomersId=9},
+                new Orders {OrderDate=RandomDay(), CustomersId=6},
+                new Orders {OrderDate=RandomDay(), CustomersId=7},
+                new Orders {OrderDate=RandomDay(), CustomersId=5},
+                new Orders {OrderDate=RandomDay(), CustomersId=3},
+                new Orders {OrderDate=RandomDay(), CustomersId=4},
+                new Orders {OrderDate=RandomDay(), CustomersId=1},
+                new Orders {OrderDate=RandomDay(), CustomersId=12},
+                new Orders {OrderDate=RandomDay(), CustomersId=11},
+                new Orders {OrderDate=RandomDay(), CustomersId=9},
+                new Orders {OrderDate=RandomDay(), CustomersId=10},
+                new Orders {OrderDate=RandomDay(), CustomersId=8},
+                new Orders {OrderDate=RandomDay(), CustomersId=6},
+                new Orders {OrderDate=RandomDay(), CustomersId=7},
+                new Orders {OrderDate=RandomDay(), CustomersId=5},
+                new Orders {OrderDate=RandomDay(), CustomersId=4},
+                new Orders {OrderDate=RandomDay(), CustomersId=3},
+                new Orders {OrderDate=RandomDay(), CustomersId=1},
+                new Orders {OrderDate=RandomDay(), CustomersId=12},
+                new Orders {OrderDate=RandomDay(), CustomersId=11},
+                new Orders {OrderDate=RandomDay(), CustomersId=10},
+                new Orders {OrderDate=RandomDay(), CustomersId=9},
+                new Orders {OrderDate=RandomDay(), CustomersId=8},
+                new Orders {OrderDate=RandomDay(), CustomersId=7},
+                new Orders {OrderDate=RandomDay(), CustomersId=6},
+                new Orders {OrderDate=RandomDay(), CustomersId=5},
+                new Orders {OrderDate=RandomDay(), CustomersId=4},
+                new Orders {OrderDate=RandomDay(), CustomersId=3},
+                new Orders {OrderDate=RandomDay(), CustomersId=1},
+                new Orders {OrderDate=RandomDay(), CustomersId=12},
+                new Orders {OrderDate=RandomDay(), CustomersId=11},
+                new Orders {OrderDate=RandomDay(), CustomersId=10},
+                new Orders {OrderDate=RandomDay(), CustomersId=9},
+                new Orders {OrderDate=RandomDay(), CustomersId=8},
+                new Orders {OrderDate=RandomDay(), CustomersId=7},
+                new Orders {OrderDate=RandomDay(), CustomersId=6},
+                new Orders {OrderDate=RandomDay(), CustomersId=5},
+                new Orders {OrderDate=RandomDay(), CustomersId=4},
+                new Orders {OrderDate=RandomDay(), CustomersId=3},
+                new Orders {OrderDate=RandomDay(), CustomersId=1},
+                new Orders {OrderDate=RandomDay(), CustomersId=12},
+                new Orders {OrderDate=RandomDay(), CustomersId=11},
+                new Orders {OrderDate=RandomDay(), CustomersId=10},
+                new Orders {OrderDate=RandomDay(), CustomersId=9},
+                new Orders {OrderDate=RandomDay(), CustomersId=8},
+                new Orders {OrderDate=RandomDay(), CustomersId=7},
+                new Orders {OrderDate=RandomDay(), CustomersId=6},
+                new Orders {OrderDate=RandomDay(), CustomersId=5},
+                new Orders {OrderDate=RandomDay(), CustomersId=4},
+                new Orders {OrderDate=RandomDay(), CustomersId=3},  
+                new Orders {OrderDate=RandomDay(), CustomersId=1}
+            };
+            orders.ForEach(c => context.Orders.Add(c));
+            context.SaveChanges();
+            var orderlines = new List<OrderLines>
+            {
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298477},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298477},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298477},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298477},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298477},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298477},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298476},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298475},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298475},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298474},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298473},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298472},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298471},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298470},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298469},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298468},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298467},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298466},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298465},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298464},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298463},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298462},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298461},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298461},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298460},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298459},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298458},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298457},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298456},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298456},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298455},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298454},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298454},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298453},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298453},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298453},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298453},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298453},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298453},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298452},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298451},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298450},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298449},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298449},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = 3, OrdersId=298448},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = 3, OrdersId=298447},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = 4, OrdersId=298447},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = 4, OrdersId=298446},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = 5, OrdersId=298445},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = 1, OrdersId=298444},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298443},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = 3, OrdersId=298443},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298442},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298441},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = 3, OrdersId=298440},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = 5, OrdersId=298439},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = 3, OrdersId=298439},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = 5, OrdersId=298439},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = 4, OrdersId=298439},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298439},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = 3, OrdersId=298438},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = 5, OrdersId=298438},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = 7, OrdersId=298438},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = 1, OrdersId=298437},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = 9, OrdersId=298437},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = 5, OrdersId=298436},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = 1, OrdersId=298436},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = 3, OrdersId=298435},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = 3, OrdersId=298435},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = 6, OrdersId=298435},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = 3, OrdersId=298434},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = 3, OrdersId=298434},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = 7, OrdersId=298434},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = 3, OrdersId=298433},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = 1, OrdersId=298433},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = 1, OrdersId=298432},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = 6, OrdersId=298431},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298431},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298430},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = 3, OrdersId=298429},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = 1, OrdersId=298428},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298427},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298427},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = 1, OrdersId=298427},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = 3, OrdersId=298426},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = 4, OrdersId=298426},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298426},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = 4, OrdersId=298425},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = 5, OrdersId=298425},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298425},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = 8, OrdersId=298425},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = 3, OrdersId=298424},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = 1, OrdersId=298424},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = 1, OrdersId=298423},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = 3, OrdersId=298423},
+                new OrderLines {ProductsId=RandomProduct(), Quantity = 1, OrdersId=298423}
+            }; 
+            orderlines.ForEach(c => context.OrderLines.Add(c));
+            context.SaveChanges();
+        }
+        DateTime RandomDay()
+        {           
+            return start.AddDays(prodDate.Next(dateRange));
+        }
+        int RandomProduct()
+        {
+
+            return prodGen.Next(100001, 100047);
+        }
+        int RandomQuantity() 
+        {
+
+            return prodQuant.Next(1, 5); 
         }
     }
 }
