@@ -24,9 +24,12 @@
 <div>
     <div class="jumbotron" style="padding-top:2px">
         <div class="container">
-
-            <h3><span class="glyphicon glyphicon-user"></span> Produktoversikt </h3>
-            <hr />
+            <h3>
+                <span class="glyphicon glyphicon-user"></span> Produktoversikt
+                <button type="submit" class="btn btn-success" tabindex="11" style="float:right">
+                    <i class="glyphicon glyphicon-pencil">@Html.ActionLink(" Nyttprodukt", "AddProductView")</i>
+                </button>
+            </h3>
         <div class="menu_container">
             <div class="row">
                 @using (Html.BeginForm("ListProducts", "Product", FormMethod.Get, new { @class = "form-inline", @role = "form", @style = "margin-top:0px; padding-bottom:12px" }))
