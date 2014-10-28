@@ -84,5 +84,13 @@ namespace Nettbutikk.DAL
             };
             return product;
         }
+
+
+        public bool addProduct(int id)
+        {
+            if (id == 0)
+                return false;
+            return true;
+        }
     }
 }

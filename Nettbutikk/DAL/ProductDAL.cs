@@ -147,6 +147,10 @@ namespace Nettbutikk.DAL
                 return false;
             }
              */
+        public bool addProduct(int id)
+        {
+            return false;
+        }
     }
 }
 

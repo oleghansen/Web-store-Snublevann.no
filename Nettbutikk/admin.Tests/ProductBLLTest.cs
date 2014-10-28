@@ -135,5 +135,26 @@ namespace Nettbutikk.Tests
            var result = (Product)action.Model;
        }
          */
+
+        [TestMethod]
+       public void New_Product_Test_Return_True()
+       {
+           TestControllerBuilder builder = new TestControllerBuilder();
+
+           var bll = new ProductController(new ProductBLL(new ProductDALStub()));
+           builder.InitializeController(bll);
+           builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+           var expected = new Product()
+           {
+               itemnumber = 1,
+               name = "Tull",
+               description = "Ball"
+           };
+
+           var action = (ViewResult)bll.Updated(1, expected);
+           var result = (bool)action.Model;
+
+           Assert.IsTrue(result);
+       }
     }
 }

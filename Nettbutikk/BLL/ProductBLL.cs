@@ -57,5 +57,9 @@ namespace Nettbutikk.BLL
             return _product.updateProduct(id, p);
         }
 
+        public bool addProduct(int id)
+        {
+            return _product.addProduct(id);
+        }
     }
 }

@@ -13,5 +13,6 @@ namespace Nettbutikk.BLL
         Product seeDetails(int i);
 
         bool updateProduct(int id, Product p);
+        bool addProduct(int id);
     }
 }

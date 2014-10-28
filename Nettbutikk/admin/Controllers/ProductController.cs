@@ -163,5 +163,15 @@ namespace Nettbutikk.admin.Controllers
             List<string> foundProducts = _product.getAutoComplete(term);
             return Json(foundProducts, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult addProduct(int id)
+        {
+            if (!isAdmin())
+            {
+                return RedirectToAction("LogIn", "Main");
+            }
+            bool added = _product.addProduct(id);
+            return View(added);
+        }
     }
 }
