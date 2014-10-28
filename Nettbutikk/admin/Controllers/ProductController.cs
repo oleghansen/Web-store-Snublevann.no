@@ -173,5 +173,14 @@ namespace Nettbutikk.admin.Controllers
             bool added = _product.addProduct(id);
             return View(added);
         }
+
+        public ActionResult addProductView()
+        {
+            if (!isAdmin())
+            {
+                return RedirectToAction("LogIn", "Main");
+            }
+            return View();
+        }
     }
 }
