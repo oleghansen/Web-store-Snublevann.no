@@ -27,12 +27,28 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <h4>Produktnavn:</h4>
                                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                     @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Produkt", tabindex = "1", autofocus = "" } })
                                     @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <h4>Pris:</h4>
+                                    @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Beskrivelse", tabindex = "1", autofocus = "" } })
+                                    @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <h4>Volum:</h4>
+                                    @Html.EditorFor(model => model.volum, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Beskrivelse", tabindex = "1", autofocus = "" } })
+                                    @Html.ValidationMessageFor(model => model.volum, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -46,16 +62,16 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <h4>Pris:</h4>
-                                    @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Beskrivelse", tabindex = "1", autofocus = "" } })
-                                    @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
+                                    <h4>Kategori:</h4>
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    @Html.EditorFor(model => model.category, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Kategori", tabindex = "1", autofocus = "" } })
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group">
-                                    <h4>Volum:</h4>
-                                    @Html.EditorFor(model => model.volum, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Beskrivelse", tabindex = "1", autofocus = "" } })
-                                    @Html.ValidationMessageFor(model => model.volum, "", new { @class = "text-danger" })
+                                <div class="row">
+                                    <h4>Underkategori:</h4>
+                                    @Html.EditorFor(model => model.subCategory, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Sub kategri", tabindex = "3" } })
+                                    @Html.ValidationMessageFor(model => model.subCategory, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                         </div>

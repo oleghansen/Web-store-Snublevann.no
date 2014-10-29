@@ -141,6 +141,8 @@ namespace Nettbutikk.admin.Controllers
                 quantity = productDetails.quantity,
                 producer = productDetails.producer,
                 pricePerLitre = productDetails.pricePerLitre,
+                category = productDetails.category,
+                subCategory = productDetails.subCategory
             };
             return View(prodinfo);
         }
