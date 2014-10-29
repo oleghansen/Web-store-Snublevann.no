@@ -1,4 +1,4 @@
-﻿@model Nettbutikk.admin.Models.ProductInfo
+﻿@model Nettbutikk.admin.Models.ProductDetail
 
 
 @{
@@ -56,22 +56,6 @@
                                     <h4>Produsent:</h4>
                                     @Html.EditorFor(model => model.producer, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Produsent", tabindex = "3" } })
                                     @Html.ValidationMessageFor(model => model.producer, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <h4>Kategori:</h4>
-                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                    @Html.EditorFor(model => model.category, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Kategori", tabindex = "1", autofocus = "" } })
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="row">
-                                    <h4>Underkategori:</h4>
-                                    @Html.EditorFor(model => model.subCategory, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Sub kategri", tabindex = "3" } })
-                                    @Html.ValidationMessageFor(model => model.subCategory, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                         </div>

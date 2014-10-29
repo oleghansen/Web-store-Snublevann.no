@@ -16,5 +16,6 @@ namespace Nettbutikk.BLL
         bool addProduct(int id);
         //TODO:fjern før levering
         bool addCategoriesTest(int userId);
+        List<SubCategory> getAllSubCategories();
     }
 }
