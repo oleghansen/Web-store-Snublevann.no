@@ -39,7 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CategoryBLL.cs" />
     <Compile Include="CustomerBLL.cs" />
+    <Compile Include="ICategoryBLL.cs" />
     <Compile Include="ICustomerBLL.cs" />
     <Compile Include="IOrderBLL.cs" />
     <Compile Include="IProductBLL.cs" />
