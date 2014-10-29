@@ -9,6 +9,7 @@ namespace Nettbutikk.Model
 {
     public class Category
     {
+        [Display(Name = "ID nummer")]
         public int ID { get; set; }
 
         [Display(Name = "Kategori")]

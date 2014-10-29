@@ -119,6 +119,36 @@ namespace Nettbutikk.DAL
 
         }
 
+        public Customer findCustomer(int id)
+        {
+            var db = new DatabaseContext();
+            Customers userFound = (Customers)db.Customers.FirstOrDefault(u => u.Id == id);
+            Customer c = new Customer();
+            c.id = userFound.Id;
+            c.firstname = userFound.Firstname;
+            c.lastname = userFound.Lastname;
+            c.email = userFound.Email;
+            c.admin = userFound.Admin;
+            c.address = userFound.Address;
+            c.phonenumber = userFound.Phonenumber;
+            c.postalarea = getPostalarea(userFound.PostalareasId);
+
+            if (userFound.PostalareasId < 1000)
+            {
+                c.postalcode = "0" + userFound.PostalareasId.ToString();
+                if (userFound.PostalareasId < 100)
+                {
+                    c.postalcode = "00" + userFound.PostalareasId.ToString();
+                    if (userFound.PostalareasId < 10)
+                        c.postalcode = "000" + userFound.PostalareasId.ToString();
+                }
+
+            }
+
+
+            return c;
+        }
+
         public bool validate(String email, byte[] hashedPassword)
         {
             var db = new DatabaseContext();

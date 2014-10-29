@@ -55,7 +55,14 @@ a:active
     background-color:transparent;
 }
 
-
+h5
+{
+    margin-bottom: 0px;
+}
+.form-group
+{
+    margin-bottom: 2px;
+}
 #primaryButton:hover
 {
    background-color:#3071a9;
