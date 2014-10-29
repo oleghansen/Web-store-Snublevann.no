@@ -146,6 +146,7 @@ namespace Nettbutikk.DAL
 
     public class AuditLog
     {
+        [Key]
         public int Id { get; set; }
         public int UserId { get; set; }
         public DateTime Changed { get; set; }
@@ -176,6 +177,7 @@ namespace Nettbutikk.DAL
 
     public class Producers
     {
+        [Key]
         public int Id { get; set; }
         public String Name { get; set; }
         public virtual List<Products> Products { get; set; }
@@ -202,7 +204,7 @@ namespace Nettbutikk.DAL
 
     public class Orders
     {
-
+        [Key]
         public int Id { get; set; }
         public DateTime OrderDate { get; set; }
         public virtual List<OrderLines> OrderLines { get; set; }
@@ -215,6 +217,7 @@ namespace Nettbutikk.DAL
 
     public class Customers
     {
+        [Key]
         public int Id { get; set; }
         public String Firstname { get; set; }
         public String Lastname { get; set; }
@@ -237,6 +240,7 @@ namespace Nettbutikk.DAL
 
     public class SubCategories
     {
+        [Key]
         public int Id { get; set; }
         public String Name { get; set; }
         public int CategoriesId { get; set; }
@@ -246,6 +250,7 @@ namespace Nettbutikk.DAL
 
     public class Countries
     {
+        [Key]
         public int Id { get; set; }
         public String Name { get; set; }
         public List<Products> Products { get; set; }
