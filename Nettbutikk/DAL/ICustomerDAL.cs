@@ -20,8 +20,8 @@ namespace Nettbutikk.DAL
         Customer findUser(String email);
         Customer getCustomer(int id);
 
-        bool makeAdmin(int id);
+        bool makeAdmin(int id, int adminid);
 
-        bool revokeAdmin(int id);
+        bool revokeAdmin(int id, int adminid);
     }
 }

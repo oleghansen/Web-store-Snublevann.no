@@ -137,17 +137,14 @@ namespace Nettbutikk.DAL
             return false;   
         }
 
-        public bool makeAdmin(int id)
+        public bool makeAdmin(int id, int adminid)
         {
             var db = new DatabaseContext();
             try
             {
                 Customers cust = db.Customers.FirstOrDefault(u => u.Id == id);
                 cust.Admin = true;
-                db.SaveChanges();
-
-
-                //Skriv endring til logDatabase
+                db.SaveChanges(adminid);
                 return true;
             }
             catch (Exception fail)
@@ -159,17 +156,16 @@ namespace Nettbutikk.DAL
 
         }
 
-        public bool revokeAdmin(int id)
+        public bool revokeAdmin(int id, int adminid)
         {
             var db = new DatabaseContext();
             try
             {
                 Customers cust = db.Customers.FirstOrDefault(u => u.Id == id);
                 cust.Admin = false;
-                db.SaveChanges();
 
+                db.SaveChanges(adminid);
 
-                //Skriv endring til logDatabase
                 return true;
             }
             catch (Exception fail)
