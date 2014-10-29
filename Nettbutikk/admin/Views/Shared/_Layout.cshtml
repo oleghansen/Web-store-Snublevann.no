@@ -71,7 +71,10 @@
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <div class="row">
                         <div class="col-sm-12 col-md-12">
-                           <img src="~/Content/img/snuble_admin.png" id="logo" width="500" height="96" style="margin-top: 20px; margin-left: 20px" />
+                            <a href="~/Main/Main">
+                                <img src="~/Content/img/snuble_admin.png" id="logo" width="500" height="96" style="margin-top: 20px; margin-left: 20px" />
+                            </a>
+                           
                         </div>
                     </div>
                     <div class="row">
@@ -87,7 +90,7 @@
                                         <i class=" glyphicon glyphicon-glass"> </i> Produkter
                                     </a>
 
-                                    <a href="#" id="ordersLink" onclick="toggle_visibility('submenuOrders', 'submenuProducts', 'submenuUsers');">
+                                    <a href="@Url.Action("ListOrders", "Order")" id="ordersLink" onclick="toggle_visibility('submenuOrders', 'submenuProducts', 'submenuUsers');">
                                         <i class="glyphicon glyphicon-align-justify"> </i> Ordre
                                     </a>
 
@@ -147,7 +150,7 @@
                     </div>
                 </div>
 
-                <!-- SUBMENY ORDERS-->
+                <!-- SUBMENY ORDERS
                     <div id="submenuOrders" style="display:none">
                         <div class="row">
                             <div class="col-sm-12 col-md-12">
@@ -162,7 +165,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>  -->
 
 
                     @RenderBody()
