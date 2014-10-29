@@ -10,7 +10,7 @@
     <div class="jumbotron" style="padding-top:2px">
         <div class="container">
             <h3>
-                <span class="glyphicon glyphicon-glass"></span> Produktoversikt
+                <span class="glyphicon glyphicon-glass"></span> Kategorier
             </h3>
 
             <div id="menu_container">
@@ -21,7 +21,7 @@
                             {
 
                                 <div class="input-group pull-left">
-                                    @Html.TextBox("searchString", ViewBag.CurrentFilter as string, new { id = "txtSearch", @class = "form-control", placeholder = "Søk etter vare" })
+                                    @Html.TextBox("searchString", ViewBag.CurrentFilter as string, new { id = "txtSearch", @class = "form-control", placeholder = "Søk" })
                                 </div>
                                 <div class="input-group-btn pull-left">
                                     <button class="btn btn-primary" type="submit">
@@ -39,8 +39,8 @@
                     </div>
                     <div class="col-sm-2 col-md-2" style="margin-top: 15px; padding-left: 30px">
 
-                        <a href="@Url.Action("AddProductView")" class="btn btn-primary" id="primaryButton">
-                            <span class="glyphicon glyphicon-plus"></span> Nytt produkt
+                        <a href="@Url.Action("")" class="btn btn-primary" id="primaryButton">
+                            <span class="glyphicon glyphicon-plus"></span> Ny kategori
                         </a>
 
 
