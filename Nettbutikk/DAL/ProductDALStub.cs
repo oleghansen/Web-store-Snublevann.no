@@ -103,5 +103,11 @@ namespace Nettbutikk.DAL
         {
             return false; 
         }
+
+        public List<Country> getCountries()
+        {
+
+            return null; 
+        }
     }
 }

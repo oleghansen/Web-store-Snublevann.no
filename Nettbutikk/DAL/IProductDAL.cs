@@ -19,5 +19,7 @@ namespace Nettbutikk.DAL
         //TODO: fjern før levering
         bool addCategoriesTest(int userId);
 
+        List<Country> getCountries();
+
     }
 }
