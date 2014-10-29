@@ -14,6 +14,7 @@ namespace Nettbutikk.DAL
         Product findProduct(int id);
         bool updateProduct(int id, Product p);
         bool addProduct(int id);
+        List<SubCategory> getAllSubCategories();
 
         //TODO: fjern før levering
         bool addCategoriesTest(int userId);

@@ -129,7 +129,7 @@ namespace Nettbutikk.admin.Controllers
             }
             Product productDetails = _product.seeDetails(id);
 
-            ProductInfo prodinfo = new ProductInfo()
+            ProductDetail prodinfo = new ProductDetail()
             {
                 itemnumber = productDetails.itemnumber,
                 name = productDetails.name,
@@ -138,11 +138,9 @@ namespace Nettbutikk.admin.Controllers
                 price = productDetails.price,
                 volum = productDetails.volum,
                 country = productDetails.country,
-                quantity = productDetails.quantity,
                 producer = productDetails.producer,
                 pricePerLitre = productDetails.pricePerLitre,
-                category = productDetails.category,
-                subCategory = productDetails.subCategory
+                subCategory = _product.getAllSubCategories() 
             };
             return View(prodinfo);
         }

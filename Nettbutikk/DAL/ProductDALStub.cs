@@ -85,6 +85,11 @@ namespace Nettbutikk.DAL
             return product;
         }
 
+        public List<SubCategory> getAllSubCategories()
+        {
+            return null;
+        }
+
 
         public bool addProduct(int id)
         {

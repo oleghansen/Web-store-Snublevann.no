@@ -92,5 +92,10 @@ namespace Nettbutikk.DAL
         {
             return false;
         }
+
+        public List<SubCategories> getAllSubCategories()
+        {
+            return null;
+        }
     }
 }
