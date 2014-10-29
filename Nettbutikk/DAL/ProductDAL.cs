@@ -123,7 +123,8 @@ namespace Nettbutikk.DAL
                 categoryid = products.SubCategories.Categories.Id,
                 subCategory = products.SubCategories.Name,
                 subCategoryid = products.SubCategories.Id,
-                country = products.Countries.Name
+                country = products.Countries.Name,
+                countryid = products.CountriesId
             };
         }
 
@@ -182,6 +183,23 @@ namespace Nettbutikk.DAL
             db.Categories.Add(b);
             db.SaveChanges(userId); 
             return true; 
+        }
+
+        public List<Country> getCountries()
+        {
+            var db = new DatabaseContext();
+            List<Country> list = new List<Country>();
+            var countries = db.Countries.ToList();
+            foreach(var item in countries)
+            {
+                list.Add(new Country()
+                {
+                    id = item.Id,
+                    name = item.Name
+                });
+            }
+
+            return list; 
         }
     }
 }

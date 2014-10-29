@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace Nettbutikk.admin.Models
 {
@@ -20,9 +21,10 @@ namespace Nettbutikk.admin.Models
         public String producer { get; set; }
 
         public int subCategoryid { get; set; }
-        public String country { get; set; }
+        public int countryid { get; set; }
+        public IEnumerable<SelectListItem> countryList { get; set; }
         public int categoryid { get; set; }
-        public List<SubCategory> subCategory { get; set; }
+        public SelectList subCategory { get; set; }
 
     }
 }

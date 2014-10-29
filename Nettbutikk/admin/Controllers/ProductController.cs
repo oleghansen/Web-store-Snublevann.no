@@ -128,7 +128,7 @@ namespace Nettbutikk.admin.Controllers
                 return RedirectToAction("LogIn", "Main");
             }
             Product productDetails = _product.seeDetails(id);
-
+            
             ProductDetail prodinfo = new ProductDetail()
             {
                 itemnumber = productDetails.itemnumber,
@@ -137,10 +137,11 @@ namespace Nettbutikk.admin.Controllers
                 longDescription = productDetails.longDescription,
                 price = productDetails.price,
                 volum = productDetails.volum,
-                country = productDetails.country,
+                countryid = productDetails.countryid,
                 producer = productDetails.producer,
                 pricePerLitre = productDetails.pricePerLitre,
-                subCategory = _product.getAllSubCategories() 
+                subCategory = null,
+                countryList = _product.getCountries().Select(c => new SelectListItem { Value = c.id.ToString(), Text = c.name}).ToList()
             };
             return View(prodinfo);
         }

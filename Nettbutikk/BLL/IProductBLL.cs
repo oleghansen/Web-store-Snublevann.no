@@ -17,5 +17,6 @@ namespace Nettbutikk.BLL
         //TODO:fjern før levering
         bool addCategoriesTest(int userId);
         List<SubCategory> getAllSubCategories();
+        List<Country> getCountries();
     }
 }

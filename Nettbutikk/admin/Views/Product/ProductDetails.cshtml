@@ -2,7 +2,7 @@
 
 
 @{
-    ViewBag.Title = "SettingsProduct";
+    ViewBag.Title = "ProductDetails";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -74,6 +74,14 @@
                                     <h4>Lang beskrivelse:</h4>
                                     @Html.TextAreaFor(model => model.longDescription, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Beskrivelse", tabindex = "1", autofocus = "" } })
                                     @Html.ValidationMessageFor(model => model.longDescription, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <h4>Land</h4>
+                                    @Html.DropDownListFor(x => x.countryid, Model.countryList, new { @id = "country" })
                                 </div>
                             </div>
                         </div>

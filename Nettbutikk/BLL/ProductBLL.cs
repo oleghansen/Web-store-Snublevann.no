@@ -73,5 +73,11 @@ namespace Nettbutikk.BLL
         {
             return _product.addCategoriesTest(userId);
         }
+
+        public List<Country> getCountries()
+        {
+            List<Country> allCountries = _product.getCountries();
+            return allCountries;
+        }
     }
 }
