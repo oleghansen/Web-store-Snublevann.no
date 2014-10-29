@@ -121,12 +121,12 @@ namespace Nettbutikk.DAL
             return new Customer();
         }
 
-        public bool makeAdmin(int id)
+        public bool makeAdmin(int id, int adminid)
         {
             return false;
         }
 
-        public bool revokeAdmin(int id)
+        public bool revokeAdmin(int id, int adminid)
         {
             return false;
         }

@@ -15,9 +15,9 @@ namespace Nettbutikk.BLL
         Customer findUser(String email);
         Customer logIn(String email, String password);
 
-        bool makeAdmin(int id);
+        bool makeAdmin(int id, int adminid);
 
-        bool revokeAdmin(int id);
+        bool revokeAdmin(int id, int adminid);
 
         List<Order> getAllOrdersbyCust(int id);
     }

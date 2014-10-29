@@ -144,21 +144,22 @@ namespace Nettbutikk.admin.Controllers
                 return false;
             }
             var user = (Customer) Session["loggedInUser"];
-            Debug.WriteLine(user.admin);
             return (user == null)?false:user.admin; 
         }
 
         [HttpGet]
         public ActionResult  makeAdmin(int id)
         {
-            var b =  _customerbll.makeAdmin(id);
+            Customer c = (Customer)Session["loggedInUser"];
+            var b =  _customerbll.makeAdmin(id, c.id);
              return RedirectToAction("ListCustomers");
         }
 
         [HttpGet]
         public ActionResult revokeAdmin(int id)
         {
-            var b = _customerbll.revokeAdmin(id);
+            Customer c = (Customer)Session["loggedInUser"];
+            var b = _customerbll.revokeAdmin(id,c.id);
             return RedirectToAction("ListCustomers");
         }
 
