@@ -152,7 +152,7 @@ namespace Nettbutikk.admin.Controllers
         {
             Customer c = (Customer)Session["loggedInUser"];
             var b =  _customerbll.makeAdmin(id, c.id);
-             return RedirectToAction("ListCustomers");
+            return RedirectToAction("CustomerDetails", new { id = id});
         }
 
         [HttpGet]
@@ -160,7 +160,7 @@ namespace Nettbutikk.admin.Controllers
         {
             Customer c = (Customer)Session["loggedInUser"];
             var b = _customerbll.revokeAdmin(id,c.id);
-            return RedirectToAction("ListCustomers");
+            return RedirectToAction("CustomerDetails", new { id = id });
         }
 
         public ActionResult CustomerDetails(int id)
@@ -244,6 +244,19 @@ namespace Nettbutikk.admin.Controllers
             }
             return View(list);
 
+        }
+
+        public ActionResult AddCustomer()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddCustomer(Customer c)
+        {
+            Customer a =(Customer) Session["loggedInUser"];
+            _customerbll.addCustomer(c, a.id);
+            return RedirectToAction("ListCustomers");
         }
         
     }

@@ -9,6 +9,7 @@ namespace Nettbutikk.BLL
 
         List<Customer> getResult(string sc);
         bool validate(String email, byte[] hashedPassword);
+        bool addCustomer(Customer c, int adminid);
 
         byte[] makeHash(String password);
 

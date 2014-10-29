@@ -10,7 +10,7 @@ namespace Nettbutikk.DAL
 
         List<Customer> getResult(string sc);
 
-        bool add(Customer inCustomer, byte[] hashedPassword);
+        bool add(Customer inCustomer, byte[] hashedPassword, int admin);
         bool checkEmail(string email, int? id);
         Customer findCustomer(string email);
         Customer findCustomer(int id);

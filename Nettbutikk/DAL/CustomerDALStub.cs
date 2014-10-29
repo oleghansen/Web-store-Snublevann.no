@@ -49,7 +49,7 @@ namespace Nettbutikk.DAL
             return custList;
         }
 
-        public bool add(Customer inCustomer, byte[] hashedPassword)
+        public bool add(Customer inCustomer, byte[] hashedPassword, int adminid)
         {
             return true;
         }

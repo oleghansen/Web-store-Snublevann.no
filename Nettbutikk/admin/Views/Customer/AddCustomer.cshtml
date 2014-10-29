@@ -1,0 +1,105 @@
+﻿@model Nettbutikk.admin.Models.AddCustomer
+
+@{
+    ViewBag.Title = "AddCustomer";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="jumbotron">
+        <div class="container">
+            <div class="row">
+                <div class="formTitle">
+                    <h2><span class="glyphicon glyphicon-user"></span>  Registrer ny bruker </h2>
+                </div>
+                <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+                    <form role="form">
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    @Html.EditorFor(model => model.firstname, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Fornavn", tabindex = "1", autofocus = "" } })
+                                    @Html.ValidationMessageFor(model => model.firstname, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.lastname, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Etternavn", tabindex = "2" } })
+                                    @Html.ValidationMessageFor(model => model.lastname, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Adresse", tabindex = "3" } })
+                            @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.postalcode, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Postnummer", tabindex = "4" } })
+                                    @Html.ValidationMessageFor(model => model.postalcode, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.postalarea, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Poststed", tabindex = "5" } })
+                                    @Html.ValidationMessageFor(model => model.postalarea, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "E-postadresse", tabindex = "6" } })
+                            @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                            @if (ViewBag.email != null)
+                            {
+                                <div class="alert alert-danger" role="alert">I bruk av annen bruker, velg en annen mail adresse</div>
+                            }
+
+                        </div>
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.phonenumber, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Telefonnummer", tabindex = "7" } })
+                            @Html.ValidationMessageFor(model => model.phonenumber, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="row">
+
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+
+                                    @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control input-lg", type = "password", id = "password", placeholder = "Passord", tabindex = "9" } })
+                                    @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                                </div>
+                                <h6>Passordet må ha minst 8 tegn</h6>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+
+                                    <input type="password" name="password_confirmation" id="verify" class="form-control input-lg" placeholder="Bekreft passord" tabindex="10"><span id="verifynote" class="warn hidden" style="color:red">Passordet er feil!</span>
+                                    @if (ViewBag.confirmation != null)
+                                    {
+                                        <div class="alert alert-danger" role="alert">Ikke korrekt</div>
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary" tabindex="11">
+                                        <i class="glyphicon glyphicon-pencil"></i>  Registrer
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+
