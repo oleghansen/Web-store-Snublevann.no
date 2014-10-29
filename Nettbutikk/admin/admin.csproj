@@ -130,6 +130,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
@@ -139,6 +140,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\BillingViewModel.cs" />
+    <Compile Include="Models\CategoryInfo.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\CustomerDetail.cs" />
     <Compile Include="Models\logIn.cs" />
@@ -170,6 +172,10 @@
     <Content Include="Views\Product\ProductDetails.cshtml" />
     <Content Include="Views\Customer\ListCustomerOrders.cshtml" />
     <Content Include="Views\Product\addProductView.cshtml" />
+    <Content Include="Views\Customer\ListCustomersOrderLines.cshtml" />
+    <Content Include="Views\Shared\ListOrderLines.cshtml" />
+    <Content Include="Views\Category\ListCategories.cshtml" />
+    <Content Include="Views\Category\newCategory.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
