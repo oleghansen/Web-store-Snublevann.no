@@ -175,6 +175,7 @@
     <Content Include="Views\Customer\ListCustomersOrderLines.cshtml" />
     <Content Include="Views\Shared\ListOrderLines.cshtml" />
     <Content Include="Views\Category\ListCategories.cshtml" />
+    <Content Include="Views\Category\newCategory.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
