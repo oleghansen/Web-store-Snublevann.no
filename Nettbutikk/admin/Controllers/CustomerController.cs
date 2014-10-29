@@ -163,6 +163,29 @@ namespace Nettbutikk.admin.Controllers
             return RedirectToAction("ListCustomers");
         }
 
+        public ActionResult CustomerDetails(int id)
+        {
+            if (!isAdmin())
+            {
+                return RedirectToAction("LogIn", "Main");
+            }
+            Customer customerDetails = _customerbll.findCustomer(id);
+
+            CustomerDetail custinfo = new CustomerDetail()
+            {
+                id = customerDetails.id,
+                firstname = customerDetails.firstname,
+                lastname = customerDetails.lastname,
+                email = customerDetails.email,
+                address = customerDetails.address,
+                postalarea = customerDetails.postalarea,
+                postalcode = customerDetails.postalcode,
+                phonenumber = customerDetails.phonenumber,
+                admin = customerDetails.admin
+            };
+            return View(custinfo);
+        }
+
         public ActionResult ListCustomerOrders(int id)
         {
              if (!isAdmin())

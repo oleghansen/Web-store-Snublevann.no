@@ -13,6 +13,7 @@ namespace Nettbutikk.DAL
         bool add(Customer inCustomer, byte[] hashedPassword);
         bool checkEmail(string email, int? id);
         Customer findCustomer(string email);
+        Customer findCustomer(int id);
         bool update(int id, Customer updateUser);
         bool updatePw(int id, byte[] newPassword);
         bool validate(string email, byte[] hashedPassword);

@@ -13,6 +13,7 @@ namespace Nettbutikk.BLL
         byte[] makeHash(String password);
 
         Customer findUser(String email);
+        Customer findCustomer(int id);
         Customer logIn(String email, String password);
 
         bool makeAdmin(int id, int adminid);

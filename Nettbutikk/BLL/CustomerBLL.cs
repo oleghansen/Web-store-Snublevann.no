@@ -39,6 +39,11 @@ namespace Nettbutikk.BLL
             
         }
 
+        public Customer findCustomer(int id)
+        {
+            return _customer.findCustomer(id);
+        }
+
         public bool validate(String email, byte[] hashedpassword)
         {
             return _customer.validate(email,hashedpassword);
