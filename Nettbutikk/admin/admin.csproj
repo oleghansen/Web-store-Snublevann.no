@@ -169,6 +169,8 @@
     <Content Include="Views\Product\ProductDetails.cshtml" />
     <Content Include="Views\Customer\ListCustomerOrders.cshtml" />
     <Content Include="Views\Product\addProductView.cshtml" />
+    <Content Include="Views\Customer\ListCustomersOrderLines.cshtml" />
+    <Content Include="Views\Shared\ListOrderLines.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

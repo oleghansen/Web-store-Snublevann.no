@@ -9,7 +9,7 @@
 <div class="jumbotron" style="padding-top:2px">
     <div class="row">
 
-        <h3><span class="glyphicon glyphicon-align-justify"></span> Ordreoversikt </h3>
+        <h3><span class="glyphicon glyphicon-align-justify"></span> Ordreoversikt for Kundenr: @Html.DisplayFor(modelItem => Model[0].customerid) </h3>
 
         <hr />
 
@@ -17,26 +17,26 @@
             <table>
                 <tr>
                     <td>
-                        <b>@Html.DisplayNameFor(modelItem => Model[0].id)</a></b>
+                        <b>@Html.DisplayNameFor(modelItem => Model[0].id)</b>
                     </td>
                     <td>
-                        <b>@Html.DisplayNameFor(modelItem => Model[0].orderdate)</a></b>
+                        <b>@Html.DisplayNameFor(modelItem => Model[0].orderdate)</b>
                     </td>
                     <td>
-                        <b>@Html.DisplayNameFor(modelItem => Model[0].customerid)</a></b>
+                        <b>@Html.DisplayNameFor(modelItem => Model[0].customerid)</b>
                     </td>
                     <td>
-                        <b>@Html.DisplayNameFor(modelItem => Model[0].firstname)</a></b>
+                        <b>@Html.DisplayNameFor(modelItem => Model[0].firstname)</b>
                     </td>
                     <td>
-                        <b>@Html.DisplayNameFor(modelItem => Model[0].lastname)</a></b>
+                        <b>@Html.DisplayNameFor(modelItem => Model[0].lastname)</b>
                     </td>
 
                     <td>
-                        <b>@Html.DisplayNameFor(modelItem => Model[0].quantity)</a></b>
+                        <b>@Html.DisplayNameFor(modelItem => Model[0].quantity)</b>
                     </td>
                     <td>
-                        <b>@Html.DisplayNameFor(modelItem => Model[0].sum)</a></b>
+                        <b>@Html.DisplayNameFor(modelItem => Model[0].sum)</b>
                     </td>
 
                 </tr>
@@ -65,7 +65,7 @@
                             @Html.DisplayFor(modelItem => item.sum)
                         </td>
                         <td>
-                            <button class="btn btn-xs btn-default" style="margin-top:0px" type="submit"><i class="glyphicon glyphicon-list"></i><a href="@Url.Action("ListOrderLines", "Order", new { id = item.id })">se ordrelinje</button>
+                            <button class="btn btn-xs btn-default" style="margin-top:0px" type="submit"><i class="glyphicon glyphicon-list"></i><a href="@Url.Action("ListCustomersOrderLines", "Customer", new { id = item.id })">se ordrelinje</button>
                             <button class="btn btn-xs btn-default" style="margin-top:0px" type="submit"><i class="glyphicon glyphicon-print"></i></button>
 
                     </tr>
