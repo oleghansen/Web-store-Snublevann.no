@@ -53,14 +53,14 @@ namespace Nettbutikk.BLL
             return outData;
         }
 
-        public bool makeAdmin(int id)
+        public bool makeAdmin(int id, int adminid)
         {
-            return _customer.makeAdmin(id);
+            return _customer.makeAdmin(id,adminid);
         }
 
-        public bool revokeAdmin(int id)
+        public bool revokeAdmin(int id, int adminid)
         {
-            return _customer.revokeAdmin(id);
+            return _customer.revokeAdmin(id, adminid);
         }
 
        public Customer logIn(String email, String password)

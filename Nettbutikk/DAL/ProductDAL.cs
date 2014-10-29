@@ -25,6 +25,24 @@ namespace Nettbutikk.DAL
             }
             return list; 
         }
+
+        public List<SubCategory> getAllSubCategories()
+        {
+            var db = new DatabaseContext();
+            var subCategories = db.SubCategories.ToList();
+            var list = new List<SubCategory>();
+            foreach (var item in subCategories)
+            {
+                list.Add(new SubCategory()
+                {
+                     
+                     ID = item.Id,
+                     name  = item.Name
+                });
+            }
+            return list;
+        }
+
         public List<Product> getAll(int? id, String sc, int? sort)
         {
             return new List<Product>();
