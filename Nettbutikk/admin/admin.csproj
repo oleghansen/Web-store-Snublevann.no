@@ -130,6 +130,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
@@ -143,6 +144,7 @@
     <Compile Include="Models\logIn.cs" />
     <Compile Include="Models\OrderLineViewModel.cs" />
     <Compile Include="Models\OrderViewModel.cs" />
+    <Compile Include="Models\ProductDetail.cs" />
     <Compile Include="Models\ProductMenu.cs" />
     <Compile Include="Models\SubCategoryViewModel.cs" />
     <Compile Include="Models\UserInfo.cs" />
@@ -169,6 +171,8 @@
     <Content Include="Views\Product\ProductDetails.cshtml" />
     <Content Include="Views\Customer\ListCustomerOrders.cshtml" />
     <Content Include="Views\Product\addProductView.cshtml" />
+    <Content Include="Views\Customer\ListCustomersOrderLines.cshtml" />
+    <Content Include="Views\Shared\ListOrderLines.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -178,6 +182,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Category\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL\BLL.csproj">

@@ -146,6 +146,11 @@ box-shadow:         0px 5px 8px 0px rgba(50, 50, 50, 0.27);
     margin-right:15px;
 }
 
+.tooltip{
+    display: inline;
+    position: relative;
+}
+
 #checkoutButton:hover
 {
    

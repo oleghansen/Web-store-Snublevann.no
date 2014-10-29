@@ -39,6 +39,12 @@ namespace Nettbutikk.BLL
             return _product.findProduct(id);
         }
 
+        public List<SubCategory> getAllSubCategories()
+        {
+            return _product.getAllSubCategories(); 
+            
+        }
+
 
         public List<Category> getAllCategories()
         {

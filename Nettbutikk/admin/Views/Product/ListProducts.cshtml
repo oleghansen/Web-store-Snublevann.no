@@ -25,96 +25,110 @@
     <div class="jumbotron" style="padding-top:2px">
         <div class="container">
             <h3>
-                <span class="glyphicon glyphicon-user"></span> Produktoversikt
-                <button type="submit" class="btn btn-success" tabindex="11" style="float:right">
-                    <i class="glyphicon glyphicon-pencil">@Html.ActionLink(" Nyttprodukt", "AddProductView")</i>
-                </button>
+                <span class="glyphicon glyphicon-glass"></span> Produktoversikt
             </h3>
-        <div class="menu_container">
-            <div class="row">
-                @using (Html.BeginForm("ListProducts", "Product", FormMethod.Get, new { @class = "form-inline", @role = "form", @style = "margin-top:0px; padding-bottom:12px" }))
-                {
+            
+        <div id="menu_container">
+            <div class="row" style="margin-bottom: 5px;">
+                <div class="col-sm-8 col-md-8">
+                    <div class="form-group">
+                        @using (Html.BeginForm("ListProducts", "Product", FormMethod.Get, new { @class = "form-group", @role = "form" }))
+                        {
 
-                    <div class="col-sm-9 col-md-9" style="padding-right:0px">
-                        <div class="form-group">
-                            <div class="input-group">
-                                @Html.TextBox("searchString", ViewBag.CurrentFilter as string, new { id = "txtSearch", @class = "form-control", @style = "margin-top:12px;", placeholder = "Søk etter vare" })
-                             </div>
+                            <div class="input-group pull-left">
+                                @Html.TextBox("searchString", ViewBag.CurrentFilter as string, new { id = "txtSearch", @class = "form-control", placeholder = "Søk etter vare" })
+                            </div>
                             <div class="input-group-btn pull-left">
-                                <button class="btn btn-success" type="submit" style="width: 35px">
+                                <button class="btn btn-primary" type="submit">
                                     <span class="glyphicon glyphicon-search"></span>
                                 </button>
                             </div>
+
+
+
+                        }
+                    </div>
+                </div>
+                <div class="col-sm-2 col-md-2" style="margin-top: 9px">
+
+                </div>
+                <div class="col-sm-2 col-md-2" style="margin-top: 15px; padding-left: 30px">
+
+                    <a href="@Url.Action("AddProductView")" class="btn btn-primary" id="primaryButton">
+                        <span class="glyphicon glyphicon-plus"></span> Nytt produkt
+                    </a>           
+
+
+                </div>
+            </div>
+
+                    <div>
+                        <div id="partView" class="panel panel-default partialView">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <b><a href="@Url.Action("ListProducts", new { sortOrder = ViewBag.ItemSortParm, currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].itemnumber)</a></b>
+                                    </td>
+                                    <td>
+                                        <b><a href="@Url.Action("ListProducts", new { sortOrder = ViewBag.NameSortParm , currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].name)</a></b>
+                                    </td>
+                                    <td>
+                                        <b><a href="@Url.Action("ListProducts", new { sortOrder = ViewBag.ProducerSortParm, currentFilter = ViewBag.CurrentFilter })"> @Html.DisplayNameFor(modelItem => Model[0].producer)</a></b>
+                                    </td>
+                                    <td>
+                                        <b><a href="@Url.Action("ListProducts", new { sortOrder = ViewBag.PriceSortParm, currentFilter = ViewBag.CurrentFilter })"> @Html.DisplayNameFor(modelItem => Model[0].price)</a></b>
+                                    </td>
+                                    <td>
+                                        <b> @Html.DisplayNameFor(modelItem => Model[0].volum)</b>
+                                    </td>
+                                </tr>
+                                @foreach (var item in Model)
+                                {
+                                    <tr class="rows">
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.itemnumber)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.producer)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.price)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.volum)
+                                        </td>
+                                        <td class="pull-right">
+                                            <a href="@Url.Action("ProductDetails", new { id = item.itemnumber })" title="Endre" class="btn btn-xs btn-default" id="defaultButton">
+                                                <span class="glyphicon glyphicon-pencil"></span>
+                                            </a>
+                                            <a href="@Url.Action("ProductDetails", new { id = item.itemnumber })" title="Slett"  class="btn btn-xs btn-danger" id="dangerButton">
+                                                <span class="glyphicon glyphicon-trash"></span>
+                                            </a> 
+                                    </tr>
+                                }
+                            </table>
                         </div>
 
-
-
                     </div>
+                </div>
 
+            <div style="margin-left:10px">
+                <div class="row">
+                <div class=" col-sm-12 col-md-12">
+                    @Html.PagedListPager(Model, page => Url.Action("ListProducts", new { page, itemsPerPage = ViewBag.CurrentItemsPerPage, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                </div>
+            </div>
+
+                @using (Html.BeginForm("ListProducts", "Product", FormMethod.Post))
+                {
+                    <small>Antall per side:</small> @Html.DropDownList("ItemsPerPage", itemsPerPageList, new { @id = "ItemsPerPageList", onchange = "this.form.submit();", style = "margin-bottom: 0px" })
                 }
-                <div>
-                    @using (Html.BeginForm("ListProducts", "Product", FormMethod.Post))
-                    {
-                        @Html.DropDownList("ItemsPerPage", itemsPerPageList, new { @id = "ItemsPerPageList", onchange = "this.form.submit();" })
-                    }
-
-                </div>
             </div>
 
-            <div>
-                <div id="tullbal" class="panel panel-default partialView">
-                    <table>
-                        <tr>
-                            <td>
-                                <b><a href="@Url.Action("ListProducts", new { sortOrder = ViewBag.ItemSortParm, currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].itemnumber)</a></b>
-                            </td>
-                            <td>
-                                <b><a href="@Url.Action("ListProducts", new { sortOrder = ViewBag.NameSortParm , currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].name)</a></b>
-                            </td>
-                            <td>
-                                <b><a href="@Url.Action("ListProducts", new { sortOrder = ViewBag.ProducerSortParm, currentFilter = ViewBag.CurrentFilter })"> @Html.DisplayNameFor(modelItem => Model[0].producer)</a></b>
-                            </td>
-                            <td>
-                                <b><a href="@Url.Action("ListProducts", new { sortOrder = ViewBag.PriceSortParm, currentFilter = ViewBag.CurrentFilter })"> @Html.DisplayNameFor(modelItem => Model[0].price)</a></b>
-                            </td>
-                            <td>
-                                <b> @Html.DisplayNameFor(modelItem => Model[0].volum)</b>
-                            </td>
-                        </tr>
-                        @foreach (var item in Model)
-                        {
-                            <tr class="rows">
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.itemnumber)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.name)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.producer)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.price)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.volum)
-                                </td>
-                                <td>
-                                    <button class="btn btn-xs btn-default" style="margin-top:0px" type="submit"><span class="glyphicon glyphicon-pencil">@Html.ActionLink("Endre", "ProductDetails",  new { id = item.itemnumber })</span></button>
-                                    <button class="btn btn-xs btn-default" style="margin-top:0px" type="submit"><i class="glyphicon glyphicon-align-justify"></i></button>
-                                    <button class="btn btn-xs btn-danger" style="margin-top:0px" type="submit"><i class="glyphicon glyphicon-trash"></i></button>
-                            </tr>
-                        }
-                    </table>
-                    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-
-                    @Html.PagedListPager(Model, page => Url.Action("ListProducts",new { page, itemsPerPage = ViewBag.CurrentItemsPerPage, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }));
-
-
-                </div>
-
-            </div>
-        </div>
+          
     </div>
 
 

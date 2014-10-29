@@ -1,0 +1,57 @@
+﻿@model List<Nettbutikk.admin.Models.OrderLineViewModel>
+@{
+    ViewBag.Title = "ListOrderLines";
+  
+}
+
+        <div class="panel panel-default">
+            <table>
+                <tr>
+                    <td>
+                        <b>@Html.DisplayNameFor(modelItem => Model[0].id)</b>
+                    </td>
+                    <td>
+                        <b>@Html.DisplayNameFor(modelItem => Model[0].product.itemnumber)</b>
+                    </td>
+                    <td>
+                        <b>@Html.DisplayNameFor(modelItem => Model[0].product.name)</b>
+                    </td>
+                    <td>
+                        <b>@Html.DisplayNameFor(modelItem => Model[0].quantity)</b>
+                    </td>
+                    <td>
+                        <b>@Html.DisplayNameFor(modelItem => Model[0].product.price)</b>
+                    </td>
+                    <td>
+                        <b>@Html.DisplayNameFor(modelItem => Model[0].orderlineSum)</b>
+                    </td>
+
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr class="rows">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.product.itemnumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.product.name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.quantity)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.product.price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.orderlineSum)
+                        </td>
+
+                    </tr>
+                }
+            </table>
+
+        </div>
+
