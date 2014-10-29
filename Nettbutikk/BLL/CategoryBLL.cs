@@ -33,5 +33,10 @@ namespace Nettbutikk.BLL
             List<Category> allCategories = _category.getResult(id, s);
             return allCategories;
         }
+
+        public bool Add(Category category, int adminId)
+        {
+            return _category.Add(category, adminId);
+        }
     }
 }

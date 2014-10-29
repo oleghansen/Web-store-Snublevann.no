@@ -47,5 +47,26 @@ namespace Nettbutikk.DAL
         
              */
         }
+
+        public bool Add(Category category, int adminId)
+        {
+            var newCategory = new Categories()
+            {
+                Name = category.name
+            };
+
+            try
+            {
+                var db = new DatabaseContext();
+                db.Categories.Add(newCategory);
+                db.SaveChanges(adminId);
+                return true;
+            }
+            catch (Exception failed)
+            {
+                return false;
+            }
+            
+        }
     }
 }

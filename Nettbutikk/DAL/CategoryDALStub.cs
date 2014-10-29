@@ -32,5 +32,12 @@ namespace Nettbutikk.DAL
             catlist.Add(cat);
             return catlist;
         }
+
+        public bool Add(Category category, int id)
+        {
+            if (id == 0 || category == null)
+                return false;
+            return true;
+        }
     }
 }

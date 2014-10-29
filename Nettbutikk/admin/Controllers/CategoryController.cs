@@ -75,10 +75,20 @@ namespace Nettbutikk.admin.Controllers
             return View(list.ToPagedList(pageNumber: page ?? 1, pageSize: itemsPerPage ?? 15));
         }
 
-        public ActionResult newCategory()
+        [HttpPost]
+        public ActionResult newCategory(Category category, int adminId)
         {
             if (!isAdmin())
                 return RedirectToAction("Login", "Main");
+            if (ModelState.IsValid)
+            {
+                _categoryBLL.Add(category, adminId);
+                bool OK = _categoryBLL.Add(category, adminId);
+                if (OK)
+                {
+                    return RedirectToAction("ListCategories");
+                }
+            }
             return View();
         }
 
