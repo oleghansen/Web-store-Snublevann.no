@@ -13,5 +13,9 @@ namespace Nettbutikk.BLL
         Order getOne(int id);
         int getNumItems(Order o);
         int getSum(Order o);
+
+        double getExmva(int sum);
+
+        double getMva(int sum);
     }
 }

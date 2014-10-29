@@ -120,6 +120,15 @@ namespace Nettbutikk.BLL
             return sum;
         }
 
+        public double getExmva(int sum)
+        {
+            return sum * 0.8;
+        }
+
+        public double getMva(int sum)
+        {
+            return sum * 0.2;
+        }
 
     }
 }

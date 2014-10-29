@@ -66,7 +66,7 @@
                         </td>
                         <td>
                             <button class="btn btn-xs btn-default" style="margin-top:0px" type="submit"><i class="glyphicon glyphicon-list"></i><a href="@Url.Action("ListCustomersOrderLines", "Customer", new { id = item.id })">se ordrelinje</button>
-                            <button class="btn btn-xs btn-default" style="margin-top:0px" type="submit"><i class="glyphicon glyphicon-print"></i></button>
+                            <button class="btn btn-xs btn-default" style="margin-top:0px" type="submit"><i class="glyphicon glyphicon-print"></i><a href="@Url.Action("showReceipt", "Order", new { id = item.id   })">print</button>
 
                     </tr>
                 }

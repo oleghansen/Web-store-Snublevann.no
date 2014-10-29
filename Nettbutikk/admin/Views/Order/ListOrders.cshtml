@@ -70,7 +70,7 @@
                             </td>
                             <td>
                             <button class="btn btn-xs btn-default" style="margin-top:0px" type="submit"><i class="glyphicon glyphicon-list"></i>@Html.ActionLink("Se ordrelinje", "ListOrderLines", new { id = item.id})</button>
-                            <button class="btn btn-xs btn-default" style="margin-top:0px" type="submit"><i class="glyphicon glyphicon-print"></i></button>
+                            <button class="btn btn-xs btn-default" style="margin-top:0px" type="submit"><i class="glyphicon glyphicon-print"></i>@Html.ActionLink("Se kvittering", "showReceipt", new { id = item.id })</button>
                             
                          </tr>
                     }

@@ -1,0 +1,179 @@
+﻿@model Nettbutikk.admin.Models.BillingViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ordrenr: @Html.DisplayFor(model => model.order.id)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="~/Content/img/logo/snublevann_liten_mork.ico">
+    <title>Snublevann.no</title>
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/custom/billingdoc.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.9.0.min.map"></script>
+    <script src="~/Scripts/jquery-1.9.0.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/jquery-ui.theme.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery-ui.structure.css" rel="stylesheet" />
+    <link href="~/Content/jquery-ui.structure.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-ui.js"></script>
+    <script src="~/Scripts/jquery-ui.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="navbar"></div>
+        </div>
+        <div class="container a4">
+            <div class="row">
+                <div class="col-md-8">
+                    <img src="~/Content/img/snublevann_dark_transparent.png" width="500" height="96" style="margin-top: 5px; margin-left: 5px" />
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-6">
+                            Adresse:
+                        </div>
+                        <div class="col-md-6">
+                            SNUBLEVANN.NO AS<br />
+                            Frydenlundgata 8<br />
+                            0169 Oslo<br />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            Telefon:
+
+                        </div>
+                        <div class="col-md-6">
+                            +47 21 88 55 43
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            E-post:
+                        </div>
+                        <div class="col-md-6">
+                            <a href="mailto:kontakt@snublevann.no">kontakt@snublevann.no</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            Org. Nr:
+                        </div>
+                        <div class="col-md-6">
+                            MVA: 213 546 879
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top:20px">
+                <div class="col-md-8">
+                    @Html.DisplayFor(model => model.customer.firstname) @Html.DisplayFor(model => model.customer.lastname)<br />
+                    @Html.DisplayFor(model => model.customer.address) <br />
+                    @Html.DisplayFor(model => model.customer.postalcode) @Html.DisplayFor(model => model.customer.postalarea)<br />
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4><strong>@Html.DisplayNameFor(model => model.ordreid)</strong></h4>
+                        </div>
+                        <div class="col-md-6">
+                            <h4>@Html.DisplayFor(model => model.order.id)</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4>@Html.DisplayNameFor(model => model.orderdate)</h4>
+                        </div>
+                        <div class="col-md-6">
+                            <h4>@Html.DisplayFor(model => model.orderdate)</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Varenummer
+                                </th>
+                                <th>
+                                    Navn
+                                </th>
+                                <th>
+                                    Beskrivelse
+                                </th>
+                                <th>
+                                    Antall
+                                </th>
+                                <th>
+                                    Pris pr stk
+                                </th>
+                                <th>
+                                    Sum
+                                </th>
+                            </tr>
+                        </thead>
+                        @{int teller = 0;}
+                        @foreach (var item in Model.shoppingcart)
+                        {
+                           
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(i => item.product.itemnumber)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(i => item.product.name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(i => item.product.description)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(i => item.quantity)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(i => item.product.price)
+                                </td>
+                                <td>
+                                   @Html.DisplayFor(model => Model.sum[teller])
+                                    
+                                </td>
+                            </tr>
+                            teller++;
+                        }
+                    </table>
+                </div>
+            </div>
+            <div class="row col-md-12 foten">
+
+                <hr />
+                <div class="col-md-4">
+                    SUM eks mva: @Html.DisplayFor(model => model.exmva)
+                </div>
+                <div class="col-md-4">
+                    MVA: @Html.DisplayFor(model => model.mva)
+                </div>
+                <div class="col-md-4">
+                    Total(SUM): @Html.DisplayFor(model => model.totsum)
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="navbar"></div>
+        </div>
+    </div>
+</body>
+</html>

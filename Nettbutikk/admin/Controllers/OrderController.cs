@@ -153,6 +153,38 @@ namespace Nettbutikk.admin.Controllers
             Order orderDetails = _orderbll.getOne(id);
             return View(orderDetails);
         }
+
+        public ActionResult showReceipt(int id)
+        {
+          
+            List<Order> allOrders = _orderbll.getAllOrders(id);
+            BillingViewModel b = null;
+           foreach(var item in allOrders)
+           {
+               List<int> s = new List<int>();
+               foreach(var i in item.orderLine)
+               {
+                   
+                     s.Add(i.quantity * i.product.price);
+                }
+               
+               b = new BillingViewModel() 
+               {
+                    customer = item.customer,
+                    order = item,
+                    ordreid = item.id,  
+                    orderdate = item.orderdate,
+                    shoppingcart = item.orderLine,
+                    totsum = _orderbll.getSum(item),
+                    mva = _orderbll.getMva(_orderbll.getSum(item)), 
+                    exmva = _orderbll.getExmva(_orderbll.getSum(item)),
+                    sum = s
+                    
+               };
+               
+           }
+            return View(b);
+        }
         private bool isAdmin()
         {
             if (Session == null)
