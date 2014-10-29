@@ -34,6 +34,11 @@ namespace Nettbutikk.BLL
             return allCustomers;
         }
 
+        public bool delete(int id, int adminid)
+        {
+            return _customer.delete(id, adminid);
+        }
+
         public List<Customer> getResult(string s)
         {
             List<Customer> allCustomers = _customer.getResult(s);

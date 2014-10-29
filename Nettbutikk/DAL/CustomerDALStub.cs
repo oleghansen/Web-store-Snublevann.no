@@ -149,5 +149,11 @@ namespace Nettbutikk.DAL
         {
             return false;
         }
+
+        public bool delete(int id, int adminid)
+        {
+            return false;
+        }
+    
     }
 }

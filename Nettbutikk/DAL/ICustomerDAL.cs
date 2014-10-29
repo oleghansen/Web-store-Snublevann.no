@@ -24,5 +24,7 @@ namespace Nettbutikk.DAL
         bool makeAdmin(int id, int adminid);
 
         bool revokeAdmin(int id, int adminid);
+        bool delete(int id, int adminid);
+
     }
 }

@@ -258,6 +258,13 @@ namespace Nettbutikk.admin.Controllers
             _customerbll.addCustomer(c, a.id);
             return RedirectToAction("ListCustomers");
         }
-        
+
+        public ActionResult delete(int id)
+        {
+            Customer a = (Customer)Session["loggedInUser"];
+            var b =_customerbll.delete(id, a.id); 
+            return RedirectToAction("ListCustomers");
+ 
+        }
     }
 }

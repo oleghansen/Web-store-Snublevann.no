@@ -241,6 +241,25 @@ namespace Nettbutikk.DAL
             }
         }
 
+        public bool delete(int id, int adminid)
+        {
+            var db = new DatabaseContext();
+            try
+            {
+                Customers cust = db.Customers.FirstOrDefault(u => u.Id == id);
+                db.Customers.Remove(cust); 
+                db.SaveChanges(adminid);
+                return true;
+            }
+            catch (Exception fail)
+            {
+                //Skriv feil til fil
+                return false;
+
+            }
+ 
+        }
+
         public bool update(int id, Customer updateUser)
         {
                 return false;
