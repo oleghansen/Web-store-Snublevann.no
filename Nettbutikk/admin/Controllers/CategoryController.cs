@@ -82,6 +82,25 @@ namespace Nettbutikk.admin.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult newCategory(Category category)
+        {
+            if (!isAdmin())
+                return RedirectToAction("Login", "Main");
+            if (ModelState.IsValid)
+            {
+                //_categoryBLL.Add(category, adminId);
+
+                Customer c = (Customer)Session["loggedInUser"];
+                bool OK = _categoryBLL.Add(category, c.id);
+                if (OK)
+                {
+                    return RedirectToAction("ListCategories");
+                }
+            }
+            return View();
+        }
+
         private bool isAdmin()
         {
             if (Session == null)
