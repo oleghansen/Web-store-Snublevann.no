@@ -13,7 +13,6 @@ namespace Nettbutikk.admin.Controllers
 {
     public class CategoryController : Controller
     {
-        // TODO: mulig endre til annen BLL
         private ICategoryBLL _categoryBLL;
 
         public CategoryController()
@@ -89,8 +88,6 @@ namespace Nettbutikk.admin.Controllers
                 return RedirectToAction("Login", "Main");
             if (ModelState.IsValid)
             {
-                //_categoryBLL.Add(category, adminId);
-
                 Customer c = (Customer)Session["loggedInUser"];
                 bool OK = _categoryBLL.Add(category, c.id);
                 if (OK)
