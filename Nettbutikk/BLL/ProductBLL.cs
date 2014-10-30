@@ -58,9 +58,9 @@ namespace Nettbutikk.BLL
             return searchList; 
         }
 
-        public bool updateProduct(int id, Product p)
+        public bool updateProduct(int id,Product p)
         {
-            return _product.updateProduct(id, p);
+            return _product.updateProduct(id,p);
         }
 
         public bool addProduct(int id)
