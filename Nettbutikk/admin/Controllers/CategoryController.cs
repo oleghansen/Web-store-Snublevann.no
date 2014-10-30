@@ -230,6 +230,35 @@ namespace Nettbutikk.admin.Controllers
             return View(list.ToPagedList(pageNumber: page ?? 1, pageSize: itemsPerPage ?? 15));
         }
 
+        public ActionResult SubCatDetails(int id)
+        {
+            if (!isAdmin())
+            {
+                RedirectToAction("Login", "Main");
+            }
+            SubCategory subcatdetails = _categoryBLL.SubCatDetails(id);
+
+            SubCategoryDetail subDetail = new SubCategoryDetail()
+            {
+                ID = subcatdetails.ID,
+                name = subcatdetails.name,
+                categoryId = subcatdetails.catId
+            };
+            return View(subDetail);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SubCatDetails(SubCategory c)
+        {
+            if (ModelState.IsValid)
+            {
+                Customer a = (Customer)Session["loggedInUser"];
+                var b = _categoryBLL.update(c.ID, c, a.id);
+                return RedirectToAction("CustomerDetails", new { id = c.ID });
+            } return RedirectToAction("CustomerDetails", new { id = c.ID });
+        }
+
         private bool isAdmin()
         {
             if (Session == null)

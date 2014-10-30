@@ -56,7 +56,7 @@
                                         @Html.DisplayFor(modelItem => item.categoriesName)
                                     </td>
                                     <td class="pull-right">
-                                        <a href="@Url.Action("ProductDetails", new { id = item.ID })" title="Endre" class="btn btn-xs btn-default" id="defaultButton">
+                                        <a href="@Url.Action("SubCatDetails", new { id = item.ID })" title="Endre" class="btn btn-xs btn-default" id="defaultButton">
                                             <span class="glyphicon glyphicon-pencil"></span>
                                         </a>
                                         <a href="@Url.Action("ProductDetails", new { id = item.ID})" title="Slett" class="btn btn-xs btn-danger" id="dangerButton">

@@ -148,5 +148,36 @@ namespace Nettbutikk.DAL
 
             return true;
         }
+
+        public SubCategory SubCatDetails(int id)
+        {
+            var db = new DatabaseContext();
+            SubCategories subcat = (SubCategories)db.SubCategories.FirstOrDefault(c => c.Id == id);
+            SubCategory subcategory = new SubCategory();
+
+            subcategory.ID = subcat.Id;
+            subcategory.name = subcat.Name;
+            subcategory.catId = subcat.CategoriesId;
+
+            return subcategory;
+        }
+
+        public bool update(int id, SubCategory sc, int adminid)
+        {
+            var db = new DatabaseContext();
+            try
+            {
+                SubCategories sub = db.SubCategories.FirstOrDefault(u => u.Id == id);
+                sub.Name = sc.name;
+                sub.CategoriesId = sc.catId;
+
+                db.SaveChanges(adminid);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
     }
 }

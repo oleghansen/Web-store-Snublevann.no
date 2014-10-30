@@ -44,6 +44,11 @@ namespace Nettbutikk.BLL
             return _category.AddSub(adminId,sc);
         }
 
+        public SubCategory SubCatDetails(int id)
+        {
+            return _category.SubCatDetails(id);
+        }
+
         public List<Category> getCategories()
         {
             List<Category> allCategories = _category.getCategories();
@@ -72,6 +77,11 @@ namespace Nettbutikk.BLL
         {
             List<Producer> allproducers = _category.getResultProducer(id, sc);
             return allproducers;
+        }
+
+        public bool update(int id, SubCategory sc, int adminid)
+        {
+            return _category.update(id, sc, adminid);
         }
     }
 }

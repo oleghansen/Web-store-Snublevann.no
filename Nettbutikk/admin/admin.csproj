@@ -192,6 +192,7 @@
     <Content Include="Views\Category\ListSubCategories.cshtml" />
     <Content Include="Views\Category\newSubCategory.cshtml" />
     <Content Include="Views\Category\ListProducers.cshtml" />
+    <Content Include="Views\Category\SubCatDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

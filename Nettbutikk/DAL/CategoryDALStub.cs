@@ -101,5 +101,17 @@ namespace Nettbutikk.DAL
             sublist.Add(cat);
             return sublist;
         }
+
+        public SubCategory SubCatDetails(int id)
+        {
+            return null;
+        }
+
+        public bool update(int id, SubCategory sc, int adminid)
+        {
+            if (id == 0)
+                return false;
+            return true;
+        }
     }
 }
