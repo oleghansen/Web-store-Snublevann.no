@@ -151,6 +151,7 @@
     <Compile Include="Models\OrderViewModel.cs" />
     <Compile Include="Models\ProductDetail.cs" />
     <Compile Include="Models\ProductMenu.cs" />
+    <Compile Include="Models\SubCategoryInfo.cs" />
     <Compile Include="Models\SubCategoryViewModel.cs" />
     <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Models\ProductInfo.cs" />

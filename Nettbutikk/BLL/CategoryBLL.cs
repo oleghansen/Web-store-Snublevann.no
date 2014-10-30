@@ -38,5 +38,17 @@ namespace Nettbutikk.BLL
         {
             return _category.Add(category, adminId);
         }
+
+        public List<SubCategory> getAllSub(int? id)
+        {
+            List<SubCategory> allSub = _category.getAllSub(id);
+            return allSub;
+        }
+
+        public List<SubCategory> getResultSub(int? id, string sc)
+        {
+            List<SubCategory> allSub = _category.getResultSub(id, sc);
+            return allSub;
+        }
     }
 }
