@@ -5,6 +5,14 @@
 }
 
 <div class="jumbotron" style="padding-top:2px">
+    <div class="path">
+        <h5>
+            <a href='@Url.Action("ListCustomers")' id="prodPath"> Alle brukere</a> > 
+            <a href='@Url.Action("CustomerDetails", "Customer", new { id = Model[0].customer.id })' id="prodPath"> @Html.DisplayFor(model => Model[0].customer.firstname) @Html.DisplayFor(model => Model[0].customer.lastname)</a> > 
+            <a href='@Url.Action("ListCustomerOrders", "Customer", new { id = Model[0].customer.id })' id="prodPath"> Ordreoversikt</a> > 
+            <a href='@Url.Action("ListCustomersOrderLines", "Customer", new { id = Model[0].orderId })' id="prodPath"> Ordre @Html.DisplayFor(model => Model[0].orderId) </a>
+        </h5>
+    </div>
     <div class="row">
 
 
