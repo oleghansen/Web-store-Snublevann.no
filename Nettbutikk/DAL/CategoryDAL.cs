@@ -66,6 +66,22 @@ namespace Nettbutikk.DAL
             return list;
         }
 
+        public List<Producer> getAllProducers(int? id)
+        {
+            var db = new DatabaseContext();
+            List<Producer> producers = db.Producers.Select(item => new Producer()
+            {
+                id = item.Id,
+                name = item.Name
+            }).ToList();
+
+            return producers;
+        }
+
+        public List<Producer> getResultProducer(int? id, string sc)
+        {
+            return null;
+        }
         public List<SubCategory> getResultSub(int? id, string sc)
         {
             return null;
