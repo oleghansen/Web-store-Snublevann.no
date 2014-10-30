@@ -48,6 +48,48 @@ namespace Nettbutikk.DAL
              */
         }
 
+        public List<SubCategory> getAllSub(int? id)
+        {
+            return null;
+            /*
+            var db = new DatabaseContext();
+            List<SubCategories> subcat;
+            //subcat = db.SubCategories.Include(p => p.SubCategories.Categories).Where(P => products.SubCategories.CategoriesId == id).OrderBy(id).ToList();
+            var list = new List<SubCategory>();
+            foreach (var item in subcat)
+            {
+                list.Add(new SubCategory()
+                {
+                    ID = item.Id,
+                    name = item.Name,
+                    catName = item.Categories.Name
+                });
+            }
+            return list;
+             */
+        }
+
+        public List<SubCategory> getResultSub(int? id, string sc)
+        {
+            return null;
+            /*
+            var db = new DatabaseContext();
+            var foundCategories = new List<Category>();
+            var categories = db.Categories.Where(p => p.Name.ToUpper().Contains(searchString.ToUpper().ToList());
+            foreach (var p in categories)
+            {
+                var category = new Category()
+                {
+                    ID = p.Id,
+                    name = p.Name
+                };
+                foundCategories.Add(category);
+            }
+            return foundCategories;
+        
+             */
+        }
+
         public bool Add(Category category, int adminId)
         {
             var newCategory = new Categories()
