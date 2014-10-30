@@ -9,11 +9,11 @@
 <div class="jumbotron" style="padding-top:2px">
     <div class="row">
 
-        <h3><span class="glyphicon glyphicon-align-justify"></span> Ordreoversikt for Kundenr: @Html.DisplayFor(modelItem => Model[0].customerid) </h3>
+        <h3><span class="glyphicon glyphicon-align-justify"></span> Ordreoversikt for @Html.DisplayFor(modelItem => Model[0].customer.lastname), @Html.DisplayFor(modelItem => Model[0].customer.firstname)  </h3>
 
         <hr />
 
-        <div class="panel panel-default">
+        <div id="partView"class="panel panel-default">
             <table>
                 <tr>
                     <td>
@@ -64,10 +64,13 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.sum)
                         </td>
-                        <td>
-                            <button class="btn btn-xs btn-default" style="margin-top:0px" type="submit"><i class="glyphicon glyphicon-list"></i><a href="@Url.Action("ListCustomersOrderLines", "Customer", new { id = item.id })">se ordrelinje</button>
-                            <button class="btn btn-xs btn-default" style="margin-top:0px" type="submit"><i class="glyphicon glyphicon-print"></i><a href="@Url.Action("showReceipt", "Order", new { id = item.id   })">print</button>
-
+                        <td class="pull-right">
+                            <a href="@Url.Action("ListCustomersOrderLines", "Customer", new { id = item.id })" title="Vis ordrelinje" class="btn btn-xs btn-default" id="defaultButton">
+                                <span class="glyphicon glyphicon-list"></span>
+                            </a>
+                            <a href="@Url.Action("showReceipt", "Order", new { id = item.id })" title="Vis kvittering" class="btn btn-xs btn-default" id="defaultButton">
+                                <span class="glyphicon glyphicon-print"></span>
+                            </a>
                     </tr>
                 }
             </table>

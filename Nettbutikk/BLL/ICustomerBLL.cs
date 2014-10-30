@@ -9,8 +9,6 @@ namespace Nettbutikk.BLL
 
         List<Customer> getResult(string sc);
         bool validate(String email, byte[] hashedPassword);
-        bool addCustomer(Customer c, int adminid);
-
         byte[] makeHash(String password);
 
         Customer findUser(String email);
@@ -22,5 +20,7 @@ namespace Nettbutikk.BLL
         bool revokeAdmin(int id, int adminid);
         bool delete(int id, int adminid);
         List<Order> getAllOrdersbyCust(int id);
+
+        bool update(int id, Customer c, int adminid);
     }
 }

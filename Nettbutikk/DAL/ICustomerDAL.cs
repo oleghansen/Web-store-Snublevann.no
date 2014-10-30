@@ -10,10 +10,7 @@ namespace Nettbutikk.DAL
 
         List<Customer> getResult(string sc);
 
-        bool add(Customer inCustomer, byte[] hashedPassword, int admin);
-       
-  
-        bool update(int id, Customer updateUser);
+        bool update(int id, Customer updateUser, int adminid);
         bool validate(string email, byte[] hashedPassword);
 
         Customer findUser(String email);

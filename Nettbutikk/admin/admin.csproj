@@ -107,6 +107,7 @@
     <Content Include="Content\Custom\Billingdoc.css" />
     <Content Include="Content\Custom\customNav.css" />
     <Content Include="Content\Custom\MainSheet.css" />
+    <Content Include="Content\img\defaultimg.png" />
     <Content Include="Content\img\snublevann_dark_transparent.png" />
     <Content Include="Content\img\snublevann_liten_lys.ico" />
     <Content Include="Content\img\snublevann_liten_lys.png" />
@@ -128,6 +129,11 @@
     <Content Include="Scripts\jquery-1.9.0.js" />
     <Content Include="Scripts\jquery-1.9.0.min.js" />
     <Content Include="Content\jquery-ui.css" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -143,7 +149,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="GroupedDropDownList.cs" />
-    <Compile Include="Models\AddCustomer.cs" />
     <Compile Include="Models\BillingViewModel.cs" />
     <Compile Include="Models\CategoryInfo.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
@@ -151,6 +156,7 @@
     <Compile Include="Models\logIn.cs" />
     <Compile Include="Models\OrderLineViewModel.cs" />
     <Compile Include="Models\OrderViewModel.cs" />
+    <Compile Include="Models\ProducerInfo.cs" />
     <Compile Include="Models\ProductDetail.cs" />
     <Compile Include="Models\ProductMenu.cs" />
     <Compile Include="Models\SubCategoryInfo.cs" />
@@ -182,9 +188,9 @@
     <Content Include="Views\Order\showReceipt.cshtml" />
     <Content Include="Views\Category\ListCategories.cshtml" />
     <Content Include="Views\Category\newCategory.cshtml" />
-    <Content Include="Views\Customer\AddCustomer.cshtml" />
     <Content Include="Views\Category\ListSubCategories.cshtml" />
     <Content Include="Views\Category\newSubCategory.cshtml" />
+    <Content Include="Views\Category\ListProducers.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

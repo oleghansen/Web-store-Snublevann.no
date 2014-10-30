@@ -5,83 +5,86 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     SelectList itemsPerPageList = DefaultValues.ItemsPerPageList;
 }
+<link href="~/Content/Custom/MainSheet.css" rel="stylesheet" />   
+        <div class="jumbotron" style="padding-top:2px">
+            <h3>
+                <span class="glyphicon glyphicon-user"></span> Ordreoversikt
+            </h3>
+            <div id="menu_container">
+                <div class="row" style="margin-bottom: 5px">
+                    <div id="partView" class="panel panel-default">
+                        <table>
+                            <tr>
+                                <td>
+                                    <b><a href="@Url.Action("ListOrders", new { sortOrder = ViewBag.IDSortParm})">@Html.DisplayNameFor(modelItem => Model[0].id)</a></b>
+                                </td>
+                                <td>
+                                    <b><a href="@Url.Action("ListOrders", new { sortOrder = ViewBag.DateSortParm})">@Html.DisplayNameFor(modelItem => Model[0].orderdate)</a></b>
+                                </td>
+                                <td>
+                                    <b><a href="@Url.Action("ListOrders", new { sortOrder = ViewBag.CIDSortParm})">@Html.DisplayNameFor(modelItem => Model[0].customerid)</a></b>
+                                </td>
+                                <td>
+                                    <b><a href="@Url.Action("ListOrders", new { sortOrder = ViewBag.CFNameSortParm})">@Html.DisplayNameFor(modelItem => Model[0].firstname)</a></b>
+                                </td>
+                                <td>
+                                    <b><a href="@Url.Action("ListOrders", new { sortOrder = ViewBag.CLNameSortParm})">@Html.DisplayNameFor(modelItem => Model[0].lastname)</a></b>
+                                </td>
 
-    <div class="jumbotron" style="padding-top:2px">
-        @using(Html.BeginForm("ListOrders","Order",FormMethod.Post))
-        {
-            @Html.DropDownList("ItemsPerPage", itemsPerPageList, new { @id = "ItemsPerPageList",onchange="this.form.submit();"})
-        }
-        <div class="row">
+                                <td>
+                                    <b><a href="@Url.Action("ListOrders", new { sortOrder = ViewBag.AmountSortParm})">@Html.DisplayNameFor(modelItem => Model[0].quantity)</a></b>
+                                </td>
+                                <td>
+                                    <b><a href="@Url.Action("ListOrders", new { sortOrder = ViewBag.TotalSortParm})">@Html.DisplayNameFor(modelItem => Model[0].sum)</a></b>
+                                </td>
 
-            <h3><span class="glyphicon glyphicon-align-justify"></span> Ordreoversikt </h3>
+                            </tr>
+                            @foreach (var item in Model)
+                            {
+                                <tr class="rows">
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.id)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.orderdate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.customerid)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.customer.firstname)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.customer.lastname)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.quantity)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.sum)
+                                    </td>
+                                    <td class="pull-right">
+                                        <a href="@Url.Action("ListOrderLines", new { id = item.id })" title="Vis ordrelinjer" class="btn btn-xs btn-default" id="defaultButton">
+                                            <span class="glyphicon glyphicon-list"></span>
+                                        </a>
+                                        <a href="@Url.Action("showReceipt", new { id = item.id })" title="Vis kvittering" class="btn btn-xs btn-default" id="defaultButton">
+                                            <span class="glyphicon glyphicon-print"></span>
+                                        </a>
 
-            <hr />
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                        @Html.PagedListPager(Model, page => Url.Action("ListOrders", new { page, itemsPerPage = ViewBag.CurrentItemsPerPage, sortOrder = ViewBag.CurrentSort }))
 
-            <div class="panel panel-default">
-                <table>
-                    <tr>
-                        <td>
-                            <b><a href="@Url.Action("ListOrders", new { sortOrder = ViewBag.IDSortParm})">@Html.DisplayNameFor(modelItem => Model[0].id)</a></b>
-                        </td>
-                        <td>
-                            <b><a href="@Url.Action("ListOrders", new { sortOrder = ViewBag.DateSortParm})">@Html.DisplayNameFor(modelItem => Model[0].orderdate)</a></b>
-                        </td>
-                        <td>
-                            <b><a href="@Url.Action("ListOrders", new { sortOrder = ViewBag.CIDSortParm})">@Html.DisplayNameFor(modelItem => Model[0].customerid)</a></b>
-                        </td>
-                        <td>
-                            <b><a href="@Url.Action("ListOrders", new { sortOrder = ViewBag.CFNameSortParm})">@Html.DisplayNameFor(modelItem => Model[0].firstname)</a></b>
-                       </td>
-                        <td>
-                            <b><a href="@Url.Action("ListOrders", new { sortOrder = ViewBag.CLNameSortParm})">@Html.DisplayNameFor(modelItem => Model[0].lastname)</a></b>
-                        </td>
-                        
-                        <td>
-                            <b><a href="@Url.Action("ListOrders", new { sortOrder = ViewBag.AmountSortParm})">@Html.DisplayNameFor(modelItem => Model[0].quantity)</a></b>
-                        </td>
-                        <td>
-                            <b><a href="@Url.Action("ListOrders", new { sortOrder = ViewBag.TotalSortParm})">@Html.DisplayNameFor(modelItem => Model[0].sum)</a></b>
-                        </td>
-                     
-                    </tr>
-                    @foreach (var item in Model)
-                    {
-                        <tr class="rows">
-                            <td>
-                                @Html.DisplayFor(modelItem => item.id)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.orderdate)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.customerid)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.customer.firstname)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.customer.lastname)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.quantity)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.sum)
-                            </td>
-                            <td>
-                            <button class="btn btn-xs btn-default" style="margin-top:0px" type="submit"><i class="glyphicon glyphicon-list"></i>@Html.ActionLink("Se ordrelinje", "ListOrderLines", new { id = item.id})</button>
-                            <button class="btn btn-xs btn-default" style="margin-top:0px" type="submit"><i class="glyphicon glyphicon-print"></i>@Html.ActionLink("Se kvittering", "showReceipt", new { id = item.id })</button>
-                            
-                         </tr>
-                    }
-                </table>
-                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-
-                @Html.PagedListPager(Model, page => Url.Action("ListOrders", new { page, itemsPerPage = ViewBag.CurrentItemsPerPage, sortOrder = ViewBag.CurrentSort}));
+                        @using (Html.BeginForm("ListOrders", "Order", FormMethod.Post))
+                        {
+                            <small>Antall per side:</small> @Html.DropDownList("ItemsPerPage", itemsPerPageList, new { @id = "ItemsPerPageList", onchange = "this.form.submit();", style = "margin-bottom: 0px" })
+                        }
 
 
-
-            </div>
-    </div>
-</div>
+                    </div>
+                </div>
+            
+        </div>
 

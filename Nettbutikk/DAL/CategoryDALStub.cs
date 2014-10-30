@@ -72,5 +72,29 @@ namespace Nettbutikk.DAL
                 return false;
             return true;
         }
+
+        public List<Producer> getAllProducers(int? id)
+        {
+            var prod = new Producer()
+            {
+                id = 1,
+                name = "Harry Potter"
+            };
+            List<Producer> prodlist = new List<Producer>();
+            prodlist.Add(prod);
+            return prodlist;
+        }
+
+        public List<Producer> getResultProducer(int? id, string sc)
+        {
+            var cat = new Producer()
+            {
+                id = 1,
+                name = "Rusbrus",
+            };
+            List<Producer> sublist = new List<Producer>();
+            sublist.Add(cat);
+            return sublist;
+        }
     }
 }

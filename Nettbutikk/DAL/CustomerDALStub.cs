@@ -49,12 +49,8 @@ namespace Nettbutikk.DAL
             return custList;
         }
 
-        public bool add(Customer inCustomer, byte[] hashedPassword, int adminid)
-        {
-            return true;
-        }
 
-        public Customer findCustomer(String email)
+       public Customer findCustomer(String email)
         {
             var cust = new Customer()
             {
@@ -100,7 +96,7 @@ namespace Nettbutikk.DAL
             return false;        
         }
 
-        public bool update(int id, Customer updateUser)
+        public bool update(int id, Customer updateUser, int adminid)
         {
             return false;
         }
