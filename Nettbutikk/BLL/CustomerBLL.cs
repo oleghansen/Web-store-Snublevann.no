@@ -28,6 +28,11 @@ namespace Nettbutikk.BLL
 
         }
 
+        public Customer getCustomer(int id)
+        {
+            return _customer.getCustomer(id);
+        }
+
         public List<Customer> getAll()
         {
             List<Customer> allCustomers = _customer.getAll();
@@ -51,10 +56,6 @@ namespace Nettbutikk.BLL
             
         }
 
-        public Customer findCustomer(int id)
-        {
-            return _customer.findCustomer(id);
-        }
 
         public bool validate(String email, byte[] hashedpassword)
         {

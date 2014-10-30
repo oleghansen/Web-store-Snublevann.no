@@ -98,7 +98,7 @@ namespace Nettbutikk.BLL
 
         public Order getOne(int id)
         {
-            return _order.findOrder(id);
+            return _order.getOrder(id);
         }
         public int getNumItems(Order o)
         {

@@ -20,16 +20,16 @@ namespace Nettbutikk.BLL
             _product = stub;
         }
 
-        public List<Product> getAll(int? id)
+        public List<Product> getAll()
         {
-            List<Product> allProducts = _product.getAll(id);
+            List<Product> allProducts = _product.getAll();
             return allProducts;
         }
 
 
-        public List<Product> getResult(int? id, string s)
+        public List<Product> getResult( string s)
         {
-            List<Product> allProducts = _product.getResult(id, s);
+            List<Product> allProducts = _product.getResult(s);
 
             return allProducts;
         }
@@ -63,9 +63,10 @@ namespace Nettbutikk.BLL
             return _product.updateProduct(id,p);
         }
 
-        public bool addProduct(int id)
+        public bool addProduct(int id, Product p)
         {
-            return _product.addProduct(id);
+            // TODO: servervalidering skal skje her!
+            return _product.addProduct(id,p);
         }
 
         // TODO: fjern før levering

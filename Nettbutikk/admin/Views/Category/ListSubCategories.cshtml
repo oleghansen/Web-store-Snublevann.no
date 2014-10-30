@@ -16,7 +16,7 @@
                 <div class="row" style="margin-bottom: 5px;">
                     <div class="col-sm-8 col-md-8">
                         <div class="form-group">
-                            @using (Html.BeginForm("ListProducts", "Product", FormMethod.Get, new { @class = "form-group", @role = "form" }))
+                            @using (Html.BeginForm("ListSubCategories", "Category", FormMethod.Get, new { @class = "form-group", @role = "form" }))
                             {
 
                                 <div class="input-group pull-left">
@@ -38,7 +38,7 @@
                     </div>
                     <div class="col-sm-2 col-md-2" style="margin-top: 15px; padding-left: 30px">
 
-                        <a href="@Url.Action("")" class="btn btn-primary" id="primaryButton">
+                        <a href="@Url.Action("newSubCategory")" class="btn btn-primary" id="primaryButton">
                             <span class="glyphicon glyphicon-plus"></span> Ny underkategori
                         </a>
 
@@ -51,13 +51,13 @@
                         <table>
                             <tr>
                                 <td>
-                                    <b><a href="@Url.Action("ListProducts", new { sortOrder = ViewBag.ItemSortParm, currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].ID)</a></b>
+                                    <b><a href="@Url.Action("ListSubCategories", new { sortOrder = ViewBag.ItemSortParm, currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].ID)</a></b>
                                 </td>
                                 <td>
-                                    <b><a href="@Url.Action("ListProducts", new { sortOrder = ViewBag.NameSortParm , currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].name)</a></b>
+                                    <b><a href="@Url.Action("ListSubCategories", new { sortOrder = ViewBag.NameSortParm , currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].name)</a></b>
                                 </td>
                                 <td>
-                                    <b><a href="@Url.Action("ListProducts", new { sortOrder = ViewBag.ItemSortParm, currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].categoriesName)</a></b>
+                                    <b><a href="@Url.Action("ListSubCategories", new { sortOrder = ViewBag.ItemSortParm, currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].categoriesName)</a></b>
                                 </td>
                             </tr>
                             @foreach (var item in Model)
@@ -90,7 +90,7 @@
             <div style="margin-left:10px">
                 <div class="row">
                     <div class=" col-sm-12 col-md-12">
-                        @Html.PagedListPager(Model, page => Url.Action("ListProducts", new { page, itemsPerPage = ViewBag.CurrentItemsPerPage, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                        @Html.PagedListPager(Model, page => Url.Action("ListSubCategories", new { page, itemsPerPage = ViewBag.CurrentItemsPerPage, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
                     </div>
                 </div>
             </div>

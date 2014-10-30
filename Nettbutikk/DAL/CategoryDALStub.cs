@@ -65,5 +65,12 @@ namespace Nettbutikk.DAL
                 return false;
             return true;
         }
+
+        public bool AddSub(SubCategory category, int id)
+        {
+            if (id == 0 || category == null)
+                return false;
+            return true;
+        }
     }
 }

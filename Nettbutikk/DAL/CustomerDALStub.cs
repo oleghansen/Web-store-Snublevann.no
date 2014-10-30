@@ -73,25 +73,7 @@ namespace Nettbutikk.DAL
             return cust;
         }
 
-        public Customer findCustomer(int id)
-        {
-            var cust = new Customer()
-            {
-                id = 1,
-                firstname = "Gunnar",
-                lastname = "Hansen",
-                address = "Golia",
-                email = "klin@kokkos.no",
-                postalarea = "Gollie",
-                postalcode = "1232",
-                phonenumber = "94499449",
-                password = "tullball123"
-
-            };
-
-            return cust;
-        }
-
+ 
         public Customer findUser(String email)
         {
             var db = new DatabaseContext();
@@ -123,18 +105,6 @@ namespace Nettbutikk.DAL
             return false;
         }
 
-        public bool updatePw(int id, byte[] newPassword)
-        {
-            return false;
-
-        }
-
-        public bool checkEmail(string email, int? id)
-        {
-
-            return false;
-        }
-
         public Customer getCustomer(int id)
         {
             return new Customer();
@@ -154,6 +124,24 @@ namespace Nettbutikk.DAL
         {
             return false;
         }
+
+        public String normalizePostalcode(int postalcode)
+        {
+            String normPostalcode = postalcode.ToString();
+            if (postalcode < 1000)
+            {
+                normPostalcode = "0" + postalcode.ToString();
+                if (postalcode < 100)
+                {
+                    normPostalcode = "00" + postalcode.ToString();
+                    if (postalcode < 10)
+                        normPostalcode = "000" + postalcode.ToString();
+                }
+
+            }
+            return normPostalcode;
+        }
+        
     
     }
 }
