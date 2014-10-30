@@ -21,6 +21,18 @@ namespace Nettbutikk.DAL
             return products;
         }
 
+        public List<Category> getCategories()
+        {
+            var db = new DatabaseContext();
+            List<Category> list = db.Categories.Select(item => new Category()
+            {
+                ID = item.Id,
+                name = item.Name
+            }).ToList();
+
+            return list;
+        }
+
 
         public List<Category> getResult(int? id, string searchString)
         {
@@ -124,25 +136,17 @@ namespace Nettbutikk.DAL
             
         }
 
-        public bool AddSub(SubCategory sc, int adminId)
+        public bool AddSub(int adminId, SubCategory sc)
         {
-            var newSubCategory = new SubCategories()
+            var db = new DatabaseContext();
+            db.SubCategories.Add(new SubCategories()
             {
                 Name = sc.name,
-            };
+                CategoriesId = sc.catId
+            });
+            db.SaveChanges(adminId);
 
-            try
-            {
-                var db = new DatabaseContext();
-                db.SubCategories.Add(newSubCategory);
-                db.SaveChanges(adminId);
-                return true;
-            }
-            catch (Exception failed)
-            {
-                return false;
-            }
-
+            return true;
         }
     }
 }

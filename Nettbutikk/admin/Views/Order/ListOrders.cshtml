@@ -7,10 +7,15 @@
 }
 <link href="~/Content/Custom/MainSheet.css" rel="stylesheet" />   
         <div class="jumbotron" style="padding-top:2px">
-            <h3>
-                <span class="glyphicon glyphicon-user"></span> Ordreoversikt
-            </h3>
+            <div class="path">
+                <h5>
+                    <a href='@Url.Action("ListOrders")' id="prodPath"> Alle ordre</a>
+                </h5>
+            </div>
             <div id="menu_container">
+                <h3>
+                    <span class="glyphicon glyphicon-list"></span> Ordreoversikt
+                </h3>
                 <div class="row" style="margin-bottom: 5px">
                     <div id="partView" class="panel panel-default">
                         <table>

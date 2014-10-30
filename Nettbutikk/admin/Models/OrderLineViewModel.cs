@@ -22,11 +22,17 @@ namespace Nettbutikk.admin.Models
         public Customer customer { get; set; }
         public Order order { get; set; }
         public Product product { get; set; }
+        [DisplayName("Navn")]
+        public String productname { get; set; }
+        [DisplayName("Varenummer")]
+        public String productid { get; set; }
         [DisplayName("Sum")]
         [DisplayFormat(DataFormatString = "{0:C0}")]
         public int orderlineSum { get; set; }
         [DisplayName("Antall")]
         public int quantity { get; set; }
+        [DisplayName("Pris")]
+        public String price { get; set; }
         
     }
 }

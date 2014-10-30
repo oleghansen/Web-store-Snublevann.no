@@ -8,36 +8,28 @@
 
 <div>
     <div class="jumbotron" style="padding-top:2px">
+        <div class="path">
+            <h5>
+                <a href='@Url.Action("ListProducts", "Product")' id="prodPath"> Alle produkter</a> > <a href='@Url.Action("ListProducers")' id="prodPath"> Produsenter</a>
+            </h5>
+        </div>
         <div class="container">
-            <h3>
-                <span class="glyphicon glyphicon-registration-mark"></span> Produsenter
-            </h3>
+
 
             <div id="menu_container">
                 <div class="row" style="margin-bottom: 5px;">
                     <div class="col-sm-8 col-md-8">
-                        <div class="form-group">
-                            @using (Html.BeginForm("ListProducts", "Product", FormMethod.Get, new { @class = "form-group", @role = "form" }))
-                            {
-
-                                <div class="input-group pull-left">
-                                    @Html.TextBox("searchString", ViewBag.CurrentFilter as string, new { id = "txtSearch", @class = "form-control", placeholder = "Søk" })
-                                </div>
-                                <div class="input-group-btn pull-left">
-                                    <button class="btn btn-primary" type="submit">
-                                        <span class="glyphicon glyphicon-search"></span>
-                                    </button>
-                                </div>
-                            }
-                        </div>
+                        <h3>
+                            <span class="glyphicon glyphicon-registration-mark"></span> Produsenter
+                        </h3>
                     </div>
                     <div class="col-sm-2 col-md-2" style="margin-top: 9px">
 
                     </div>
-                    <div class="col-sm-2 col-md-2" style="margin-top: 15px; padding-left: 30px">
+                    <div class="col-sm-2 col-md-2 pull-right" style="margin-top: 15px; ">
 
-                        <a href="@Url.Action("newCategory")" class="btn btn-primary" id="primaryButton">
-                            <span class="glyphicon glyphicon-plus"></span> Ny kategori
+                        <a href="@Url.Action("newProducer")" class="btn btn-primary" id="primaryButton">
+                            <span class="glyphicon glyphicon-plus"></span> Ny produsent
                         </a>
 
 

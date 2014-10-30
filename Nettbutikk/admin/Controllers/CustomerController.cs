@@ -187,9 +187,12 @@ namespace Nettbutikk.admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CustomerDetails(Customer c)
         {
-            Customer a = (Customer)Session["loggedInUser"];
-            var b = _customerbll.update(c.id,c, a.id);
-            return RedirectToAction("CustomerDetails", new { id = c.id });
+            if (ModelState.IsValid)
+            {
+                Customer a = (Customer)Session["loggedInUser"];
+                var b = _customerbll.update(c.id, c, a.id);
+                return RedirectToAction("CustomerDetails", new { id = c.id });
+            } return RedirectToAction("CustomerDetails", new { id = c.id });
         }
 
         public ActionResult ListCustomerOrders(int id)

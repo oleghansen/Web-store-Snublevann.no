@@ -7,37 +7,37 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    <div class="jumbotron">
+    <div class="jumbotron" style="padding-top:2px">
         <div class="container">
             <div class="row">
-                
-                    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-                        <div class="formTitle" style="margin-left:0px">
-                            <h3><span class="glyphicon glyphicon-user"></span>  Logg Inn</h3>
-                        </div>
-                        <div class="panel-default" id="formPanel" style="width:50%">
-                            <form role="form">
-                                <div class="row">
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
-                                        <div class="form-group">
-                                            <input type="text" name="email" class="form-control input-sm" placeholder="Email" tabindex="1">
-                                        </div>
+
+                <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+                    <div class="formTitle" style="margin-left:0px">
+                        <h3><span class="glyphicon glyphicon-user"></span>  Logg Inn</h3>
+                    </div>
+                    <div class="panel-default" id="formPanel" style="width:50%">
+                        <form role="form">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <input type="text" name="email" class="form-control input-sm" placeholder="Email" tabindex="1">
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
-                                        <div class="form-group">
-                                            <input type="password" name="password" class="form-control input-sm" placeholder="Passord" tabindex="2">
-                                        </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <input type="password" name="password" class="form-control input-sm" placeholder="Passord" tabindex="2">
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary btn-sm" id="primaryButton" tabindex="3" style="margin-top: 10px">
-                                   Logg inn  <span class="glyphicon glyphicon-log-in"></span>  
-                                </button>
-                            </form>
-                        </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-sm" id="primaryButton" tabindex="3" style="margin-top: 10px">
+                                Logg inn  <span class="glyphicon glyphicon-log-in"></span>
+                            </button>
+                        </form>
+                    </div>
                 </div>
-                </div>
+            </div>
         </div>
     </div>
 }

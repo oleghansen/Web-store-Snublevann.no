@@ -15,6 +15,8 @@ namespace Nettbutikk.admin.Models
         public int ID { get; set; }
         [Display(Name="Navn")]
         public string name { get; set; }
+        [Display(Name="Kategori")]
+        public int categoryId { get; set; }
         public IEnumerable<SelectListItem> categoryList { get; set; }
     }
 }
