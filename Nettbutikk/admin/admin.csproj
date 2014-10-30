@@ -114,6 +114,8 @@
     <Content Include="Content\img\snublevann_liten_mork.ico" />
     <Content Include="Content\img\snublevann_liten_mork.png" />
     <Content Include="Content\img\snuble_admin.png" />
+    <Content Include="Content\notify.css" />
+    <Content Include="Content\notify.min.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -130,11 +132,14 @@
     <Content Include="Scripts\jquery-1.9.0.min.js" />
     <Content Include="Content\jquery-ui.css" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-notify.js" />
+    <Content Include="Scripts\jquery-notify.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\updateProduct.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -192,7 +197,9 @@
     <Content Include="Views\Category\ListSubCategories.cshtml" />
     <Content Include="Views\Category\newSubCategory.cshtml" />
     <Content Include="Views\Category\ListProducers.cshtml" />
-    <Content Include="Views\Category\SubCatDetails.cshtml" />
+    <Content Include="Views\Shared\_Modal.cshtml">
+      <BrowseToURL>~/Shared/_Modal</BrowseToURL>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -13,18 +13,19 @@
             <a href='@Url.Action("ListCustomersOrderLines", "Customer", new { id = Model[0].orderId })' id="prodPath"> Ordre @Html.DisplayFor(model => Model[0].orderId) </a>
         </h5>
     </div>
-    <div class="row">
+    
 
-        <div class="row">
-            <h3>
-                <span class="glyphicon glyphicon-align-justify"></span> Ordredetaljer for ordrenummer: @Html.DisplayFor(model => Model[0].orderId)
-                <a class="pull-right" href="@Url.Action("showReceipt","order", new { id = Model[0].orderId  })" title="Vis kvittering" class="btn btn-xs btn-default" id="defaultButton">
-                    <span class="glyphicon glyphicon-print"></span>
+            <div class="row">
+                <h3>
+                    <span class="glyphicon glyphicon-align-justify"></span> Ordredetaljer for ordrenummer: @Html.DisplayFor(model => Model[0].orderId)
+                    <a class="pull-right" href="@Url.Action("showReceipt","order", new { id = Model[0].orderId  })" title="Vis kvittering" class="btn btn-xs btn-default" id="defaultButton">
+                        <span class="glyphicon glyphicon-print"></span>
+
+                    </a>
                 </h3>
-            </a>
-        </div>
+            </div>
 
-        <hr />
+    <div id="partView" class="panel panel-default">
         <div class="row" style="margin-top:20px; margin-bottom: 10px">
             <div class="col-md-8">
                 @Html.DisplayNameFor(model => Model[0].customerid) @Html.DisplayFor(model => Model[0].customerid)<br />
@@ -56,9 +57,10 @@
 
                 </div>
             </div>
-           
+
         </div>
-        <br />
-       @Html.Partial("~/Views/Shared/ListOrderLines.cshtml", Model);
     </div>
-</div>
+            <br />
+            @Html.Partial("~/Views/Shared/ListOrderLines.cshtml", Model);
+        
+    </div>

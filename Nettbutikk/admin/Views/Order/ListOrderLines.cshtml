@@ -5,50 +5,59 @@
 }
 
 <div class="jumbotron" style="padding-top:2px">
+    <div class="path">
+        <h5>
+            <a href='@Url.Action("ListOrders")' id="prodPath"> Alle ordre</a> > 
+            <a href='@Url.Action("ListOrderLines", "Order", new { id = Model[0].customer.id })' id="prodPath"> Ordre @Html.DisplayFor(model => Model[0].orderId)</a>
+        </h5>
+    </div>
     <div class="row">
 
 
         <h3>
             <span class="glyphicon glyphicon-align-justify"></span> Ordrelinjeoversikt
-            <a class="pull-right" href="@Url.Action("showReceipt","order", new { id = Model[0].orderId  })" title="Vis kvittering" class="btn btn-xs btn-default" id="defaultButton">
-                <span class="glyphicon glyphicon-print"></span></a>
+            <a href="@Url.Action("showReceipt","order", new { id = Model[0].orderId  })" title="Vis kvittering" class="btn btn-default pull-right" id="defaultButton">
+                <span class="glyphicon glyphicon-print"></span>
+            </a>    
        </h3>
 
-        <hr />
-        <div class="row" style="margin-top:20px">
-            <div class="col-md-8">
-                @Html.DisplayNameFor(model => Model[0].customerid) @Html.DisplayFor(model => Model[0].customerid)<br />
-                @Html.DisplayFor(model => Model[0].customer.firstname ) @Html.DisplayFor(model => Model[0].customer.lastname)<br />
-                @Html.DisplayFor(model => Model[0].customer.address) <br />
-                @Html.DisplayFor(model => Model[0].customer.postalcode)  @Html.DisplayFor(model => Model[0].customer.postalarea)<br />
-            </div>
-            <div class="col-md-4">
-                <div class="row">
-                    <div class="col-md-3">
-                    </div>
+        <div id="partView" class="panel panel-default">
+            <div class="row" style="margin-top:20px">
+                <div class="col-md-8">
+                    @Html.DisplayNameFor(model => Model[0].customerid) @Html.DisplayFor(model => Model[0].customerid)<br />
+                    @Html.DisplayFor(model => Model[0].customer.firstname) @Html.DisplayFor(model => Model[0].customer.lastname)<br />
+                    @Html.DisplayFor(model => Model[0].customer.address) <br />
+                    @Html.DisplayFor(model => Model[0].customer.postalcode)  @Html.DisplayFor(model => Model[0].customer.postalarea)<br />
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-3">
+                        </div>
                         <div class="col-md-5">
                             <h4><strong>@Html.DisplayNameFor(model => Model[0].orderId):</strong></h4>
                         </div>
                         <div class="col-md-4">
                             <h4 class="pull-right">@Html.DisplayFor(model => Model[0].orderId)</h4>
                         </div>
-                    
-                </div>
-                <div class="row">
-                    <div class="col-md-3">
+
                     </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                        </div>
                         <div class="col-md-5">
                             <h4><strong>@Html.DisplayNameFor(model => Model[0].orderdate):</strong></h4>
                         </div>
                         <div class="col-md-4">
                             <h4>@Html.DisplayFor(model => Model[0].orderdate)</h4>
                         </div>
-                    
+
+                    </div>
                 </div>
+
             </div>
-            
         </div>
-        <br />
-           @Html.Partial("~/Views/Shared/ListOrderLines.cshtml", Model);
+            <br />
+            @Html.Partial("~/Views/Shared/ListOrderLines.cshtml", Model);
         </div>
+
 </div>

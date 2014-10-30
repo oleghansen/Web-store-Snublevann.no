@@ -25,8 +25,17 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    <div class="jumbotron">
+    <div class="jumbotron" style="padding-top:2px">
+        <div class="path">
+            <h5>
+                <a href='@Url.Action("ListProducts", "Product")' id="prodPath"> Alle produkter</a> >
+                <a href='@Url.Action("ListCategories")' id="prodPath"> Kategorier</a> >
+                <a href='@Url.Action("newCategory")' id="prodPath"> Ny kategori</a>
+            </h5>
+        </div>
+
         <div class="container">
+
             <div class="row">
                 <div class="formTitle">
                     <h2><span class="glyphicon glyphicon-glass"></span>  Legg til ny kategori</h2>
