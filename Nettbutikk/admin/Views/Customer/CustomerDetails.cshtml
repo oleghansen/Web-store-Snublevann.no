@@ -57,14 +57,14 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <h5>#: @Html.DisplayFor(model => model.id)</h5>
+                                            <h5>Kundenummer @Html.DisplayFor(model => model.id)</h5>
                                         </div>
                                     </div>
                                 </div>
                                  <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group" style="margin-bottom:0px">
-                                            <small>Fornavn:</small>
+                                            <small><label>Fornavn</label></small>
                                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                             @Html.EditorFor(model => model.firstname, new { htmlAttributes = new { @class = "form-control input-sm", placeholder = "Produkt", tabindex = "1", autofocus = "" } })
                                             @Html.ValidationMessageFor(model => model.firstname, "", new { @class = "text-danger" })
@@ -72,7 +72,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <small>Etternavn:</small>
+                                            <small><label>Etternavn</label></small>
                                             @Html.EditorFor(model => model.lastname, new { htmlAttributes = new { @class = "form-control input-sm", placeholder = "Beskrivelse", tabindex = "1", autofocus = "" } })
                                             @Html.ValidationMessageFor(model => model.lastname, "", new { @class = "text-danger" })
                                         </div>
@@ -81,13 +81,14 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <small>Addresse:</small>
-                                            @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control input-sm", placeholder = "Beskrivelse", tabindex = "1", autofocus = "" } })
-                                            @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+                                            <small><label>Telefonnummer</label></small>
+                                            @Html.EditorFor(model => model.phonenumber, new { htmlAttributes = new { @class = "form-control input-sm", placeholder = "Telefonnummer", tabindex = "1", autofocus = "" } })
+                                            @Html.ValidationMessageFor(model => model.phonenumber, "", new { @class = "text-danger" })
+
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <small>E-mail:</small>
+                                        <small><label>E-postadresse</label></small>
                                         @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control input-sm", placeholder = "Produsent", tabindex = "3" } })
                                         @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
                                     </div>
@@ -95,20 +96,20 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <h5>Telefon:</h5>
-                                            @Html.EditorFor(model => model.phonenumber, new { htmlAttributes = new { @class = "form-control input-sm", placeholder = "Telefonnummer", tabindex = "1", autofocus = "" } })
-                                            @Html.ValidationMessageFor(model => model.phonenumber, "", new { @class = "text-danger" })
+                                            <small><label>Adresse</label></small>
+                                            @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control input-sm", placeholder = "Beskrivelse", tabindex = "1", autofocus = "" } })
+                                            @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <small>Poststed</small>
+                                        <small><label>Poststed</label></small>
                                         @Html.EditorFor(model => model.postalarea, new { htmlAttributes = new { @class = "form-control input-sm", placeholder = "Poststed", tabindex = "3" } })
                                         @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
                                     </div>
                                     <div class="col-md-6">
-                                        <h5>Postnummer</h5>
+                                        <small><label>Postnummer</label></small>
                                         @Html.EditorFor(model => model.postalcode, new { htmlAttributes = new { @class = "form-control input-sm", placeholder = "Postnummer", tabindex = "3" } })
                                         @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
                                     </div>
