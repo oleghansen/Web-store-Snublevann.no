@@ -38,7 +38,7 @@
         }
         else
             o1.style.fontWeight = 'normal';
-        if (/Product/.test(self.location.href)) {
+        if (/Product/.test(self.location.href) || /Category/.test(self.location.href)) {
             e2.style.display = 'block'
             o2.style.fontWeight = 'bold';
         }
