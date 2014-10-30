@@ -112,5 +112,26 @@ namespace Nettbutikk.DAL
             }
             
         }
+
+        public bool AddSub(SubCategory sc, int adminId)
+        {
+            var newSubCategory = new SubCategories()
+            {
+                Name = sc.name,
+            };
+
+            try
+            {
+                var db = new DatabaseContext();
+                db.SubCategories.Add(newSubCategory);
+                db.SaveChanges(adminId);
+                return true;
+            }
+            catch (Exception failed)
+            {
+                return false;
+            }
+
+        }
     }
 }
