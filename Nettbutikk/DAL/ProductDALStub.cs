@@ -91,7 +91,7 @@ namespace Nettbutikk.DAL
         }
 
 
-        public bool addProduct(int id)
+        public bool addProduct(int id, Product p)
         {
             if (id == 0)
                 return false;

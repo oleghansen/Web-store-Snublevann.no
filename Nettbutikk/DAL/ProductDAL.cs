@@ -29,15 +29,16 @@ namespace Nettbutikk.DAL
         public List<SubCategory> getAllSubCategories()
         {
             var db = new DatabaseContext();
-            var subCategories = db.SubCategories.ToList();
+            var subCategories = db.SubCategories.Include("Categories").ToList();
             var list = new List<SubCategory>();
             foreach (var item in subCategories)
             {
                 list.Add(new SubCategory()
                 {
-                     
                      ID = item.Id,
-                     name  = item.Name
+                     name  = item.Name,
+                     catName = item.Categories.Name,
+                     catId = item.CategoriesId
                 });
             }
             return list;
@@ -188,9 +189,23 @@ namespace Nettbutikk.DAL
                 return false;
             }
              */
-        public bool addProduct(int id)
+        public bool addProduct(int id, Product p)
         {
-            return false;
+            var db = new DatabaseContext();
+            db.Products.Add(new Products()
+            {
+                Name = p.name,
+                Description = p.description,
+                LongDescription = p.longDescription,
+                CountriesId = p.countryid,
+                SubCategoriesId = p.subCategoryid,
+                Price = p.price,
+                Volum = p.volum,
+                ProducersId = p.producerid
+            });
+            db.SaveChanges(id);
+
+            return true; 
         }
 
         // TODO: denne metoden er kun for å teste audit trail. Må fjernes før innlevering

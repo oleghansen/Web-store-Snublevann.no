@@ -20,6 +20,7 @@ namespace Nettbutikk.Model
     {
         public int ID { get; set; }
         public string name { get; set; }
+        public int catId { get; set; }
         public string catName { get; set; }
     }
 }

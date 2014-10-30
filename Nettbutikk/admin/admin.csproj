@@ -38,6 +38,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DropDownList_Optgroup">
+      <HintPath>..\packages\DropDownList.Optgroup.MVC.1.0.0\lib\net40\DropDownList_Optgroup.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
@@ -73,6 +76,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.2\lib\net45\System.Web.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Routing" />
     <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.dll</HintPath>
@@ -175,7 +179,6 @@
     <Content Include="Views\Order\ListOrderLines.cshtml" />
     <Content Include="Views\Product\ProductDetails.cshtml" />
     <Content Include="Views\Customer\ListCustomerOrders.cshtml" />
-    <Content Include="Views\Product\addProductView.cshtml" />
     <Content Include="Views\Customer\ListCustomersOrderLines.cshtml" />
     <Content Include="Views\Shared\ListOrderLines.cshtml" />
     <Content Include="Views\Order\showReceipt.cshtml" />
