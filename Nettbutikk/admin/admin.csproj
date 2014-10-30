@@ -110,6 +110,7 @@
     <Content Include="Content\Custom\Billingdoc.css" />
     <Content Include="Content\Custom\customNav.css" />
     <Content Include="Content\Custom\MainSheet.css" />
+    <Content Include="Content\img\defaultimg.png" />
     <Content Include="Content\img\snublevann_dark_transparent.png" />
     <Content Include="Content\img\snublevann_liten_lys.ico" />
     <Content Include="Content\img\snublevann_liten_lys.png" />
