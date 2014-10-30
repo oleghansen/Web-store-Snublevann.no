@@ -1,9 +1,9 @@
-﻿@model List<Nettbutikk.admin.Models.OrderViewModel>
-
+﻿@model PagedList.IPagedList<Nettbutikk.admin.Models.OrderViewModel>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Customers Orders";
     Layout = "~/Views/Shared/_Layout.cshtml";
-
+    SelectList itemsPerPageList = DefaultValues.ItemsPerPageList;
 }
 
 <div class="jumbotron" style="padding-top:2px">
@@ -22,26 +22,26 @@
             <table>
                 <tr>
                     <td>
-                        <b>@Html.DisplayNameFor(modelItem => Model[0].id)</b>
+                        <b><a href="@Url.Action("ListCustomerOrders", new { sortOrder = ViewBag.IDSortParm})">@Html.DisplayNameFor(modelItem => Model[0].id)</a></b>
                     </td>
                     <td>
-                        <b>@Html.DisplayNameFor(modelItem => Model[0].orderdate)</b>
+                        <b><a href="@Url.Action("ListCustomerOrders", new { sortOrder = ViewBag.DateSortParm })">@Html.DisplayNameFor(modelItem => Model[0].orderdate)</a></b>
                     </td>
                     <td>
-                        <b>@Html.DisplayNameFor(modelItem => Model[0].customerid)</b>
+                        <b><a href="@Url.Action("ListCustomerOrders", new { sortOrder = ViewBag.CIDSortParm })">@Html.DisplayNameFor(modelItem => Model[0].customerid)</a></b>
                     </td>
                     <td>
-                        <b>@Html.DisplayNameFor(modelItem => Model[0].firstname)</b>
+                        <b><a href="@Url.Action("ListCustomerOrders", new { sortOrder = ViewBag.CFNameSortParm })">@Html.DisplayNameFor(modelItem => Model[0].firstname)</a></b>
                     </td>
                     <td>
-                        <b>@Html.DisplayNameFor(modelItem => Model[0].lastname)</b>
+                        <b><a href="@Url.Action("ListCustomerOrders", new { sortOrder = ViewBag.CLNameSortParm })">@Html.DisplayNameFor(modelItem => Model[0].lastname)</a></b>
                     </td>
 
                     <td>
-                        <b>@Html.DisplayNameFor(modelItem => Model[0].quantity)</b>
+                        <b><a href="@Url.Action("ListCustomerOrders", new { sortOrder = ViewBag.AmountSortParm })">@Html.DisplayNameFor(modelItem => Model[0].quantity)</a></b>
                     </td>
                     <td>
-                        <b>@Html.DisplayNameFor(modelItem => Model[0].sum)</b>
+                        <b><a href="@Url.Action("ListCustomerOrders", new { sortOrder = ViewBag.TotalSortParm })">@Html.DisplayNameFor(modelItem => Model[0].sum)</a></b>
                     </td>
 
                 </tr>
@@ -70,10 +70,10 @@
                             @Html.DisplayFor(modelItem => item.sum)
                         </td>
                         <td class="pull-right">
-                            <a href="@Url.Action("ListCustomersOrderLines", "Customer", new { id = item.id })" title="Vis ordrelinje" class="btn btn-xs btn-default" id="defaultButton">
+                            <a href="@Url.Action("ListCustomersOrderLines", "Customer", new { id = Model[0].id })" title="Vis ordrelinje" class="btn btn-xs btn-default" id="defaultButton">
                                 <span class="glyphicon glyphicon-list"></span>
                             </a>
-                            <a href="@Url.Action("showReceipt", "Order", new { id = item.id })" title="Vis kvittering" class="btn btn-xs btn-default" id="defaultButton">
+                            <a href="@Url.Action("showReceipt", "Order", new { id = Model[0].id })" title="Vis kvittering" class="btn btn-xs btn-default" id="defaultButton">
                                 <span class="glyphicon glyphicon-print"></span>
                             </a>
                     </tr>
@@ -81,5 +81,13 @@
             </table>
 
         </div>
+        @Html.PagedListPager(Model, page => Url.Action("ListCustomerOrders","Customer", new {Model[0].id, page, itemsPerPage = ViewBag.CurrentItemsPerPage, sortOrder = ViewBag.CurrentSort }))
+
+        @using (Html.BeginForm("ListCustomerOrders", "Customer", FormMethod.Post))
+        {
+            <small>Antall per side:</small> @Html.DropDownList("ItemsPerPage", itemsPerPageList, new { @id = "ItemsPerPageList", onchange = "this.form.submit();", style = "margin-bottom: 0px" })
+        }
+
+
     </div>
 </div>

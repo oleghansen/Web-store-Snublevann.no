@@ -2,6 +2,7 @@
 using Nettbutikk.Model;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,10 @@ namespace Nettbutikk.BLL
 
         public List<Order> getAllOrders(int? id)
         {
+            Stopwatch sw = new Stopwatch();
+
+            sw.Start();
+
             ICustomerDAL _customer = new CustomerDAL();
             IProductDAL _product = new ProductDAL();
             List<Order> allOrders = _order.getAllOrders(id);
@@ -42,8 +47,7 @@ namespace Nettbutikk.BLL
                         quantity = OrderLineItems .quantity,
                         product = _product.findProduct(OrderLineItems.productid),
                         orderid =  OrderLineItems.orderid 
-                         
-                        
+                           
                     });
                 }
                 list.Add(new Order() 
@@ -55,6 +59,12 @@ namespace Nettbutikk.BLL
                     orderLine = orderlineslist
                 });
             }
+            sw.Stop();
+
+            Debug.WriteLine("get all i BLL Elapsed={0}", sw.Elapsed);
+            //getall i BLL Elapsed=00:00:13.3913756
+
+
             return list;
         }
 

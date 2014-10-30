@@ -26,6 +26,10 @@ namespace Nettbutikk.DAL
 
         public List<Order> getAllOrders(int? id)
         {
+            Stopwatch sw = new Stopwatch();
+
+            sw.Start();
+    
             var db = new DatabaseContext();
             List<Order> lines;
             if (id != null)
@@ -42,7 +46,10 @@ namespace Nettbutikk.DAL
                     orderdate = item.OrderDate,
                     customerid = item.CustomersId
                 }).ToList();
+            sw.Stop();
 
+            Debug.WriteLine("get allorders; Elapsed={0}", sw.Elapsed);
+            //get allorders; Elapsed=00:00:00.0457881
             return lines;
         }
 

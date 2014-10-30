@@ -131,6 +131,7 @@ namespace Nettbutikk.admin.Controllers
 
         
         [HttpPost]
+       
         public ActionResult newCategory(Category category)
         {
             if (!isAdmin())
@@ -161,23 +162,26 @@ namespace Nettbutikk.admin.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        
         public ActionResult newSubCategory(SubCategoryDetail sc)
         {
             if (!isAdmin())
             {
                 return RedirectToAction("Login", "Main");
             }
-            Customer admin = (Customer)Session["loggedInUser"];
-            var adminid = admin.id;
-            if (_categoryBLL.AddSub(adminid, new SubCategory()
+            if (ModelState.IsValid)
             {
-                name = sc.name,
-                catId = sc.categoryId
-            }))
-                return RedirectToAction("ListSubCategories");
-
+                Customer admin = (Customer)Session["loggedInUser"];
+                var adminid = admin.id;
+                if (_categoryBLL.AddSub(adminid, new SubCategory()
+                {
+                    name = sc.name,
+                    catId = sc.categoryId
+                }))
+                    return RedirectToAction("ListSubCategories");
+            }
             sc.categoryList = _categoryBLL.getCategories().Select(c => new SelectListItem { Value = c.ID.ToString(), Text = c.name }).ToList();
+            //ehm burde ikke denn flyttes nedover ??
             return View(sc);
         }
 
@@ -248,9 +252,13 @@ namespace Nettbutikk.admin.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+      
         public ActionResult SubCatDetails(SubCategory c)
         {
+            if (!isAdmin())
+            {
+                return RedirectToAction("Login", "Main");
+            }
             if (ModelState.IsValid)
             {
                 Customer a = (Customer)Session["loggedInUser"];

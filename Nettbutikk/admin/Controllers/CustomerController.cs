@@ -139,8 +139,13 @@ namespace Nettbutikk.admin.Controllers
         }
 
         [HttpGet]
+        [ValidateAntiForgeryToken]
         public ActionResult  makeAdmin(int id)
         {
+            if (!isAdmin())
+            {
+                return RedirectToAction("Login", "Main");
+            }
             Customer c = (Customer)Session["loggedInUser"];
             var b =  _customerbll.makeAdmin(id, c.id);
             return RedirectToAction("CustomerDetails", new { id = id});
@@ -148,8 +153,14 @@ namespace Nettbutikk.admin.Controllers
         }
 
         [HttpGet]
+        [ValidateAntiForgeryToken ]
+
         public ActionResult revokeAdmin(int id)
         {
+            if (!isAdmin())
+            {
+                return RedirectToAction("Login", "Main");
+            }
             Customer c = (Customer)Session["loggedInUser"];
             if(id == c.id)
                 //her skal vel en modalboks av noe slag komme opp
@@ -163,9 +174,9 @@ namespace Nettbutikk.admin.Controllers
         public ActionResult CustomerDetails(int id)
         {
             if (!isAdmin())
-            {
                 return RedirectToAction("LogIn", "Main");
-            }
+
+            
             Customer customerDetails = _customerbll.getCustomer(id);
 
             CustomerDetail custinfo = new CustomerDetail()
@@ -187,6 +198,10 @@ namespace Nettbutikk.admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CustomerDetails(Customer c)
         {
+            if (!isAdmin())
+            {
+                return RedirectToAction("Login", "Main");
+            }
             if (ModelState.IsValid)
             {
                 Customer a = (Customer)Session["loggedInUser"];
@@ -195,10 +210,21 @@ namespace Nettbutikk.admin.Controllers
             } return RedirectToAction("CustomerDetails", new { id = c.id });
         }
 
-        public ActionResult ListCustomerOrders(int id)
+        public ActionResult ListCustomerOrders(int id,int? page, int? itemsPerPage, string sortOrder, string currentFilter)
         {
              if (!isAdmin())
                 return RedirectToAction("LogIn", "Main");
+
+             ViewBag.CurrentSort = sortOrder;
+             ViewBag.IDSortParm = String.IsNullOrEmpty(sortOrder) ? "id_desc" : "";
+             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+             ViewBag.CIDSortParm = sortOrder == "CID" ? "cid_desc" : "CID";
+             ViewBag.CFNameSortParm = sortOrder == "CFName" ? "cfname_desc" : "CFName";
+             ViewBag.CLNameSortParm = sortOrder == "CLName" ? "clname_desc" : "CLName";
+             ViewBag.AmountSortParm = sortOrder == "Amount" ? "amount_desc" : "Amount";
+             ViewBag.TotalSortParm = sortOrder == "Total" ? "total_desc" : "Total"; 
+
+            
 
             IOrderBLL _orderbll = new OrderBLL();
            List<Order> orders =  _customerbll.getAllOrdersbyCust(id);
@@ -217,12 +243,60 @@ namespace Nettbutikk.admin.Controllers
                     sum = _orderbll.getSum(item)
                 });
             }
-           
-            return View(list);
+             switch (sortOrder)
+             {
+                 case "id_desc":
+                     list = list.OrderByDescending(s => s.id).ToList();
+                     break;
+                 case "Date":
+                     list = list.OrderBy(s => s.orderdate).ToList();
+                     break;
+                 case "date_desc":
+                     list = list.OrderByDescending(s => s.orderdate).ToList();
+                     break;
+                 case "CID":
+                     list = list.OrderBy(s => s.customerid).ToList();
+                     break;
+                 case "cid_desc":
+                     list = list.OrderByDescending(s => s.customerid).ToList();
+                     break;
+                 case "CFName":
+                     list = list.OrderBy(s => s.customer.firstname).ToList();
+                     break;
+                 case "cfname_desc":
+                     list = list.OrderByDescending(s => s.customer.firstname).ToList();
+                     break;
+                 case "CLName":
+                     list = list.OrderBy(s => s.customer.lastname).ToList();
+                     break;
+                 case "clname_desc":
+                     list = list.OrderByDescending(s => s.customer.lastname).ToList();
+                     break;
+                 case "Amount":
+                     list = list.OrderBy(s => s.quantity).ToList();
+                     break;
+                 case "amount_desc":
+                     list = list.OrderByDescending(s => s.quantity).ToList();
+                     break;
+                 case "Total":
+                     list = list.OrderBy(s => s.sum).ToList();
+                     break;
+                 case "total_desc":
+                     list = list.OrderByDescending(s => s.sum).ToList();
+                     break;
+                 default:
+                     list = list.OrderBy(s => s.id).ToList();
+                     break;
+             }
+             ViewBag.CurrentItemsPerPage = itemsPerPage;
+             return View(list.ToPagedList(pageNumber: page ?? 1, pageSize: itemsPerPage ?? 15));
         }
 
         public ActionResult ListCustomersOrderLines(int id, int? page, int? itemsPerPage, string sortOrder, string currentFilter)
         {
+
+            if (!isAdmin())
+                return RedirectToAction("Main", "Main");
             ViewBag.CurrentSort = sortOrder;
             ViewBag.IDSortParm = String.IsNullOrEmpty(sortOrder) ? "id_desc" : "";
             ViewBag.PIDSortParm = sortOrder == "PID" ? "pid_desc" : "PID";
@@ -231,8 +305,6 @@ namespace Nettbutikk.admin.Controllers
             ViewBag.PriceSortParm = sortOrder == "Price" ? "price_desc" : "Price";
             ViewBag.TotalSortParm = sortOrder == "Total" ? "total_desc" : "Total"; 
 
-            if (!isAdmin())
-                return RedirectToAction("Main", "Main");
             IOrderBLL _orderbll = new OrderBLL();
             List<OrderLineViewModel> list = new List<OrderLineViewModel>();
 
@@ -250,6 +322,7 @@ namespace Nettbutikk.admin.Controllers
                         customer = item.customer,
                         orderdate = item.orderdate,
                         orderId = item.id,
+                        order = item,
                         product = olItem.product,
                         quantity = olItem.quantity,
                         orderlineSum = (olItem.quantity * olItem.product.price),
@@ -310,6 +383,9 @@ namespace Nettbutikk.admin.Controllers
 
         public ActionResult delete(int id)
         {
+
+            if (!isAdmin())
+                return RedirectToAction("Main", "Main");
             Customer a = (Customer)Session["loggedInUser"];
             var b =_customerbll.delete(id, a.id); 
             return RedirectToAction("ListCustomers");

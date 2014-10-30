@@ -83,12 +83,27 @@
                     </tr>
                 }
             </table>
-            @Html.PagedListPager(Model, page => Url.Action("ListOrderLines", "Order",new { page, itemsPerPage = ViewBag.CurrentItemsPerPage, sortOrder = ViewBag.CurrentSort }))
+            
+        </div>
+        @if(ViewBag.contoller == "customer")
+        {
+            @Html.PagedListPager(Model, page => Url.Action("ListCustomersOrderLines", "Customer", new { Model[0].id ,page, itemsPerPage = ViewBag.CurrentItemsPerPage, sortOrder = ViewBag.CurrentSort }))
 
-            @using (Html.BeginForm("ListOrderLines", "Order", FormMethod.Post))
+            using (Html.BeginForm("ListCustomersOrderLines", "Customer", FormMethod.Post))
             {
                 <small>Antall per side:</small> @Html.DropDownList("ItemsPerPage", itemsPerPageList, new { @id = "ItemsPerPageList", onchange = "this.form.submit();", style = "margin-bottom: 0px" })
             }
+        }
+        else
+        {
+            @Html.PagedListPager(Model, page => Url.Action("ListOrderLines", "Order", new { Model[0].id, page, itemsPerPage = ViewBag.CurrentItemsPerPage, sortOrder = ViewBag.CurrentSort }))
 
-        </div>
+            using (Html.BeginForm("ListOrderLines", "Order", FormMethod.Post))
+            {
+                <small>Antall per side:</small> @Html.DropDownList("ItemsPerPage", itemsPerPageList, new { @id = "ItemsPerPageList", onchange = "this.form.submit();", style = "margin-bottom: 0px" })
+            }
+        }
+
+
+
 

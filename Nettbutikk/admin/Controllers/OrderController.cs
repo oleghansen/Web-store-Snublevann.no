@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PagedList;
+using System.Diagnostics;
 
 namespace Nettbutikk.admin.Controllers
 {
@@ -26,6 +27,13 @@ namespace Nettbutikk.admin.Controllers
 
         public ActionResult ListOrders(int? page, int? itemsPerPage, string sortOrder, string currentFilter)
         {
+            Stopwatch sw = new Stopwatch();
+
+            sw.Start();
+
+            
+            
+
             if (!isAdmin())
                 return RedirectToAction("LogIn", "Main");
             ViewBag.CurrentSort = sortOrder;
@@ -101,10 +109,15 @@ namespace Nettbutikk.admin.Controllers
             }
 
             ViewBag.CurrentItemsPerPage = itemsPerPage;
+            sw.Stop();
+
+            Debug.WriteLine("GEtall i contoller Elapsed={0}", sw.Elapsed);
+            //getall i contoller Elapsed=00:00:14.5930095
+
             return View(list.ToPagedList(pageNumber: page ?? 1, pageSize: itemsPerPage ?? 15));
         }
 
-        [HttpGet]
+       
         public ActionResult ListOrderLines(int id, int? page, int? itemsPerPage, string sortOrder, string currentFilter)
         {
             if (!isAdmin())
@@ -186,17 +199,11 @@ namespace Nettbutikk.admin.Controllers
                     list = list.OrderBy(s => s.id).ToList();
                     break;
             }
+            ViewBag.CurrentItemsPerPage = itemsPerPage;
             return View(list.ToPagedList(pageNumber: page ?? 1, pageSize: itemsPerPage ?? 15));
             
         }
 
-        // GET: OrderTest
-      /*  public ActionResult Index()
-        {
-            if (!isAdmin())
-                return RedirectToAction("LogIn", "Main"); 
-            return View();
-        }*/
 
         public ActionResult Details(int id)
         {
@@ -208,6 +215,9 @@ namespace Nettbutikk.admin.Controllers
 
         public ActionResult showReceipt(int id)
         {
+
+            if (!isAdmin())
+                return RedirectToAction("Main", "Main");
           
             List<Order> allOrders = _orderbll.getAllOrders(id);
             BillingViewModel b = null;
