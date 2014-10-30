@@ -50,11 +50,14 @@ namespace Nettbutikk.DAL
 
         public List<SubCategory> getAllSub(int? id)
         {
-            return null;
-            /*
             var db = new DatabaseContext();
             List<SubCategories> subcat;
-            //subcat = db.SubCategories.Include(p => p.SubCategories.Categories).Where(P => products.SubCategories.CategoriesId == id).OrderBy(id).ToList();
+            if (id != null)
+            {
+                subcat = db.SubCategories.Include("Categories").Where(p => p.Id == id).ToList();
+            }
+            else
+                subcat = db.SubCategories.Include("Categories").ToList();
             var list = new List<SubCategory>();
             foreach (var item in subcat)
             {
@@ -66,7 +69,6 @@ namespace Nettbutikk.DAL
                 });
             }
             return list;
-             */
         }
 
         public List<SubCategory> getResultSub(int? id, string sc)
