@@ -128,7 +128,12 @@ namespace Nettbutikk.admin.Controllers
                         product = olItem.product,
                         quantity = olItem.quantity,
                         orderlineSum = (olItem.quantity * olItem.product.price) ,
-                        customerid = item.customerid 
+                        customerid = item.customerid,
+                        price = olItem.product.price.ToString(),
+                        productid = olItem.productid.ToString(),
+                        productname = olItem.product.name
+
+
 
                     });
                     linje++;
