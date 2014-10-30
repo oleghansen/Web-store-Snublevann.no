@@ -11,9 +11,9 @@
         <h3><span class="glyphicon glyphicon-align-justify"></span> Ordredetaljer for ordrenummer: @Html.DisplayFor(model => Model[0].orderId )  </h3>
 
         <hr />
-        <div class="row" style="margin-top:20px">
+        <div class="row" style="margin-top:20px; margin-bottom: 10px">
             <div class="col-md-8">
-                <strong> @Html.DisplayNameFor(model => Model[0].customerid)</strong> @Html.DisplayFor(model => Model[0].customerid)<br />
+                @Html.DisplayNameFor(model => Model[0].customerid) @Html.DisplayFor(model => Model[0].customerid)<br />
                 @Html.DisplayFor(model => Model[0].customer.firstname) @Html.DisplayFor(model => Model[0].customer.lastname)<br />
                 @Html.DisplayFor(model => Model[0].customer.address) <br />
                 @Html.DisplayFor(model => Model[0].customer.postalcode)  @Html.DisplayFor(model => Model[0].customer.postalarea)<br />
@@ -23,7 +23,7 @@
                     <div class="col-md-3">
                     </div>
                     <div class="col-md-5">
-                        <h4><strong>@Html.DisplayNameFor(model => Model[0].orderId):</strong></h4>
+                        <h4><strong>@Html.DisplayNameFor(model => Model[0].orderId)</strong></h4>
                     </div>
                     <div class="col-md-4">
                         <h4 class="pull-right">@Html.DisplayFor(model => Model[0].orderId)</h4>
@@ -34,7 +34,7 @@
                     <div class="col-md-3">
                     </div>
                     <div class="col-md-5">
-                        <h4><strong>@Html.DisplayNameFor(model => Model[0].orderdate):</strong></h4>
+                        <h4><strong>@Html.DisplayNameFor(model => Model[0].orderdate)</strong></h4>
                     </div>
                     <div class="col-md-4">
                         <h4>@Html.DisplayFor(model => Model[0].orderdate)</h4>
