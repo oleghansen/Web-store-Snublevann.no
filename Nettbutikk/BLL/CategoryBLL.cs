@@ -39,9 +39,15 @@ namespace Nettbutikk.BLL
             return _category.Add(category, adminId);
         }
 
-        public bool AddSub(SubCategory sc, int adminId)
+        public bool AddSub(int adminId, SubCategory sc)
         {
-            return _category.AddSub(sc, adminId);
+            return _category.AddSub(adminId,sc);
+        }
+
+        public List<Category> getCategories()
+        {
+            List<Category> allCategories = _category.getCategories();
+            return allCategories;
         }
 
         public List<SubCategory> getAllSub(int? id)
