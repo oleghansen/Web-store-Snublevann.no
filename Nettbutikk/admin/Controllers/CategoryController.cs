@@ -74,6 +74,53 @@ namespace Nettbutikk.admin.Controllers
             return View(list.ToPagedList(pageNumber: page ?? 1, pageSize: itemsPerPage ?? 15));
         }
 
+        public ActionResult ListProducers(int? page, int? itemsPerPage, string sortOrder, string currentFilter, string searchString)
+        {
+            if (!isAdmin())
+                return RedirectToAction("LogIn", "Main");
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.ItemSortParm = String.IsNullOrEmpty(sortOrder) ? "item_desc" : "";
+            ViewBag.NameSortParm = sortOrder == "Name" ? "name_desc" : "Name";
+
+            if (searchString != null)
+                page = 1;
+            else
+                searchString = currentFilter; 
+
+            ViewBag.CurrentFilter = searchString;
+            List<Producer> allProducers;
+            if (!String.IsNullOrEmpty(searchString))
+                allProducers = _categoryBLL.getResultProducer(null, searchString);
+            else
+                allProducers = _categoryBLL.getAllProducers(null);
+
+            switch (sortOrder)
+            {
+                case "item_desc":
+                    allProducers = allProducers.OrderByDescending(s => s.id).ToList();
+                    break;
+                case "name_desc":
+                    allProducers = allProducers.OrderByDescending(s => s.name).ToList();
+                    break;
+                default:
+                    allProducers = allProducers.OrderBy(s => s.id).ToList();
+                    break;
+            }
+
+            List<ProducerInfo> list = new List<ProducerInfo>();
+            foreach (var item in allProducers)
+            {
+                list.Add(
+                    new ProducerInfo()
+                    {
+                        prodId = item.id,
+                        prodName = item.name
+                    });
+            }
+
+            return View(list.ToPagedList(pageNumber: page ?? 1, pageSize: itemsPerPage ?? 15));
+        }
+
         public ActionResult newCategory()
         {
             if (!isAdmin())

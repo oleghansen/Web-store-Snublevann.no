@@ -55,5 +55,17 @@ namespace Nettbutikk.BLL
             List<SubCategory> allSub = _category.getResultSub(id, sc);
             return allSub;
         }
+
+        public List<Producer> getAllProducers(int? id)
+        {
+            List<Producer> allproducers = _category.getAllProducers(id);
+            return allproducers;
+        }
+
+        public List<Producer> getResultProducer(int? id, string sc)
+        {
+            List<Producer> allproducers = _category.getResultProducer(id, sc);
+            return allproducers;
+        }
     }
 }
