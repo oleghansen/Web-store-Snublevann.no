@@ -140,22 +140,41 @@ namespace Nettbutikk.admin.Controllers
                 countryid = productDetails.countryid,
                 producer = productDetails.producer,
                 pricePerLitre = productDetails.pricePerLitre,
-                subCategory = null,
+                subCategoryList = _product.getAllSubCategories().Select(s => new SelectListItem { Value = s.ID.ToString(), Text = s.name}).ToList(),
                 countryList = _product.getCountries().Select(c => new SelectListItem { Value = c.id.ToString(), Text = c.name}).ToList()
             };
             return View(prodinfo);
         }
 
 
-
-        public ActionResult Updated(int id, Product p)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ProductDetails(int id,ProductDetail p)
         {
             if (!isAdmin())
             {
                 return RedirectToAction("LogIn", "Main");
             }
-            bool updated = _product.updateProduct(id, p);
-            return View(updated);
+
+            Product updated = new Product()
+            {
+                itemnumber = p.itemnumber,
+                name = p.name,
+                description = p.description,
+                longDescription = p.longDescription,
+                price = p.price,
+                countryid = p.countryid,
+                subCategoryid = p.subCategoryid,
+                volum = p.volum
+            };
+            Customer admin = (Customer)Session["loggedInUser"];
+            var adminid = admin.id;
+            bool result = _product.updateProduct(adminid,updated);
+            p.countryList = _product.getCountries().Select(c => new SelectListItem { Value = c.id.ToString(), Text = c.name }).ToList();
+            p.subCategoryList = _product.getAllSubCategories().Select(s => new SelectListItem { Value = s.ID.ToString(), Text = s.name }).ToList();
+            if (result)
+                ViewBag.result = true;
+            return View(p);
 
         }
 

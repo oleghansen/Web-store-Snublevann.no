@@ -139,9 +139,28 @@ namespace Nettbutikk.DAL
 
         // TODO: Denne skal testes på web når siden er oppe!
 
-        public bool updateProduct(int id, Product update)
+        public bool updateProduct(int id,Product update)
         {
-            return false;
+            var db = new DatabaseContext();
+            Products existing = db.Products.FirstOrDefault(u => u.Id == update.itemnumber);
+//            try
+//            {
+                existing.Name = update.name;
+                existing.Price = update.price;
+                existing.Volum = update.volum;
+                existing.SubCategoriesId = update.subCategoryid;
+                existing.CountriesId = update.countryid;
+                existing.Description = update.description;
+                existing.LongDescription = update.longDescription;
+                db.SaveChanges(id);
+/*            }
+            catch(Exception e)
+            {
+                //TODO: skriv noe til fil
+                return false;
+            }*/
+            return true; 
+
         }
 
             /*
