@@ -20,6 +20,7 @@ namespace Nettbutikk.Model
 
         public double pricePerLitre { get; set; }
 
+        public int producerid { get; set; }
         public String producer { get; set; }
 
         public String category { get; set; }

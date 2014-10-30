@@ -99,14 +99,14 @@ namespace Nettbutikk.Tests
             var bll = new ProductController(new ProductBLL(new ProductDALStub()));
             builder.InitializeController(bll);
             builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
-            var expected = new Product()
+            var expected = new ProductDetail()
             {
                 itemnumber = 1,
                 name = "Tull",
                 description = "Ball"
             };
 
-            var action = (ViewResult)bll.Updated(1, expected);
+            var action = (ViewResult)bll.ProductDetails(1, expected); 
             var result = (bool)action.Model;
 
             Assert.IsTrue(result);
@@ -144,14 +144,14 @@ namespace Nettbutikk.Tests
            var bll = new ProductController(new ProductBLL(new ProductDALStub()));
            builder.InitializeController(bll);
            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
-           var expected = new Product()
+           var expected = new ProductDetail()
            {
                itemnumber = 1,
                name = "Tull",
                description = "Ball"
            };
 
-           var action = (ViewResult)bll.Updated(1, expected);
+           var action = (ViewResult)bll.ProductDetails(1, expected);
            var result = (bool)action.Model;
 
            Assert.IsTrue(result);
