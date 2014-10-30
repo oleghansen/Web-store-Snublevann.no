@@ -20,6 +20,7 @@ namespace Nettbutikk.DAL
         bool addCategoriesTest(int userId);
 
         List<Country> getCountries();
+        List<Producer> getProducers();
 
     }
 }

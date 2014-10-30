@@ -26,13 +26,15 @@ namespace Nettbutikk.admin.Models
         [Display(Name="Pris per liter")]
         public double pricePerLitre { get; set; }
         [Display(Name="Produsent")]
-        public String producer { get; set; }
-        [Display(Name="Sub kategori")]
+        public int producerid { get; set; }
+        [Display(Name="Subkategori")]
         public int subCategoryid { get; set; }
         [Display(Name="Land")]
         public int countryid { get; set; }
         public IEnumerable<SelectListItem> countryList { get; set; }
         public IEnumerable<SelectListItem> subCategoryList { get; set; }
+        public IEnumerable<SelectListItem> producerList { get; set; }
+
 
     }
 }

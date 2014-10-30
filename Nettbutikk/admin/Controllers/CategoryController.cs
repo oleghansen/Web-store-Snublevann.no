@@ -81,6 +81,57 @@ namespace Nettbutikk.admin.Controllers
             return View();
         }
 
+
+        public ActionResult ListSubCategories(int? page, int? itemsPerPage, string sortOrder, string currentFilter, string searchString)
+        {
+            if (!isAdmin())
+                return RedirectToAction("LogIn", "Main");
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.ItemSortParm = String.IsNullOrEmpty(sortOrder) ? "item_desc" : "";
+            ViewBag.NameSortParm = sortOrder == "Name" ? "name_desc" : "Name";
+            ViewBag.PriceSortParm = sortOrder == "Price" ? "price_desc" : "Price";
+            ViewBag.ProducerSortParm = sortOrder == "Producer" ? "producer_desc" : "Producer";
+
+            if (searchString != null)
+                page = 1;
+            else
+                searchString = currentFilter;
+
+            ViewBag.CurrentFilter = searchString;
+            List<SubCategory> allSubCategories;
+            if (!String.IsNullOrEmpty(searchString))
+                allSubCategories = _categoryBLL.getResultSub(null, searchString);
+            else
+                allSubCategories = _categoryBLL.getAllSub(null);
+
+            switch (sortOrder)
+            {
+                case "item_desc":
+                    allSubCategories = allSubCategories.OrderByDescending(s => s.ID).ToList();
+                    break;
+                case "name_desc":
+                    allSubCategories = allSubCategories.OrderByDescending(s => s.name).ToList();
+                    break;
+                default:
+                    allSubCategories = allSubCategories.OrderBy(s => s.ID).ToList();
+                    break;
+            }
+
+            List<SubCategoryInfo> list = new List<SubCategoryInfo>();
+            foreach (var item in allSubCategories)
+            {
+                list.Add(
+                    new SubCategoryInfo()
+                    {
+                        ID = item.ID,
+                        name = item.name,
+                        categoriesName = item.catName
+                    });
+            }
+
+            return View(list.ToPagedList(pageNumber: page ?? 1, pageSize: itemsPerPage ?? 15));
+        }
+
         [HttpPost]
         public ActionResult newCategory(Category category)
         {
