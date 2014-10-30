@@ -109,5 +109,9 @@ namespace Nettbutikk.DAL
 
             return null; 
         }
+        public List<Producer> getProducers()
+        {
+            return null; 
+        }
     }
 }

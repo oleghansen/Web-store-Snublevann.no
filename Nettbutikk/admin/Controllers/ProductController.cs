@@ -138,10 +138,11 @@ namespace Nettbutikk.admin.Controllers
                 price = productDetails.price,
                 volum = productDetails.volum,
                 countryid = productDetails.countryid,
-                producer = productDetails.producer,
+                producerid = productDetails.producerid,
                 pricePerLitre = productDetails.pricePerLitre,
                 subCategoryList = _product.getAllSubCategories().Select(s => new SelectListItem { Value = s.ID.ToString(), Text = s.name}).ToList(),
-                countryList = _product.getCountries().Select(c => new SelectListItem { Value = c.id.ToString(), Text = c.name}).ToList()
+                countryList = _product.getCountries().Select(c => new SelectListItem { Value = c.id.ToString(), Text = c.name}).ToList(),
+                producerList = _product.getProducers().Select(p => new SelectListItem { Value = p.id.ToString(), Text = p.name}).ToList()
             };
             return View(prodinfo);
         }
@@ -165,13 +166,16 @@ namespace Nettbutikk.admin.Controllers
                 price = p.price,
                 countryid = p.countryid,
                 subCategoryid = p.subCategoryid,
-                volum = p.volum
+                volum = p.volum,
+                producerid = p.producerid
             };
             Customer admin = (Customer)Session["loggedInUser"];
             var adminid = admin.id;
             bool result = _product.updateProduct(adminid,updated);
             p.countryList = _product.getCountries().Select(c => new SelectListItem { Value = c.id.ToString(), Text = c.name }).ToList();
             p.subCategoryList = _product.getAllSubCategories().Select(s => new SelectListItem { Value = s.ID.ToString(), Text = s.name }).ToList();
+            p.producerList = _product.getProducers().Select(r => new SelectListItem { Value = r.id.ToString(), Text = r.name }).ToList();
+
             if (result)
                 ViewBag.result = true;
             return View(p);

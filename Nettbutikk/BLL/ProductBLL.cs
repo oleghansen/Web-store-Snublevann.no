@@ -79,5 +79,10 @@ namespace Nettbutikk.BLL
             List<Country> allCountries = _product.getCountries();
             return allCountries;
         }
+
+        public List<Producer> getProducers()
+        {
+            return _product.getProducers();
+        }
     }
 }
