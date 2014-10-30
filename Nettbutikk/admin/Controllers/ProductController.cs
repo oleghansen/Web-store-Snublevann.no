@@ -235,9 +235,8 @@ namespace Nettbutikk.admin.Controllers
             p.subCategoryList = test;
             p.producerList = _product.getProducers().Select(r => new SelectListItem { Value = r.id.ToString(), Text = r.name }).ToList();
 
-            if (result)
-                ViewBag.result = true;
-            return View(p);
+
+            return Json(result);
 
         }
 

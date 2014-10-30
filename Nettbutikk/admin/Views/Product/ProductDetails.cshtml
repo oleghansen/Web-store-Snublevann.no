@@ -4,12 +4,13 @@
 @{
     ViewBag.Title = "ProductDetails";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    if (ViewBag.result!=null && ViewBag.result) { 
-        ViewBag.Title = "detta gikk bra";
-    }
 }
+
+
+<script src="~/Scripts/updateProduct.js"></script>
+
 <link href="~/Content/Custom/MainSheet.css" rel="stylesheet" />
-@using (Html.BeginForm("UpdateProduct"))
+@using (Html.BeginForm("ProductDetails"))
 {
     @Html.AntiForgeryToken()
 
@@ -73,7 +74,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <small>@Html.LabelFor(model => model.longDescription)</small>
-                                        @Html.TextAreaFor(model => model.longDescription, new { @class = "form-control", placeholder = "Lang beskrivelse", rows = 5, style="resize:none; font-size: 9pt"})
+                                        @Html.TextAreaFor(model => model.longDescription, new { @class = "form-control", placeholder = "Lang beskrivelse", rows = 5, style = "resize:none; font-size: 9pt" })
                                         @Html.ValidationMessageFor(model => model.longDescription, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
@@ -97,7 +98,7 @@
                             <div class="row">
                                 <div class="form-group">
                                     <div class="col-md-12">
-                                        <input type="submit" value="Oppdater produkt" class="btn btn-success" style="margin-top: 10px" />
+                                        <input type="submit" value="Oppdater produkt" class="btn btn-success" style="margin-top: 10px" id="update" />
                                     </div>
                                 </div>
                             </div>
@@ -110,3 +111,5 @@
     
     
 }
+
+@Html.Partial("~/Views/Shared/_Modal.cshtml")
