@@ -82,6 +82,24 @@ namespace Nettbutikk.admin.Controllers
         }
 
 
+        
+        [HttpPost]
+        public ActionResult newCategory(Category category)
+        {
+            if (!isAdmin())
+                return RedirectToAction("Login", "Main");
+            if (ModelState.IsValid)
+            {
+                Customer c = (Customer)Session["loggedInUser"];
+                bool OK = _categoryBLL.Add(category, c.id);
+                if (OK)
+                {
+                    return RedirectToAction("ListCategories");
+                }
+            }
+            return View();
+        }
+
         public ActionResult ListSubCategories(int? page, int? itemsPerPage, string sortOrder, string currentFilter, string searchString)
         {
             if (!isAdmin())
@@ -130,23 +148,6 @@ namespace Nettbutikk.admin.Controllers
             }
 
             return View(list.ToPagedList(pageNumber: page ?? 1, pageSize: itemsPerPage ?? 15));
-        }
-
-        [HttpPost]
-        public ActionResult newCategory(Category category)
-        {
-            if (!isAdmin())
-                return RedirectToAction("Login", "Main");
-            if (ModelState.IsValid)
-            {
-                Customer c = (Customer)Session["loggedInUser"];
-                bool OK = _categoryBLL.Add(category, c.id);
-                if (OK)
-                {
-                    return RedirectToAction("ListCategories");
-                }
-            }
-            return View();
         }
 
         private bool isAdmin()
