@@ -22,7 +22,7 @@ namespace Nettbutikk.admin.Models
         public Customer customer { get; set; }
         public Order order { get; set; }
         public Product product { get; set; }
-        [DisplayName("Prudktnavn")]
+        [DisplayName("Navn")]
         public String productname { get; set; }
         [DisplayName("Varenummer")]
         public String productid { get; set; }
