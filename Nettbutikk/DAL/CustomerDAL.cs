@@ -44,8 +44,8 @@ namespace Nettbutikk.DAL
                 lastname = p.Lastname,
                 address = p.Address,
                 email = p.Email,
-                postalcode = normalizePostalcode(p.PostalareasId),
-                postalarea = db.Postalareas.Find(p.PostalareasId).Postalarea,
+                postalcode = p.PostalareasId.ToString(),
+                postalarea = p.Postalareas.Postalarea,
                 phonenumber = p.Phonenumber
 
             }).Where(p => p.firstname.ToUpper().Contains(searchString.ToUpper())
