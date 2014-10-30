@@ -49,12 +49,8 @@ namespace Nettbutikk.DAL
             return custList;
         }
 
-        public bool add(Customer inCustomer, byte[] hashedPassword, int adminid)
-        {
-            return true;
-        }
 
-        public Customer findCustomer(String email)
+       public Customer findCustomer(String email)
         {
             var cust = new Customer()
             {

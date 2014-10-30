@@ -84,45 +84,6 @@ namespace Nettbutikk.DAL
             return postalarea.Postalarea;
         }
 
-
-        public bool add(Customer inCustomer, byte[] hashedPassword, int adminid)
-        {
-            var newCustomer = new Customers()
-            {
-                Firstname = inCustomer.firstname,
-                Lastname = inCustomer.lastname,
-                Address = inCustomer.address,
-                PostalareasId = Convert.ToInt16(inCustomer.postalcode),
-                Password = hashedPassword,
-                Phonenumber = inCustomer.phonenumber,
-                Email = inCustomer.email,
-                Admin = false
-            };
-
-            var db = new DatabaseContext();
-            try
-            {
-                var existPostalcode = db.Postalareas.Find(Convert.ToInt16(inCustomer.postalcode));
-
-                if (existPostalcode == null)
-                {
-                    var newPostalarea = new Postalareas()
-                    {
-                        PostalareasId = Convert.ToInt16(inCustomer.postalcode),
-                        Postalarea = inCustomer.postalarea
-                    };
-                    newCustomer.Postalareas = newPostalarea;
-                }
-                db.Customers.Add(newCustomer);
-                db.SaveChanges(adminid);
-                return true;
-            }
-            catch (Exception fail)
-            {
-                return false;
-            }
-        }
-
         public Customer findUser(String email)
         {
             var db = new DatabaseContext();

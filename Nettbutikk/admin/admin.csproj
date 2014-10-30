@@ -141,7 +141,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AddCustomer.cs" />
     <Compile Include="Models\BillingViewModel.cs" />
     <Compile Include="Models\CategoryInfo.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
@@ -181,7 +180,6 @@
     <Content Include="Views\Order\showReceipt.cshtml" />
     <Content Include="Views\Category\ListCategories.cshtml" />
     <Content Include="Views\Category\newCategory.cshtml" />
-    <Content Include="Views\Customer\AddCustomer.cshtml" />
     <Content Include="Views\Category\ListSubCategories.cshtml" />
     <Content Include="Views\Category\newSubCategory.cshtml" />
     <None Include="Web.Debug.config">

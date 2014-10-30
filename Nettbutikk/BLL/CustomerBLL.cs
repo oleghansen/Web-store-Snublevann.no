@@ -21,13 +21,6 @@ namespace Nettbutikk.BLL
             _customer = stub;
         }
 
-        public bool addCustomer(Customer c, int adminid)
-        {
-            byte[] hashedpassword = makeHash(c.password);
-            return _customer.add(c, hashedpassword, adminid);
-
-        }
-
         public Customer getCustomer(int id)
         {
             return _customer.getCustomer(id);

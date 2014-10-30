@@ -246,19 +246,6 @@ namespace Nettbutikk.admin.Controllers
 
         }
 
-        public ActionResult AddCustomer()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult AddCustomer(Customer c)
-        {
-            Customer a =(Customer) Session["loggedInUser"];
-            _customerbll.addCustomer(c, a.id);
-            return RedirectToAction("ListCustomers");
-        }
-
         public ActionResult delete(int id)
         {
             Customer a = (Customer)Session["loggedInUser"];
