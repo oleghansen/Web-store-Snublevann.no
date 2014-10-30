@@ -25,20 +25,23 @@
                                     </div>
                                 <div class="col-md-12">
                                     <a href="@Url.Action("ListCustomerOrders", new { id = Model.id})" title="Endre" class="btn btn-primary" id="primaryButton">
-                                        <span class="glyphicon glyphicon-align-justify"></span>  Se ordre
+                                        Se ordre  <span class="glyphicon glyphicon-align-justify"></span>  
                                     </a>
                                     @if (Model.admin == false)
                                     {
                                         <a href="@Url.Action("makeAdmin", new { id = Model.id})" title="Gjør til admin" class="btn btn-primary" id="primaryButton">
-                                            <span class="glyphicon glyphicon-user"></span><span class="glyphicon glyphicon-arrow-up"></span>  Gjør til admin
+                                            Gjør til admin  <span class="glyphicon glyphicon-user"></span><span class="glyphicon glyphicon-arrow-up"></span> 
                                         </a>
                                     }
                                     else
                                     {
                                         <a href="@Url.Action("revokeAdmin", new { id = Model.id})" title="Fjern som admin" class="btn btn-primary" id="primaryButton">
-                                            <span class="glyphicon glyphicon-user"></span><span class="glyphicon glyphicon-arrow-down"></span>  Fjern som admin
+                                            Fjern som admin  <span class="glyphicon glyphicon-user"></span><span class="glyphicon glyphicon-arrow-down"></span> 
                                         </a>
                                     }
+                                    <a href="@Url.Action("delete", new { id = Model.id})" title="Slett" class="btn btn-danger" id="dangerButton">
+                                        Slett bruker  <span class="glyphicon glyphicon-trash"></span>  
+                                    </a>
 
                                 </div>
 
