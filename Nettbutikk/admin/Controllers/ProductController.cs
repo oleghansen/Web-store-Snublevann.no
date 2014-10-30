@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PagedList;
+using System.Web.Mvc.Html;
 
 namespace Nettbutikk.admin.Controllers
 {
@@ -128,14 +129,36 @@ namespace Nettbutikk.admin.Controllers
                 return RedirectToAction("LogIn", "Main");
             }
             Product productDetails = _product.seeDetails(id);
-
-            var test = _product.getAllSubCategories().Select(t => new GroupedSelectListItem
+            
+            // HACK: men funker... 
+            List<GroupedSelectListItem> test2 = new List<GroupedSelectListItem>();
+            var test1 = _product.getAllSubCategories();
+            foreach (var item in test1)
             {
-                GroupKey = t.catId.ToString(),
-                GroupName = t.catName,
-                Text = t.name,
-                Value = t.ID.ToString()
-            });
+                if(item.ID == productDetails.subCategoryid)
+                {
+                    test2.Add(new GroupedSelectListItem()
+                    {
+                        GroupKey = item.catId.ToString(),
+                        GroupName = item.catName,
+                        Text = item.name,
+                        Value = item.ID.ToString(),
+                        Selected = true
+                    });
+                }
+                else
+                {
+                    test2.Add(new GroupedSelectListItem()
+                    {
+                        GroupKey = item.catId.ToString(),
+                        GroupName = item.catName,
+                        Text = item.name,
+                        Value = item.ID.ToString()
+                    });
+                }
+            }
+
+            IEnumerable<GroupedSelectListItem> test = test2; 
             ProductDetail prodinfo = new ProductDetail()
             {
                 itemnumber = productDetails.itemnumber,
@@ -147,7 +170,6 @@ namespace Nettbutikk.admin.Controllers
                 countryid = productDetails.countryid,
                 producerid = productDetails.producerid,
                 pricePerLitre = productDetails.pricePerLitre,
-                //subCategoryList = _product.getAllSubCategories().Select(s => new SelectListItem { Value = s.ID.ToString(), Text = s.name}).ToList(),
                 subCategoryList = test,
                 countryList = _product.getCountries().Select(c => new SelectListItem { Value = c.id.ToString(), Text = c.name}).ToList(),
                 producerList = _product.getProducers().Select(p => new SelectListItem { Value = p.id.ToString(), Text = p.name}).ToList()
@@ -180,8 +202,37 @@ namespace Nettbutikk.admin.Controllers
             Customer admin = (Customer)Session["loggedInUser"];
             var adminid = admin.id;
             bool result = _product.updateProduct(adminid,updated);
+            // HACK: men funker... 
+            List<GroupedSelectListItem> test2 = new List<GroupedSelectListItem>();
+            var test1 = _product.getAllSubCategories();
+            foreach (var item in test1)
+            {
+                if (item.ID == p.subCategoryid)
+                {
+                    test2.Add(new GroupedSelectListItem()
+                    {
+                        GroupKey = item.catId.ToString(),
+                        GroupName = item.catName,
+                        Text = item.name,
+                        Value = item.ID.ToString(),
+                        Selected = true
+                    });
+                }
+                else
+                {
+                    test2.Add(new GroupedSelectListItem()
+                    {
+                        GroupKey = item.catId.ToString(),
+                        GroupName = item.catName,
+                        Text = item.name,
+                        Value = item.ID.ToString()
+                    });
+                }
+            }
+
+            IEnumerable<GroupedSelectListItem> test = test2; 
             p.countryList = _product.getCountries().Select(c => new SelectListItem { Value = c.id.ToString(), Text = c.name }).ToList();
-            p.subCategoryList = _product.getAllSubCategories().Select(s => new GroupedSelectListItem { GroupKey = s.catId.ToString(), GroupName = s.catName, Value = s.ID.ToString(), Text = s.name }).ToList();
+            p.subCategoryList = test;
             p.producerList = _product.getProducers().Select(r => new SelectListItem { Value = r.id.ToString(), Text = r.name }).ToList();
 
             if (result)
@@ -235,7 +286,7 @@ namespace Nettbutikk.admin.Controllers
                 return RedirectToAction("ListProducts");
             
             p.countryList = _product.getCountries().Select(c => new SelectListItem { Value = c.id.ToString(), Text = c.name }).ToList();
-            p.subCategoryList = _product.getAllSubCategories().Select(s => new GroupedSelectListItem { GroupKey = s.catId.ToString(), GroupName = s.catName, Value = s.ID.ToString(), Text = s.name }).ToList();
+            p.subCategoryList = _product.getAllSubCategories().Select(s => new GroupedSelectListItem { GroupKey = s.catId.ToString(), GroupName = s.catName, Value = s.ID.ToString(), Text = s.name,Selected=true }).ToList();
             p.producerList = _product.getProducers().Select(r => new SelectListItem { Value = r.id.ToString(), Text = r.name }).ToList();
 
             return View(p); 
