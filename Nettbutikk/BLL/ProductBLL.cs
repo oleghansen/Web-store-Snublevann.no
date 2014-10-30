@@ -58,9 +58,9 @@ namespace Nettbutikk.BLL
             return searchList; 
         }
 
-        public bool updateProduct(int id, Product p)
+        public bool updateProduct(int id,Product p)
         {
-            return _product.updateProduct(id, p);
+            return _product.updateProduct(id,p);
         }
 
         public bool addProduct(int id)
@@ -78,6 +78,11 @@ namespace Nettbutikk.BLL
         {
             List<Country> allCountries = _product.getCountries();
             return allCountries;
+        }
+
+        public List<Producer> getProducers()
+        {
+            return _product.getProducers();
         }
     }
 }

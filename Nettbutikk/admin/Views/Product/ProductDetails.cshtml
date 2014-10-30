@@ -4,9 +4,12 @@
 @{
     ViewBag.Title = "ProductDetails";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    if (ViewBag.result!=null && ViewBag.result) { 
+        ViewBag.Title = "detta gikk bra";
+    }
 }
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("UpdateProduct"))
 {
     @Html.AntiForgeryToken()
     <hr />
@@ -23,15 +26,16 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <h3>Varenummer: "@Html.DisplayFor(model => model.itemnumber)"</h3>
+                                    @Html.HiddenFor(model => model.itemnumber)
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <h4>Produktnavn:</h4>
+                                    <h4>@Html.LabelFor(model => model.name):</h4>
                                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                    @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Produkt", tabindex = "1", autofocus = "" } })
+                                    @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Produkt" } })
                                     @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -39,31 +43,30 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <h4>Pris:</h4>
-                                    @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Beskrivelse", tabindex = "1", autofocus = "" } })
+                                    <h4>@Html.LabelFor(model => model.price):</h4>
+                                    @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Beskrivelse" } })
                                     @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <h4>Volum:</h4>
-                                    @Html.EditorFor(model => model.volum, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Beskrivelse", tabindex = "1", autofocus = "" } })
+                                    <h4>@Html.LabelFor(model => model.volum):</h4>
+                                    @Html.EditorFor(model => model.volum, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Beskrivelse" } })
                                     @Html.ValidationMessageFor(model => model.volum, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="row">
-                                    <h4>Produsent:</h4>
-                                    @Html.EditorFor(model => model.producer, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Produsent", tabindex = "3" } })
-                                    @Html.ValidationMessageFor(model => model.producer, "", new { @class = "text-danger" })
+                                    <h4>@Html.LabelFor(model => model.producerid):</h4>
+                                    @Html.DropDownListFor(x => x.producerid, Model.producerList, new { @id = "producer", @class="form-control input-lg" })
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <h4>Beskrivelse:</h4>
-                                    @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Beskrivelse", tabindex = "1", autofocus = "" } })
+                                    <h4>@Html.LabelFor(model => model.description):</h4>
+                                    @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Beskrivelse"} })
                                     @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -71,8 +74,8 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <h4>Lang beskrivelse:</h4>
-                                    @Html.TextAreaFor(model => model.longDescription, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Beskrivelse", tabindex = "1", autofocus = "" } })
+                                    <h4>@Html.LabelFor(model => model.longDescription):</h4>
+                                    @Html.TextAreaFor(model => model.longDescription,  new { @class = "form-control", placeholder = "Lang beskrivelse",rows=5 })
                                     @Html.ValidationMessageFor(model => model.longDescription, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -80,15 +83,23 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <h4>Land</h4>
-                                    @Html.DropDownListFor(x => x.countryid, Model.countryList, new { @id = "country" })
+                                    <h4>@Html.LabelFor(model => model.subCategoryid):</h4>
+                                    @Html.DropDownListFor(x => x.subCategoryid, Model.subCategoryList, new { @id = "subCategory",@class="form-control input-lg"})
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <h4>@Html.LabelFor(x => x.countryid)</h4>
+                                    @Html.DropDownListFor(x => x.countryid, Model.countryList, new { @id = "country",@class="form-control input-lg" })
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group">
-                                <div class="col-md-offset-1 col-md-10">
-                                    <input type="submit" value="Oppdater produkt" class="btn btn-success" tabindex="7" />
+                                <div class="col-md-12">
+                                    <input type="submit" value="Oppdater produkt" class="btn btn-success"  />
                                 </div>
                             </div>
                         </div>

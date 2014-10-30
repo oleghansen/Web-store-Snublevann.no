@@ -11,20 +11,30 @@ namespace Nettbutikk.admin.Models
 {
     public class ProductDetail
     {
+        [Display(Name="Varenummer")]
         public int itemnumber { get; set; }
+        [Display(Name="Produktnavn")]
         public String name { get; set; }
+        [Display(Name="Beskrivelse")]
         public String description { get; set; }
+        [Display(Name="Lang beskrivelse")]
         public String longDescription { get; set; }
+        [Display(Name="Pris")]
         public int price { get; set; }
+        [Display(Name="Volum")]
         public double volum { get; set; }
+        [Display(Name="Pris per liter")]
         public double pricePerLitre { get; set; }
-        public String producer { get; set; }
-
+        [Display(Name="Produsent")]
+        public int producerid { get; set; }
+        [Display(Name="Subkategori")]
         public int subCategoryid { get; set; }
+        [Display(Name="Land")]
         public int countryid { get; set; }
         public IEnumerable<SelectListItem> countryList { get; set; }
-        public int categoryid { get; set; }
-        public SelectList subCategory { get; set; }
+        public IEnumerable<SelectListItem> subCategoryList { get; set; }
+        public IEnumerable<SelectListItem> producerList { get; set; }
+
 
     }
 }

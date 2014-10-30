@@ -95,6 +95,7 @@ namespace Nettbutikk.DAL
                 longDescription = products.LongDescription,
                 price = products.Price,
                 volum = products.Volum,
+                producerid = products.ProducersId,
                 producer = products.Producers.Name,
                 category = products.SubCategories.Categories.Name,
                 categoryid = products.SubCategories.Categories.Id,
@@ -116,9 +117,30 @@ namespace Nettbutikk.DAL
 
         // TODO: Denne skal testes på web når siden er oppe!
 
-        public bool updateProduct(int id, Product update)
+        public bool updateProduct(int id,Product update)
         {
-            return false;
+            var db = new DatabaseContext();
+            Products existing = db.Products.FirstOrDefault(u => u.Id == update.itemnumber);
+            try
+            {
+                existing.Name = update.name;
+                existing.Price = update.price;
+                existing.Volum = update.volum;
+                existing.SubCategoriesId = update.subCategoryid;
+                existing.ProducersId = update.producerid; 
+                existing.CountriesId = update.countryid;
+                existing.Description = update.description;
+                existing.LongDescription = update.longDescription;
+                existing.ProducersId = update.producerid;
+                db.SaveChanges(id);
+            }
+            catch(Exception e)
+            {
+                //TODO: skriv noe til fil
+                return false;
+            }
+            return true; 
+
         }
 
         public bool addProduct(int id)
@@ -149,6 +171,18 @@ namespace Nettbutikk.DAL
                 name = item.Name
             }).ToList();
             
+            return list; 
+        }
+
+        public List<Producer> getProducers()
+        {
+            var db = new DatabaseContext();
+            List<Producer> list = db.Producers.Select(p => new Producer()
+            {
+                id = p.Id,
+                name = p.Name
+            }).ToList();
+
             return list; 
         }
     }

@@ -151,6 +151,7 @@
     <Compile Include="Models\OrderViewModel.cs" />
     <Compile Include="Models\ProductDetail.cs" />
     <Compile Include="Models\ProductMenu.cs" />
+    <Compile Include="Models\SubCategoryInfo.cs" />
     <Compile Include="Models\SubCategoryViewModel.cs" />
     <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Models\ProductInfo.cs" />
@@ -181,6 +182,8 @@
     <Content Include="Views\Category\ListCategories.cshtml" />
     <Content Include="Views\Category\newCategory.cshtml" />
     <Content Include="Views\Customer\AddCustomer.cshtml" />
+    <Content Include="Views\Category\ListSubCategories.cshtml" />
+    <Content Include="Views\Category\newSubCategory.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
