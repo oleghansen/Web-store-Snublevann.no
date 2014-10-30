@@ -10,7 +10,7 @@
 <div class="jumbotron" style="padding-top:2px">
     <div class="container">
         <h3>
-            <span class="glyphicon glyphicon-user"></span> Kundeoversikt
+            <span class="glyphicon glyphicon-user"></span> Brukeroversikt
         </h3>
 
         <div id="menu_container">
@@ -102,7 +102,7 @@
                                         <span class="glyphicon glyphicon-pencil"></span>
                                     </a>
                                         <!-- <button class="btn btn-xs btn-default" style="margin-top:0px" type="submit"><i class="glyphicon glyphicon-align-justify"></i>@Html.ActionLink("Se ordre", "ListCustomerOrders", new { id = item.id }) </button>-->
-                                    <a href="@Url.Action("delete",  new { id = item.id })" title=" endre" class="btn btn-xs btn-danger" >
+                                    <a href="@Url.Action("delete",  new { id = item.id })" title=" endre" class="btn btn-xs btn-danger" id="dangerButton">
                                         <i class="glyphicon glyphicon-trash"></i></a>
                                         <!--  @if (item.admin == false)
         {

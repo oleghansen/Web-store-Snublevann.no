@@ -1,0 +1,100 @@
+﻿@model PagedList.IPagedList<Nettbutikk.admin.Models.SubCategoryInfo>
+
+@{
+    ViewBag.Title = "ListSubCategories";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <div class="jumbotron" style="padding-top:2px">
+        <div class="container">
+            <h3>
+                <span class="glyphicon glyphicon-glass"></span> Underkategorier
+            </h3>
+
+            <div id="menu_container">
+                <div class="row" style="margin-bottom: 5px;">
+                    <div class="col-sm-8 col-md-8">
+                        <div class="form-group">
+                            @using (Html.BeginForm("ListSubCategories", "Category", FormMethod.Get, new { @class = "form-group", @role = "form" }))
+                            {
+
+                                <div class="input-group pull-left">
+                                    @Html.TextBox("searchString", ViewBag.CurrentFilter as string, new { id = "txtSearch", @class = "form-control", placeholder = "Søk" })
+                                </div>
+                                <div class="input-group-btn pull-left">
+                                    <button class="btn btn-primary" type="submit">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </button>
+                                </div>
+
+
+
+                            }
+                        </div>
+                    </div>
+                    <div class="col-sm-2 col-md-2" style="margin-top: 9px">
+
+                    </div>
+                    <div class="col-sm-2 col-md-2" style="margin-top: 15px; padding-left: 30px">
+
+                        <a href="@Url.Action("newSubCategory")" class="btn btn-primary" id="primaryButton">
+                            <span class="glyphicon glyphicon-plus"></span> Ny underkategori
+                        </a>
+
+
+                    </div>
+                </div>
+
+                <div>
+                    <div id="partView" class="panel panel-default partialView">
+                        <table>
+                            <tr>
+                                <td>
+                                    <b><a href="@Url.Action("ListSubCategories", new { sortOrder = ViewBag.ItemSortParm, currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].ID)</a></b>
+                                </td>
+                                <td>
+                                    <b><a href="@Url.Action("ListSubCategories", new { sortOrder = ViewBag.NameSortParm , currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].name)</a></b>
+                                </td>
+                                <td>
+                                    <b><a href="@Url.Action("ListSubCategories", new { sortOrder = ViewBag.ItemSortParm, currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].categoriesName)</a></b>
+                                </td>
+                            </tr>
+                            @foreach (var item in Model)
+                            {
+                                <tr class="rows">
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ID)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.categoriesName)
+                                    </td>
+                                    <td class="pull-right">
+                                        <a href="@Url.Action("ProductDetails", new { id = item.ID })" title="Endre" class="btn btn-xs btn-default" id="defaultButton">
+                                            <span class="glyphicon glyphicon-pencil"></span>
+                                        </a>
+                                        <a href="@Url.Action("ProductDetails", new { id = item.ID})" title="Slett" class="btn btn-xs btn-danger" id="dangerButton">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </a>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+
+            <div style="margin-left:10px">
+                <div class="row">
+                    <div class=" col-sm-12 col-md-12">
+                        @Html.PagedListPager(Model, page => Url.Action("ListSubCategories", new { page, itemsPerPage = ViewBag.CurrentItemsPerPage, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

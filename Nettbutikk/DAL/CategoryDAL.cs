@@ -12,18 +12,13 @@ namespace Nettbutikk.DAL
         public List<Category> getAll(int? id)
         {
             var db = new DatabaseContext();
-            List<Categories> products;
-                products = db.Categories.ToList();
-            var list = new List<Category>();
-            foreach (var item in products)
+            List<Category> products = db.Categories.Select(item => new Category() 
             {
-                list.Add(new Category()
-                {
-                    ID = item.Id,
-                    name = item.Name
-                });
-            }
-            return list;
+                ID = item.Id,
+                name = item.Name
+            }).ToList();
+
+            return products;
         }
 
 
@@ -50,11 +45,14 @@ namespace Nettbutikk.DAL
 
         public List<SubCategory> getAllSub(int? id)
         {
-            return null;
-            /*
             var db = new DatabaseContext();
             List<SubCategories> subcat;
-            //subcat = db.SubCategories.Include(p => p.SubCategories.Categories).Where(P => products.SubCategories.CategoriesId == id).OrderBy(id).ToList();
+            if (id != null)
+            {
+                subcat = db.SubCategories.Include("Categories").Where(p => p.Id == id).ToList();
+            }
+            else
+                subcat = db.SubCategories.Include("Categories").ToList();
             var list = new List<SubCategory>();
             foreach (var item in subcat)
             {
@@ -66,7 +64,6 @@ namespace Nettbutikk.DAL
                 });
             }
             return list;
-             */
         }
 
         public List<SubCategory> getResultSub(int? id, string sc)
@@ -109,6 +106,27 @@ namespace Nettbutikk.DAL
                 return false;
             }
             
+        }
+
+        public bool AddSub(SubCategory sc, int adminId)
+        {
+            var newSubCategory = new SubCategories()
+            {
+                Name = sc.name,
+            };
+
+            try
+            {
+                var db = new DatabaseContext();
+                db.SubCategories.Add(newSubCategory);
+                db.SaveChanges(adminId);
+                return true;
+            }
+            catch (Exception failed)
+            {
+                return false;
+            }
+
         }
     }
 }

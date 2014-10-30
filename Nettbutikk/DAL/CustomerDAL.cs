@@ -12,52 +12,49 @@ namespace Nettbutikk.DAL
         public List<Customer> getAll()
         {
             var db = new DatabaseContext();
-            var customers = db.Customers.ToList();
-            var list = new List<Customer>();
-            foreach(var item in customers){
-                list.Add(new Customer()
-                {
-                    id = item.Id,
-                    firstname = item.Firstname,
-                    lastname = item.Lastname,
-                    address = item.Address,
-                    email = item.Email,
-                    postalcode = item.PostalareasId.ToString(), 
-                    postalarea = db.Postalareas.Find(item.PostalareasId).Postalarea,
-                    phonenumber = item.Phonenumber,
-                    admin = item.Admin
+            List<Customer> customers = db.Customers.Select(item => new Customer()
+            {
+                id = item.Id,
+                firstname = item.Firstname,
+                lastname = item.Lastname,
+                address = item.Address,
+                email = item.Email,
+                postalcode = item.PostalareasId.ToString(),
+                postalarea = item.Postalareas.Postalarea,
+                phonenumber = item.Phonenumber,
+                admin = item.Admin
+            }).ToList();
 
-                    
-                    
-                });
+            foreach (var i in customers)
+            {
+                i.postalcode = normalizePostalcode(int.Parse(i.postalcode)); 
             }
-            return list; 
-             
+
+            return customers;
         }
 
         public List<Customer> getResult(string searchString)
         {
             var db = new DatabaseContext();
-            var foundUsers = new List<Customer>();
-            var users = db.Customers.Where(p => p.Firstname.ToUpper().Contains(searchString.ToUpper())
-                            || p.Lastname.ToUpper().Contains(searchString.ToUpper())).ToList();
-            foreach (var p in users)
+            
+            List<Customer> users = db.Customers.Select(p => new Customer() 
             {
-                var user = new Customer()
-                {
-                    id = p.Id,
-                    firstname = p.Firstname,
-                    lastname = p.Lastname,
-                    address = p.Address,
-                    email = p.Email,
-                    postalcode = p.PostalareasId.ToString(),
-                    postalarea = db.Postalareas.Find(p.PostalareasId).Postalarea,
-                    phonenumber = p.Phonenumber
-                    
-                };
-                foundUsers.Add(user);
+                id = p.Id,
+                firstname = p.Firstname,
+                lastname = p.Lastname,
+                address = p.Address,
+                email = p.Email,
+                postalcode = normalizePostalcode(p.PostalareasId),
+                postalarea = db.Postalareas.Find(p.PostalareasId).Postalarea,
+                phonenumber = p.Phonenumber
+
+            }).Where(p => p.firstname.ToUpper().Contains(searchString.ToUpper())
+                            || p.lastname.ToUpper().Contains(searchString.ToUpper())).ToList();
+            foreach (var u in users)
+            {
+                u.postalcode = normalizePostalcode(int.Parse(u.postalcode));
             }
-            return foundUsers;
+            return users;
         }
 
         public Customer getCustomer(int id)
@@ -75,18 +72,8 @@ namespace Nettbutikk.DAL
             customer.hashpassword = cust.Password;
             customer.admin = cust.Admin; 
             customer.postalarea = getPostalarea(cust.PostalareasId);
+            customer.postalcode = normalizePostalcode(cust.PostalareasId);
 
-            if (cust.PostalareasId < 1000)
-            {
-                customer.postalcode = "0"+cust.PostalareasId.ToString();
-                if (cust.PostalareasId < 100)
-                {
-                    customer.postalcode = "00" + cust.PostalareasId.ToString();
-                    if (cust.PostalareasId < 10)
-                        customer.postalcode = "000" + cust.PostalareasId.ToString();
-                }
-
-            }
             return customer;
         }
 
@@ -136,11 +123,6 @@ namespace Nettbutikk.DAL
             }
         }
 
-        public Customer findCustomer(String email)
-        {
-            return null;
-        }
-
         public Customer findUser(String email)
         {
             var db = new DatabaseContext();
@@ -153,37 +135,6 @@ namespace Nettbutikk.DAL
             return c;
 
         }
-
-        public Customer findCustomer(int id)
-        {
-            var db = new DatabaseContext();
-            Customers userFound = (Customers)db.Customers.FirstOrDefault(u => u.Id == id);
-            Customer c = new Customer();
-            c.id = userFound.Id;
-            c.firstname = userFound.Firstname;
-            c.lastname = userFound.Lastname;
-            c.email = userFound.Email;
-            c.admin = userFound.Admin;
-            c.address = userFound.Address;
-            c.phonenumber = userFound.Phonenumber;
-            c.postalarea = getPostalarea(userFound.PostalareasId);
-
-            if (userFound.PostalareasId < 1000)
-            {
-                c.postalcode = "0" + userFound.PostalareasId.ToString();
-                if (userFound.PostalareasId < 100)
-                {
-                    c.postalcode = "00" + userFound.PostalareasId.ToString();
-                    if (userFound.PostalareasId < 10)
-                        c.postalcode = "000" + userFound.PostalareasId.ToString();
-                }
-
-            }
-
-
-            return c;
-        }
-
         public bool validate(String email, byte[] hashedPassword)
         {
             var db = new DatabaseContext();
@@ -199,7 +150,7 @@ namespace Nettbutikk.DAL
                     }
                 }
             }
-            return false;   
+            return false;
         }
 
         public bool makeAdmin(int id, int adminid)
@@ -247,7 +198,7 @@ namespace Nettbutikk.DAL
             try
             {
                 Customers cust = db.Customers.FirstOrDefault(u => u.Id == id);
-                db.Customers.Remove(cust); 
+                db.Customers.Remove(cust);
                 db.SaveChanges(adminid);
                 return true;
             }
@@ -257,25 +208,32 @@ namespace Nettbutikk.DAL
                 return false;
 
             }
- 
+
         }
 
         public bool update(int id, Customer updateUser)
         {
-                return false;
-        }
-
-        public bool updatePw(int id, byte[] newPassword)
-        {
             return false;
-
         }
 
-        public bool checkEmail(string email, int? id)
+        public String normalizePostalcode(int postalcode)
         {
-     
-         return false;
+            String normPostalcode = postalcode.ToString();
+            if (postalcode < 1000)
+            {
+                normPostalcode = "0" + postalcode.ToString();
+                if (postalcode < 100)
+                {
+                    normPostalcode = "00" + postalcode.ToString();
+                    if (postalcode < 10)
+                        normPostalcode = "000" + postalcode.ToString();
+                }
+
+            }
+            return normPostalcode;
         }
+        
+
     }
 }
 

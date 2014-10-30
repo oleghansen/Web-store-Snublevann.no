@@ -13,33 +13,24 @@ namespace Nettbutikk.DAL
         public List<Category> getAllCategories()
         {
             var db = new DatabaseContext();
-            var categories = db.Categories.ToList();
-            var list = new List<Category>();
-            foreach (var item in categories)
-            {
-                list.Add(new Category()
-                {
+            List<Category> categories = db.Categories.Select(item => new Category(){
                     ID = item.Id,
                     name = item.Name
-                });
+            }).ToList();
+
+            return categories; 
             }
-            return list; 
-        }
 
         public List<SubCategory> getAllSubCategories()
         {
             var db = new DatabaseContext();
-            var subCategories = db.SubCategories.Include("Categories").ToList();
-            var list = new List<SubCategory>();
-            foreach (var item in subCategories)
+            List<SubCategory> subCategories = db.SubCategories.Select(item => new SubCategory() 
             {
-                list.Add(new SubCategory()
-                {
                      ID = item.Id,
                      name  = item.Name,
                      catName = item.Categories.Name,
                      catId = item.CategoriesId
-                });
+                }).ToList();
             }
             return list;
         }
@@ -49,46 +40,34 @@ namespace Nettbutikk.DAL
             return new List<Product>();
         }
 
-        public List<Product> getAll(int? id)
+        public List<Product> getAll()
         {
             var db = new DatabaseContext();
-            List<Products> products; 
-            if(id != null)
-                products = db.Products.Include(p => p.SubCategories.Categories).Where(p => p.SubCategories.CategoriesId == id).ToList();
-            else
-                products = db.Products.Include(p => p.SubCategories.Categories).ToList();
-            var list = new List<Product>();
-            foreach (var item in products)
-            {
-                list.Add(new Product()
-                {
+            List<Product> products = db.Products.Select(item => new Product() {
                     itemnumber = item.Id,
                     name = item.Name,
                     description = item.Description,
                     price = item.Price,
                     volum = item.Volum,
                     producer = item.Producers.Name,
-                    country = item.Countries.Name
-                });
+                    country = item.Countries.Name,
+                     
+                }).ToList();
+
+
+            return products;
             }
-            return list;
-        }
  
         public Product get(int id)
         {
             return null;
         }
 
-        public List<Product> getResult(int? id, string searchString)
+        public List<Product> getResult(string searchString)
         {
             var db = new DatabaseContext();
-            var foundProducts = new List<Product>();
-            var products = db.Products.Include(p => p.SubCategories.Categories).Where(p => p.Name.ToUpper().Contains(searchString.ToUpper())
-                            || p.Description.ToUpper().Contains(searchString.ToUpper())).ToList();
-            foreach (var p in products)
+            List<Product> products = db.Products.Select(p => new Product() 
             {
-                var product = new Product()
-                {
                     itemnumber = p.Id,
                     name = p.Name,
                     description = p.Description,
@@ -100,10 +79,9 @@ namespace Nettbutikk.DAL
                     subCategory = p.SubCategories.Name,
                     subCategoryid = p.SubCategories.Id,
                     country = p.Countries.Name
-                };
-                foundProducts.Add(product);
-            }
-            return foundProducts;
+            }).Where(p => p.name.ToUpper().Contains(searchString.ToUpper())
+                            || p.description.ToUpper().Contains(searchString.ToUpper())).ToList();
+            return products;
         }
 
         public Product findProduct(int id)
@@ -167,29 +145,7 @@ namespace Nettbutikk.DAL
 
         }
 
-            /*
-            var db = new DatabaseContext();
-            try
-            {
-                Products prod = db.Products.FirstOrDefault(u => u.Id == id);
-
-                prod.Name = update.name;
-                prod.Description = update.description;
-                prod.LongDescription = update.longDescription;
-                prod.Price = update.price;
-                prod.Volum = update.volum;
-
-                    
-                // TODO: Trenger mer i denne metoden
-                db.SaveChanges();
-                return true;
-            }
-            catch (Exception fail)
-            {
-                return false;
-            }
-             */
-        public bool addProduct(int id, Product p)
+        public bool addProduct(int id)
         {
             var db = new DatabaseContext();
             db.Products.Add(new Products()
@@ -225,16 +181,11 @@ namespace Nettbutikk.DAL
         public List<Country> getCountries()
         {
             var db = new DatabaseContext();
-            List<Country> list = new List<Country>();
-            var countries = db.Countries.ToList();
-            foreach(var item in countries)
-            {
-                list.Add(new Country()
+            List<Country> list = db.Countries.Select(item => new Country()
                 {
                     id = item.Id,
                     name = item.Name
-                });
-            }
+            }).ToList();
 
             return list; 
         }

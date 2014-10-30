@@ -82,6 +82,48 @@ namespace Nettbutikk.admin.Controllers
         }
 
 
+        
+        [HttpPost]
+        public ActionResult newCategory(Category category)
+        {
+            if (!isAdmin())
+                return RedirectToAction("Login", "Main");
+            if (ModelState.IsValid)
+            {
+                Customer c = (Customer)Session["loggedInUser"];
+                bool OK = _categoryBLL.Add(category, c.id);
+                if (OK)
+                {
+                    return RedirectToAction("ListCategories");
+                }
+            }
+            return View();
+        }
+
+        public ActionResult newSubCategory()
+        {
+            if (!isAdmin())
+                return RedirectToAction("Login", "Main");
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult newSubCategory(SubCategory sc)
+        {
+            if (!isAdmin())
+                return RedirectToAction("Login", "Main");
+            if (ModelState.IsValid)
+            {
+                Customer c = (Customer)Session["loggedInUser"];
+                bool OK = _categoryBLL.AddSub(sc, c.id);
+                if (OK)
+                {
+                    return RedirectToAction("ListSubCategories");
+                }
+            }
+            return View();
+        }
+
         public ActionResult ListSubCategories(int? page, int? itemsPerPage, string sortOrder, string currentFilter, string searchString)
         {
             if (!isAdmin())
@@ -89,9 +131,6 @@ namespace Nettbutikk.admin.Controllers
             ViewBag.CurrentSort = sortOrder;
             ViewBag.ItemSortParm = String.IsNullOrEmpty(sortOrder) ? "item_desc" : "";
             ViewBag.NameSortParm = sortOrder == "Name" ? "name_desc" : "Name";
-            ViewBag.PriceSortParm = sortOrder == "Price" ? "price_desc" : "Price";
-            ViewBag.ProducerSortParm = sortOrder == "Producer" ? "producer_desc" : "Producer";
-
             if (searchString != null)
                 page = 1;
             else
@@ -117,6 +156,8 @@ namespace Nettbutikk.admin.Controllers
                     break;
             }
 
+            ViewBag.CurrentItemsPerPage = itemsPerPage;
+
             List<SubCategoryInfo> list = new List<SubCategoryInfo>();
             foreach (var item in allSubCategories)
             {
@@ -130,23 +171,6 @@ namespace Nettbutikk.admin.Controllers
             }
 
             return View(list.ToPagedList(pageNumber: page ?? 1, pageSize: itemsPerPage ?? 15));
-        }
-
-        [HttpPost]
-        public ActionResult newCategory(Category category)
-        {
-            if (!isAdmin())
-                return RedirectToAction("Login", "Main");
-            if (ModelState.IsValid)
-            {
-                Customer c = (Customer)Session["loggedInUser"];
-                bool OK = _categoryBLL.Add(category, c.id);
-                if (OK)
-                {
-                    return RedirectToAction("ListCategories");
-                }
-            }
-            return View();
         }
 
         private bool isAdmin()
