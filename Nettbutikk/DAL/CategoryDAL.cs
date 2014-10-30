@@ -12,18 +12,13 @@ namespace Nettbutikk.DAL
         public List<Category> getAll(int? id)
         {
             var db = new DatabaseContext();
-            List<Categories> products;
-                products = db.Categories.ToList();
-            var list = new List<Category>();
-            foreach (var item in products)
+            List<Category> products = db.Categories.Select(item => new Category() 
             {
-                list.Add(new Category()
-                {
-                    ID = item.Id,
-                    name = item.Name
-                });
-            }
-            return list;
+                ID = item.Id,
+                name = item.Name
+            }).ToList();
+
+            return products;
         }
 
 

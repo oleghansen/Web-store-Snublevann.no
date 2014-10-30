@@ -73,29 +73,5 @@ namespace Nettbutikk.DAL
 
             return o;
         }
-
-
-        
-
-        public Order findOrder(int id)
-       { 
-            var order = new Order()
-            {
-                id = 1,
-                customerid = 1001,
-                orderdate = DateTime.Now,
-            };
-            return order;
-        }
-
-        public bool checkOrder(int? id)
-        {
-            return false;
-        }
-
-        public List<SubCategories> getAllSubCategories()
-        {
-            return null;
-        }
     }
 }

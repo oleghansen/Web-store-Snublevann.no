@@ -169,7 +169,7 @@ namespace Nettbutikk.admin.Controllers
             {
                 return RedirectToAction("LogIn", "Main");
             }
-            Customer customerDetails = _customerbll.findCustomer(id);
+            Customer customerDetails = _customerbll.getCustomer(id);
 
             CustomerDetail custinfo = new CustomerDetail()
             {

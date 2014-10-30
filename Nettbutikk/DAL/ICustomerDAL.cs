@@ -11,11 +11,9 @@ namespace Nettbutikk.DAL
         List<Customer> getResult(string sc);
 
         bool add(Customer inCustomer, byte[] hashedPassword, int admin);
-        bool checkEmail(string email, int? id);
-        Customer findCustomer(string email);
-        Customer findCustomer(int id);
+       
+  
         bool update(int id, Customer updateUser);
-        bool updatePw(int id, byte[] newPassword);
         bool validate(string email, byte[] hashedPassword);
 
         Customer findUser(String email);
@@ -25,6 +23,10 @@ namespace Nettbutikk.DAL
 
         bool revokeAdmin(int id, int adminid);
         bool delete(int id, int adminid);
+
+        String normalizePostalcode(int postalcode);
+        
+       
 
     }
 }

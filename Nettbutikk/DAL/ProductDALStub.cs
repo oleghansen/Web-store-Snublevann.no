@@ -18,7 +18,7 @@ namespace Nettbutikk.DAL
             return new List<Product>();
         }
 
-        public List<Product> getAll(int? id)
+        public List<Product> getAll()
         {
             var prod = new Product()
             {
@@ -31,7 +31,7 @@ namespace Nettbutikk.DAL
             return productlist;
         }
 
-        public List<Product> getResult(int? id, string sc)
+        public List<Product> getResult( string searchstring)
         {
             var prod = new Product()
             {

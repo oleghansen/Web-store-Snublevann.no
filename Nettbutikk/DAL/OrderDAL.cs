@@ -13,64 +13,50 @@ namespace Nettbutikk.DAL
         public List<OrderLine> getAllOrderLinesOfOrder(int id)
         {
             var db = new DatabaseContext();
-            var lines = db.OrderLines.Where(ol =>ol.OrdersId  == id).ToList();
-            List<OrderLine> list = new List<OrderLine>();
-            foreach (var item in lines)
-            {
-                list.Add(new OrderLine()
-                {
-                     id = item.Id,  
+            List<OrderLine> lines = db.OrderLines.Select(item => new OrderLine(){
+                 id = item.Id,  
                      orderid = item.OrdersId,
                      productid = item.ProductsId,   
-                     quantity = item.Quantity,              
-                });
-            }
-            return list;
+                     quantity = item.Quantity,
+            }).Where(item =>item.orderid == id).ToList();
+           
+            return lines;
         }
 
 
         public List<Order> getAllOrders(int? id)
         {
             var db = new DatabaseContext();
-            List<Orders> lines;
-            if(id != null)
-                 lines = db.Orders.Where(o => o.Id  == id).ToList();
-            else
-             lines = db.Orders.ToList();
-
-            List<Order> list = new List<Order>();
-            foreach (var item in lines)
-            {             
-                    
-                list.Add(new Order()
+            List<Order> lines;
+            if (id != null)
+                lines = db.Orders.Select(item => new Order()
                 {
                     id = item.Id,
                     orderdate = item.OrderDate,
                     customerid = item.CustomersId
-                   
-                 });
-            }
-            return list;
+                }).Where(item => item.id == id).ToList();
+            else
+                lines = db.Orders.Select(item => new Order()
+                {
+                    id = item.Id,
+                    orderdate = item.OrderDate,
+                    customerid = item.CustomersId
+                }).ToList();
+
+            return lines;
         }
 
         public List<Order> getAllOrdersbyCust(int id)
         {
             var db = new DatabaseContext();
-            List<Orders>  lines = db.Orders.Where(o => o.CustomersId == id).ToList();
-       
-            List<Order> list = new List<Order>();
-            foreach (var item in lines)
+            List<Order> lines = db.Orders.Select(item => new Order() 
             {
-
-                list.Add(new Order()
-                {
-                    id = item.Id,
-                    orderdate = item.OrderDate,
-                    customerid = item.CustomersId
-
-                });
-            }
-            return list;
+                id = item.Id,
+                orderdate = item.OrderDate,
+                customerid = item.CustomersId
+            }).Where(o => o.customerid == id).ToList();
+      
+            return lines;
         }
 
         public Order getOrder(int id)
@@ -89,16 +75,5 @@ namespace Nettbutikk.DAL
             return o;
         }
 
-       
-
-        public Order findOrder(int id)
-        {
-            return null;
-        }
-
-        public bool checkOrder(int? id)
-        {
-            return false;
-        }
     }
 }

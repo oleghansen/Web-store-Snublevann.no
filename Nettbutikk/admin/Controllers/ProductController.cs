@@ -49,9 +49,9 @@ namespace Nettbutikk.admin.Controllers
             ViewBag.CurrentFilter = searchString; 
             List<Product> allProducts; 
             if(!String.IsNullOrEmpty(searchString))
-                allProducts = _product.getResult(null, searchString); 
+                allProducts = _product.getResult(searchString); 
             else
-               allProducts = _product.getAll(null);
+               allProducts = _product.getAll();
 
             switch (sortOrder)
             {
