@@ -39,9 +39,20 @@ namespace Nettbutikk.BLL
             return _category.Add(category, adminId);
         }
 
-        public bool AddSub(SubCategory sc, int adminId)
+        public bool AddSub(int adminId, SubCategory sc)
         {
-            return _category.AddSub(sc, adminId);
+            return _category.AddSub(adminId,sc);
+        }
+
+        public SubCategory SubCatDetails(int id)
+        {
+            return _category.SubCatDetails(id);
+        }
+
+        public List<Category> getCategories()
+        {
+            List<Category> allCategories = _category.getCategories();
+            return allCategories;
         }
 
         public List<SubCategory> getAllSub(int? id)
@@ -66,6 +77,11 @@ namespace Nettbutikk.BLL
         {
             List<Producer> allproducers = _category.getResultProducer(id, sc);
             return allproducers;
+        }
+
+        public bool update(int id, SubCategory sc, int adminid)
+        {
+            return _category.update(id, sc, adminid);
         }
     }
 }

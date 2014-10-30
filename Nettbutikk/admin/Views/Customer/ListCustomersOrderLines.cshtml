@@ -7,18 +7,27 @@
 }
 
 <div class="jumbotron" style="padding-top:2px">
-    <div class="row">
+    <div class="path">
+        <h5>
+            <a href='@Url.Action("ListCustomers")' id="prodPath"> Alle brukere</a> > 
+            <a href='@Url.Action("CustomerDetails", "Customer", new { id = Model[0].customer.id })' id="prodPath"> @Html.DisplayFor(model => Model[0].customer.firstname) @Html.DisplayFor(model => Model[0].customer.lastname)</a> > 
+            <a href='@Url.Action("ListCustomerOrders", "Customer", new { id = Model[0].customer.id })' id="prodPath"> Ordreoversikt</a> > 
+            <a href='@Url.Action("ListCustomersOrderLines", "Customer", new { id = Model[0].orderId })' id="prodPath"> Ordre @Html.DisplayFor(model => Model[0].orderId) </a>
+        </h5>
+    </div>
+    
 
         <div class="row">
             <h3>
                 <span class="glyphicon glyphicon-align-justify"></span> Ordredetaljer for ordrenummer: @Html.DisplayFor(model => Model[0].id)
                 <a class="pull-right" href="@Url.Action("showReceipt","order", new { id = Model[0].id })" title="Vis kvittering" class="btn btn-xs btn-default" id="defaultButton">
                     <span class="glyphicon glyphicon-print"></span>
+
+                    </a>
                 </h3>
-            </a>
         </div>
 
-        <hr />
+    <div id="partView" class="panel panel-default">
         <div class="row" style="margin-top:20px; margin-bottom: 10px">
             <div class="col-md-8">
                 @Html.DisplayNameFor(model => Model[0].customerid) @Html.DisplayFor(model => Model[0].customerid)<br />
@@ -52,7 +61,8 @@
             </div>
            
         </div>
+    </div>
         <br />
        @Html.Partial("~/Views/Shared/ListOrderLines.cshtml", Model);
-    </div>
+        
 </div>

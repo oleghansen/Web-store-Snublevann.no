@@ -21,6 +21,18 @@ namespace Nettbutikk.DAL
             return products;
         }
 
+        public List<Category> getCategories()
+        {
+            var db = new DatabaseContext();
+            List<Category> list = db.Categories.Select(item => new Category()
+            {
+                ID = item.Id,
+                name = item.Name
+            }).ToList();
+
+            return list;
+        }
+
 
         public List<Category> getResult(int? id, string searchString)
         {
@@ -124,25 +136,48 @@ namespace Nettbutikk.DAL
             
         }
 
-        public bool AddSub(SubCategory sc, int adminId)
+        public bool AddSub(int adminId, SubCategory sc)
         {
-            var newSubCategory = new SubCategories()
+            var db = new DatabaseContext();
+            db.SubCategories.Add(new SubCategories()
             {
                 Name = sc.name,
-            };
+                CategoriesId = sc.catId
+            });
+            db.SaveChanges(adminId);
 
+            return true;
+        }
+
+        public SubCategory SubCatDetails(int id)
+        {
+            var db = new DatabaseContext();
+            SubCategories subcat = (SubCategories)db.SubCategories.FirstOrDefault(c => c.Id == id);
+            SubCategory subcategory = new SubCategory();
+
+            subcategory.ID = subcat.Id;
+            subcategory.name = subcat.Name;
+            subcategory.catId = subcat.CategoriesId;
+
+            return subcategory;
+        }
+
+        public bool update(int id, SubCategory sc, int adminid)
+        {
+            var db = new DatabaseContext();
             try
             {
-                var db = new DatabaseContext();
-                db.SubCategories.Add(newSubCategory);
-                db.SaveChanges(adminId);
+                SubCategories sub = db.SubCategories.FirstOrDefault(u => u.Id == id);
+                sub.Name = sc.name;
+                sub.CategoriesId = sc.catId;
+
+                db.SaveChanges(adminid);
                 return true;
             }
-            catch (Exception failed)
+            catch (Exception e)
             {
                 return false;
             }
-
         }
     }
 }

@@ -150,25 +150,35 @@ namespace Nettbutikk.admin.Controllers
         public ActionResult newSubCategory()
         {
             if (!isAdmin())
+            {
                 return RedirectToAction("Login", "Main");
-            return View();
+            }
+            var placeholder = new SubCategoryDetail()
+            {
+                categoryList = _categoryBLL.getCategories().Select(c => new SelectListItem { Value = c.ID.ToString(), Text = c.name }).ToList()
+            };
+            return View(placeholder);
         }
 
         [HttpPost]
-        public ActionResult newSubCategory(SubCategory sc)
+        [ValidateAntiForgeryToken]
+        public ActionResult newSubCategory(SubCategoryDetail sc)
         {
             if (!isAdmin())
-                return RedirectToAction("Login", "Main");
-            if (ModelState.IsValid)
             {
-                Customer c = (Customer)Session["loggedInUser"];
-                bool OK = _categoryBLL.AddSub(sc, c.id);
-                if (OK)
-                {
-                    return RedirectToAction("ListSubCategories");
-                }
+                return RedirectToAction("Login", "Main");
             }
-            return View();
+            Customer admin = (Customer)Session["loggedInUser"];
+            var adminid = admin.id;
+            if (_categoryBLL.AddSub(adminid, new SubCategory()
+            {
+                name = sc.name,
+                catId = sc.categoryId
+            }))
+                return RedirectToAction("ListSubCategories");
+
+            sc.categoryList = _categoryBLL.getCategories().Select(c => new SelectListItem { Value = c.ID.ToString(), Text = c.name }).ToList();
+            return View(sc);
         }
 
         public ActionResult ListSubCategories(int? page, int? itemsPerPage, string sortOrder, string currentFilter, string searchString)
@@ -218,6 +228,35 @@ namespace Nettbutikk.admin.Controllers
             }
 
             return View(list.ToPagedList(pageNumber: page ?? 1, pageSize: itemsPerPage ?? 15));
+        }
+
+        public ActionResult SubCatDetails(int id)
+        {
+            if (!isAdmin())
+            {
+                RedirectToAction("Login", "Main");
+            }
+            SubCategory subcatdetails = _categoryBLL.SubCatDetails(id);
+
+            SubCategoryDetail subDetail = new SubCategoryDetail()
+            {
+                ID = subcatdetails.ID,
+                name = subcatdetails.name,
+                categoryId = subcatdetails.catId
+            };
+            return View(subDetail);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SubCatDetails(SubCategory c)
+        {
+            if (ModelState.IsValid)
+            {
+                Customer a = (Customer)Session["loggedInUser"];
+                var b = _categoryBLL.update(c.ID, c, a.id);
+                return RedirectToAction("CustomerDetails", new { id = c.ID });
+            } return RedirectToAction("CustomerDetails", new { id = c.ID });
         }
 
         private bool isAdmin()

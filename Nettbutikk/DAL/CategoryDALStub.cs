@@ -33,6 +33,11 @@ namespace Nettbutikk.DAL
             return catlist;
         }
 
+        public List<Category> getCategories()
+        {
+            return null;
+        }
+
         public List<SubCategory> getAllSub(int? id)
         {
             var cat = new SubCategory()
@@ -61,14 +66,14 @@ namespace Nettbutikk.DAL
 
         public bool Add(Category category, int id)
         {
-            if (id == 0 || category == null)
+            if (id == 0 )
                 return false;
             return true;
         }
 
-        public bool AddSub(SubCategory category, int id)
+        public bool AddSub(int id, SubCategory category)
         {
-            if (id == 0 || category == null)
+            if (id == 0)
                 return false;
             return true;
         }
@@ -95,6 +100,18 @@ namespace Nettbutikk.DAL
             List<Producer> sublist = new List<Producer>();
             sublist.Add(cat);
             return sublist;
+        }
+
+        public SubCategory SubCatDetails(int id)
+        {
+            return null;
+        }
+
+        public bool update(int id, SubCategory sc, int adminid)
+        {
+            if (id == 0)
+                return false;
+            return true;
         }
     }
 }
