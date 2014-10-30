@@ -30,9 +30,9 @@ namespace Nettbutikk.DAL
                      name  = item.Name,
                      catName = item.Categories.Name,
                      catId = item.CategoriesId
-                }).ToList();
-            }
-            return list;
+            }).ToList();
+            
+            return subCategories;
         }
 
         public List<Product> getAll(int? id, String sc, int? sort)
@@ -145,7 +145,7 @@ namespace Nettbutikk.DAL
 
         }
 
-        public bool addProduct(int id)
+        public bool addProduct(int id, Product p)
         {
             var db = new DatabaseContext();
             db.Products.Add(new Products()
