@@ -105,10 +105,18 @@ namespace Nettbutikk.admin.Controllers
         }
 
         [HttpGet]
-        public ActionResult ListOrderLines(int id)
+        public ActionResult ListOrderLines(int id, int? page, int? itemsPerPage, string sortOrder, string currentFilter)
         {
             if (!isAdmin())
                 return RedirectToAction("Main", "Main");
+
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.IDSortParm = String.IsNullOrEmpty(sortOrder) ? "id_desc" : "";
+            ViewBag.PIDSortParm = sortOrder == "PID" ? "pid_desc" : "PID";
+            ViewBag.PNameSortParm = sortOrder == "PName" ? "pname_desc" : "PName";
+            ViewBag.AmountSortParm = sortOrder == "Amount" ? "amount_desc" : "Amount";
+            ViewBag.PriceSortParm = sortOrder == "Price" ? "price_desc" : "Price";
+            ViewBag.TotalSortParm = sortOrder == "Total" ? "total_desc" : "Total"; 
 
             List<OrderLineViewModel> list = new List<OrderLineViewModel>();
 
@@ -139,17 +147,56 @@ namespace Nettbutikk.admin.Controllers
                     linje++;
                 }
             }
-            return View(list);
+            switch (sortOrder)
+            {
+                case "id_desc":
+                    list = list.OrderByDescending(s => s.id).ToList();
+                    break;
+                case "PID":
+                    list = list.OrderBy(s => s.product.itemnumber ).ToList();
+                    break;
+                case "pid_desc":
+                    list = list.OrderByDescending(s => s.product.itemnumber).ToList();
+                    break;
+                case "PName":
+                    list = list.OrderBy(s => s.product.name).ToList();
+                    break;
+                case "pname_desc":
+                    list = list.OrderByDescending(s => s.product.name).ToList();
+                    break;
+                case "Amount":
+                    list = list.OrderBy(s => s.quantity).ToList();
+                    break;
+                case "amount_desc":
+                    list = list.OrderByDescending(s => s.quantity).ToList();
+                    break;
+                case "Price":
+                    list = list.OrderBy(s => s.product.price).ToList();
+                    break;
+                case "price_desc":
+                    list = list.OrderByDescending(s => s.product.price).ToList();
+                    break;
+                case "Total":
+                    list = list.OrderBy(s => s.orderlineSum).ToList();
+                    break;
+                case "total_desc":
+                    list = list.OrderByDescending(s => s.orderlineSum ).ToList();
+                    break;
+                default:
+                    list = list.OrderBy(s => s.id).ToList();
+                    break;
+            }
+            return View(list.ToPagedList(pageNumber: page ?? 1, pageSize: itemsPerPage ?? 15));
             
         }
 
         // GET: OrderTest
-        public ActionResult Index()
+      /*  public ActionResult Index()
         {
             if (!isAdmin())
                 return RedirectToAction("LogIn", "Main"); 
             return View();
-        }
+        }*/
 
         public ActionResult Details(int id)
         {

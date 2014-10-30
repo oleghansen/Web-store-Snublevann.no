@@ -1,7 +1,9 @@
-﻿@model List<Nettbutikk.admin.Models.OrderLineViewModel>
+﻿@model  PagedList.IPagedList<Nettbutikk.admin.Models.OrderLineViewModel>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "ListOrderLines";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    SelectList itemsPerPageList = DefaultValues.ItemsPerPageList;
 }
 
 <div class="jumbotron" style="padding-top:2px">

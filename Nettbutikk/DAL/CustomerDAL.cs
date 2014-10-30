@@ -90,11 +90,16 @@ namespace Nettbutikk.DAL
             Customers userFound = db.Customers.FirstOrDefault(u => u.Email == email);
             Customer c = new Customer();
             c.id = userFound.Id;
+            c.firstname = userFound.Firstname;
+            c.lastname = userFound.Lastname;
             c.email = userFound.Email;
+            c.phonenumber = userFound.Phonenumber;
+            c.postalcode = normalizePostalcode(userFound.PostalareasId);
+            c.postalarea = db.Postalareas.Find(userFound.PostalareasId).Postalarea; 
+            c.address = userFound.Address;
             c.hashpassword = userFound.Password;
             c.admin = true;
             return c;
-
         }
         public bool validate(String email, byte[] hashedPassword)
         {

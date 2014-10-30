@@ -1,7 +1,9 @@
-﻿@model List<Nettbutikk.admin.Models.OrderLineViewModel>
+﻿@model PagedList.IPagedList<Nettbutikk.admin.Models.OrderLineViewModel>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "ListCustomersOrderLines";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    SelectList itemsPerPageList = DefaultValues.ItemsPerPageList;
 }
 
 <div class="jumbotron" style="padding-top:2px">
@@ -9,8 +11,8 @@
 
         <div class="row">
             <h3>
-                <span class="glyphicon glyphicon-align-justify"></span> Ordredetaljer for ordrenummer: @Html.DisplayFor(model => Model[0].orderId)
-                <a class="pull-right" href="@Url.Action("showReceipt","order", new { id = Model[0].orderId  })" title="Vis kvittering" class="btn btn-xs btn-default" id="defaultButton">
+                <span class="glyphicon glyphicon-align-justify"></span> Ordredetaljer for ordrenummer: @Html.DisplayFor(model => Model[0].id)
+                <a class="pull-right" href="@Url.Action("showReceipt","order", new { id = Model[0].id })" title="Vis kvittering" class="btn btn-xs btn-default" id="defaultButton">
                     <span class="glyphicon glyphicon-print"></span>
                 </h3>
             </a>
@@ -29,10 +31,10 @@
                     <div class="col-md-3">
                     </div>
                     <div class="col-md-5">
-                        <h4><strong>@Html.DisplayNameFor(model => Model[0].orderId)</strong></h4>
+                        <h4><strong>@Html.DisplayNameFor(model => Model[0].id)</strong></h4>
                     </div>
                     <div class="col-md-4">
-                        <h4 class="pull-right">@Html.DisplayFor(model => Model[0].orderId)</h4>
+                        <h4 class="pull-right">@Html.DisplayFor(model => Model[0].id)</h4>
                     </div>
 
                 </div>
