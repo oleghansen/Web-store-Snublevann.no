@@ -8,7 +8,11 @@
     <div class="row">
 
 
-        <h3><span class="glyphicon glyphicon-align-justify"></span> Ordrelinjeoversikt </h3>
+        <h3>
+            <span class="glyphicon glyphicon-align-justify"></span> Ordrelinjeoversikt
+            <a class="pull-right" href="@Url.Action("showReceipt","order", new { id = Model[0].orderId  })" title="Vis kvittering" class="btn btn-xs btn-default" id="defaultButton">
+                <span class="glyphicon glyphicon-print"></span></a>
+       </h3>
 
         <hr />
         <div class="row" style="margin-top:20px">
@@ -42,9 +46,9 @@
                     
                 </div>
             </div>
-
+            
         </div>
-
+        <br />
            @Html.Partial("~/Views/Shared/ListOrderLines.cshtml", Model);
         </div>
 </div>
