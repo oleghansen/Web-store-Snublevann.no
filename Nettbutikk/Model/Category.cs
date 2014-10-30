@@ -18,11 +18,9 @@ namespace Nettbutikk.Model
     }
     public class SubCategory
     {
-        [Display(Name = "ID nummer")]
         public int ID { get; set; }
-        [Display(Name = "Underkategori")]
         public string name { get; set; }
-        [Display(Name = "Kategori")]
+        public int catId { get; set; }
         public string catName { get; set; }
     }
 }

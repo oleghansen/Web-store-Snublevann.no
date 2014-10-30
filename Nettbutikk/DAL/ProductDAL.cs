@@ -14,20 +14,22 @@ namespace Nettbutikk.DAL
         {
             var db = new DatabaseContext();
             List<Category> categories = db.Categories.Select(item => new Category(){
-                 ID = item.Id,
+                    ID = item.Id,
                     name = item.Name
             }).ToList();
 
             return categories; 
-        }
+            }
 
         public List<SubCategory> getAllSubCategories()
         {
             var db = new DatabaseContext();
             List<SubCategory> subCategories = db.SubCategories.Select(item => new SubCategory() 
             {
-                ID = item.Id,
-                name = item.Name
+                     ID = item.Id,
+                     name  = item.Name,
+                     catName = item.Categories.Name,
+                     catId = item.CategoriesId
             }).ToList();
             
             return subCategories;
@@ -54,7 +56,7 @@ namespace Nettbutikk.DAL
 
 
             return products;
-        }
+            }
  
         public Product get(int id)
         {
@@ -66,17 +68,17 @@ namespace Nettbutikk.DAL
             var db = new DatabaseContext();
             List<Product> products = db.Products.Select(p => new Product() 
             {
-                itemnumber = p.Id,
-                name = p.Name,
-                description = p.Description,
-                price = p.Price,
-                volum = p.Volum,
-                producer = p.Producers.Name,
-                category = p.SubCategories.Categories.Name,
-                categoryid = p.SubCategories.Categories.Id,
-                subCategory = p.SubCategories.Name,
-                subCategoryid = p.SubCategories.Id,
-                country = p.Countries.Name
+                    itemnumber = p.Id,
+                    name = p.Name,
+                    description = p.Description,
+                    price = p.Price,
+                    volum = p.Volum,
+                    producer = p.Producers.Name,
+                    category = p.SubCategories.Categories.Name,
+                    categoryid = p.SubCategories.Categories.Id,
+                    subCategory = p.SubCategories.Name,
+                    subCategoryid = p.SubCategories.Id,
+                    country = p.Countries.Name
             }).Where(p => p.name.ToUpper().Contains(searchString.ToUpper())
                             || p.description.ToUpper().Contains(searchString.ToUpper())).ToList();
             return products;
@@ -143,9 +145,23 @@ namespace Nettbutikk.DAL
 
         }
 
-        public bool addProduct(int id)
+        public bool addProduct(int id, Product p)
         {
-            return false;
+            var db = new DatabaseContext();
+            db.Products.Add(new Products()
+            {
+                Name = p.name,
+                Description = p.description,
+                LongDescription = p.longDescription,
+                CountriesId = p.countryid,
+                SubCategoriesId = p.subCategoryid,
+                Price = p.price,
+                Volum = p.volum,
+                ProducersId = p.producerid
+            });
+            db.SaveChanges(id);
+
+            return true; 
         }
 
         // TODO: denne metoden er kun for å teste audit trail. Må fjernes før innlevering
@@ -166,11 +182,11 @@ namespace Nettbutikk.DAL
         {
             var db = new DatabaseContext();
             List<Country> list = db.Countries.Select(item => new Country()
-            {
-                id = item.Id,
-                name = item.Name
+                {
+                    id = item.Id,
+                    name = item.Name
             }).ToList();
-            
+
             return list; 
         }
 

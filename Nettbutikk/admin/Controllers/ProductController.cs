@@ -128,7 +128,14 @@ namespace Nettbutikk.admin.Controllers
                 return RedirectToAction("LogIn", "Main");
             }
             Product productDetails = _product.seeDetails(id);
-            
+
+            var test = _product.getAllSubCategories().Select(t => new GroupedSelectListItem
+            {
+                GroupKey = t.catId.ToString(),
+                GroupName = t.catName,
+                Text = t.name,
+                Value = t.ID.ToString()
+            });
             ProductDetail prodinfo = new ProductDetail()
             {
                 itemnumber = productDetails.itemnumber,
@@ -140,7 +147,8 @@ namespace Nettbutikk.admin.Controllers
                 countryid = productDetails.countryid,
                 producerid = productDetails.producerid,
                 pricePerLitre = productDetails.pricePerLitre,
-                subCategoryList = _product.getAllSubCategories().Select(s => new SelectListItem { Value = s.ID.ToString(), Text = s.name}).ToList(),
+                //subCategoryList = _product.getAllSubCategories().Select(s => new SelectListItem { Value = s.ID.ToString(), Text = s.name}).ToList(),
+                subCategoryList = test,
                 countryList = _product.getCountries().Select(c => new SelectListItem { Value = c.id.ToString(), Text = c.name}).ToList(),
                 producerList = _product.getProducers().Select(p => new SelectListItem { Value = p.id.ToString(), Text = p.name}).ToList()
             };
@@ -173,7 +181,7 @@ namespace Nettbutikk.admin.Controllers
             var adminid = admin.id;
             bool result = _product.updateProduct(adminid,updated);
             p.countryList = _product.getCountries().Select(c => new SelectListItem { Value = c.id.ToString(), Text = c.name }).ToList();
-            p.subCategoryList = _product.getAllSubCategories().Select(s => new SelectListItem { Value = s.ID.ToString(), Text = s.name }).ToList();
+            p.subCategoryList = _product.getAllSubCategories().Select(s => new GroupedSelectListItem { GroupKey = s.catId.ToString(), GroupName = s.catName, Value = s.ID.ToString(), Text = s.name }).ToList();
             p.producerList = _product.getProducers().Select(r => new SelectListItem { Value = r.id.ToString(), Text = r.name }).ToList();
 
             if (result)
@@ -188,23 +196,50 @@ namespace Nettbutikk.admin.Controllers
             return Json(foundProducts, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult addProduct(int id)
+        public ActionResult addProduct()
         {
             if (!isAdmin())
             {
                 return RedirectToAction("LogIn", "Main");
             }
-            bool added = _product.addProduct(id);
-            return View(added);
+            var placeholder = new ProductDetail()
+            {
+                countryList = _product.getCountries().Select(c => new SelectListItem { Value = c.id.ToString(), Text = c.name }).ToList(),
+                subCategoryList = _product.getAllSubCategories().Select(s => new GroupedSelectListItem { GroupKey = s.catId.ToString(), GroupName = s.catName, Value = s.ID.ToString(), Text = s.name }).ToList(),
+                producerList = _product.getProducers().Select(r => new SelectListItem { Value = r.id.ToString(), Text = r.name }).ToList()
+            };
+            return View(placeholder);
         }
 
-        public ActionResult addProductView()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult addProduct(ProductDetail p)
         {
             if (!isAdmin())
             {
                 return RedirectToAction("LogIn", "Main");
             }
-            return View();
+            Customer admin = (Customer)Session["loggedInUser"];
+            var adminid = admin.id;
+            if (_product.addProduct(adminid, new Product()
+            {
+                name = p.name,
+                countryid = p.countryid,
+                description = p.description,
+                longDescription = p.longDescription,
+                price = p.price,
+                producerid = p.producerid,
+                subCategoryid = p.subCategoryid,
+                volum = p.volum
+            }))
+                return RedirectToAction("ListProducts");
+            
+            p.countryList = _product.getCountries().Select(c => new SelectListItem { Value = c.id.ToString(), Text = c.name }).ToList();
+            p.subCategoryList = _product.getAllSubCategories().Select(s => new GroupedSelectListItem { GroupKey = s.catId.ToString(), GroupName = s.catName, Value = s.ID.ToString(), Text = s.name }).ToList();
+            p.producerList = _product.getProducers().Select(r => new SelectListItem { Value = r.id.ToString(), Text = r.name }).ToList();
+
+            return View(p); 
+            
         }
     }
 }

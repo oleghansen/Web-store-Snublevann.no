@@ -115,6 +115,7 @@
     <Content Include="Content\Custom\customNav.css" />
     <Content Include="Content\Custom\MainSheet.css" />
     <Content Include="Content\Custom\billingdoc.css" />
+    <Content Include="Content\img\products\defaultimg.png" />
     <Content Include="Content\img\logo\snublevann_dark_transparent.png" />
     <Content Include="Content\Custom\SideMenu.css" />
     <Content Include="Content\img\carousel\1.png" />
