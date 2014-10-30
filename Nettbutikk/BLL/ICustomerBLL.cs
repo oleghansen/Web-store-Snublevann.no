@@ -20,5 +20,7 @@ namespace Nettbutikk.BLL
         bool revokeAdmin(int id, int adminid);
         bool delete(int id, int adminid);
         List<Order> getAllOrdersbyCust(int id);
+
+        bool update(int id, Customer c, int adminid);
     }
 }

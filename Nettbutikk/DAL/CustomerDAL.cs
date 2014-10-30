@@ -172,9 +172,41 @@ namespace Nettbutikk.DAL
 
         }
 
-        public bool update(int id, Customer updateUser)
+        public bool update(int id, Customer updateUser, int adminid)
         {
-            return false;
+             var db = new DatabaseContext();
+            try
+            {
+                Customers cust = db.Customers.FirstOrDefault(u => u.Id == id);
+                cust.Firstname = updateUser.firstname;
+                cust.Lastname = updateUser.lastname;
+                cust.Email = updateUser.email;
+                cust.Phonenumber = updateUser.phonenumber;
+                cust.Address = updateUser.address;
+                cust.PostalareasId = Convert.ToInt16(updateUser.postalcode);
+
+                var existPostalcode = db.Postalareas.Find(Convert.ToInt16(updateUser.postalcode));
+
+                if (existPostalcode == null)
+                {
+                    var newPostalarea = new Postalareas()
+                    {
+                        PostalareasId = Convert.ToInt16(updateUser.postalcode),
+                        Postalarea = updateUser.postalarea
+                    };
+                    cust.Postalareas = newPostalarea;
+                }
+                db.SaveChanges(adminid);
+                return true;
+            }
+            catch (Exception fail)
+            {
+                return false;
+
+            }
+
+
+            
         }
 
         public String normalizePostalcode(int postalcode)

@@ -48,8 +48,6 @@ namespace Nettbutikk.BLL
             return _customer.findUser(email);
             
         }
-
-
         public bool validate(String email, byte[] hashedpassword)
         {
             return _customer.validate(email,hashedpassword);
@@ -123,6 +121,12 @@ namespace Nettbutikk.BLL
            }
            return list;
        }
+
+       public bool update(int id, Customer c, int adminid)
+       {
+           return _customer.update(id,c, adminid);
+       }
+
 
     }
 }

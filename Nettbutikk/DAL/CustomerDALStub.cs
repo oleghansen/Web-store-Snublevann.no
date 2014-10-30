@@ -96,7 +96,7 @@ namespace Nettbutikk.DAL
             return false;        
         }
 
-        public bool update(int id, Customer updateUser)
+        public bool update(int id, Customer updateUser, int adminid)
         {
             return false;
         }

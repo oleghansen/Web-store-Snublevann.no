@@ -123,20 +123,11 @@ namespace Nettbutikk.admin.Controllers
 
                         
                     });
-                
-
-             
+               
             }
             return View(list.ToPagedList(pageNumber: page ?? 1, pageSize: itemsPerPage ?? 15));
         }
 
-        // GET: Customer
-        public ActionResult Index()
-        {
-            if (!isAdmin())
-                return RedirectToAction("LogIn", "Main"); 
-            return View();
-        }
         private bool isAdmin(){
             if (Session == null)
             {
@@ -153,12 +144,18 @@ namespace Nettbutikk.admin.Controllers
             Customer c = (Customer)Session["loggedInUser"];
             var b =  _customerbll.makeAdmin(id, c.id);
             return RedirectToAction("CustomerDetails", new { id = id});
+            //her skal det komme en modalboks som spør om man er sikker på at man vil gi bruker full tilgang til systemet
         }
 
         [HttpGet]
         public ActionResult revokeAdmin(int id)
         {
             Customer c = (Customer)Session["loggedInUser"];
+            if(id == c.id)
+                //her skal vel en modalboks av noe slag komme opp
+                return RedirectToAction("CustomerDetails", new { id = id });
+                
+            
             var b = _customerbll.revokeAdmin(id,c.id);
             return RedirectToAction("CustomerDetails", new { id = id });
         }
@@ -184,6 +181,15 @@ namespace Nettbutikk.admin.Controllers
                 admin = customerDetails.admin
             };
             return View(custinfo);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CustomerDetails(Customer c)
+        {
+            Customer a = (Customer)Session["loggedInUser"];
+            var b = _customerbll.update(c.id,c, a.id);
+            return RedirectToAction("CustomerDetails", new { id = c.id });
         }
 
         public ActionResult ListCustomerOrders(int id)
