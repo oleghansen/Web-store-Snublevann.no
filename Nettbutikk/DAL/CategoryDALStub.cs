@@ -33,11 +33,6 @@ namespace Nettbutikk.DAL
             return catlist;
         }
 
-        public List<Category> getCategories()
-        {
-            return null;
-        }
-
         public List<SubCategory> getAllSub(int? id)
         {
             var cat = new SubCategory()
@@ -108,6 +103,13 @@ namespace Nettbutikk.DAL
         }
 
         public bool update(int id, SubCategory sc, int adminid)
+        {
+            if (id == 0)
+                return false;
+            return true;
+        }
+
+        public bool updateCategory(int id, Category c, int adminid)
         {
             if (id == 0)
                 return false;

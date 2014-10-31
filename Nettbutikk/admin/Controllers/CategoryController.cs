@@ -131,21 +131,55 @@ namespace Nettbutikk.admin.Controllers
 
         
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult newCategory(Category category)
+        [ValidateAntiForgeryToken ]
+        public ActionResult newCategory(CategoryInfo category)
         {
             if (!isAdmin())
                 return RedirectToAction("Login", "Main");
             if (ModelState.IsValid)
             {
                 Customer c = (Customer)Session["loggedInUser"];
-                bool OK = _categoryBLL.Add(category, c.id);
+                Category cat = new Category();
+                cat.ID = category.id;
+                cat.name = category.name;
+                bool OK = _categoryBLL.Add(cat, c.id);
                 if (OK)
                 {
                     return RedirectToAction("ListCategories");
                 }
             }
             return View();
+        }
+
+        public ActionResult updateCatergoryDetails(int id) 
+        {
+            if (!isAdmin())
+                return RedirectToAction("Login", "Main");
+
+            List<Category> cat = _categoryBLL.getAll(id);
+            CategoryInfo ci = new CategoryInfo();
+            foreach(var item in cat){
+                ci.id = item.ID;
+                ci.name = item.name;
+            }
+           
+            
+ 
+            return View(ci);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult updateCatergoryDetails(CategoryInfo c)
+        {
+            if (ModelState.IsValid)
+            {
+                Customer a = (Customer)Session["loggedInUser"];
+                Category cat = new Category();
+                cat.name = c.name;
+                var b = _categoryBLL.updateCategory(c.id, cat ,a.id);
+                return RedirectToAction("ListCategories");
+
+            } return View(c.id);
         }
 
         public ActionResult newSubCategory()
@@ -156,7 +190,7 @@ namespace Nettbutikk.admin.Controllers
             }
             var placeholder = new SubCategoryDetail()
             {
-                categoryList = _categoryBLL.getCategories().Select(c => new SelectListItem { Value = c.ID.ToString(), Text = c.name }).ToList()
+                categoryList = _categoryBLL.getAll(null).Select(c => new SelectListItem { Value = c.ID.ToString(), Text = c.name }).ToList()
             };
             return View(placeholder);
         }
@@ -180,7 +214,7 @@ namespace Nettbutikk.admin.Controllers
                 }))
                     return RedirectToAction("ListSubCategories");
             }
-            sc.categoryList = _categoryBLL.getCategories().Select(c => new SelectListItem { Value = c.ID.ToString(), Text = c.name }).ToList();
+            sc.categoryList = _categoryBLL.getAll(null).Select(c => new SelectListItem { Value = c.ID.ToString(), Text = c.name }).ToList();
             //ehm burde ikke denn flyttes nedover ??
             return View(sc);
         }
@@ -262,18 +296,18 @@ namespace Nettbutikk.admin.Controllers
             }
             if (ModelState.IsValid)
             {
-                SubCategory updated = new SubCategory()
-                {
-                    ID = sc.ID,
-                    name = sc.name,
-                    catId = sc.categoryId,
-                };
-                Customer admin = (Customer)Session["loggedInUser"];
-                var adminid = admin.id;
-                bool result = _categoryBLL.update(adminid, updated);
-
-
-                sc.categoryList = _categoryBLL.getCategories().Select(c => new SelectListItem { Value = c.ID.ToString(), Text = c.name }).ToList();
+            SubCategory updated = new SubCategory()
+            {
+                ID = sc.ID,
+                name = sc.name,
+                catId = sc.categoryId,
+            };
+            Customer admin = (Customer)Session["loggedInUser"];
+            var adminid = admin.id;
+            bool result = _categoryBLL.update(adminid, updated);
+          
+            
+            sc.categoryList = _categoryBLL.getCategories().Select(c => new SelectListItem { Value = c.ID.ToString(), Text = c.name }).ToList();
 
                 result = true;
                 return View(sc);

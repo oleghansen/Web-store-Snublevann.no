@@ -139,7 +139,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\updateProduct.js" />
+    <Content Include="Scripts\ajax-submit-form.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -201,6 +201,7 @@
       <BrowseToURL>~/Shared/_Modal</BrowseToURL>
     </Content>
     <Content Include="Views\Category\SubCatDetails.cshtml" />
+    <Content Include="Views\Category\updateCatergoryDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -220,6 +221,9 @@
       <Project>{25965d3a-8272-42f6-866d-e86fa65022e3}</Project>
       <Name>Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

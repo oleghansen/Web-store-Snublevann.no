@@ -6,11 +6,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     }
 
-
-<script src="~/Scripts/updateProduct.js"></script>
-
 <link href="~/Content/Custom/MainSheet.css" rel="stylesheet" />
-@using (Html.BeginForm("ProductDetails"))
+@using (Html.BeginForm("ProductDetails", "Product", FormMethod.Post, new { @class = "ajaxform" }))
 {
     @Html.AntiForgeryToken()
 <div class="jumbotron" style="padding-top:2px">

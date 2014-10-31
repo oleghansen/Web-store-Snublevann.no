@@ -10,12 +10,13 @@ namespace Nettbutikk.BLL
         List<Category> getResult(int? id, string sc);
         bool Add(Category cat, int id);
         bool AddSub(int id, SubCategory sc);
-        List<Category> getCategories();
         SubCategory SubCatDetails(int id);
         List<SubCategory> getResultSub (int? id, string sc);
         List<SubCategory> getAllSub(int? id);
         List<Producer> getAllProducers(int? id);
         List<Producer> getResultProducer(int? id, string sc);
+        bool update(int id, SubCategory sc, int adminid);
+        bool updateCategory(int id, Category c, int adminid);
         bool update(int id, SubCategory sc);
     }
 }

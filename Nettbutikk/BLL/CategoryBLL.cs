@@ -49,12 +49,6 @@ namespace Nettbutikk.BLL
             return _category.SubCatDetails(id);
         }
 
-        public List<Category> getCategories()
-        {
-            List<Category> allCategories = _category.getCategories();
-            return allCategories;
-        }
-
         public List<SubCategory> getAllSub(int? id)
         {
             List<SubCategory> allSub = _category.getAllSub(id);
@@ -82,6 +76,11 @@ namespace Nettbutikk.BLL
         public bool update(int id, SubCategory sc)
         {
             return _category.update(id, sc);
+        }
+
+        public bool updateCategory(int id, Category c, int adminid)
+        {
+            return _category.updateCategory(id, c, adminid);
         }
     }
 }
