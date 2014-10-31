@@ -246,13 +246,14 @@ namespace Nettbutikk.admin.Controllers
             {
                 ID = subcatdetails.ID,
                 name = subcatdetails.name,
-                categoryId = subcatdetails.catId
+                categoryId = subcatdetails.catId,
+                categoryList = _categoryBLL.getCategories().Select(c => new SelectListItem { Value = c.ID.ToString(), Text = c.name }).ToList()
             };
             return View(subDetail);
         }
 
         [HttpPost]
-      
+        [ValidateAntiForgeryToken]
         public ActionResult SubCatDetails(SubCategory c)
         {
             if (!isAdmin())

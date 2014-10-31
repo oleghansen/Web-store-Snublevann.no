@@ -200,6 +200,7 @@
     <Content Include="Views\Shared\_Modal.cshtml">
       <BrowseToURL>~/Shared/_Modal</BrowseToURL>
     </Content>
+    <Content Include="Views\Category\SubCatDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
