@@ -15,6 +15,6 @@ namespace Nettbutikk.DAL
         List<SubCategory> getResultSub(int? id, string sc);
         List<Producer> getAllProducers(int? id);
         List<Producer> getResultProducer(int? id, string sc);
-        bool update(int id, SubCategory sc, int adminid);
+        bool update(int id, SubCategory sc);
     }
 }

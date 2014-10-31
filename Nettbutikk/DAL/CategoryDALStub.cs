@@ -113,5 +113,14 @@ namespace Nettbutikk.DAL
                 return false;
             return true;
         }
+
+        public bool update(int id, SubCategory sc)
+        {
+            if (id == 0)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

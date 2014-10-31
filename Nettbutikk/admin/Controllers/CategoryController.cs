@@ -254,18 +254,27 @@ namespace Nettbutikk.admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SubCatDetails(SubCategory c)
+        public ActionResult SubCatDetails(int id,SubCategoryDetail sc)
         {
             if (!isAdmin())
             {
                 return RedirectToAction("Login", "Main");
             }
-            if (ModelState.IsValid)
+
+            SubCategory updated = new SubCategory()
             {
-                Customer a = (Customer)Session["loggedInUser"];
-                var b = _categoryBLL.update(c.ID, c, a.id);
-                return RedirectToAction("CustomerDetails", new { id = c.ID });
-            } return RedirectToAction("CustomerDetails", new { id = c.ID });
+                ID = sc.ID,
+                name = sc.name,
+                catId = sc.categoryId,
+            };
+            Customer admin = (Customer)Session["loggedInUser"];
+            var adminid = admin.id;
+            bool result = _categoryBLL.update(adminid, updated);
+          
+            
+            sc.categoryList = _categoryBLL.getCategories().Select(c => new SelectListItem { Value = c.ID.ToString(), Text = c.name }).ToList();
+
+            return Json(result);
         }
 
         private bool isAdmin()
