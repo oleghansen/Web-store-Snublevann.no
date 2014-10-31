@@ -201,6 +201,8 @@ namespace Nettbutikk.admin.Controllers
             {
                 return RedirectToAction("Login", "Main");
             }
+            bool b = false;
+            bool eouaoae = ModelState.IsValid;
             if (ModelState.IsValid)
             {
                 Customer a = (Customer)Session["loggedInUser"];
@@ -212,9 +214,11 @@ namespace Nettbutikk.admin.Controllers
                 c.phonenumber = cd.phonenumber;
                 c.postalarea = cd.postalarea;
                 c.postalcode = cd.postalcode;
-                 var b = _customerbll.update(cd.id, c, a.id);
-                return RedirectToAction("CustomerDetails", new { id = c.id });
-            } return View(cd);
+                b = _customerbll.update(cd.id, c, a.id);
+            }
+            if (b)
+                return Json(new { success = true, message = "Endringene ble lagret", redirect = "/Customer/ListCustomers/" });
+            return Json(new { success = false, message = "Noe gikk galt, endringene ble ikke lagret" }); 
         }
 
         public ActionResult ListCustomerOrders(int id,int? page, int? itemsPerPage, string sortOrder, string currentFilter)

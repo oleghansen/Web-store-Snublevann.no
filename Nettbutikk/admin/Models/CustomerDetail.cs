@@ -40,9 +40,6 @@ namespace Nettbutikk.admin.Models
         [RegularExpression(@"(^[a-zA-ZæÆøØåÅ]+$)", ErrorMessage = "Ugyldig poststed")]
         [Required(ErrorMessage = "Poststed må oppgis")]
         public String postalarea { get; set; }
-        [Display(Name = "Passord")]
-        [RegularExpression(@"(^[a-zA-Z0-9æÆøØåÅ]{8,}$)", ErrorMessage = "Ugyldig passord")]
-        [Required(ErrorMessage = "Passord må oppgis")]
         public bool admin { get; set; }
 
     }

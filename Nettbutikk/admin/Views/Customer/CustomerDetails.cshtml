@@ -54,7 +54,7 @@
                             </div>
                         </div>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("CustomerDetails", "Customer", FormMethod.Post, new { @class = "ajaxform" }))
 {
     @Html.AntiForgeryToken()
                              <form role="form">
@@ -142,5 +142,8 @@
             </div>
         </div>
     </div>
+
+
+@Html.Partial("~/Views/Shared/_Modal.cshtml")
 
 

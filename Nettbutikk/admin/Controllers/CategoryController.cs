@@ -136,6 +136,7 @@ namespace Nettbutikk.admin.Controllers
         {
             if (!isAdmin())
                 return RedirectToAction("Login", "Main");
+
             if (ModelState.IsValid)
             {
                 Customer c = (Customer)Session["loggedInUser"];
@@ -144,11 +145,9 @@ namespace Nettbutikk.admin.Controllers
                 cat.name = category.name;
                 bool OK = _categoryBLL.Add(cat, c.id);
                 if (OK)
-                {
-                    return RedirectToAction("ListCategories");
-                }
+                    return Json(new { success = true, message = cat.name + " ble lagt til.", redirect = "/Category/ListCategories?item_desc" });
             }
-            return View();
+            return Json(new { success = false, message = "noe gikk galt, prøv igjen senere." });
         }
 
         public ActionResult updateCatergoryDetails(int id) 
