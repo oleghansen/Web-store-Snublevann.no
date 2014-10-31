@@ -139,7 +139,6 @@ namespace Nettbutikk.admin.Controllers
         }
 
         [HttpGet]
-        [ValidateAntiForgeryToken]
         public ActionResult  makeAdmin(int id)
         {
             if (!isAdmin())
@@ -153,7 +152,7 @@ namespace Nettbutikk.admin.Controllers
         }
 
         [HttpGet]
-        [ValidateAntiForgeryToken ]
+
 
         public ActionResult revokeAdmin(int id)
         {
@@ -196,7 +195,7 @@ namespace Nettbutikk.admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CustomerDetails(Customer c)
+        public ActionResult CustomerDetails(CustomerDetail cd)
         {
             if (!isAdmin())
             {
@@ -205,9 +204,17 @@ namespace Nettbutikk.admin.Controllers
             if (ModelState.IsValid)
             {
                 Customer a = (Customer)Session["loggedInUser"];
-                var b = _customerbll.update(c.id, c, a.id);
+                Customer c = new Customer();
+                c.firstname = cd.firstname;
+                c.lastname = cd.lastname;
+                c.address = cd.address;
+                c.email = cd.email;
+                c.phonenumber = cd.phonenumber;
+                c.postalarea = cd.postalarea;
+                c.postalcode = cd.postalcode;
+                 var b = _customerbll.update(cd.id, c, a.id);
                 return RedirectToAction("CustomerDetails", new { id = c.id });
-            } return RedirectToAction("CustomerDetails", new { id = c.id });
+            } return View(cd);
         }
 
         public ActionResult ListCustomerOrders(int id,int? page, int? itemsPerPage, string sortOrder, string currentFilter)

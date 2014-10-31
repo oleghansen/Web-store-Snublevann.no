@@ -31,9 +31,6 @@ namespace Nettbutikk.admin.Controllers
 
             sw.Start();
 
-            
-            
-
             if (!isAdmin())
                 return RedirectToAction("LogIn", "Main");
             ViewBag.CurrentSort = sortOrder;

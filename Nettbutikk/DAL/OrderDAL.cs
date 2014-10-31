@@ -22,7 +22,7 @@ namespace Nettbutikk.DAL
            
             return lines;
         }
-
+              
 
         public List<Order> getAllOrders(int? id)
         {
