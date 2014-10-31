@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.Entity.Core;
 using System.Data.Entity.Infrastructure;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -132,6 +133,7 @@ namespace Nettbutikk.DAL
             }
             catch (Exception failed)
             {
+                writeToFile(failed);
                 return false;
             }
             
@@ -176,7 +178,7 @@ namespace Nettbutikk.DAL
             }
             catch (Exception e)
             {
-                // TODO:Skriv til fil
+                writeToFile(e);
                 return false;
             }
             return true;
@@ -194,9 +196,9 @@ namespace Nettbutikk.DAL
                 db.SaveChanges(adminid);
                 return true;
             }
-            catch
+            catch(Exception e)
             {
-                //skriv til log
+                writeToFile(e);
                 return false;
             }
 
@@ -213,7 +215,7 @@ namespace Nettbutikk.DAL
             }
             catch (DbUpdateException ue)
             {
-                // TODO write to file
+                writeToFile(ue);
                 try
                 {
                     return db.SubCategories.Where(sc => sc.CategoriesId == id).Select(p => new SubCategory()
@@ -223,12 +225,12 @@ namespace Nettbutikk.DAL
                 }
                 catch(Exception e)
                 {
-                    // write to file
+                    writeToFile(e);
                 }
             }
             catch( Exception e)
             {
-                // write to file
+                writeToFile(e);
             }
             return null; 
         }
@@ -243,7 +245,7 @@ namespace Nettbutikk.DAL
             }
             catch (DbUpdateException ue)
             {
-                // TODO write to file
+                writeToFile(ue);
                 try
                 {
                     return db.Products.Where(sc => sc.SubCategoriesId == id).Select(p => new Product()
@@ -253,12 +255,12 @@ namespace Nettbutikk.DAL
                 }
                 catch (Exception e)
                 {
-                    // write to file
+                    writeToFile(e);
                 }
             }
             catch (Exception e)
             {
-                // write to file
+                writeToFile(e);
             }
             return null;
         }
@@ -273,7 +275,7 @@ namespace Nettbutikk.DAL
             }
             catch (DbUpdateException ue)
             {
-                // TODO write to file
+                writeToFile(ue);
                 try
                 {
                     return db.Products.Where(sc => sc.ProducersId == id).Select(p => new Product()
@@ -283,14 +285,40 @@ namespace Nettbutikk.DAL
                 }
                 catch (Exception e)
                 {
-                    // write to file
+                    writeToFile(e);
                 }
             }
             catch (Exception e)
             {
-                // write to file
+                writeToFile(e);
             }
             return null;
+        
+        
+        }
+
+
+
+        private void writeToFile(Exception e)
+        {
+            string path =Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)+ @"nettbutikkFeiLogg.txt";
+            Debug.WriteLine(path);
+            try
+            {
+                using (StreamWriter writer = new StreamWriter(path, true))
+                {
+                    writer.WriteLine("-----------   " + DateTime.Now.ToString() + "   --------------");
+                    writer.WriteLine("");
+                    writer.WriteLine("Message: " + e.Message + "<br>" + Environment.NewLine + "Stacktrace: " + e.StackTrace + Environment.NewLine);
+                }
+            }catch(IOException ioe)
+            {
+                // nei da vet jeg sannelig ikke hva vi skal gjøre gitt... 
+            }
+            catch(UnauthorizedAccessException uae)
+            {
+                // sanoteuh
+            }
         }
     }
 }

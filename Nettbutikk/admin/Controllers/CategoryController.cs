@@ -202,6 +202,7 @@ namespace Nettbutikk.admin.Controllers
             {
                 return RedirectToAction("Login", "Main");
             }
+
             if (ModelState.IsValid)
             {
                 Customer admin = (Customer)Session["loggedInUser"];
@@ -211,11 +212,15 @@ namespace Nettbutikk.admin.Controllers
                     name = sc.name,
                     catId = sc.categoryId
                 }))
-                    return RedirectToAction("ListSubCategories");
+                    return Json(new { success = true, message = "Ny subkategori ble lagt til", redirect = "/Category/ListSubCategories/" });
             }
-            sc.categoryList = _categoryBLL.getAll(null).Select(c => new SelectListItem { Value = c.ID.ToString(), Text = c.name }).ToList();
+
+            return Json(new { success = false, message = "Dette gikk ikke så bra, prøv igjen en annen gang" });
+
+
+            //sc.categoryList = _categoryBLL.getAll(null).Select(c => new SelectListItem { Value = c.ID.ToString(), Text = c.name }).ToList();
             //ehm burde ikke denn flyttes nedover ??
-            return View(sc);
+           
         }
 
         public ActionResult ListSubCategories(int? page, int? itemsPerPage, string sortOrder, string currentFilter, string searchString)
