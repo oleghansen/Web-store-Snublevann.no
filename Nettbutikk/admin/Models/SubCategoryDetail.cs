@@ -14,6 +14,8 @@ namespace Nettbutikk.admin.Models
         [Display (Name="Subkategori ID")]
         public int ID { get; set; }
         [Display(Name="Navn")]
+        [Required(ErrorMessage = "Kategorinavn må oppgis")]
+        [RegularExpression(@"(^[a-zA-ZæÆøØåÅ\s]+$)", ErrorMessage = "Ugyldig Kategorinavn")]
         public string name { get; set; }
         [Display(Name="Kategori")]
         public int categoryId { get; set; }

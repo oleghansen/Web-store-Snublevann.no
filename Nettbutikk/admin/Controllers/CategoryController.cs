@@ -196,7 +196,7 @@ namespace Nettbutikk.admin.Controllers
         }
 
         [HttpPost]
-        
+        [ValidateAntiForgeryToken]
         public ActionResult newSubCategory(SubCategoryDetail sc)
         {
             if (!isAdmin())
@@ -294,7 +294,8 @@ namespace Nettbutikk.admin.Controllers
             {
                 return RedirectToAction("Login", "Main");
             }
-
+            if (ModelState.IsValid)
+            {
             SubCategory updated = new SubCategory()
             {
                 ID = sc.ID,
@@ -308,7 +309,10 @@ namespace Nettbutikk.admin.Controllers
             
             sc.categoryList = _categoryBLL.getCategories().Select(c => new SelectListItem { Value = c.ID.ToString(), Text = c.name }).ToList();
 
-            return Json(result);
+                result = true;
+                return View(sc);
+            }
+            return RedirectToAction("ListSubCategories");
         }
 
         private bool isAdmin()
