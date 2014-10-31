@@ -131,15 +131,18 @@ namespace Nettbutikk.admin.Controllers
 
         
         [HttpPost]
-       
-        public ActionResult newCategory(Category category)
+        [ValidateAntiForgeryToken ]
+        public ActionResult newCategory(CategoryInfo category)
         {
             if (!isAdmin())
                 return RedirectToAction("Login", "Main");
             if (ModelState.IsValid)
             {
                 Customer c = (Customer)Session["loggedInUser"];
-                bool OK = _categoryBLL.Add(category, c.id);
+                Category cat = new Category();
+                cat.ID = category.id;
+                cat.name = category.name;
+                bool OK = _categoryBLL.Add(cat, c.id);
                 if (OK)
                 {
                     return RedirectToAction("ListCategories");

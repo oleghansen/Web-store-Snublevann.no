@@ -186,7 +186,7 @@ namespace Nettbutikk.admin.Controllers
             {
                 return RedirectToAction("LogIn", "Main");
             }
-
+            
             Product updated = new Product()
             {
                 itemnumber = p.itemnumber,
