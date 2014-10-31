@@ -281,7 +281,7 @@ namespace Nettbutikk.admin.Controllers
                 ID = subcatdetails.ID,
                 name = subcatdetails.name,
                 categoryId = subcatdetails.catId,
-                categoryList = _categoryBLL.getCategories().Select(c => new SelectListItem { Value = c.ID.ToString(), Text = c.name }).ToList()
+                categoryList = _categoryBLL.getAll(null).Select(c => new SelectListItem { Value = c.ID.ToString(), Text = c.name }).ToList()
             };
             return View(subDetail);
         }
@@ -307,7 +307,7 @@ namespace Nettbutikk.admin.Controllers
             bool result = _categoryBLL.update(adminid, updated);
           
             
-            sc.categoryList = _categoryBLL.getCategories().Select(c => new SelectListItem { Value = c.ID.ToString(), Text = c.name }).ToList();
+            sc.categoryList = _categoryBLL.getAll(null).Select(c => new SelectListItem { Value = c.ID.ToString(), Text = c.name }).ToList();
 
                 result = true;
                 return View(sc);
