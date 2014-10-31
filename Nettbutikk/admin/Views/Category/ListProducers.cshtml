@@ -56,14 +56,14 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.prodName)
                                     </td>
-                                    <td class="pull-right">
+                                    <td class="pull-right" style="margin-top: 2px">
                                         <a href="@Url.Action("ProductDetails", new { id = item.prodId })" title="Endre" class="btn btn-xs btn-default" id="defaultButton">
                                             <span class="glyphicon glyphicon-pencil"></span>
                                         </a>
                                         <a href="@Url.Action("ProductDetails", new { id = item.prodName})" title="Slett" class="btn btn-xs btn-danger" id="dangerButton">
                                             <span class="glyphicon glyphicon-trash"></span>
                                         </a>
-                                </tr>
+</tr>
                             }
                         </table>
                     </div>

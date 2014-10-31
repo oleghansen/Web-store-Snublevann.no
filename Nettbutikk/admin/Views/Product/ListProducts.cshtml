@@ -106,14 +106,14 @@
                                         <td>
                                             @Html.DisplayFor(modelItem => item.volum)
                                         </td>
-                                        <td class="pull-right">
+                                        <td class="pull-right" style="margin-top: 3px">
                                             <a href="@Url.Action("ProductDetails", new { id = item.itemnumber })" title="Endre" class="btn btn-xs btn-default" id="defaultButton">
                                                 <span class="glyphicon glyphicon-pencil"></span>
                                             </a>
-                                            <a href="@Url.Action("ProductDetails", new { id = item.itemnumber })" title="Slett"  class="btn btn-xs btn-danger" id="dangerButton">
+                                            <a href="@Url.Action("ProductDetails", new { id = item.itemnumber })" title="Slett" class="btn btn-xs btn-danger" id="dangerButton">
                                                 <span class="glyphicon glyphicon-trash"></span>
-                                            </a> 
-                                    </tr>
+                                            </a>
+</tr>
                                 }
                             </table>
                         </div>
