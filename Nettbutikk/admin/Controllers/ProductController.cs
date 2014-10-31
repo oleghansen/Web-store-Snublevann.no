@@ -239,7 +239,7 @@ namespace Nettbutikk.admin.Controllers
             return Json(result);
 
         }
-
+        //test
         public JsonResult getResults(string term)
         {
             List<string> foundProducts = _product.getAutoComplete(term);

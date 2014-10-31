@@ -32,7 +32,7 @@ namespace Nettbutikk.DAL
             catlist.Add(cat);
             return catlist;
         }
-       
+
         public List<SubCategory> getAllSub(int? id)
         {
             var cat = new SubCategory()
@@ -113,6 +113,15 @@ namespace Nettbutikk.DAL
         {
             if (id == 0)
                 return false;
+            return true;
+        }
+
+        public bool update(int id, SubCategory sc)
+        {
+            if (id == 0)
+            {
+                return false;
+            }
             return true;
         }
     }

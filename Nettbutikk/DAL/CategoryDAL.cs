@@ -160,22 +160,23 @@ namespace Nettbutikk.DAL
             return subcategory;
         }
 
-        public bool update(int id, SubCategory sc, int adminid)
+        public bool update(int id, SubCategory sc)
         {
             var db = new DatabaseContext();
+            SubCategories existing = db.SubCategories.FirstOrDefault(u => u.Id == sc.ID);
             try
             {
-                SubCategories sub = db.SubCategories.FirstOrDefault(u => u.Id == id);
-                sub.Name = sc.name;
-                sub.CategoriesId = sc.catId;
+                existing.Name = sc.name;
+                existing.CategoriesId = sc.catId;
 
-                db.SaveChanges(adminid);
-                return true;
+                db.SaveChanges(id);
             }
             catch (Exception e)
             {
+                // TODO:Skriv til fil
                 return false;
             }
+            return true;
         }
 
         public bool updateCategory(int id, Category c, int adminid)
