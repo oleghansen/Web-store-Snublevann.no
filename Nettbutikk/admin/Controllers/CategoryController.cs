@@ -151,6 +151,37 @@ namespace Nettbutikk.admin.Controllers
             return View();
         }
 
+        public ActionResult updateCatergoryDetails(int id) 
+        {
+            if (!isAdmin())
+                return RedirectToAction("Login", "Main");
+
+            List<Category> cat = _categoryBLL.getAll(id);
+            CategoryInfo ci = new CategoryInfo();
+            foreach(var item in cat){
+                ci.id = item.ID;
+                ci.name = item.name;
+            }
+           
+            
+ 
+            return View(ci);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult updateCatergoryDetails(CategoryInfo c)
+        {
+            if (ModelState.IsValid)
+            {
+                Customer a = (Customer)Session["loggedInUser"];
+                Category cat = new Category();
+                cat.name = c.name;
+                var b = _categoryBLL.updateCategory(c.id, cat ,a.id);
+                return RedirectToAction("ListCategories");
+
+            } return View(c.id);
+        }
+
         public ActionResult newSubCategory()
         {
             if (!isAdmin())
@@ -159,7 +190,7 @@ namespace Nettbutikk.admin.Controllers
             }
             var placeholder = new SubCategoryDetail()
             {
-                categoryList = _categoryBLL.getCategories().Select(c => new SelectListItem { Value = c.ID.ToString(), Text = c.name }).ToList()
+                categoryList = _categoryBLL.getAll(null).Select(c => new SelectListItem { Value = c.ID.ToString(), Text = c.name }).ToList()
             };
             return View(placeholder);
         }
@@ -183,7 +214,7 @@ namespace Nettbutikk.admin.Controllers
                 }))
                     return RedirectToAction("ListSubCategories");
             }
-            sc.categoryList = _categoryBLL.getCategories().Select(c => new SelectListItem { Value = c.ID.ToString(), Text = c.name }).ToList();
+            sc.categoryList = _categoryBLL.getAll(null).Select(c => new SelectListItem { Value = c.ID.ToString(), Text = c.name }).ToList();
             //ehm burde ikke denn flyttes nedover ??
             return View(sc);
         }

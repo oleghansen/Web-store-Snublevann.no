@@ -12,27 +12,25 @@ namespace Nettbutikk.DAL
         public List<Category> getAll(int? id)
         {
             var db = new DatabaseContext();
-            List<Category> products = db.Categories.Select(item => new Category() 
+            List<Category> category;
+            if (id == null)
             {
-                ID = item.Id,
-                name = item.Name
-            }).ToList();
-
-            return products;
-        }
-
-        public List<Category> getCategories()
-        {
-            var db = new DatabaseContext();
-            List<Category> list = db.Categories.Select(item => new Category()
+                category = db.Categories.Select(item => new Category()
+                {
+                    ID = item.Id,
+                    name = item.Name
+                }).ToList();
+            }
+            else
             {
-                ID = item.Id,
-                name = item.Name
-            }).ToList();
-
-            return list;
+                category = db.Categories.Select(item => new Category()
+                {
+                    ID = item.Id,
+                    name = item.Name
+                }).Where(item => item.ID == id).ToList();
+            }
+            return category;
         }
-
 
         public List<Category> getResult(int? id, string searchString)
         {
@@ -178,6 +176,26 @@ namespace Nettbutikk.DAL
             {
                 return false;
             }
+        }
+
+        public bool updateCategory(int id, Category c, int adminid)
+        {
+            var db = new DatabaseContext();
+
+            try
+            {
+                Categories cat = db.Categories.FirstOrDefault(ca => ca.Id == id);
+                cat.Name = c.name;
+
+                db.SaveChanges(adminid);
+                return true;
+            }
+            catch
+            {
+                //skriv til log
+                return false;
+            }
+
         }
     }
 }
