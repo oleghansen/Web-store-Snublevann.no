@@ -30,9 +30,20 @@
         </div>
             <div class="row" style="margin-left:10px">
                 <div class="col-md-3"> 
-                    <a href='@Url.Content("~/Content/img/products/" + Model.itemnumber + ".png")'> 
-                        <img src=@Url.Content("~/Content/img/products/" + Model.itemnumber + ".png") height="280" width="180" style="margin-bottom: 20px">
-                    </a>
+                    @if (Model.itemnumber > 100046)
+                    {
+                        <a href='@Url.Content("~/Content/img/products/defaultimg.png")'>
+                            <img src=@Url.Content("~/Content/img/products/defaultimg.png") height="280" width="180" style="margin-bottom: 20px">
+                        </a>
+                    }
+                    else
+                    {
+                        <a href='@Url.Content("~/Content/img/products/" + Model.itemnumber + ".png")'>
+                            <img src=@Url.Content("~/Content/img/products/" + Model.itemnumber + ".png") height="280" width="180" style="margin-bottom: 20px">
+                        </a>
+                    }
+
+
                 </div>
                 <div class="col-md-4 pull-left">
                     <div class="row">

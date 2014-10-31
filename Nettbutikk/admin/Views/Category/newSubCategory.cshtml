@@ -22,7 +22,7 @@
 </script>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("newSubCategory", "Category", FormMethod.Post, new { @class = "ajaxform" }))
 {
     @Html.AntiForgeryToken()
     <div class="jumbotron" style="padding-top:2px">

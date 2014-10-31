@@ -50,24 +50,24 @@
                                 </td>
                             </tr>
 
-                                @foreach (var item in Model)
-                                {
-                                    <tr class="rows">
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.prodId)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.prodName)
-                                        </td>
-                                        <td class="pull-right">
-                                            <a href="@Url.Action("ProductDetails", new { id = item.prodId })" title="Endre" class="btn btn-xs btn-default" id="defaultButton">
-                                                <span class="glyphicon glyphicon-pencil"></span>
-                                            </a>
+                            @foreach (var item in Model)
+                            {
+                                <tr class="rows">
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.prodId)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.prodName)
+                                    </td>
+                                    <td class="pull-right" style="margin-top: 2px">
+                                        <a href="@Url.Action("ProductDetails", new { id = item.prodId })" title="Endre" class="btn btn-xs btn-default" id="defaultButton">
+                                            <span class="glyphicon glyphicon-pencil"></span>
+                                        </a>
 
                                             <a href="@Url.Action("deleteProducer")" id="@item.prodId" class="btn btn-xs btn-danger ajaxdelete">
-                                                <span class="glyphicon glyphicon-trash"></span>
-                                            </a>
-                                    </tr>
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </a>
+                                </tr>
                                 
                             }
                         </table>

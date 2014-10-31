@@ -48,68 +48,68 @@
                     @Html.AntiForgeryToken()
 
 
-                    <div id="partView" class="panel panel-default partialView">
-                        <table>
-                            <tr>
+                <div id="partView" class="panel panel-default partialView">
+                    <table>
+                        <tr>
+                            <td>
+                                <b><a href="@Url.Action("ListCustomers", new { sortOrder = ViewBag.IDSortParm, currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].id)</a></b>
+                            </td>
+                            <td>
+                                <b><a href="@Url.Action("ListCustomers", new { sortOrder = ViewBag.FirstNameSortParm, currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].firstname)</a></b>
+                            </td>
+                            <td>
+                                <b><a href="@Url.Action("ListCustomers", new { sortOrder = ViewBag.LastNameSortParm, currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].lastname)</a></b>
+                            </td>
+                            <td>
+                                <b><a href="@Url.Action("ListCustomers", new { sortOrder = ViewBag.AddressSortParm, currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].address)</a></b>
+                            </td>
+                            <td>
+                                <b><a href="@Url.Action("ListCustomers", new { sortOrder = ViewBag.EMailSortParm, currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].email)</a></b>
+                            </td>
+                            <td>
+                                <b><a href="@Url.Action("ListCustomers", new { sortOrder = ViewBag.PostAreaSortParm, currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].postalarea)</a></b>
+                            </td>
+                            <td>
+                                <b><a href="@Url.Action("ListCustomers", new { sortOrder = ViewBag.PostCodeSortParm, currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].postalcode)</a></b>
+                            </td>
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            <tr class="rows">
                                 <td>
-                                    <b><a href="@Url.Action("ListCustomers", new { sortOrder = ViewBag.IDSortParm, currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].id)</a></b>
+                                    @Html.DisplayFor(modelItem => item.id)
                                 </td>
                                 <td>
-                                    <b><a href="@Url.Action("ListCustomers", new { sortOrder = ViewBag.FirstNameSortParm, currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].firstname)</a></b>
+                                    @Html.DisplayFor(modelItem => item.firstname)
                                 </td>
                                 <td>
-                                    <b><a href="@Url.Action("ListCustomers", new { sortOrder = ViewBag.LastNameSortParm, currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].lastname)</a></b>
+                                    @Html.DisplayFor(modelItem => item.lastname)
                                 </td>
                                 <td>
-                                    <b><a href="@Url.Action("ListCustomers", new { sortOrder = ViewBag.AddressSortParm, currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].address)</a></b>
+                                    @Html.DisplayFor(modelItem => item.address)
                                 </td>
                                 <td>
-                                    <b><a href="@Url.Action("ListCustomers", new { sortOrder = ViewBag.EMailSortParm, currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].email)</a></b>
+                                    @Html.DisplayFor(modelItem => item.email)
                                 </td>
                                 <td>
-                                    <b><a href="@Url.Action("ListCustomers", new { sortOrder = ViewBag.PostAreaSortParm, currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].postalarea)</a></b>
+                                    @Html.DisplayFor(modelItem => item.postalarea)
                                 </td>
                                 <td>
-                                    <b><a href="@Url.Action("ListCustomers", new { sortOrder = ViewBag.PostCodeSortParm, currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].postalcode)</a></b>
+                                    @Html.DisplayFor(modelItem => item.postalcode)
                                 </td>
-                            </tr>
-                            @foreach (var item in Model)
-                            {
-                                <tr class="rows">
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.id)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.firstname)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.lastname)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.address)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.email)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.postalarea)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.postalcode)
-                                    </td>
-                                    <td class="pull-right">
-                                        <a href="@Url.Action("CustomerDetails", new { id = item.id })" title="Endre" class="btn btn-xs btn-default" id="defaultButton">
-                                            <span class="glyphicon glyphicon-pencil"></span>
-                                        </a>
+                                <td class="pull-right" style="margin-top: 3px">
+                                    <a href="@Url.Action("CustomerDetails", new { id = item.id })" title="Endre" class="btn btn-xs btn-default" id="defaultButton">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </a>
                                         <!-- <button class="btn btn-xs btn-default" style="margin-top:0px" type="submit"><i class="glyphicon glyphicon-align-justify"></i>@Html.ActionLink("Se ordre", "ListCustomerOrders", new { id = item.id }) </button>-->
                                         <a href="@Url.Action("deleteCustomer")" id="@item.id" class="btn btn-xs btn-danger ajaxdelete">
                                             <i class="glyphicon glyphicon-trash"></i>
                                         </a>
 
-                                </tr>
-                            }
-                        </table>
-                    </div>
+</tr>
+                        }
+                    </table>
+                </div>
                 }
 
                 <div style="margin-left:10px">
