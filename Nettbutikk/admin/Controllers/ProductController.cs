@@ -241,7 +241,7 @@ namespace Nettbutikk.admin.Controllers
             return Json(new { success = false, message = "Noe gikk galt, prøv igjen" });
 
         }
-
+        //test
         public JsonResult getResults(string term)
         {
             List<string> foundProducts = _product.getAutoComplete(term);

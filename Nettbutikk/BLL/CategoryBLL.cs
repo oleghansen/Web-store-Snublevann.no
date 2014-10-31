@@ -79,9 +79,9 @@ namespace Nettbutikk.BLL
             return allproducers;
         }
 
-        public bool update(int id, SubCategory sc, int adminid)
+        public bool update(int id, SubCategory sc)
         {
-            return _category.update(id, sc, adminid);
+            return _category.update(id, sc);
         }
     }
 }
