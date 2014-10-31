@@ -235,8 +235,10 @@ namespace Nettbutikk.admin.Controllers
             p.subCategoryList = test;
             p.producerList = _product.getProducers().Select(r => new SelectListItem { Value = r.id.ToString(), Text = r.name }).ToList();
 
+            if (result)
+                return Json(new { success = true, message = "Endringene ble lagret"});
 
-            return Json(result);
+            return Json(new { success = false, message = "Noe gikk galt, prøv igjen" });
 
         }
         //test
