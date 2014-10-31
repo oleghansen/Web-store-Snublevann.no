@@ -85,5 +85,9 @@ namespace Nettbutikk.BLL
         {
             return _product.getProducers();
         }
+        public bool deleteProduct(int id, int adminid)
+        {
+            return _product.deleteProduct(id, adminid); 
+        }
     }
 }

@@ -18,6 +18,7 @@ namespace Nettbutikk.BLL
         bool addCategoriesTest(int userId);
         List<SubCategory> getAllSubCategories();
         List<Country> getCountries();
-        List<Producer> getProducers(); 
+        List<Producer> getProducers();
+        bool deleteProduct(int id, int adminid); 
     }
 }

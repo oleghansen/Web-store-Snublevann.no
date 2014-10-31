@@ -30,7 +30,8 @@
                         </a>
                     </div>
                 </div>
-
+@using (Html.BeginForm("DeleteSubCategory", "Category", FormMethod.Post, new { @class = "ajaxdelete" })){
+    @Html.AntiForgeryToken()
                 <div>
                     <div id="partView" class="panel panel-default partialView">
                         <table>
@@ -45,31 +46,38 @@
                                     <b><a href="@Url.Action("ListSubCategories", new { sortOrder = ViewBag.ItemSortParm, currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].categoriesName)</a></b>
                                 </td>
                             </tr>
+                          
+
                             @foreach (var item in Model)
                             {
-                                <tr class="rows">
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.ID)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.name)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.categoriesName)
-                                    </td>
-                                    <td class="pull-right">
-                                        <a href="@Url.Action("SubCatDetails", new { id = item.ID })" title="Endre" class="btn btn-xs btn-default" id="defaultButton">
-                                            <span class="glyphicon glyphicon-pencil"></span>
-                                        </a>
-                                        <a href="@Url.Action("ProductDetails", new { id = item.ID})" title="Slett" class="btn btn-xs btn-danger" id="dangerButton">
-                                            <span class="glyphicon glyphicon-trash"></span>
-                                        </a>
-                                </tr>
+                            <tr class="rows">
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.categoriesName)
+                                </td>
+
+                                <td class="pull-right">
+                                    <a href="@Url.Action("SubCatDetails", new { id = item.ID })" title="Endre" class="btn btn-xs btn-default" id="defaultButton">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </a>
+
+                                    <a href="@Url.Action("deleteSubCategory")" id="@item.ID" class="btn btn-xs btn-danger ajaxdelete">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </a>
+                                </td>
+                                        
+                            </tr> 
                             }
                         </table>
                     </div>
 
                 </div>
+}
             </div>
 
             <div style="margin-left:10px">
@@ -82,4 +90,4 @@
         </div>
     </div>
 </div>
-
+@Html.Partial("~/Views/Shared/_Modal.cshtml")

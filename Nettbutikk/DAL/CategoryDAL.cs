@@ -1,6 +1,9 @@
 ﻿using Nettbutikk.Model;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core;
+using System.Data.Entity.Infrastructure;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -197,6 +200,97 @@ namespace Nettbutikk.DAL
                 return false;
             }
 
+        }
+
+        public List<SubCategory> deleteCategory(int id, int adminid)
+        {
+            var db = new DatabaseContext();
+            Categories c = db.Categories.FirstOrDefault(ca => ca.Id == id);
+            db.Categories.Remove(c);
+            try
+            {
+                db.SaveChanges(adminid);
+            }
+            catch (DbUpdateException ue)
+            {
+                // TODO write to file
+                try
+                {
+                    return db.SubCategories.Where(sc => sc.CategoriesId == id).Select(p => new SubCategory()
+                    {
+                        name = p.Name
+                    }).ToList();
+                }
+                catch(Exception e)
+                {
+                    // write to file
+                }
+            }
+            catch( Exception e)
+            {
+                // write to file
+            }
+            return null; 
+        }
+        public List<Product> deleteSubCategory(int id, int adminid)
+        {
+            var db = new DatabaseContext();
+            SubCategories c = db.SubCategories.FirstOrDefault(ca => ca.Id == id);
+            db.SubCategories.Remove(c);
+            try
+            {
+                db.SaveChanges(adminid);
+            }
+            catch (DbUpdateException ue)
+            {
+                // TODO write to file
+                try
+                {
+                    return db.Products.Where(sc => sc.SubCategoriesId == id).Select(p => new Product()
+                    {
+                        name = p.Name
+                    }).ToList();
+                }
+                catch (Exception e)
+                {
+                    // write to file
+                }
+            }
+            catch (Exception e)
+            {
+                // write to file
+            }
+            return null;
+        }
+        public List<Product> deleteProducer(int id, int adminid)
+        {
+            var db = new DatabaseContext();
+            Producers c = db.Producers.FirstOrDefault(ca => ca.Id == id);
+            db.Producers.Remove(c);
+            try
+            {
+                db.SaveChanges(adminid);
+            }
+            catch (DbUpdateException ue)
+            {
+                // TODO write to file
+                try
+                {
+                    return db.Products.Where(sc => sc.ProducersId == id).Select(p => new Product()
+                    {
+                        name = p.Name
+                    }).ToList();
+                }
+                catch (Exception e)
+                {
+                    // write to file
+                }
+            }
+            catch (Exception e)
+            {
+                // write to file
+            }
+            return null;
         }
     }
 }

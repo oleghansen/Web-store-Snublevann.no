@@ -38,7 +38,14 @@ namespace Nettbutikk.Models
         public DbSet<AuditLog> AuditLogs { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+
+
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+            modelBuilder.Entity<OrderLines>().HasRequired(x => x.Products).WithMany().WillCascadeOnDelete(true);
+            modelBuilder.Entity<OrderLines>().HasRequired(x => x.Orders).WithMany().WillCascadeOnDelete(true);
+            modelBuilder.Entity<Orders>().HasRequired(x => x.Customers).WithMany().WillCascadeOnDelete(true);
         }
 
     }
@@ -81,6 +88,7 @@ namespace Nettbutikk.Models
     {
         [Key]
         public int Id { get; set; }
+        [Required]
         public int ProductsId { get; set; }
         public Products Products { get; set; }
         public int Quantity { get; set; }

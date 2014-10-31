@@ -5,9 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     SelectList itemsPerPageList = DefaultValues.ItemsPerPageList;
 }
-<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-<script src="~/Scripts/jquery-1.9.0.min.js"></script>
-<link href="~/Content/jquery-ui.css" rel="stylesheet" />
+
+
+
 <script type="text/javascript">
 
     $(function () {
@@ -67,7 +67,9 @@
 
                 </div>
             </div>
-
+@using (Html.BeginForm("deleteProduct", "Product", FormMethod.Post, new { @class = "ajaxdelete" }))
+                                {
+    @Html.AntiForgeryToken()
                     <div>
                         <div id="partView" class="panel panel-default partialView">
                             <table>
@@ -88,37 +90,43 @@
                                         <b> @Html.DisplayNameFor(modelItem => Model[0].volum)</b>
                                     </td>
                                 </tr>
-                                @foreach (var item in Model)
-                                {
-                                    <tr class="rows">
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.itemnumber)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.name)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.producer)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.price)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.volum)
-                                        </td>
-                                        <td class="pull-right">
-                                            <a href="@Url.Action("ProductDetails", new { id = item.itemnumber })" title="Endre" class="btn btn-xs btn-default" id="defaultButton">
-                                                <span class="glyphicon glyphicon-pencil"></span>
-                                            </a>
-                                            <a href="@Url.Action("ProductDetails", new { id = item.itemnumber })" title="Slett"  class="btn btn-xs btn-danger" id="dangerButton">
-                                                <span class="glyphicon glyphicon-trash"></span>
-                                            </a> 
-                                    </tr>
+
+                                
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr class="rows">
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.itemnumber)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.name)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.producer)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.price)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.volum)
+                                            </td>
+                                            <td class="pull-right">
+                                                <a href="@Url.Action("ProductDetails", new { id = item.itemnumber })" title="Endre" class="btn btn-xs btn-default" id="defaultButton">
+                                                    <span class="glyphicon glyphicon-pencil"></span>
+                                                </a>
+
+                                                <a href="@Url.Action("deleteProduct")" id="@item.itemnumber" class="btn btn-xs btn-danger ajaxdelete">
+                                                    <span class="glyphicon glyphicon-trash"></span>
+                                                </a> 
+                                        </tr>
+                                    
                                 }
+
                             </table>
                         </div>
 
                     </div>
+}
                 </div>
 
             <div style="margin-left:10px">
@@ -141,3 +149,4 @@
   </div>
 </div>
 
+@Html.Partial("~/Views/Shared/_Modal.cshtml")

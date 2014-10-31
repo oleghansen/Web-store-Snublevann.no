@@ -21,6 +21,7 @@ namespace Nettbutikk.DAL
 
         List<Country> getCountries();
         List<Producer> getProducers();
+        bool deleteProduct(int id, int adminid);
 
     }
 }

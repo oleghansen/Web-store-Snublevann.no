@@ -321,6 +321,51 @@ namespace Nettbutikk.admin.Controllers
             var user = (Customer)Session["loggedInUser"];
             return (user == null) ? false : user.admin;
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteCategory(int id)
+        {
+            if(!isAdmin())
+                return RedirectToAction("Login","Main");
+            Customer admin = (Customer) Session["loggedInUser"];
+
+            var result = _categoryBLL.deleteCategory(id, admin.id);
+
+            if(result == null)
+                return Json(new {success= true, message = "Kategorien ble slettet",redirect="/Category/ListCategories/"});
+            return Json(new { success = false, message = "<p>Du må først slette følgende subkategorier</p>", list = result }); 
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteSubCategory(int id)
+        {
+            if (!isAdmin())
+                return RedirectToAction("Login", "Main");
+            Customer admin = (Customer)Session["loggedInUser"];
+
+            var result = _categoryBLL.deleteSubCategory(id, admin.id);
+
+            if (result == null)
+                return Json(new { success = true, message = "Subkategorien ble slettet", redirect = "/Category/ListSubCategories/" });
+            return Json(new { success = false, message = "<p>Du må først slette følgende produkter</p>", list = result });
+        }
     
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteProducer(int id)
+        {
+            if (!isAdmin())
+                return RedirectToAction("Login", "Main");
+            Customer admin = (Customer)Session["loggedInUser"];
+
+            var result = _categoryBLL.deleteProducer(id, admin.id);
+
+            if(result == null)
+                return Json(new { success = true, message = "Produsenten ble slettet", redirect = "/Category/ListProducers/"});
+            return Json(new { success = false, message = "<p>Du må først slette følgende produkter</p>", list = result }); 
+        }
     }
 }

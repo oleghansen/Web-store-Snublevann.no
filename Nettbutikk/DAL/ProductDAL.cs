@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using Nettbutikk.Model;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 
 namespace Nettbutikk.DAL
 {
@@ -202,6 +203,28 @@ namespace Nettbutikk.DAL
             }).ToList();
 
             return list; 
+        }
+
+        public bool deleteProduct(int id, int adminid)
+        {
+            var db = new DatabaseContext();
+            Products c = db.Products.FirstOrDefault(ca => ca.Id == id);
+            db.Products.Remove(c);
+            try
+            {
+                db.SaveChanges(adminid);
+            }
+            catch (DbUpdateException ue)
+            {
+                // write to file
+                return false;
+            }
+            catch (Exception e)
+            {
+                // write to file
+                return false;
+            }
+            return true;
         }
     }
 }

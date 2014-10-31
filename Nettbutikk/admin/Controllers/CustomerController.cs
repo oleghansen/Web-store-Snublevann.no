@@ -392,14 +392,19 @@ namespace Nettbutikk.admin.Controllers
            
         }
 
-        public ActionResult delete(int id)
+        public ActionResult deleteCustomer(int id)
         {
 
             if (!isAdmin())
                 return RedirectToAction("Main", "Main");
             Customer a = (Customer)Session["loggedInUser"];
-            var b =_customerbll.delete(id, a.id); 
-            return RedirectToAction("ListCustomers");
+            if (id == a.id)
+                return Json(new { success = false, message = "Du kan ikke slette deg selv, få noen andre til å gjøre det!" }); 
+            var b =_customerbll.delete(id, a.id);
+            if (b)
+                return Json(new { success = true, message = "Brukeren ble slettet", redirect = "/Customer/ListCustomers/" });
+            return Json(new { success = false, message = "Noe gikk galt, prøv igjen senere" });
+            
  
         }
     }

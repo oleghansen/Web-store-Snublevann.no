@@ -82,5 +82,18 @@ namespace Nettbutikk.BLL
         {
             return _category.updateCategory(id, c, adminid);
         }
+
+        public List<SubCategory> deleteCategory(int id, int adminid)
+        {
+            return _category.deleteCategory(id, adminid); 
+        }
+        public List<Product> deleteSubCategory(int id, int adminid)
+        {
+            return _category.deleteSubCategory(id, adminid);
+        }
+        public List<Product> deleteProducer(int id, int adminid)
+        {
+            return _category.deleteProducer(id, adminid); 
+        }
     }
 }

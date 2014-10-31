@@ -124,5 +124,18 @@ namespace Nettbutikk.DAL
             }
             return true;
         }
+
+        public List<SubCategory> deleteCategory(int id, int adminid)
+        {
+            return null; 
+        }
+        public List<Product> deleteSubCategory(int id, int adminid)
+        {
+            return null; 
+        }
+        public List<Product> deleteProducer(int id, int adminid)
+        {
+            return null;
+        }
     }
 }

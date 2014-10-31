@@ -17,5 +17,9 @@ namespace Nettbutikk.BLL
         List<Producer> getResultProducer(int? id, string sc);
         bool updateCategory(int id, Category c, int adminid);
         bool update(int id, SubCategory sc);
+        List<SubCategory> deleteCategory(int id, int adminid);
+        List<Product> deleteSubCategory(int id, int adminid);
+        List<Product> deleteProducer(int id, int adminid);
+
     }
 }

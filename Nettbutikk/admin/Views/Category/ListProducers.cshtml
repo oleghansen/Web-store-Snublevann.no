@@ -35,7 +35,9 @@
 
                     </div>
                 </div>
+@using (Html.BeginForm("DeleteProducer", "Category", FormMethod.Post, new { @class = "ajaxdelete" })) {
 
+    @Html.AntiForgeryToken()
                 <div>
                     <div id="partView" class="panel panel-default partialView">
                         <table>
@@ -47,34 +49,38 @@
                                     <b><a href="@Url.Action("ListProducers", new { sortOrder = ViewBag.NameSortParm , currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].prodName)</a></b>
                                 </td>
                             </tr>
-                            @foreach (var item in Model)
-                            {
-                                <tr class="rows">
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.prodId)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.prodName)
-                                    </td>
-                                    <td class="pull-right">
-                                        <a href="@Url.Action("ProductDetails", new { id = item.prodId })" title="Endre" class="btn btn-xs btn-default" id="defaultButton">
-                                            <span class="glyphicon glyphicon-pencil"></span>
-                                        </a>
-                                        <a href="@Url.Action("ProductDetails", new { id = item.prodName})" title="Slett" class="btn btn-xs btn-danger" id="dangerButton">
-                                            <span class="glyphicon glyphicon-trash"></span>
-                                        </a>
-                                </tr>
+
+                                @foreach (var item in Model)
+                                {
+                                    <tr class="rows">
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.prodId)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.prodName)
+                                        </td>
+                                        <td class="pull-right">
+                                            <a href="@Url.Action("ProductDetails", new { id = item.prodId })" title="Endre" class="btn btn-xs btn-default" id="defaultButton">
+                                                <span class="glyphicon glyphicon-pencil"></span>
+                                            </a>
+
+                                            <a href="@Url.Action("deleteProducer")" id="@item.prodId" class="btn btn-xs btn-danger ajaxdelete">
+                                                <span class="glyphicon glyphicon-trash"></span>
+                                            </a>
+                                    </tr>
+                                
                             }
                         </table>
                     </div>
 
                 </div>
+}
             </div>
 
             <div style="margin-left:10px">
                 <div class="row">
                     <div class=" col-sm-12 col-md-12">
-                        @Html.PagedListPager(Model, page => Url.Action("ListProducts", new { page, itemsPerPage = ViewBag.CurrentItemsPerPage, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                        @Html.PagedListPager(Model, page => Url.Action("ListProducers", new { page, itemsPerPage = ViewBag.CurrentItemsPerPage, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
                     </div>
                 </div>
             </div>
@@ -82,3 +88,4 @@
     </div>
 </div>
 
+@Html.Partial("~/Views/Shared/_Modal.cshtml")

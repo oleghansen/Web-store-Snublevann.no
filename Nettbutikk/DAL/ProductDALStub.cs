@@ -113,5 +113,9 @@ namespace Nettbutikk.DAL
         {
             return null; 
         }
+        public bool deleteProduct(int id, int adminid)
+        {
+            return false; 
+        }
     }
 }

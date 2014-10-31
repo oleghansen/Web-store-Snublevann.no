@@ -294,5 +294,21 @@ namespace Nettbutikk.admin.Controllers
                 return Json(new { success = true, message = result.name + " ble lagt til med varenummer " + result.itemnumber, redirect = "/Product/ListProducts/?sortOrder=item_desc" });
             return Json(new { success = false, message = "Noe gikk galt, prøv igjen senere" });
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult deleteProduct(int id)
+        {
+            if(!isAdmin())
+            {
+                return RedirectToAction("Login", "Main");
+            }
+            Customer admin = (Customer)Session["loggedInUser"];
+            var result = _product.deleteProduct(id, admin.id);
+
+            if (result)
+                return Json(new { success = true, message = "Produktet ble slettet", redirect = "/Product/ListProducts/" });
+            return Json(new { success = false, message = "Noe gikk galt, produktet ble ikke slettet, prøv igjen senere" }); 
+        }
     }
 }
