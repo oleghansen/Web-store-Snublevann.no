@@ -91,11 +91,11 @@ namespace Nettbutikk.DAL
         }
 
 
-        public bool addProduct(int id, Product p)
+        public Product addProduct(int id, Product p)
         {
             if (id == 0)
-                return false;
-            return true;
+                return null;
+            return null;
         }
 
         // TODO: fjern før levering!

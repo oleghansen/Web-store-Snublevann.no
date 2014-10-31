@@ -63,7 +63,7 @@ namespace Nettbutikk.BLL
             return _product.updateProduct(id,p);
         }
 
-        public bool addProduct(int id, Product p)
+        public Product addProduct(int id, Product p)
         {
             // TODO: servervalidering skal skje her!
             return _product.addProduct(id,p);

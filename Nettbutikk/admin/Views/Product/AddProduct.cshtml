@@ -6,7 +6,6 @@
 }
 
 <link href="~/Content/Custom/MainSheet.css" rel="stylesheet" />
-<script src="~/Scripts/jquery-1.9.0.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $('#verify').keyup(function () {
@@ -23,7 +22,7 @@
 </script>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("AddProduct", "Product", FormMethod.Post, new { @class = "ajaxform" }))
 {
     @Html.AntiForgeryToken()
 
@@ -69,7 +68,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <small>@Html.LabelFor(model => model.producerid)</small>
-                                    @Html.DropDownListFor(x => x.producerid, Model.producerList, new { @id = "producer", @class = "form-control input-sm" })
+                                    @Html.DropDownListFor(x => x.producerid, Model.producerList, "---velg produsent---", new { @id = "producer", @class = "form-control input-sm" })
                                 </div>
                             </div>
                             <div class="row">
@@ -94,7 +93,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <small>@Html.LabelFor(model => model.subCategoryid)</small>
-                                        @Html.DropDownGroupListFor(m => m.subCategoryid, Model.subCategoryList, new { @class = "form-control input-sm" })
+                                        @Html.DropDownGroupListFor(m => m.subCategoryid, Model.subCategoryList, "---velg subkategori---", new { @class = "form-control input-sm" })
                                     </div>
                                 </div>
                             </div>
@@ -102,7 +101,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <small>@Html.LabelFor(x => x.countryid)</small>
-                                        @Html.DropDownListFor(x => x.countryid, Model.countryList, new { @id = "country", @class = "form-control input-sm" })
+                                        @Html.DropDownListFor(x => x.countryid, Model.countryList, "---velg land---", new { @id = "country", @class = "form-control input-sm" })
                                     </div>
                                 </div>
                             </div>
@@ -120,5 +119,6 @@
         </div>
     </div>
 }
+@Html.Partial("~/Views/Shared/_Modal.cshtml")
 
 

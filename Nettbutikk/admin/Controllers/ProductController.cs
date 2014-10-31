@@ -236,7 +236,7 @@ namespace Nettbutikk.admin.Controllers
             p.producerList = _product.getProducers().Select(r => new SelectListItem { Value = r.id.ToString(), Text = r.name }).ToList();
 
             if (result)
-                return Json(new { success = true, message = "Endringene ble lagret"});
+                return Json(new { success = true, message = "Endringene ble lagret",redirect="/Product/ListProducts/"});
 
             return Json(new { success = false, message = "Noe gikk galt, prøv igjen" });
 
@@ -273,7 +273,7 @@ namespace Nettbutikk.admin.Controllers
             }
             Customer admin = (Customer)Session["loggedInUser"];
             var adminid = admin.id;
-            if (_product.addProduct(adminid, new Product()
+            var result = _product.addProduct(adminid, new Product()
             {
                 name = p.name,
                 countryid = p.countryid,
@@ -283,15 +283,16 @@ namespace Nettbutikk.admin.Controllers
                 producerid = p.producerid,
                 subCategoryid = p.subCategoryid,
                 volum = p.volum
-            }))
-                return RedirectToAction("ListProducts");
-            
+            }); 
+
+                        
             p.countryList = _product.getCountries().Select(c => new SelectListItem { Value = c.id.ToString(), Text = c.name }).ToList();
             p.subCategoryList = _product.getAllSubCategories().Select(s => new GroupedSelectListItem { GroupKey = s.catId.ToString(), GroupName = s.catName, Value = s.ID.ToString(), Text = s.name,Selected=true }).ToList();
             p.producerList = _product.getProducers().Select(r => new SelectListItem { Value = r.id.ToString(), Text = r.name }).ToList();
 
-            return View(p); 
-            
+            if (result != null)
+                return Json(new { success = true, message = result.name + " ble lagt til med varenummer " + result.itemnumber, redirect = "/Product/ListProducts/?sortOrder=item_desc" });
+            return Json(new { success = false, message = "Noe gikk galt, prøv igjen senere" });
         }
     }
 }

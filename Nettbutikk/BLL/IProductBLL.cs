@@ -13,7 +13,7 @@ namespace Nettbutikk.BLL
         Product seeDetails(int i);
 
         bool updateProduct(int id, Product p);
-        bool addProduct(int id, Product p);
+        Product addProduct(int id, Product p);
         //TODO:fjern før levering
         bool addCategoriesTest(int userId);
         List<SubCategory> getAllSubCategories();

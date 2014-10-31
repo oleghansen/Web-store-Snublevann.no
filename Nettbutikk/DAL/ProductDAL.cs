@@ -145,23 +145,25 @@ namespace Nettbutikk.DAL
 
         }
 
-        public bool addProduct(int id, Product p)
+        public Product addProduct(int id, Product p)
         {
             var db = new DatabaseContext();
-            db.Products.Add(new Products()
-            {
-                Name = p.name,
-                Description = p.description,
-                LongDescription = p.longDescription,
-                CountriesId = p.countryid,
-                SubCategoriesId = p.subCategoryid,
-                Price = p.price,
-                Volum = p.volum,
-                ProducersId = p.producerid
-            });
+            var newp = new Products()
+                {
+                    Name = p.name,
+                    Description = p.description,
+                    LongDescription = p.longDescription,
+                    CountriesId = p.countryid,
+                    SubCategoriesId = p.subCategoryid,
+                    Price = p.price,
+                    Volum = p.volum,
+                    ProducersId = p.producerid
+                };
+            db.Products.Add(newp); 
             db.SaveChanges(id);
+            p.itemnumber = newp.Id; 
 
-            return true; 
+            return p; 
         }
 
         // TODO: denne metoden er kun for å teste audit trail. Må fjernes før innlevering
