@@ -20,7 +20,7 @@ namespace Nettbutikk.DAL
 
             return products;
         }
-
+            
         public List<Category> getCategories()
         {
             var db = new DatabaseContext();
