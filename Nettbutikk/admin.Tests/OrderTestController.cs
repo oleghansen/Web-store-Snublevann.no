@@ -5,6 +5,7 @@ using Nettbutikk.admin.Models;
 using Nettbutikk.BLL;
 using Nettbutikk.DAL;
 using Nettbutikk.Model;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +31,7 @@ namespace Nettbutikk.admin.Tests
             // Act 
 
             var actrow = (ViewResult)bll.ListOrders(null,null,null,null);
-            var result = (List<OrderViewModel>)actrow.Model;
+            var result = (IPagedList<OrderViewModel>)actrow.Model;
 
 
             // Assert
@@ -58,8 +59,8 @@ namespace Nettbutikk.admin.Tests
            
             // Act
 
-            var actrow = (ViewResult)bll.ListOrders(null, null, null, null);
-            var result = (List<OrderViewModel>)actrow.Model;
+            var actual = (ViewResult)bll.ListOrders(null, null, null, null);
+            var result = (IPagedList<OrderViewModel>)actual.Model;
 
 
             // Assert
@@ -78,7 +79,7 @@ namespace Nettbutikk.admin.Tests
             var expected = new Order()
             {
                 id = 1,
-                customerid = 1001,
+                customerid = 1,
                 orderdate = DateTime.Now
             };
 

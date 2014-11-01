@@ -74,7 +74,7 @@ namespace Nettbutikk.Tests
             var bll = new ProductController(new ProductBLL(new ProductDALStub()));
             builder.InitializeController(bll);
             builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
-            var expected = new Product()
+            var expected = new ProductDetail()
             {
                 itemnumber = 1,
                 name = "Tull",
@@ -82,7 +82,7 @@ namespace Nettbutikk.Tests
             };
 
             var action = (ViewResult)bll.ProductDetails(1);
-            var result = (ProductInfo)action.Model;
+            var result = (ProductDetail)action.Model;
 
 
             Assert.AreEqual(expected.itemnumber, result.itemnumber);

@@ -65,7 +65,7 @@ namespace Nettbutikk.DAL
         {
             Order o = new Order()
             {
-                id = 298423,
+                id = id,
                 customerid = 1,
                 orderdate = DateTime.Now
 
