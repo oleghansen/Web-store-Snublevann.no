@@ -396,5 +396,20 @@ namespace Nettbutikk.admin.Controllers
             return Json(new { success = false, message = "noe gikk galt, prøv igjen senere." });
         }
 
+        public ActionResult ProducerDetails(int id)
+        {
+            if (!isAdmin())
+                return RedirectToAction("LogIn", "Main");
+            Producer prodDetails = _categoryBLL.producerDetails(id);
+
+            ProducerInfo prodinfo = new ProducerInfo()
+            {
+                prodId = prodDetails.id,
+                prodName = prodDetails.name
+            };
+
+            return View(prodinfo);
+        }
+
     }
 }

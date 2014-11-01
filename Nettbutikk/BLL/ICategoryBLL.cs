@@ -18,6 +18,7 @@ namespace Nettbutikk.BLL
         List<SubCategory> deleteCategory(int id, int adminid);
         List<Product> deleteSubCategory(int id, int adminid);
         List<Product> deleteProducer(int id, int adminid);
+        Producer producerDetails(int id);
 
     }
 }

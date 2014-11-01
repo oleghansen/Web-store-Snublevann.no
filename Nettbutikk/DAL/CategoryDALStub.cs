@@ -110,5 +110,10 @@ namespace Nettbutikk.DAL
                 return false;
             return true;
         }
+
+        public Producer producerDetails(int id)
+        {
+            return null;
+        }
     }
 }

@@ -182,6 +182,27 @@ namespace Nettbutikk.DAL
             }
         }
 
+        public Producer producerDetails(int id)
+        {
+            try
+            {
+                var db = new DatabaseContext();
+                Producers produser = (Producers)db.Producers.FirstOrDefault(c => c.Id == id);
+                Producer prod = new Producer()
+                {
+                    id = produser.Id,
+                    name = produser.Name
+                };
+
+                return prod;
+            }
+            catch (Exception e)
+            {
+                writeToFile(e);
+                return null;
+            }
+        }
+
         public bool update(int id, SubCategory sc)
         {
             var db = new DatabaseContext();

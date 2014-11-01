@@ -17,6 +17,6 @@ namespace Nettbutikk.DAL
         List<Product> deleteSubCategory(int id, int adminid);
         List<Product> deleteProducer(int id, int adminid);
         bool AddProducer(Producer prod, int id);
-
+        Producer producerDetails(int id);
     }
 }
