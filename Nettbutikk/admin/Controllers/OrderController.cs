@@ -118,7 +118,7 @@ namespace Nettbutikk.admin.Controllers
         public ActionResult ListOrderLines(int id, int? page, int? itemsPerPage, string sortOrder, string currentFilter)
         {
             if (!isAdmin())
-                return RedirectToAction("Main", "Main");
+                return RedirectToAction("LogIn", "Main");
 
             ViewBag.CurrentSort = sortOrder;
             ViewBag.IDSortParm = String.IsNullOrEmpty(sortOrder) ? "id_desc" : "";
@@ -214,7 +214,7 @@ namespace Nettbutikk.admin.Controllers
         {
 
             if (!isAdmin())
-                return RedirectToAction("Main", "Main");
+                return RedirectToAction("LogIn", "Main");
           
             List<Order> allOrders = _orderbll.getAllOrders(id);
             BillingViewModel b = null;

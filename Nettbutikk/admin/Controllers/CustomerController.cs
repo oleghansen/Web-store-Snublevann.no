@@ -128,22 +128,13 @@ namespace Nettbutikk.admin.Controllers
             return View(list.ToPagedList(pageNumber: page ?? 1, pageSize: itemsPerPage ?? 15));
         }
 
-        private bool isAdmin(){
-            if (Session == null)
-            {
-                Debug.WriteLine("her?");
-                return false;
-            }
-            var user = (Customer) Session["loggedInUser"];
-            return (user == null)?false:user.admin; 
-        }
 
         [HttpGet]
-        public ActionResult  makeAdmin(int id)
+        public ActionResult makeAdmin(int id)
         {
             if (!isAdmin())
             {
-                return RedirectToAction("Login", "Main");
+                return RedirectToAction("LogIn", "Main");
             }
             Customer c = (Customer)Session["loggedInUser"];
             var b =  _customerbll.makeAdmin(id, c.id);
@@ -158,7 +149,7 @@ namespace Nettbutikk.admin.Controllers
         {
             if (!isAdmin())
             {
-                return RedirectToAction("Login", "Main");
+                return RedirectToAction("LogIn", "Main");
             }
             Customer c = (Customer)Session["loggedInUser"];
             if(id == c.id)
@@ -199,7 +190,7 @@ namespace Nettbutikk.admin.Controllers
         {
             if (!isAdmin())
             {
-                return RedirectToAction("Login", "Main");
+                return RedirectToAction("LogIn", "Main");
             }
             bool b = false;
             bool eouaoae = ModelState.IsValid;
@@ -307,7 +298,7 @@ namespace Nettbutikk.admin.Controllers
         {
 
             if (!isAdmin())
-                return RedirectToAction("Main", "Main");
+                return RedirectToAction("LogIn", "Main");
             ViewBag.CurrentSort = sortOrder;
             ViewBag.IDSortParm = String.IsNullOrEmpty(sortOrder) ? "id_desc" : "";
             ViewBag.PIDSortParm = sortOrder == "PID" ? "pid_desc" : "PID";
@@ -396,7 +387,7 @@ namespace Nettbutikk.admin.Controllers
         {
 
             if (!isAdmin())
-                return RedirectToAction("Main", "Main");
+                return RedirectToAction("LogIn", "Main");
             Customer a = (Customer)Session["loggedInUser"];
             if (id == a.id)
                 return Json(new { success = false, message = "Du kan ikke slette deg selv, få noen andre til å gjøre det!" }); 
@@ -407,5 +398,17 @@ namespace Nettbutikk.admin.Controllers
             
  
         }
+
+        private bool isAdmin()
+        {
+            if (Session == null)
+            {
+                Debug.WriteLine("her?");
+                return false;
+            }
+            var user = (Customer)Session["loggedInUser"];
+            return (user == null) ? false : user.admin;
+        }
+
     }
 }

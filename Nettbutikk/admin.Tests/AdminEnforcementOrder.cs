@@ -11,7 +11,7 @@ namespace Nettbutikk.Tests
     public class AdminEnforcementOrder
     {
         [TestMethod]
-        public void non_admin_list_orders()
+        public void non_admin_order_list_orders()
         {
             //Arrange
             var controller = new OrderController(new OrderBLL(new OrderDALStub()));
@@ -20,8 +20,53 @@ namespace Nettbutikk.Tests
             var result = (RedirectToRouteResult)controller.ListOrders(null, null, null, null); 
 
             //Assert
-            Assert.AreEqual("Main", result.RouteValues["Action"]);
+            Assert.AreEqual("LogIn", result.RouteValues["Action"]);
             Assert.AreEqual("Main", result.RouteValues["Controller"]);
         }
+
+        [TestMethod]
+        public void non_admin_order_list_order_lines()
+        {
+            //Arrange
+            var controller = new OrderController(new OrderBLL(new OrderDALStub()));
+
+            //Act
+            var result = (RedirectToRouteResult)controller.ListOrderLines(0,null, null, null, null);
+
+            //Assert
+            Assert.AreEqual("LogIn", result.RouteValues["Action"]);
+            Assert.AreEqual("Main", result.RouteValues["Controller"]);
+        }
+        [TestMethod]
+        public void non_admin_order_details()
+        {
+            //Arrange
+            var controller = new OrderController(new OrderBLL(new OrderDALStub()));
+
+            //Act
+            var result = (RedirectToRouteResult)controller.Details(0);
+
+            //Assert
+            Assert.AreEqual("LogIn", result.RouteValues["Action"]);
+            Assert.AreEqual("Main", result.RouteValues["Controller"]);
+        }
+
+        [TestMethod]
+        public void non_admin_order_show_receipt()
+        {
+            //Arrange
+            var controller = new OrderController(new OrderBLL(new OrderDALStub()));
+
+            //Act
+            var result = (RedirectToRouteResult)controller.showReceipt(0);
+
+            //Assert
+            Assert.AreEqual("LogIn", result.RouteValues["Action"]);
+            Assert.AreEqual("Main", result.RouteValues["Controller"]);
+        }
+
+
+
+
     }
 }

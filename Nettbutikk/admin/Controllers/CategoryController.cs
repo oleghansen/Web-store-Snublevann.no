@@ -116,7 +116,7 @@ namespace Nettbutikk.admin.Controllers
         public ActionResult newCategory()
         {
             if (!isAdmin())
-                return RedirectToAction("Login", "Main");
+                return RedirectToAction("LogIn", "Main");
             return View();
         }
 
@@ -127,7 +127,7 @@ namespace Nettbutikk.admin.Controllers
         public ActionResult newCategory(CategoryInfo category)
         {
             if (!isAdmin())
-                return RedirectToAction("Login", "Main");
+                return RedirectToAction("LogIn", "Main");
 
             if (ModelState.IsValid)
             {
@@ -145,7 +145,7 @@ namespace Nettbutikk.admin.Controllers
         public ActionResult updateCatergoryDetails(int id) 
         {
             if (!isAdmin())
-                return RedirectToAction("Login", "Main");
+                return RedirectToAction("LogIn", "Main");
 
             List<Category> cat = _categoryBLL.getAll(id);
             CategoryInfo ci = new CategoryInfo();
@@ -162,6 +162,8 @@ namespace Nettbutikk.admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult updateCatergoryDetails(CategoryInfo c)
         {
+            if (!isAdmin())
+                return RedirectToAction("LogIn", "Main");
             if (ModelState.IsValid)
             {
                 Customer a = (Customer)Session["loggedInUser"];
@@ -177,7 +179,7 @@ namespace Nettbutikk.admin.Controllers
         {
             if (!isAdmin())
             {
-                return RedirectToAction("Login", "Main");
+                return RedirectToAction("LogIn", "Main");
             }
             var placeholder = new SubCategoryDetail()
             {
@@ -192,7 +194,7 @@ namespace Nettbutikk.admin.Controllers
         {
             if (!isAdmin())
             {
-                return RedirectToAction("Login", "Main");
+                return RedirectToAction("LogIn", "Main");
             }
 
             if (ModelState.IsValid)
@@ -264,7 +266,7 @@ namespace Nettbutikk.admin.Controllers
         {
             if (!isAdmin())
             {
-                RedirectToAction("Login", "Main");
+                return RedirectToAction("LogIn", "Main");
             }
             SubCategory subcatdetails = _categoryBLL.SubCatDetails(id);
 
@@ -284,7 +286,7 @@ namespace Nettbutikk.admin.Controllers
         {
             if (!isAdmin())
             {
-                return RedirectToAction("Login", "Main");
+                return RedirectToAction("LogIn", "Main");
             }
             if (ModelState.IsValid)
             {
@@ -307,20 +309,13 @@ namespace Nettbutikk.admin.Controllers
             return RedirectToAction("ListSubCategories");
         }
 
-        private bool isAdmin()
-        {
-            if (Session == null)
-                return false;
-            var user = (Customer)Session["loggedInUser"];
-            return (user == null) ? false : user.admin;
-        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteCategory(int id)
         {
             if(!isAdmin())
-                return RedirectToAction("Login","Main");
+                return RedirectToAction("LogIn","Main");
             Customer admin = (Customer) Session["loggedInUser"];
 
             var result = _categoryBLL.deleteCategory(id, admin.id);
@@ -336,7 +331,7 @@ namespace Nettbutikk.admin.Controllers
         public ActionResult DeleteSubCategory(int id)
         {
             if (!isAdmin())
-                return RedirectToAction("Login", "Main");
+                return RedirectToAction("LogIn", "Main");
             Customer admin = (Customer)Session["loggedInUser"];
 
             var result = _categoryBLL.deleteSubCategory(id, admin.id);
@@ -351,7 +346,7 @@ namespace Nettbutikk.admin.Controllers
         public ActionResult DeleteProducer(int id)
         {
             if (!isAdmin())
-                return RedirectToAction("Login", "Main");
+                return RedirectToAction("LogIn", "Main");
             Customer admin = (Customer)Session["loggedInUser"];
 
             var result = _categoryBLL.deleteProducer(id, admin.id);
@@ -360,5 +355,13 @@ namespace Nettbutikk.admin.Controllers
                 return Json(new { success = true, message = "Produsenten ble slettet", redirect = "/Category/ListProducers/"});
             return Json(new { success = false, message = "<p>Du må først slette følgende produkter</p>", list = result }); 
         }
+        private bool isAdmin()
+        {
+            if (Session == null)
+                return false;
+            var user = (Customer)Session["loggedInUser"];
+            return (user == null) ? false : user.admin;
+        }
+
     }
 }
