@@ -30,10 +30,9 @@ namespace Nettbutikk.admin.Controllers
             if (!isAdmin())
                 return RedirectToAction("LogIn", "Main");
             ViewBag.CurrentSort = sortOrder;
-            ViewBag.ItemSortParm = String.IsNullOrEmpty(sortOrder) ? "item_desc" : ""; 
-            ViewBag.NameSortParm = sortOrder == "Name" ? "name_desc" : "Name";
-            ViewBag.PriceSortParm = sortOrder == "Price" ? "price_desc" : "Price";
-            ViewBag.ProducerSortParm = sortOrder == "Producer" ? "producer_desc" : "Producer";
+            ViewBag.IdSortParm = String.IsNullOrEmpty(sortOrder) ? "id_desc" : ""; 
+            ViewBag.CategorySortParm = sortOrder == "Cat" ? "cat_desc" : "Cat";
+
 
             if (searchString != null)
                 page = 1;
@@ -45,11 +44,14 @@ namespace Nettbutikk.admin.Controllers
 
             switch (sortOrder)
             {
-                case "item_desc":
+                case "id_desc":
                     allCategories = allCategories.OrderByDescending(s => s.ID).ToList();
                     break;
-                case "name_desc":
+                case "cat_desc":
                     allCategories = allCategories.OrderByDescending(s => s.name).ToList();
+                    break;
+                case "Cat":
+                    allCategories = allCategories.OrderBy(s => s.name).ToList();
                     break;
                 default:
                     allCategories = allCategories.OrderBy(s => s.ID).ToList();
@@ -75,7 +77,7 @@ namespace Nettbutikk.admin.Controllers
             if (!isAdmin())
                 return RedirectToAction("LogIn", "Main");
             ViewBag.CurrentSort = sortOrder;
-            ViewBag.ItemSortParm = String.IsNullOrEmpty(sortOrder) ? "item_desc" : "";
+            ViewBag.IdSortParm = String.IsNullOrEmpty(sortOrder) ? "id_desc" : "";
             ViewBag.NameSortParm = sortOrder == "Name" ? "name_desc" : "Name";
 
             if (searchString != null)
@@ -88,11 +90,14 @@ namespace Nettbutikk.admin.Controllers
 
             switch (sortOrder)
             {
-                case "item_desc":
+                case "id_desc":
                     allProducers = allProducers.OrderByDescending(s => s.id).ToList();
                     break;
                 case "name_desc":
                     allProducers = allProducers.OrderByDescending(s => s.name).ToList();
+                    break;
+                case "Name":
+                    allProducers = allProducers.OrderBy(s => s.name).ToList();
                     break;
                 default:
                     allProducers = allProducers.OrderBy(s => s.id).ToList();

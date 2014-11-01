@@ -11,13 +11,37 @@ namespace Nettbutikk.DAL
     {
         public List<Category> getAll(int? id)
         {
-            var cat = new Category()
+            var cat1 = new Category()
             {
                 ID = 1,
                 name = "Rusbrus"
             };
+            var cat2 = new Category()
+            {
+                ID = 2,
+                name = "Brennevin"
+            };
+            var cat3 = new Category()
+            {
+                ID = 3,
+                name = "Tilfeldig navn"
+            };
+            var cat4 = new Category()
+            {
+                ID = 4,
+                name = "Brus"
+            };
+            var cat5 = new Category()
+            {
+                ID = 5,
+                name = "Melk"
+            };
             List<Category> catlist = new List<Category>();
-            catlist.Add(cat);
+            catlist.Add(cat1);
+            catlist.Add(cat2);
+            catlist.Add(cat3);
+            catlist.Add(cat4);
+            catlist.Add(cat5);
             return catlist;
         }
 
@@ -80,8 +104,32 @@ namespace Nettbutikk.DAL
                 id = 1,
                 name = "Harry Potter"
             };
+            var prod2 = new Producer()
+            {
+                id = 2,
+                name = "Hermine Granger"
+            };
+            var prod3 = new Producer()
+            {
+                id = 3,
+                name = "Ronald Weasley"
+            };
+            var prod4 = new Producer()
+            {
+                id = 4,
+                name = "Albus Dumbledore"
+            };
+            var prod5 = new Producer()
+            {
+                id = 5,
+                name = "Voldemort"
+            };
             List<Producer> prodlist = new List<Producer>();
             prodlist.Add(prod);
+            prodlist.Add(prod2);
+            prodlist.Add(prod3);
+            prodlist.Add(prod4);
+            prodlist.Add(prod5);
             return prodlist;
         }
 

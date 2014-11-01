@@ -100,7 +100,7 @@
     <Compile Include="AdminEnforcementCustomer.cs" />
     <Compile Include="AdminEnforcementOrder.cs" />
     <Compile Include="AdminEnforcementProduct.cs" />
-    <Compile Include="CategoryBLLTest.cs" />
+    <Compile Include="CategoryControllerTest.cs" />
     <Compile Include="CustomerBLLTest.cs" />
     <Compile Include="OrderTestController.cs" />
     <Compile Include="ProductBLLTest.cs" />
