@@ -34,6 +34,11 @@ namespace Nettbutikk.BLL
             return _category.Add(category, adminId);
         }
 
+        public bool AddProducer(int id, Producer prod)
+        {
+            return _category.AddProducer(id, prod);
+        }
+
         public bool AddSub(int adminId, SubCategory sc)
         {
             return _category.AddSub(adminId,sc);

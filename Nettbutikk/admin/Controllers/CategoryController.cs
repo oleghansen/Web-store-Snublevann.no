@@ -355,12 +355,45 @@ namespace Nettbutikk.admin.Controllers
                 return Json(new { success = true, message = "Produsenten ble slettet", redirect = "/Category/ListProducers/"});
             return Json(new { success = false, message = "<p>Du må først slette følgende produkter</p>", list = result }); 
         }
+
+
         private bool isAdmin()
         {
             if (Session == null)
                 return false;
             var user = (Customer)Session["loggedInUser"];
             return (user == null) ? false : user.admin;
+        }
+
+
+        public ActionResult addProducer()
+        {
+            if (!isAdmin())
+            {
+                return RedirectToAction("LogIn", "Main");
+            }
+            return View();
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult addProducer(ProducerInfo producerinfo)
+        {
+            if (!isAdmin())
+                return RedirectToAction("LogIn", "Main");
+
+            if (ModelState.IsValid)
+            {
+                Customer c = (Customer)Session["loggedInUser"];
+                Producer prod = new Producer();
+                prod.id = producerinfo.prodId;
+                prod.name = producerinfo.prodName;
+                bool OK = _categoryBLL.AddProducer(c.id, prod);
+                if (OK)
+                    return Json(new { success = true, message = prod.name + " ble lagt til.", redirect = "/Category/ListCategories?item_desc" });
+            }
+            return Json(new { success = false, message = "noe gikk galt, prøv igjen senere." });
         }
 
     }

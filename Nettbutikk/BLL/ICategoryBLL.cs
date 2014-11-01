@@ -9,6 +9,7 @@ namespace Nettbutikk.BLL
         List<Category> getAll(int? id);
         bool Add(Category cat, int id);
         bool AddSub(int id, SubCategory sc);
+        bool AddProducer(int id, Producer prod);
         SubCategory SubCatDetails(int id);
         List<SubCategory> getAllSub(int? id);
         List<Producer> getAllProducers(int? id);

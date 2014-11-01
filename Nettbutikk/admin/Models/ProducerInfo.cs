@@ -12,6 +12,8 @@ namespace Nettbutikk.admin.Models
         [Display (Name="Produsent ID")]
         public int prodId { get; set; }
         [Display(Name="Navn")]
+        [Required(ErrorMessage="Produsent må oppgis")]
+        [RegularExpression(@"(^[a-zA-ZæÆøØåÅ\s]+$)", ErrorMessage = "Ugyldig produsentnavn")]
         public String prodName { get; set; }
     }
 }

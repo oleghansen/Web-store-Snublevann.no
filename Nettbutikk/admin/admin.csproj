@@ -203,6 +203,7 @@
     </Content>
     <Content Include="Views\Category\SubCatDetails.cshtml" />
     <Content Include="Views\Category\updateCatergoryDetails.cshtml" />
+    <Content Include="Views\Category\addProducer.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

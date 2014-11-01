@@ -119,6 +119,27 @@ namespace Nettbutikk.DAL
             
         }
 
+        public bool AddProducer(int id, Producer prod)
+        {
+            var newProducer = new Producers()
+            {
+                Name = prod.name
+            };
+
+            try
+            {
+                var db = new DatabaseContext();
+                db.Producers.Add(newProducer);
+                db.SaveChanges(id);
+                return true;
+            }
+            catch (Exception fail)
+            {
+                writeToFile(fail);
+                return false;
+            }
+        }
+
         public bool AddSub(int adminId, SubCategory sc)
         {
             var db = new DatabaseContext();

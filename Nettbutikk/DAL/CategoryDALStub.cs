@@ -103,5 +103,12 @@ namespace Nettbutikk.DAL
         {
             return null;
         }
+
+        public bool AddProducer(int id, Producer prod)
+        {
+            if (id == 0)
+                return false;
+            return true;
+        }
     }
 }
