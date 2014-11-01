@@ -119,11 +119,11 @@ namespace Nettbutikk.DAL
             
         }
 
-        public bool AddProducer(int id, Producer prod)
+        public bool AddProducer(Producer producer, int id)
         {
             var newProducer = new Producers()
             {
-                Name = prod.name
+                Name = producer.name
             };
 
             try

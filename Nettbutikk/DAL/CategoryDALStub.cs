@@ -104,7 +104,7 @@ namespace Nettbutikk.DAL
             return null;
         }
 
-        public bool AddProducer(int id, Producer prod)
+        public bool AddProducer(Producer prod, int id)
         {
             if (id == 0)
                 return false;

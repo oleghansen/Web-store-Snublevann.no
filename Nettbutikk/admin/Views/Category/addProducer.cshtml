@@ -21,7 +21,7 @@
 
 </script>
 
-@using (Html.BeginForm("newCategory", "Category", FormMethod.Post, new { @class = "ajaxform" }))
+@using (Html.BeginForm("addProducer", "Category", FormMethod.Post, new { @class = "ajaxform" }))
 {
     @Html.AntiForgeryToken()
     <div class="jumbotron" style="padding-top:2px">
@@ -29,7 +29,7 @@
             <h5>
                 <a href='@Url.Action("ListProducts", "Product")' id="prodPath"> Alle produkter</a> >
                 <a href='@Url.Action("ListProducers")' id="prodPath"> Produsenter</a> >
-                <a href='@Url.Action("AddProducer")' id="prodPath"> Ny Produsent</a>
+                <a href='@Url.Action("addProducer")' id="prodPath"> Ny Produsent</a>
             </h5>
         </div>
 

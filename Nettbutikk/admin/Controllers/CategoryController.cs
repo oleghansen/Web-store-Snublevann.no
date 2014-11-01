@@ -389,9 +389,9 @@ namespace Nettbutikk.admin.Controllers
                 Producer prod = new Producer();
                 prod.id = producerinfo.prodId;
                 prod.name = producerinfo.prodName;
-                bool OK = _categoryBLL.AddProducer(c.id, prod);
+                bool OK = _categoryBLL.AddProducer(prod, c.id);
                 if (OK)
-                    return Json(new { success = true, message = prod.name + " ble lagt til.", redirect = "/Category/ListCategories?item_desc" });
+                    return Json(new { success = true, message = prod.name + " ble lagt til.", redirect = "/Category/ListProducers?item_desc" });
             }
             return Json(new { success = false, message = "noe gikk galt, prøv igjen senere." });
         }
