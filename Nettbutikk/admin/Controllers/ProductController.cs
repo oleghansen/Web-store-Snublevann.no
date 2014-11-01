@@ -186,58 +186,59 @@ namespace Nettbutikk.admin.Controllers
             {
                 return RedirectToAction("LogIn", "Main");
             }
-            
-            Product updated = new Product()
+            if (ModelState.IsValid)
             {
-                itemnumber = p.itemnumber,
-                name = p.name,
-                description = p.description,
-                longDescription = p.longDescription,
-                price = p.price,
-                countryid = p.countryid,
-                subCategoryid = p.subCategoryid,
-                volum = p.volum,
-                producerid = p.producerid
-            };
-            Customer admin = (Customer)Session["loggedInUser"];
-            var adminid = admin.id;
-            bool result = _product.updateProduct(adminid,updated);
-            // HACK: men funker... 
-            List<GroupedSelectListItem> test2 = new List<GroupedSelectListItem>();
-            var test1 = _product.getAllSubCategories();
-            foreach (var item in test1)
-            {
-                if (item.ID == p.subCategoryid)
+                Product updated = new Product()
                 {
-                    test2.Add(new GroupedSelectListItem()
-                    {
-                        GroupKey = item.catId.ToString(),
-                        GroupName = item.catName,
-                        Text = item.name,
-                        Value = item.ID.ToString(),
-                        Selected = true
-                    });
-                }
-                else
+                    itemnumber = p.itemnumber,
+                    name = p.name,
+                    description = p.description,
+                    longDescription = p.longDescription,
+                    price = p.price,
+                    countryid = p.countryid,
+                    subCategoryid = p.subCategoryid,
+                    volum = p.volum,
+                    producerid = p.producerid
+                };
+                Customer admin = (Customer)Session["loggedInUser"];
+                var adminid = admin.id;
+                bool result = _product.updateProduct(adminid, updated);
+                // HACK: men funker... 
+                List<GroupedSelectListItem> test2 = new List<GroupedSelectListItem>();
+                var test1 = _product.getAllSubCategories();
+                foreach (var item in test1)
                 {
-                    test2.Add(new GroupedSelectListItem()
+                    if (item.ID == p.subCategoryid)
                     {
-                        GroupKey = item.catId.ToString(),
-                        GroupName = item.catName,
-                        Text = item.name,
-                        Value = item.ID.ToString()
-                    });
+                        test2.Add(new GroupedSelectListItem()
+                        {
+                            GroupKey = item.catId.ToString(),
+                            GroupName = item.catName,
+                            Text = item.name,
+                            Value = item.ID.ToString(),
+                            Selected = true
+                        });
+                    }
+                    else
+                    {
+                        test2.Add(new GroupedSelectListItem()
+                        {
+                            GroupKey = item.catId.ToString(),
+                            GroupName = item.catName,
+                            Text = item.name,
+                            Value = item.ID.ToString()
+                        });
+                    }
                 }
+
+                IEnumerable<GroupedSelectListItem> test = test2;
+                p.countryList = _product.getCountries().Select(c => new SelectListItem { Value = c.id.ToString(), Text = c.name }).ToList();
+                p.subCategoryList = test;
+                p.producerList = _product.getProducers().Select(r => new SelectListItem { Value = r.id.ToString(), Text = r.name }).ToList();
+
+                if (result)
+                    return Json(new { success = true, message = "Endringene ble lagret", redirect = "/Product/ListProducts/" });
             }
-
-            IEnumerable<GroupedSelectListItem> test = test2; 
-            p.countryList = _product.getCountries().Select(c => new SelectListItem { Value = c.id.ToString(), Text = c.name }).ToList();
-            p.subCategoryList = test;
-            p.producerList = _product.getProducers().Select(r => new SelectListItem { Value = r.id.ToString(), Text = r.name }).ToList();
-
-            if (result)
-                return Json(new { success = true, message = "Endringene ble lagret",redirect="/Product/ListProducts/"});
-
             return Json(new { success = false, message = "Noe gikk galt, prøv igjen" });
 
         }
@@ -271,27 +272,30 @@ namespace Nettbutikk.admin.Controllers
             {
                 return RedirectToAction("LogIn", "Main");
             }
-            Customer admin = (Customer)Session["loggedInUser"];
-            var adminid = admin.id;
-            var result = _product.addProduct(adminid, new Product()
+            if(ModelState.IsValid)
             {
-                name = p.name,
-                countryid = p.countryid,
-                description = p.description,
-                longDescription = p.longDescription,
-                price = p.price,
-                producerid = p.producerid,
-                subCategoryid = p.subCategoryid,
-                volum = p.volum
-            }); 
+                Customer admin = (Customer)Session["loggedInUser"];
+                var adminid = admin.id;
+                var result = _product.addProduct(adminid, new Product()
+                {
+                    name = p.name,
+                    countryid = p.countryid,
+                    description = p.description,
+                    longDescription = p.longDescription,
+                    price = p.price,
+                    producerid = p.producerid,
+                    subCategoryid = p.subCategoryid,
+                    volum = p.volum
+                }); 
 
                         
-            p.countryList = _product.getCountries().Select(c => new SelectListItem { Value = c.id.ToString(), Text = c.name }).ToList();
-            p.subCategoryList = _product.getAllSubCategories().Select(s => new GroupedSelectListItem { GroupKey = s.catId.ToString(), GroupName = s.catName, Value = s.ID.ToString(), Text = s.name,Selected=true }).ToList();
-            p.producerList = _product.getProducers().Select(r => new SelectListItem { Value = r.id.ToString(), Text = r.name }).ToList();
+                p.countryList = _product.getCountries().Select(c => new SelectListItem { Value = c.id.ToString(), Text = c.name }).ToList();
+                p.subCategoryList = _product.getAllSubCategories().Select(s => new GroupedSelectListItem { GroupKey = s.catId.ToString(), GroupName = s.catName, Value = s.ID.ToString(), Text = s.name,Selected=true }).ToList();
+                p.producerList = _product.getProducers().Select(r => new SelectListItem { Value = r.id.ToString(), Text = r.name }).ToList();
 
-            if (result != null)
-                return Json(new { success = true, message = result.name + " ble lagt til med varenummer " + result.itemnumber, redirect = "/Product/ListProducts/?sortOrder=item_desc" });
+                if (result != null)
+                    return Json(new { success = true, message = result.name + " ble lagt til med varenummer " + result.itemnumber, redirect = "/Product/ListProducts/?sortOrder=item_desc" });
+            }
             return Json(new { success = false, message = "Noe gikk galt, prøv igjen senere" });
         }
 
