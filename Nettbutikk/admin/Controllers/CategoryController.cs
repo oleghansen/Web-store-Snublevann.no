@@ -413,7 +413,7 @@ namespace Nettbutikk.admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ProducerDetails(ProducerInfo pi)
+        public ActionResult ProducerDetails(int id,ProducerInfo pi)
         {
             if (!isAdmin())
                 return RedirectToAction("LogIn", "Main");
@@ -423,7 +423,7 @@ namespace Nettbutikk.admin.Controllers
                 Customer c = (Customer)Session["loggedInUser"];
                 Producer p = new Producer();
                 p.name = pi.prodName;
-                var result = _categoryBLL.updateProducer(pi.prodId, p, c.id);
+                var result = _categoryBLL.updateProducer(id , p, c.id);
                 if(result)
                         return Json(new { success = true, message = p.name + " ble endret.", redirect = "/Category/ListProducers/" });
             }
