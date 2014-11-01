@@ -241,7 +241,7 @@ namespace Nettbutikk.admin.Controllers
             return Json(new { success = false, message = "Noe gikk galt, prøv igjen" });
 
         }
-        //test
+        //TODO Hva gjør denne, skal det være admintest på denne?
         public JsonResult getResults(string term)
         {
             List<string> foundProducts = _product.getAutoComplete(term);
@@ -301,7 +301,7 @@ namespace Nettbutikk.admin.Controllers
         {
             if(!isAdmin())
             {
-                return RedirectToAction("Login", "Main");
+                return RedirectToAction("LogIn", "Main");
             }
             Customer admin = (Customer)Session["loggedInUser"];
             var result = _product.deleteProduct(id, admin.id);
