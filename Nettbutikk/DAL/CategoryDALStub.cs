@@ -21,6 +21,17 @@ namespace Nettbutikk.DAL
             return catlist;
         }
 
+        public List<Category> getResult(int? id, string sc)
+        {
+            var cat = new Category()
+            {
+                ID = 1,
+                name = "Rusbrus"
+            };
+            List<Category> catlist = new List<Category>();
+            catlist.Add(cat);
+            return catlist;
+        }
 
         public List<SubCategory> getAllSub(int? id)
         {
@@ -35,7 +46,18 @@ namespace Nettbutikk.DAL
             return sublist;
         }
 
-
+        public List<SubCategory> getResultSub(int? id, string sc)
+        {
+            var cat = new SubCategory()
+            {
+                ID = 1,
+                name = "Rusbrus",
+                catName = "ØL"
+            };
+            List<SubCategory> sublist = new List<SubCategory>();
+            sublist.Add(cat);
+            return sublist;
+        }
 
         public bool Add(Category category, int id)
         {
@@ -63,19 +85,24 @@ namespace Nettbutikk.DAL
             return prodlist;
         }
 
+        public List<Producer> getResultProducer(int? id, string sc)
+        {
+            var cat = new Producer()
+            {
+                id = 1,
+                name = "Rusbrus",
+            };
+            List<Producer> sublist = new List<Producer>();
+            sublist.Add(cat);
+            return sublist;
+        }
+
         public SubCategory SubCatDetails(int id)
         {
             return null;
         }
 
         public bool update(int id, SubCategory sc, int adminid)
-        {
-            if (id == 0)
-                return false;
-            return true;
-        }
-
-        public bool updateCategory(int id, Category c, int adminid)
         {
             if (id == 0)
                 return false;
@@ -91,29 +118,38 @@ namespace Nettbutikk.DAL
             return true;
         }
 
-        public List<SubCategory> deleteCategory(int id, int adminid)
-        {
-            return null; 
-        }
-        public List<Product> deleteSubCategory(int id, int adminid)
-        {
-            return null; 
-        }
-        public List<Product> deleteProducer(int id, int adminid)
-        {
-            return null;
-        }
-
-        public bool AddProducer(Producer prod, int id)
+        public bool updateCategory(int id, Category c, int adminid)
         {
             if (id == 0)
                 return false;
             return true;
         }
 
+
+        public List<SubCategory> deleteCategory(int id, int adminid)
+        {
+            return null;
+        }
+        public List<Product> deleteSubCategory(int id, int adminid)
+        {
+            return null;
+        }
+        public List<Product> deleteProducer(int id, int adminid)
+        {
+            return null;
+        }
+        public bool AddProducer(Producer prod, int id)
+        {
+            return false;
+        }
         public Producer producerDetails(int id)
         {
             return null;
+        }
+
+        public bool updateProducer(int id, Producer p, int adminid)
+        {
+            return false;
         }
     }
 }

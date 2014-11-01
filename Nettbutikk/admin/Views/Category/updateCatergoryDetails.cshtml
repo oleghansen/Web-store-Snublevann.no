@@ -30,7 +30,7 @@
             <h5>
                 <a href='@Url.Action("ListProducts", "Product")' id="prodPath"> Alle produkter</a> >
                 <a href='@Url.Action("ListCategories")' id="prodPath"> Kategorier</a> >
-                <a href='@Url.Action("newCategory")' id="prodPath"> Ny kategori</a>
+                <a href='@Url.Action("updateCatergoryDetails", new { id = Model.id}))' id="prodPath"> Endre kategori</a>
             </h5>
         </div>
 
@@ -54,7 +54,7 @@
                         <div class="row">
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-success" tabindex="11">
+                                    <button type="submit" class="btn btn-success">
                                         <i class="glyphicon glyphicon-pencil"></i>  Oppdater kategori
                                     </button>
                                 </div>

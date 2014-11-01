@@ -9,6 +9,8 @@ namespace Nettbutikk.DAL
         List<OrderLine> getAllOrderLinesOfOrder(int id);
         List<Order> getAllOrdersbyCust(int id);
         Order getOrder(int id);
+   
+        
   
     }
 }

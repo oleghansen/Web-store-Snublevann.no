@@ -129,22 +129,22 @@ namespace Nettbutikk.admin.Controllers
         }
 
 
-        [HttpGet]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult makeAdmin(int id)
         {
             if (!isAdmin())
-            {
                 return RedirectToAction("LogIn", "Main");
-            }
+            
             Customer c = (Customer)Session["loggedInUser"];
             var b =  _customerbll.makeAdmin(id, c.id);
-            return RedirectToAction("CustomerDetails", new { id = id});
-            //her skal det komme en modalboks som spør om man er sikker på at man vil gi bruker full tilgang til systemet
+            if(b)
+                return Json(new { success = true, message = "Brukeren ble admin", redirect = "/Customer/CustomerDetails/" + id }, JsonRequestBehavior.AllowGet);
+            return Json(new { success = false, message = "Noe gikk galt, Brukeren fikk ikke adminrettigheter", redirect = "/Customer/CustomerDetails/" + id }, JsonRequestBehavior.AllowGet); 
         }
 
-        [HttpGet]
-
-
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult revokeAdmin(int id)
         {
             if (!isAdmin())
@@ -153,12 +153,13 @@ namespace Nettbutikk.admin.Controllers
             }
             Customer c = (Customer)Session["loggedInUser"];
             if(id == c.id)
-                //her skal vel en modalboks av noe slag komme opp
-                return RedirectToAction("CustomerDetails", new { id = id });
-                
-            
-            var b = _customerbll.revokeAdmin(id,c.id);
-            return RedirectToAction("CustomerDetails", new { id = id });
+                return Json(new { success = false, message = "Du kan ikke slette dine egne adminrettigheter", redirect = "/Customer/CustomerDetails/" + id }, JsonRequestBehavior.AllowGet);
+            else {
+                var b = _customerbll.revokeAdmin(id,c.id);
+                if(b)
+                    return Json(new { success = true, message = "Brukeren fikk tatt vekk adminrettigheter", redirect = "/Customer/CustomerDetails/" + id }, JsonRequestBehavior.AllowGet);
+                return Json(new { success = false, message = "Noe gikk galt, Brukeren har fortsatt adminrettigheterr", redirect = "/Customer/CustomerDetails/" + id }, JsonRequestBehavior.AllowGet); 
+            }
         }
 
         public ActionResult CustomerDetails(int id)
@@ -208,8 +209,8 @@ namespace Nettbutikk.admin.Controllers
                 b = _customerbll.update(cd.id, c, a.id);
             }
             if (b)
-                return Json(new { success = true, message = "Endringene ble lagret", redirect = "/Customer/ListCustomers/" });
-            return Json(new { success = false, message = "Noe gikk galt, endringene ble ikke lagret" }); 
+                return Json(new { success = true, message = "Endringene ble lagret", redirect = "/Customer/ListCustomers/" }, JsonRequestBehavior.AllowGet);
+            return Json(new { success = false, message = "Noe gikk galt, endringene ble ikke lagret" }, JsonRequestBehavior.AllowGet); 
         }
 
         public ActionResult ListCustomerOrders(int id,int? page, int? itemsPerPage, string sortOrder, string currentFilter)
@@ -382,7 +383,8 @@ namespace Nettbutikk.admin.Controllers
                 return View(list.ToPagedList(pageNumber: page ?? 1, pageSize: itemsPerPage ?? 15));
            
         }
-
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult deleteCustomer(int id)
         {
 
@@ -390,11 +392,12 @@ namespace Nettbutikk.admin.Controllers
                 return RedirectToAction("LogIn", "Main");
             Customer a = (Customer)Session["loggedInUser"];
             if (id == a.id)
-                return Json(new { success = false, message = "Du kan ikke slette deg selv, få noen andre til å gjøre det!" }); 
+
+                return Json(new { success = false, message = "Du kan ikke slette deg selv, få noen andre til å gjøre det!", redirect = "/Customer/ListCustomers/" }, JsonRequestBehavior.AllowGet); 
             var b =_customerbll.delete(id, a.id);
             if (b)
-                return Json(new { success = true, message = "Brukeren ble slettet", redirect = "/Customer/ListCustomers/" });
-            return Json(new { success = false, message = "Noe gikk galt, prøv igjen senere" });
+                return Json(new { success = true, message = "Brukeren ble slettet", redirect = "/Customer/ListCustomers/" }, JsonRequestBehavior.AllowGet);
+            return Json(new { success = false, message = "Noe gikk galt, prøv igjen senere", redirect = "/Customer/ListCustomers/" }, JsonRequestBehavior.AllowGet);
             
  
         }

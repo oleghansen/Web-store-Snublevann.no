@@ -411,5 +411,23 @@ namespace Nettbutikk.admin.Controllers
             return View(prodinfo);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ProducerDetails(ProducerInfo pi)
+        {
+            if (!isAdmin())
+                return RedirectToAction("LogIn", "Main");
+
+            if (ModelState.IsValid)
+            {
+                Customer c = (Customer)Session["loggedInUser"];
+                Producer p = new Producer();
+                p.name = pi.prodName;
+                var result = _categoryBLL.updateProducer(pi.prodId, p, c.id);
+                if(result)
+                        return Json(new { success = true, message = p.name + " ble endret.", redirect = "/Category/ListProducers/" });
+            }
+            return Json(new { success = false, message = "noe gikk galt, prøv igjen senere." });
+        }
     }
 }

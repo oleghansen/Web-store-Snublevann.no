@@ -335,6 +335,25 @@ namespace Nettbutikk.DAL
         
         }
 
+        public bool updateProducer(int id, Producer p, int adminid)
+        {
+            var db = new DatabaseContext();
+
+            try
+            {
+                Producers prod = db.Producers.FirstOrDefault(pr => pr.Id  == id);
+                prod.Id = id;
+                prod.Name = p.name;
+                db.SaveChanges(adminid);
+                return true;
+            }
+            catch (Exception e)
+            {
+                writeToFile(e);
+                return false;
+            }
+        }
+
 
 
         private void writeToFile(Exception e)

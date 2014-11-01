@@ -3,7 +3,6 @@
     ViewBag.Title = "updateCategoryDetails";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <script type="text/javascript">
     $(document).ready(function () {
         $('#verify').keyup(function () {
@@ -29,8 +28,8 @@
         <div class="path">
             <h5>
                 <a href='@Url.Action("ListProducts", "Product")' id="prodPath"> Alle produkter</a> >
-                <a href='@Url.Action("ListCategories")' id="prodPath"> Kategorier</a> >
-                <a href='@Url.Action("newCategory")' id="prodPath"> Ny kategori</a>
+                <a href='@Url.Action("ListProducers")' id="prodPath"> Produsenter</a> >
+                <a href='@Url.Action("ProducerDetails", new { id = Model.prodId })' id="prodPath"> Endre produsent</a>
             </h5>
         </div>
 
@@ -38,17 +37,15 @@
 
             <div class="row">
                 <div class="formTitle">
-                    <h2><span class="glyphicon glyphicon-glass"></span>Endre produsent</h2>
+                    <h2><span class="glyphicon glyphicon-glass"></span>Endre kategori</h2>
                 </div>
                 <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
                     <form role="form">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <small>@Html.LabelFor(model => model.prodId)</small>
-                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                    @Html.LabelFor(model => model.prodId, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Kategori", tabindex = "1", autofocus = "" } })
-                                    @Html.ValidationMessageFor(model => model.prodId, "", new { @class = "text-danger" })
+                                    <small>@Html.LabelFor(model => model.prodId )</small>
+                                    @Html.DisplayFor(model => model.prodId)
                                 </div>
                             </div>
                         </div>
@@ -56,7 +53,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                    @Html.EditorFor(model => model.prodName, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Kategori", tabindex = "1", autofocus = "" } })
+                                    @Html.EditorFor(model => model.prodName , new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Kategori", tabindex = "1", autofocus = "" } })
                                     @Html.ValidationMessageFor(model => model.prodName, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -64,8 +61,8 @@
                         <div class="row">
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-success" tabindex="11">
-                                        <i class="glyphicon glyphicon-pencil"></i>  Oppdater kategori
+                                    <button type="submit" class="btn btn-success">
+                                        <i class="glyphicon glyphicon-pencil"></i>  Oppdater produsent
                                     </button>
                                 </div>
                             </div>

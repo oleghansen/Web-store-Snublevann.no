@@ -90,5 +90,10 @@ namespace Nettbutikk.BLL
         {
             return _category.deleteProducer(id, adminid); 
         }
+
+        public bool updateProducer(int id, Producer p, int adminid)
+        {
+            return _category.updateProducer(id,p,adminid );
+        }
     }
 }

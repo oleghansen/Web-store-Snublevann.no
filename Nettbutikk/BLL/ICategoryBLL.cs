@@ -20,5 +20,7 @@ namespace Nettbutikk.BLL
         List<Product> deleteProducer(int id, int adminid);
         Producer producerDetails(int id);
 
+        bool updateProducer(int id, Producer p, int adminid);
+
     }
 }
