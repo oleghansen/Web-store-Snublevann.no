@@ -6,14 +6,11 @@ namespace Nettbutikk.DAL
     public interface ICategoryDAL
     {
         List<Category> getAll(int? id);
-        List<Category> getResult(int? id, string sc);
         bool Add(Category cat, int id);
         bool AddSub(int id, SubCategory sc);
         SubCategory SubCatDetails(int id);
         List<SubCategory> getAllSub(int? id);
-        List<SubCategory> getResultSub(int? id, string sc);
         List<Producer> getAllProducers(int? id);
-        List<Producer> getResultProducer(int? id, string sc);
         bool update(int id, SubCategory sc);
         bool updateCategory(int id, Category c, int adminid);
         List<SubCategory> deleteCategory(int id, int adminid);

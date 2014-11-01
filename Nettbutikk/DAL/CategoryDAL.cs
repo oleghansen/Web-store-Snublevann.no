@@ -36,26 +36,6 @@ namespace Nettbutikk.DAL
             return category;
         }
 
-        public List<Category> getResult(int? id, string searchString)
-        {
-            return null;
-            /*
-            var db = new DatabaseContext();
-            var foundCategories = new List<Category>();
-            var categories = db.Categories.Where(p => p.Name.ToUpper().Contains(searchString.ToUpper().ToList());
-            foreach (var p in categories)
-            {
-                var category = new Category()
-                {
-                    ID = p.Id,
-                    name = p.Name
-                };
-                foundCategories.Add(category);
-            }
-            return foundCategories;
-        
-             */
-        }
 
         public List<SubCategory> getAllSub(int? id)
         {
@@ -90,31 +70,6 @@ namespace Nettbutikk.DAL
             }).ToList();
 
             return producers;
-        }
-
-        public List<Producer> getResultProducer(int? id, string sc)
-        {
-            return null;
-        }
-        public List<SubCategory> getResultSub(int? id, string sc)
-        {
-            return null;
-            /*
-            var db = new DatabaseContext();
-            var foundCategories = new List<Category>();
-            var categories = db.Categories.Where(p => p.Name.ToUpper().Contains(searchString.ToUpper().ToList());
-            foreach (var p in categories)
-            {
-                var category = new Category()
-                {
-                    ID = p.Id,
-                    name = p.Name
-                };
-                foundCategories.Add(category);
-            }
-            return foundCategories;
-        
-             */
         }
 
         public bool Add(Category category, int adminId)
@@ -309,15 +264,17 @@ namespace Nettbutikk.DAL
                 {
                     writer.WriteLine("-----------   " + DateTime.Now.ToString() + "   --------------");
                     writer.WriteLine("");
-                    writer.WriteLine("Message: " + e.Message + "<br>" + Environment.NewLine + "Stacktrace: " + e.StackTrace + Environment.NewLine);
+                    writer.WriteLine("Message: " + e.Message + Environment.NewLine 
+                        + "InnerMessage: " + e.InnerException.Message + Environment.NewLine
+                        + "Stacktrace: " + e.StackTrace + Environment.NewLine);
                 }
             }catch(IOException ioe)
             {
-                // nei da vet jeg sannelig ikke hva vi skal gjøre gitt... 
+                Debug.WriteLine(ioe.Message);
             }
             catch(UnauthorizedAccessException uae)
             {
-                // sanoteuh
+                Debug.WriteLine(uae.Message);
             }
         }
     }

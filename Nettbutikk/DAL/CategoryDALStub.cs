@@ -21,17 +21,6 @@ namespace Nettbutikk.DAL
             return catlist;
         }
 
-        public List<Category> getResult(int? id, string sc)
-        {
-            var cat = new Category()
-            {
-                ID = 1,
-                name = "Rusbrus"
-            };
-            List<Category> catlist = new List<Category>();
-            catlist.Add(cat);
-            return catlist;
-        }
 
         public List<SubCategory> getAllSub(int? id)
         {
@@ -46,18 +35,7 @@ namespace Nettbutikk.DAL
             return sublist;
         }
 
-        public List<SubCategory> getResultSub(int? id, string sc)
-        {
-            var cat = new SubCategory()
-            {
-                ID = 1,
-                name = "Rusbrus",
-                catName = "ØL"
-            };
-            List<SubCategory> sublist = new List<SubCategory>();
-            sublist.Add(cat);
-            return sublist;
-        }
+
 
         public bool Add(Category category, int id)
         {
@@ -83,18 +61,6 @@ namespace Nettbutikk.DAL
             List<Producer> prodlist = new List<Producer>();
             prodlist.Add(prod);
             return prodlist;
-        }
-
-        public List<Producer> getResultProducer(int? id, string sc)
-        {
-            var cat = new Producer()
-            {
-                id = 1,
-                name = "Rusbrus",
-            };
-            List<Producer> sublist = new List<Producer>();
-            sublist.Add(cat);
-            return sublist;
         }
 
         public SubCategory SubCatDetails(int id)

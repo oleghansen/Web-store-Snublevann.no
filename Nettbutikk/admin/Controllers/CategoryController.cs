@@ -41,11 +41,7 @@ namespace Nettbutikk.admin.Controllers
                 searchString = currentFilter; 
 
             ViewBag.CurrentFilter = searchString; 
-            List<Category> allCategories; 
-            if(!String.IsNullOrEmpty(searchString))
-                allCategories = _categoryBLL.getResult(null, searchString); 
-            else
-               allCategories = _categoryBLL.getAll(null);
+            List<Category> allCategories = _categoryBLL.getAll(null);
 
             switch (sortOrder)
             {
@@ -88,11 +84,7 @@ namespace Nettbutikk.admin.Controllers
                 searchString = currentFilter; 
 
             ViewBag.CurrentFilter = searchString;
-            List<Producer> allProducers;
-            if (!String.IsNullOrEmpty(searchString))
-                allProducers = _categoryBLL.getResultProducer(null, searchString);
-            else
-                allProducers = _categoryBLL.getAllProducers(null);
+            List<Producer> allProducers = _categoryBLL.getAllProducers(null);
 
             switch (sortOrder)
             {
@@ -236,11 +228,7 @@ namespace Nettbutikk.admin.Controllers
                 searchString = currentFilter;
 
             ViewBag.CurrentFilter = searchString;
-            List<SubCategory> allSubCategories;
-            if (!String.IsNullOrEmpty(searchString))
-                allSubCategories = _categoryBLL.getResultSub(null, searchString);
-            else
-                allSubCategories = _categoryBLL.getAllSub(null);
+            List<SubCategory> allSubCategories = _categoryBLL.getAllSub(null);
 
             switch (sortOrder)
             {
