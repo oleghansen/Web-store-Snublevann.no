@@ -13,11 +13,6 @@ namespace Nettbutikk.DAL
         {
             return null;
         }
-        public List<Product> getAll(int? id, String sc, int? sort)
-        {
-            return new List<Product>();
-        }
-
         public List<Product> getAll()
         {
             var prod = new Product()
@@ -44,10 +39,7 @@ namespace Nettbutikk.DAL
             return productlist;
         }
 
-        public Product get(int id)
-        {
-            return null;
-        }
+
 
         public List<string> getAutoComplete(string term)
         {
@@ -96,12 +88,6 @@ namespace Nettbutikk.DAL
             if (id == 0)
                 return null;
             return null;
-        }
-
-        // TODO: fjern før levering!
-        public bool addCategoriesTest(int userid)
-        {
-            return false; 
         }
 
         public List<Country> getCountries()

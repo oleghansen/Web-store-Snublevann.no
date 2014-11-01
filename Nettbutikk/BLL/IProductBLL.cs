@@ -14,8 +14,7 @@ namespace Nettbutikk.BLL
 
         bool updateProduct(int id, Product p);
         Product addProduct(int id, Product p);
-        //TODO:fjern før levering
-        bool addCategoriesTest(int userId);
+
         List<SubCategory> getAllSubCategories();
         List<Country> getCountries();
         List<Producer> getProducers();

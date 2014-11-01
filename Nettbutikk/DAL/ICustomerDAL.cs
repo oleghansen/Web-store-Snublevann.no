@@ -20,10 +20,5 @@ namespace Nettbutikk.DAL
 
         bool revokeAdmin(int id, int adminid);
         bool delete(int id, int adminid);
-
-        String normalizePostalcode(int postalcode);
-        
-       
-
     }
 }

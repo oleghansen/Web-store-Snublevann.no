@@ -69,11 +69,6 @@ namespace Nettbutikk.BLL
             return _product.addProduct(id,p);
         }
 
-        // TODO: fjern før levering
-        public bool addCategoriesTest(int userId)
-        {
-            return _product.addCategoriesTest(userId);
-        }
 
         public List<Country> getCountries()
         {

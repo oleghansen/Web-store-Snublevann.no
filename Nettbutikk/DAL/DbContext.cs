@@ -49,31 +49,21 @@ namespace Nettbutikk.DAL
 
             DateTime changeTime = DateTime.UtcNow;
 
-            // Get the Table() attribute, if one exists
-            //TableAttribute tableAttr = dbEntry.Entity.GetType().GetCustomAttributes(typeof(TableAttribute), false).SingleOrDefault() as TableAttribute;
-
             TableAttribute tableAttr = dbEntry.Entity.GetType().GetCustomAttributes(typeof(TableAttribute), true).SingleOrDefault() as TableAttribute;
 
-            // Get table name (if it has a Table attribute, use that, otherwise get the pluralized name)
             string tableName = tableAttr != null ? tableAttr.Name : dbEntry.Entity.GetType().Name;
-
-            // Get primary key value (If you have more than one key column, this will need to be adjusted)
-            //var keyNames = dbEntry.Entity.GetType().GetProperties().Where(p => p.GetCustomAttributes(typeof(KeyAttribute), false).Count() > 0).ToList();
 
             string keyName = dbEntry.Entity.GetType().GetProperties().Single(p => p.GetCustomAttributes(typeof(KeyAttribute), false).Count() > 0).Name;
 
             if (dbEntry.State == EntityState.Added)
             {
-                // For Inserts, just add the whole record
-                // If the entity implements IDescribableEntity, use the description from Describe(), otherwise use ToString()
-
                 foreach (string propertyName in dbEntry.CurrentValues.PropertyNames)
                 {
                     result.Add(new AuditLog()
                     {
                         UserId = userId,
                         Changed = changeTime,
-                        EventType = "A",    // Added
+                        EventType = "A",
                         TableName = tableName,
                         RecordId = dbEntry.CurrentValues.GetValue<object>(keyName).ToString(),
                         ColumnName = propertyName,
@@ -84,12 +74,11 @@ namespace Nettbutikk.DAL
             }
             else if (dbEntry.State == EntityState.Deleted)
             {
-                // Same with deletes, do the whole record, and use either the description from Describe() or ToString()
                 result.Add(new AuditLog()
                 {
                     UserId = userId,
                     Changed = changeTime,
-                    EventType = "D", // Deleted
+                    EventType = "D",
                     TableName = tableName,
                     RecordId = dbEntry.OriginalValues.GetValue<object>(keyName).ToString(),
                     ColumnName = "*ALL",
@@ -101,14 +90,13 @@ namespace Nettbutikk.DAL
             {
                 foreach (string propertyName in dbEntry.OriginalValues.PropertyNames)
                 {
-                    // For updates, we only want to capture the columns that actually changed
                     if (!object.Equals(dbEntry.OriginalValues.GetValue<object>(propertyName), dbEntry.CurrentValues.GetValue<object>(propertyName)))
                     {
                         result.Add(new AuditLog()
                         {
                             UserId = userId,
                             Changed = changeTime,
-                            EventType = "M",    // Modified
+                            EventType = "M",
                             TableName = tableName,
                             RecordId = dbEntry.OriginalValues.GetValue<object>(keyName).ToString(),
                             ColumnName = propertyName,
@@ -119,12 +107,9 @@ namespace Nettbutikk.DAL
                     }
                 }
             }
-            // Otherwise, don't do anything, we don't care about Unchanged or Detached entities
 
             return result;
         }
-        // Add a DbSet for each entity type that you want to include in your model. For more information 
-        // on configuring and using a Code First model, see http://go.microsoft.com/fwlink/?LinkId=390109.
 
         public DbSet<Products> Products { get; set; }
         public DbSet<Producers> Producers { get; set; }
@@ -141,7 +126,6 @@ namespace Nettbutikk.DAL
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
-
     }
 
     public class AuditLog
@@ -210,10 +194,7 @@ namespace Nettbutikk.DAL
         public virtual List<OrderLines> OrderLines { get; set; }
         public int CustomersId { get; set; }
         public Customers Customers { get; set; }
-
-
     }
-
 
     public class Customers
     {
@@ -255,6 +236,4 @@ namespace Nettbutikk.DAL
         public String Name { get; set; }
         public List<Products> Products { get; set; }
     }
-
-
 }

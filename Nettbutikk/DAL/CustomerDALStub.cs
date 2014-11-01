@@ -121,7 +121,7 @@ namespace Nettbutikk.DAL
             return false;
         }
 
-        public String normalizePostalcode(int postalcode)
+        private String normalizePostalcode(int postalcode)
         {
             String normPostalcode = postalcode.ToString();
             if (postalcode < 1000)

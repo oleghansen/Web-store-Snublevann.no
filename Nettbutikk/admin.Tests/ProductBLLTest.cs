@@ -156,15 +156,5 @@ namespace Nettbutikk.Tests
 
            //Assert.IsTrue(result);
        }
-
-        [TestMethod]
-        public void test_if_audit_trail_works()
-        {
-            // not really testing if anything is auditet, but anyway...
-            var bll = new ProductBLL();
-
-            Assert.IsTrue(bll.addCategoriesTest(5)); 
-
-        }
     }
 }

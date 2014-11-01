@@ -15,61 +15,86 @@ namespace Nettbutikk.DAL
     {
         public List<Category> getAll(int? id)
         {
-            var db = new DatabaseContext();
-            List<Category> category;
-            if (id == null)
+            try
             {
-                category = db.Categories.Select(item => new Category()
+                var db = new DatabaseContext();
+                List<Category> category;
+                if (id == null)
                 {
-                ID = item.Id,
-                name = item.Name
-            }).ToList();
-        }
-            else
-        {
-                category = db.Categories.Select(item => new Category()
-            {
-                ID = item.Id,
-                name = item.Name
+                    category = db.Categories.Select(item => new Category()
+                    {
+                        ID = item.Id,
+                        name = item.Name
+                    }).ToList();
+                }
+                else
+                {
+                    category = db.Categories.Select(item => new Category()
+                {
+                    ID = item.Id,
+                    name = item.Name
                 }).Where(item => item.ID == id).ToList();
+                }
+                return category;
+
             }
-            return category;
+            catch(Exception e)
+            {
+                writeToFile(e);
+                return null; 
+            }
         }
 
 
         public List<SubCategory> getAllSub(int? id)
         {
-            var db = new DatabaseContext();
-            List<SubCategories> subcat;
-            if (id != null)
+            try
             {
-                subcat = db.SubCategories.Include("Categories").Where(p => p.Id == id).ToList();
-            }
-            else
-                subcat = db.SubCategories.Include("Categories").ToList();
-            var list = new List<SubCategory>();
-            foreach (var item in subcat)
-            {
-                list.Add(new SubCategory()
+                var db = new DatabaseContext();
+                List<SubCategories> subcat;
+                if (id != null)
                 {
-                    ID = item.Id,
-                    name = item.Name,
-                    catName = item.Categories.Name
-                });
+                    subcat = db.SubCategories.Include("Categories").Where(p => p.Id == id).ToList();
+                }
+                else
+                    subcat = db.SubCategories.Include("Categories").ToList();
+                var list = new List<SubCategory>();
+                foreach (var item in subcat)
+                {
+                    list.Add(new SubCategory()
+                    {
+                        ID = item.Id,
+                        name = item.Name,
+                        catName = item.Categories.Name
+                    });
+                }
+                return list;
             }
-            return list;
+            catch(Exception e)
+            {
+                writeToFile(e);
+                return null; 
+            }
         }
 
         public List<Producer> getAllProducers(int? id)
         {
-            var db = new DatabaseContext();
-            List<Producer> producers = db.Producers.Select(item => new Producer()
+            try
             {
-                id = item.Id,
-                name = item.Name
-            }).ToList();
+                var db = new DatabaseContext();
+                List<Producer> producers = db.Producers.Select(item => new Producer()
+                {
+                    id = item.Id,
+                    name = item.Name
+                }).ToList();
 
-            return producers;
+                return producers;
+            }
+            catch(Exception e)
+            {
+                writeToFile(e);
+                return null; 
+            }
         }
 
         public bool Add(Category category, int adminId)
@@ -102,22 +127,38 @@ namespace Nettbutikk.DAL
                 Name = sc.name,
                 CategoriesId = sc.catId
             });
-            db.SaveChanges(adminId);
-
+            try
+            {
+                db.SaveChanges(adminId);
+            }
+            catch(Exception e)
+            {
+                writeToFile(e);
+                return false; 
+            }
             return true;
         }
 
         public SubCategory SubCatDetails(int id)
         {
-            var db = new DatabaseContext();
-            SubCategories subcat = (SubCategories)db.SubCategories.FirstOrDefault(c => c.Id == id);
-            SubCategory subcategory = new SubCategory();
+            try
+            {
+                var db = new DatabaseContext();
+                SubCategories subcat = (SubCategories)db.SubCategories.FirstOrDefault(c => c.Id == id);
+                SubCategory subcategory = new SubCategory()
+                {
+                    ID = subcat.Id,
+                    name = subcat.Name,
+                    catId = subcat.CategoriesId
+                };
 
-            subcategory.ID = subcat.Id;
-            subcategory.name = subcat.Name;
-            subcategory.catId = subcat.CategoriesId;
-
-            return subcategory;
+                return subcategory;
+            }
+            catch(Exception e)
+            {
+                writeToFile(e);
+                return null; 
+            }
         }
 
         public bool update(int id, SubCategory sc)
