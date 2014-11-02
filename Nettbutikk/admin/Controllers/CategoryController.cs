@@ -291,7 +291,7 @@ namespace Nettbutikk.admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SubCatDetails(int id,SubCategoryDetail sc)
+        public ActionResult SubCatDetails(SubCategoryDetail sc)
         {
             if (!isAdmin())
             {
@@ -299,20 +299,18 @@ namespace Nettbutikk.admin.Controllers
             }
             if (ModelState.IsValid)
             {
-            SubCategory updated = new SubCategory()
-            {
-                ID = sc.ID,
-                name = sc.name,
-                catId = sc.categoryId,
-            };
-            Customer admin = (Customer)Session["loggedInUser"];
-            var adminid = admin.id;
-            bool result = _categoryBLL.update(adminid, updated);
-          
-            
-            sc.categoryList = _categoryBLL.getAll(null).Select(c => new SelectListItem { Value = c.ID.ToString(), Text = c.name }).ToList();
+                SubCategory updated = new SubCategory()
+                {
+                    ID = sc.ID,
+                    name = sc.name,
+                    catId = sc.categoryId,
+                };
+                Customer admin = (Customer)Session["loggedInUser"];
+                var adminid = admin.id;
+                bool result = _categoryBLL.update(adminid, updated);
+    
+                sc.categoryList = _categoryBLL.getAll(null).Select(c => new SelectListItem { Value = c.ID.ToString(), Text = c.name }).ToList();
 
-                result = true;
                 return View(sc);
             }
             return RedirectToAction("ListSubCategories");
