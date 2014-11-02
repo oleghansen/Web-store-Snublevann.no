@@ -245,8 +245,9 @@ namespace Nettbutikk.admin.Controllers
 
                 if (result)
                     return Json(new { success = true, message = "Endringene ble lagret", redirect = "/Product/ListProducts/" });
+                return Json(new { success = false, message = "Noe gikk galt, prøv igjen" });
             }
-            return Json(new { success = false, message = "Noe gikk galt, prøv igjen" });
+            return Json(new { success = false, message = "Feil i validering" });
 
         }
         //TODO Hva gjør denne, skal det være admintest på denne?
@@ -302,8 +303,9 @@ namespace Nettbutikk.admin.Controllers
 
                 if (result != null)
                     return Json(new { success = true, message = result.name + " ble lagt til med varenummer " + result.itemnumber, redirect = "/Product/ListProducts/?sortOrder=item_desc" });
+                return Json(new { success = false, message = "Noe gikk galt, prøv igjen senere" });
             }
-            return Json(new { success = false, message = "Noe gikk galt, prøv igjen senere" });
+            return Json(new { success = false, message = "Feil i validering" });
         }
 
         [HttpPost]
