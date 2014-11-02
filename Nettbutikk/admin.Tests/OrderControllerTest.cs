@@ -155,7 +155,7 @@ namespace Nettbutikk.admin.Tests
             var result = (IPagedList<OrderViewModel>)actrow.Model;
             //Assert
             Debug.Write(result[0].customer.lastname + result[1].customer.lastname);
-            Assert.IsTrue(string.Compare(result[0].customer.lastname, result[1].customer.lastname) > 0);
+            Assert.IsTrue(string.Compare(result[0].customer.lastname, result[1].customer.lastname) >= 0);
             Assert.IsNotNull(result[0].customer.lastname);
         }
 
@@ -263,7 +263,7 @@ namespace Nettbutikk.admin.Tests
             var actrow = (ViewResult)controller.ListOrders(null, null, "total_desc");
             var result = (IPagedList<OrderViewModel>)actrow.Model;
             //Assert
-            Assert.IsTrue(result[0].sum > result[1].sum);
+            Assert.IsTrue(result[0].sum >= result[1].sum);
             Assert.IsNotNull(result[0].sum);
 
         }
@@ -392,7 +392,7 @@ namespace Nettbutikk.admin.Tests
             var actual = (ViewResult)bll.ListOrderLines(298423, null, 2, null);
             var result = (PagedList<OrderLineViewModel>)actual.Model;
             // Assert
-            Assert.AreEqual(5, result.Count);
+            Assert.AreEqual(2, result.Count);
             Assert.AreEqual(result[0].orderlineSum, (int.Parse(result[0].price) * result[0].quantity) );
             
         }
@@ -404,7 +404,7 @@ namespace Nettbutikk.admin.Tests
             TestControllerBuilder builder = new TestControllerBuilder();
             var controller = new OrderController(new OrderBLL(new OrderDALStub()));
             builder.InitializeController(controller);
-            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
 
             //Act
             var actrow = (ViewResult)controller.ListOrderLines(298423,1, 2, "id_desc");
