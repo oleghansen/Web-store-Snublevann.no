@@ -4,6 +4,40 @@ Vi er en gruppe på fire personer som har jobbet sammen i kurset Web Applikasjon
 
 <h2>1. Innlevering</h2>
 
+<h3>Oppgave</h3>
+Det skal implementeres en nettbutikk for kjøp av varer på nettet. 
+<h3>Grupper</h3>
+Oppgaven skal løses i grupper med maks 5 studenter i hver gruppe. 
+<h3>Mål</h3>
+<ul>
+<li>Lage en komplett løsning med mulighet for å bestille på nett.</li>
+<li>Løsningen skal lages i .NET MVC.</li>
+<li>Sikre enkelte sider med innloggingsfunksjon, håndtere nye/gamle brukere.</li>
+<li>Vise forståelse for MVC arkitekturen og Entity Framework.</li>
+</ul>
+<h3>Funksjonalitet:</h3>
+
+<h4>Løsningen bør blant annet inneholde:</h4>
+<ul>
+<li>Applikasjonen skal kreve autentisering og autorisering enten via egendefinert sikkerhetsløsning.</li>
+<li>Brukere skal kunne være anonym for å se på varene, men være registrert som kunde for å kjøpe.</li>
+<li>På slutten av bestillingen bør man ha en mulighet for å betale for bestillingen (ikke fysisk knytning til en betalingsløsning).</li>
+<li>En kvittering bør vises for kunden som bekreftelse på bestillingen.</li>
+<li>Den enkelte bruker skal kunne logge seg inn og endre på sine egne data i tillegg til å se på ordrehistorikken sin (hva og når de har bestilt før).</li>
+<li>Ha dynamisk henting/oppdatering av data via AJAX og Javascript (JQuery).</li>
+</ul>
+<h4>Ved evaluering av oppgaven vil det bla. bli vektlagt:</h4>
+<ul>
+<li>Design / layout</li>
+<li>Funksjonalitet</li>
+<li>Struktur på kode</li>
+<li>Databasestruktur bruk av Entity Framework code forst</li>
+<li>Validering</li>
+<li>Ryddig og forståelig kode (CSHTML og c#)</li>
+</ul>
+<h3>Hva skal leveres: </h3>
+En zip. fil som inneholder hele Visual Studio prosjektet i Fronter. Dersom det er noe spesielt ved løsningen som studentene vil fremheve kan dette gjøres via en kort tekstlig beskrives i løsningen f.eks kalt Readme.txt.
+Det skal ikke leveres en komplett administrasjonsløsning for kunder, produkter, kategorier og ordre. Dette er en del av neste oppgave. Den eneste «backend» funksjonalitet som skal lages er at den enkelte bruker kan se på og endre sine egne data i tillegg til å se på sin egen ordrehistorikk.
 
 
 <h2>2. Innlevering</h2>
