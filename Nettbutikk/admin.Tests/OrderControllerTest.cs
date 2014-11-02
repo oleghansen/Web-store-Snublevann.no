@@ -19,27 +19,24 @@ namespace Nettbutikk.admin.Tests
     public class OrderTestController
     {
         [TestMethod]
-        public void Order_List_Is_Not_Null()
+        public void order_list_is_not_null()
         {
             // Arrange
             TestControllerBuilder builder = new TestControllerBuilder();
-            var bll = new OrderController(new OrderBLL(new OrderDALStub()));
-            builder.InitializeController(bll);
+            var controller = new OrderController(new OrderBLL(new OrderDALStub()));
+            builder.InitializeController(controller);
             builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
-          
 
             // Act 
-
-            var actrow = (ViewResult)bll.ListOrders(null,null,null,null);
+            var actrow = (ViewResult)controller.ListOrders(null,null,null,null);
             var result = (IPagedList<OrderViewModel>)actrow.Model;
-
 
             // Assert
             Assert.IsNotNull(result);
         }
 
         [TestMethod]
-        public void Order_List_Contains_Orders()
+        public void order_list_contains_orders()
         {
             TestControllerBuilder builder = new TestControllerBuilder();
             //Arrange
@@ -56,6 +53,10 @@ namespace Nettbutikk.admin.Tests
             expected.Add(o);
             expected.Add(o);
             expected.Add(o);
+            expected.Add(o);
+            expected.Add(o);
+            expected.Add(o);
+
            
             // Act
 
@@ -67,31 +68,32 @@ namespace Nettbutikk.admin.Tests
             Assert.AreEqual(expected.Count, result.Count);
         }
 
-        
         [TestMethod]
-        public void Find_Order_By_Id()
+        public void order_showReciept_not_null()
         {
-            // Arrange
-            TestControllerBuilder builder = new TestControllerBuilder(); 
-            var bll = new OrderController(new OrderBLL(new OrderDALStub()));
-            builder.InitializeController(bll);
-            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true }; 
-            var expected = new Order()
-            {
-                id = 1,
-                customerid = 1,
-                orderdate = DateTime.Now
+            TestControllerBuilder builder = new TestControllerBuilder();
+            //Arrange
+            var controller = new OrderController(new OrderBLL(new OrderDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+            BillingViewModel expected = new BillingViewModel()
+            { 
+                ordreid = 12345,
+                orderdate =DateTime.Now,
+                totsum = 30,
+                mva = 8,
+                exmva = 28,
+                
             };
 
-            // Act
-            var actionResult = (ViewResult)bll.Details(1);
-            var result = (Order)actionResult.Model;
+            //Act
+            var action = (ViewResult)controller.showReceipt(12345);
+            var result = (BillingViewModel)action.Model;
 
-            // Assert
-            Assert.AreEqual(actionResult.ViewName, "");
-            Assert.AreEqual(expected.id, result.id);
-            Assert.AreEqual(expected.customerid, result.customerid);
-            Assert.AreEqual(expected.orderLine, result.orderLine);
+            //Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual(result.sum.Count, result.shoppingcart.Count); 
+            
         }
     }
 }

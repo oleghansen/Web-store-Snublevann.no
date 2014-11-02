@@ -92,30 +92,6 @@ namespace Nettbutikk.DAL
             }
         }
 
-        public Order getOrder(int id)
-        {
-            try
-            {
-                var db = new DatabaseContext();
-                Orders order = (Orders)db.Orders.FirstOrDefault(p => p.Id == id);
-
-                Order o = new Order()
-                {
-                    id = order.Id,
-                    orderdate = order.OrderDate,
-                    customerid = order.CustomersId
-
-                };
-
-                return o;
-            }
-            catch(Exception e)
-            {
-                writeToFile(e);
-                return null;
-            }
-        }
-
         private void writeToFile(Exception e)
         {
             string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"nettbutikkFeiLogg.txt";
