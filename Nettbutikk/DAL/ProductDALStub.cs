@@ -30,19 +30,19 @@ namespace Nettbutikk.DAL
             var prod2 = new Product()
             {
                 itemnumber = 3,
-                name = "Tullball",
+                name = "Bjelleklang",
                 description = "Hei"
             };
             var prod3 = new Product()
             {
                 itemnumber = 4,
-                name = "Tullball",
+                name = "Bremse",
                 description = "Hei"
             };
             var prod4 = new Product()
             {
                 itemnumber = 5,
-                name = "Tullball",
+                name = "Apekatt",
                 description = "Hei"
             };
             List<Product> productlist = new List<Product>();

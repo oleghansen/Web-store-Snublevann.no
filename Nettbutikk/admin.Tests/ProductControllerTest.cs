@@ -29,7 +29,7 @@ namespace Nettbutikk.admin.Tests
 
             // Act
             var action = (ViewResult)controller.ListProducts(2, 2, null, null, null);
-            var result = (PagedList<ProductInfo>)action.Model;
+            var result = (IPagedList<ProductInfo>)action.Model;
 
             // Assert
             Assert.AreEqual(result.PageNumber, 2);
@@ -50,12 +50,29 @@ namespace Nettbutikk.admin.Tests
 
             // Act
             var action = (ViewResult)controller.ListProducts(2, 2, "item_desc", null, null);
-            var result = (PagedList<ProductInfo>)action.Model;
+            var result = (IPagedList<ProductInfo>)action.Model;
 
             // Assert
             Assert.IsNotNull(result);
             Assert.AreEqual(2, result.PageNumber);
             Assert.IsTrue(result[0].itemnumber > result[1].itemnumber);
+        }
+        [TestMethod]
+        public void product_list_products_name_desc()
+        {
+            // Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+
+            var controller = new ProductController(new ProductBLL(new ProductDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+
+            // Act
+            var action = (ViewResult)controller.ListProducts(2, 2, "name_desc", null, null);
+            var result = (IPagedList<ProductInfo>)action.Model;
+
+            // Assert
+            Assert.IsTrue(string.Compare(result[0].name, result[1].name) > 0);
         }
     }
 }
