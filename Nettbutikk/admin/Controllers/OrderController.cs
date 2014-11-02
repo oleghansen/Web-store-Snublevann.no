@@ -151,8 +151,6 @@ namespace Nettbutikk.admin.Controllers
                         productid = olItem.productid.ToString(),
                         productname = olItem.product.name
 
-
-
                     });
                     linje++;
                 }

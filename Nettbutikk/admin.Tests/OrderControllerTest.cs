@@ -55,6 +55,39 @@ namespace Nettbutikk.admin.Tests
             Assert.IsTrue(result[0].id > result[1].id);
 
         }
+        [TestMethod]
+        public void order_listOrders_sort_cid()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new OrderController(new OrderBLL(new OrderDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+
+            //Act
+            var actrow = (ViewResult)controller.ListOrders(null, null, "cid");
+            var result = (IPagedList<OrderViewModel>)actrow.Model;
+            //Assert
+            Assert.IsTrue(result[0].customerid < result[1].customerid);
+
+        }
+
+        [TestMethod]
+        public void order_listOrders_sort_cid_desc()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new OrderController(new OrderBLL(new OrderDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+
+            //Act
+            var actrow = (ViewResult)controller.ListOrders(null, null, "cid_desc");
+            var result = (IPagedList<OrderViewModel>)actrow.Model;
+            //Assert
+            Assert.IsTrue(result[0].customerid > result[1].customerid);
+
+        }
 
         [TestMethod]
         public void order_list_contains_orders()
