@@ -299,6 +299,29 @@ namespace Nettbutikk.admin.Tests
             Assert.IsNotNull(result.producerList);
         }
 
+        [TestMethod]
+        public void product_add_product_httpPost_modelstate_is_invalid()
+        {
+            // Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new ProductController(new ProductBLL(new ProductDALStub()));
+            builder.InitializeController(controller);
+            controller.ViewData.ModelState.AddModelError("feil", "dette ble feil gitt");
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
+            ProductDetail p = new ProductDetail()
+            {
+                name = "",
+                description = "",
+                longDescription = ""
+            };
+            // Act
+            var result = (JsonResult)controller.addProduct(p);
+            var success = (bool)(new PrivateObject(result.Data, "success")).Target;
+
+            // Assert
+            Assert.IsFalse(success);
+        }
+
 
     }
 }
