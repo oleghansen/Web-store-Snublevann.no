@@ -244,5 +244,36 @@ namespace Nettbutikk.admin.Tests
             //Assert
             Assert.IsTrue(success);
         }
+
+        [TestMethod]
+        public void product_update_detail_HTTPPOST_modelState_Is_INValid()
+        {
+            // Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+
+            var controller = new ProductController(new ProductBLL(new ProductDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
+
+            ProductDetail expected = new ProductDetail()
+            {
+                itemnumber = 1,
+                name = "Tullball",
+                description = "Hei",
+                price = 123,
+                volum = 50,
+                producerid = 2,
+                longDescription = "Tullball er et fantastisk godt drikkeprodukt",
+                subCategoryid = 3,
+                countryid = 1
+            };
+
+            // Act
+            var result = (JsonResult)controller.ProductDetails(1, expected);
+            var success = (bool)(new PrivateObject(result.Data, "success")).Target;
+
+            //Assert
+            Assert.IsFalse(success);
+        }
     }
 }
