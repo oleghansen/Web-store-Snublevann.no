@@ -20,35 +20,45 @@ namespace Nettbutikk.DAL
                 itemnumber = 1,
                 name = "Tullball",
                 description = "Hei",
-                price = 123
+                price = 123,
+                producerid = 2,
+                producer = "Ringnes"
             };
             var prod1 = new Product()
             {
                 itemnumber = 2,
                 name = "Truse",
                 description = "Hei",
-                price = 23
+                price = 23,
+                producerid = 3,
+                producer = "Fjellbekk"
             };
             var prod2 = new Product()
             {
                 itemnumber = 3,
                 name = "Bjelleklang",
                 description = "Hei",
-                price = 433
+                price = 433,
+                producerid = 4,
+                producer = "Brokkoliekspressen"
             };
             var prod3 = new Product()
             {
                 itemnumber = 4,
                 name = "Bremse",
                 description = "Hei",
-                price = 988
+                price = 988,
+                producerid = 6,
+                producer = "Batman"
             };
             var prod4 = new Product()
             {
                 itemnumber = 5,
                 name = "Apekatt",
                 description = "Hei",
-                price = 900
+                price = 900,
+                producerid = 13,
+                producer = "Robin"
             };
             List<Product> productlist = new List<Product>();
             productlist.Add(prod);
