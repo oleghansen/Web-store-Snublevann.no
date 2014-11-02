@@ -9,7 +9,7 @@ namespace Nettbutikk.admin.Models
 {
     public class CategoryInfo
     {
-        [Display(Name = "ID nummer")]
+        [Display(Name = "ID")]
         public int id { get; set; }
         [Display(Name = "Kategori")]
         [Required(ErrorMessage = "Kategorinavn må oppgis")]

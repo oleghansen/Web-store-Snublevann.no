@@ -87,7 +87,7 @@
                                         <b><a href="@Url.Action("ListProducts", new { itemsPerPage = ViewBag.CurrentItemsPerPage, sortOrder = ViewBag.PriceSortParm, currentFilter = ViewBag.CurrentFilter })"> @Html.DisplayNameFor(modelItem => Model[0].price)</a></b>
                                     </td>
                                     <td>
-                                        <b> @Html.DisplayNameFor(modelItem => Model[0].volum)</b>
+                                        <b><a href="@Url.Action("ListProducts", new { sortOrder = ViewBag.VolumeSortParm, currentFilter = ViewBag.CurrentFilter })"> @Html.DisplayNameFor(modelItem => Model[0].volum)</a></b>
                                     </td>
                                 </tr>
 
