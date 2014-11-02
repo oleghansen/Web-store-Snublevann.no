@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Nettbutikk.Model;
+using System.Diagnostics;
 
 namespace Nettbutikk.BLL
 {
@@ -77,6 +78,10 @@ namespace Nettbutikk.BLL
 
             byte[] hashpassword = makeHash(password);
             bool ok = validate(email, hashpassword);
+            Debug.WriteLine("epost: " + email);
+            Debug.WriteLine("hash: " + hashpassword);
+           Debug.WriteLine("OK???" + ok);
+
             if (ok)
             {
                 Customer c = findUser(email);
