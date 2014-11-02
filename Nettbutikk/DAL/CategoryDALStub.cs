@@ -223,7 +223,15 @@ namespace Nettbutikk.DAL
         }
         public List<Product> deleteSubCategory(int id, int adminid)
         {
-            return null;
+            List<Product> list = new List<Product>();
+            list.Add(new Product()
+            {
+                name = "IPA"
+            });
+            if (id == 5)
+                return null;
+            else
+                return list;
         }
         public List<Product> deleteProducer(int id, int adminid)
         {
