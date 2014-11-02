@@ -167,9 +167,15 @@ namespace Nettbutikk.DAL
 
         public Product addProduct(int id, Product p)
         {
-            if (id == 0)
-                return null;
-            return null;
+            Product prod = new Product()
+            {
+                name = "Apekatt",
+                description = "Hei",
+                price = 900,
+                producerid = 13,
+                producer = "Robin"
+            };
+            return prod;
         }
 
         public List<Country> getCountries()

@@ -322,6 +322,28 @@ namespace Nettbutikk.admin.Tests
             Assert.IsFalse(success);
         }
 
+        [TestMethod]
+        public void product_add_product_httpPost_modelstate_is_valid()
+        {
+            // Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new ProductController(new ProductBLL(new ProductDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
+            ProductDetail p = new ProductDetail()
+            {
+                name = "Pilsner",
+                description = "gul",
+                longDescription = "gulere"
+            };
+
+            // Act
+            var result = (JsonResult)controller.addProduct(p);
+            var success = (bool)(new PrivateObject(result.Data, "success")).Target;
+
+            // Assert
+            Assert.IsTrue(success);
+        }
 
     }
 }
