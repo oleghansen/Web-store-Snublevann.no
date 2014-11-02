@@ -52,9 +52,12 @@ namespace Nettbutikk.admin.Tests
             var result = (IPagedList<OrderViewModel>)actrow.Model;
 
             Assert.AreEqual(result.PageNumber, 2);
+            Assert.AreEqual(result.PageSize, 2);
             Assert.IsTrue(result[0].id > result[1].id);
+            Assert.IsNotNull(result[0].id);
 
         }
+
         [TestMethod]
         public void order_listOrders_sort_cfname()
         {
@@ -69,7 +72,7 @@ namespace Nettbutikk.admin.Tests
             var result = (IPagedList<OrderViewModel>)actrow.Model;
             //Assert
             Assert.IsTrue(string.Compare(result[0].customer.firstname ,result[1].customer.firstname) < 0);
-
+            Assert.IsNotNull(result[0].customer.firstname);
         }
 
         [TestMethod]
@@ -86,7 +89,7 @@ namespace Nettbutikk.admin.Tests
             var result = (IPagedList<OrderViewModel>)actrow.Model;
             //Assert
             Assert.IsTrue(string.Compare(result[0].customer.firstname, result[1].customer.firstname) > 0);
-
+            Assert.IsNotNull(result[0].customer.firstname);
         }
 
         [TestMethod]
@@ -103,7 +106,7 @@ namespace Nettbutikk.admin.Tests
             var result = (IPagedList<OrderViewModel>)actrow.Model;
             //Assert
             Assert.IsTrue(string.Compare(result[0].customer.lastname, result[1].customer.lastname) < 0);
-
+            Assert.IsNotNull(result[0].customer.lastname);
         }
 
         [TestMethod]
@@ -120,7 +123,7 @@ namespace Nettbutikk.admin.Tests
             var result = (IPagedList<OrderViewModel>)actrow.Model;
             //Assert
             Assert.IsTrue(string.Compare(result[0].customer.lastname, result[1].customer.lastname) >= 0);
-
+            Assert.IsNotNull(result[0].customer.lastname);
         }
 
 
@@ -138,6 +141,7 @@ namespace Nettbutikk.admin.Tests
             var result = (IPagedList<OrderViewModel>)actrow.Model;
             //Assert
             Assert.IsTrue(result[0].customerid < result[1].customerid);
+            Assert.IsNotNull(result[0].customerid);
 
         }
 
@@ -155,6 +159,7 @@ namespace Nettbutikk.admin.Tests
             var result = (IPagedList<OrderViewModel>)actrow.Model;
             //Assert
             Assert.IsTrue(result[0].customerid > result[1].customerid);
+            Assert.IsNotNull(result[0].customerid);
 
         }
 
@@ -231,6 +236,44 @@ namespace Nettbutikk.admin.Tests
         }
 
         [TestMethod]
+        public void order_listOrders_sort_date()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new OrderController(new OrderBLL(new OrderDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+
+            //Act
+            var actrow = (ViewResult)controller.ListOrders(null, null, "Date");
+            var result = (IPagedList<OrderViewModel>)actrow.Model;
+            //Assert
+            Assert.IsTrue(result[0].orderdate.Date <= result[1].orderdate.Date);
+            Assert.IsNotNull(result[0].orderdate);
+
+        }
+
+
+        [TestMethod]
+        public void order_listOrders_sort_date_desc()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new OrderController(new OrderBLL(new OrderDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+
+            //Act
+            var actrow = (ViewResult)controller.ListOrders(null, null, "date_desc");
+            var result = (IPagedList<OrderViewModel>)actrow.Model;
+            //Assert
+            Assert.IsTrue(result[0].orderdate.Date >= result[1].orderdate.Date);
+            Assert.IsNotNull(result[0].orderdate);
+
+        }
+
+
+        [TestMethod]
         public void order_list_contains_orders()
         {
             TestControllerBuilder builder = new TestControllerBuilder();
@@ -251,17 +294,283 @@ namespace Nettbutikk.admin.Tests
             expected.Add(o);
             expected.Add(o);
             expected.Add(o);
-
-           
             // Act
-
             var actual = (ViewResult)bll.ListOrders(null, null, null);
             var result = (IPagedList<OrderViewModel>)actual.Model;
-
-
             // Assert
             Assert.AreEqual(expected.Count, result.Count);
         }
+
+        [TestMethod]
+        public void order_listOrderLines_is_not_null()
+        {
+            // Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new OrderController(new OrderBLL(new OrderDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+            var order = new Order()
+            {
+                id = 298423,
+                customerid = 1,
+                orderdate = DateTime.Now
+            };
+
+            // Act 
+            var actrow = (ViewResult)controller.ListOrderLines(298423, 2, 2, null);
+            var result = (IPagedList<OrderLineViewModel>)actrow.Model;
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual(result.PageNumber, 2);
+            Assert.IsInstanceOfType(result, typeof(IPagedList<OrderLineViewModel>));
+            Assert.AreEqual(result[0].orderId , order.id ); 
+            Assert.IsTrue(result[0].id < result[1].id);
+
+        }
+
+        [TestMethod]
+        public void order_orderlineslist_contains_orderlines()
+        {
+            TestControllerBuilder builder = new TestControllerBuilder();
+            //Arrange
+            var bll = new OrderController(new OrderBLL(new OrderDALStub()));
+            builder.InitializeController(bll);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+            List<OrderLineViewModel> expected = new List<OrderLineViewModel>();
+            var o = new OrderLineViewModel()
+            {
+                id = 1,
+                productid = 100001.ToString(),
+                quantity = 3,
+                customerid = 1,
+                orderdate = DateTime.Now, 
+                orderId = 298423,
+                orderlineSum = 300,
+                price = 50.ToString(),
+                productname = "hei"
+
+            };
+
+            expected.Add(o);
+            expected.Add(o);
+            expected.Add(o);
+            // Act
+            var actual = (ViewResult)bll.ListOrderLines(298423, null, 5, null);
+            var result = (PagedList<OrderLineViewModel>)actual.Model;
+            // Assert
+            Assert.AreEqual(5, result.Count);
+            Assert.AreEqual(result[0].orderlineSum, (int.Parse(result[0].price) * result[0].quantity) );
+            
+        }
+
+        [TestMethod]
+        public void order_listOrderlines_sort_id_desc()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new OrderController(new OrderBLL(new OrderDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+
+            //Act
+            var actrow = (ViewResult)controller.ListOrderLines(298423,2, 2, "id_desc");
+            var result = (IPagedList<OrderLineViewModel>)actrow.Model;
+
+            Assert.AreEqual(result.PageNumber, 2);
+            Assert.AreEqual(result.PageSize, 2);
+            Assert.IsTrue(result[0].id > result[1].id);
+            Assert.IsNotNull(result[0].id);
+
+        }
+
+        [TestMethod]
+        public void order_listOrderlines_sort_pid()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new OrderController(new OrderBLL(new OrderDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+
+            //Act
+            var actrow = (ViewResult)controller.ListOrderLines(298423, 1, 2, "PID");
+            var result = (IPagedList<OrderLineViewModel>)actrow.Model;
+
+            Assert.AreEqual(result.PageNumber, 1);
+            Assert.AreEqual(result.PageSize, result.Count);
+            Assert.IsTrue(result[0].product.itemnumber <= result[1].product.itemnumber );
+            Assert.IsNotNull(result[0].product.itemnumber);
+
+        }
+
+        [TestMethod]
+        public void order_listOrderlines_sort_pid_desc()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new OrderController(new OrderBLL(new OrderDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+
+            //Act
+            var actrow = (ViewResult)controller.ListOrderLines(298423, 1, 7, "pid_desc");
+            var result = (IPagedList<OrderLineViewModel>)actrow.Model;
+
+            Assert.AreEqual(result.PageNumber, 1);
+            Assert.AreEqual(result.PageSize, result.Count);
+            Assert.IsTrue(result[0].product.itemnumber >= result[1].product.itemnumber);
+            Assert.IsNotNull(result[0].product.itemnumber);
+
+        }
+
+        [TestMethod]
+        public void order_listOrderlines_sort_pname()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new OrderController(new OrderBLL(new OrderDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+
+            //Act
+            var actrow = (ViewResult)controller.ListOrderLines(298423, 1, 7, "PName");
+            var result = (IPagedList<OrderLineViewModel>)actrow.Model;
+
+            Assert.AreEqual(result.PageNumber, 1);
+            Assert.AreEqual(result.PageSize, result.Count);
+            Assert.IsTrue(string.Compare(result[0].product.name, result[1].product.name) <= 0);
+            Assert.IsNotNull(result[0].product.name);
+
+        }
+
+        [TestMethod]
+        public void order_listOrderlines_sort_pname_desc()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new OrderController(new OrderBLL(new OrderDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+
+            //Act
+            var actrow = (ViewResult)controller.ListOrderLines(298423, null, null, "pname_desc");
+            var result = (IPagedList<OrderLineViewModel>)actrow.Model;
+
+            Assert.IsTrue(string.Compare(result[0].product.name, result[1].product.name) >= 0);
+            Assert.IsNotNull(result[0].product.name);
+
+        }
+
+        [TestMethod]
+        public void order_listOrderlines_sort_amount()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new OrderController(new OrderBLL(new OrderDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+
+            //Act
+            var actrow = (ViewResult)controller.ListOrderLines(298423, null, null, "Amount");
+            var result = (IPagedList<OrderLineViewModel>)actrow.Model;
+
+            Assert.IsTrue(result[0].quantity  <= result[1].quantity);
+            Assert.IsNotNull(result[0].product.quantity );
+
+        }
+
+        [TestMethod]
+        public void order_listOrderlines_sort_amount_desc()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new OrderController(new OrderBLL(new OrderDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+
+            //Act
+            var actrow = (ViewResult)controller.ListOrderLines(298423, null, null, "amount_desc");
+            var result = (IPagedList<OrderLineViewModel>)actrow.Model;
+
+            Assert.IsTrue(result[0].quantity >= result[1].quantity);
+            Assert.IsNotNull(result[0].product.quantity);
+
+        }
+
+        [TestMethod]
+        public void order_listOrderlines_sort_price()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new OrderController(new OrderBLL(new OrderDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+
+            //Act
+            var actrow = (ViewResult)controller.ListOrderLines(298423, null, null, "Price");
+            var result = (IPagedList<OrderLineViewModel>)actrow.Model;
+
+            Assert.IsTrue(result[0].product.price  <= result[1].product.price);
+            Assert.IsNotNull(result[0].product.price);
+
+        }
+
+        [TestMethod]
+        public void order_listOrderlines_sort_price_desc()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new OrderController(new OrderBLL(new OrderDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+
+            //Act
+            var actrow = (ViewResult)controller.ListOrderLines(298423, null, null, "price_desc");
+            var result = (IPagedList<OrderLineViewModel>)actrow.Model;
+
+            Assert.IsTrue(result[0].product.price >= result[1].product.price);
+            Assert.IsNotNull(result[0].product.price);
+
+        }
+
+        [TestMethod]
+        public void order_listOrderlines_sort_totalsum()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new OrderController(new OrderBLL(new OrderDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+
+            //Act
+            var actrow = (ViewResult)controller.ListOrderLines(298423, null, null, "Total");
+            var result = (IPagedList<OrderLineViewModel>)actrow.Model;
+
+            Assert.IsTrue(result[0].orderlineSum  <= result[1].orderlineSum);
+            Assert.IsNotNull(result[0].orderlineSum);
+
+        }
+
+        [TestMethod]
+        public void order_listOrderlines_sort_totalsum_desc()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new OrderController(new OrderBLL(new OrderDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+
+            //Act
+            var actrow = (ViewResult)controller.ListOrderLines(298423, null, null, "total_desc");
+            var result = (IPagedList<OrderLineViewModel>)actrow.Model;
+
+            Assert.IsTrue(result[0].orderlineSum >= result[1].orderlineSum);
+            Assert.IsNotNull(result[0].orderlineSum);
+
+        }
+
+
 
         [TestMethod]
         public void order_showReciept_not_null()
