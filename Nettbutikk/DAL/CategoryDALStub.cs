@@ -210,7 +210,16 @@ namespace Nettbutikk.DAL
 
         public List<SubCategory> deleteCategory(int id, int adminid)
         {
-            return null;
+            List<SubCategory> list = new List<SubCategory>();
+            list.Add(new SubCategory()
+            {
+                name = "mokka"
+            });
+            if (id == 5)
+                return null;
+            else
+                return list;
+
         }
         public List<Product> deleteSubCategory(int id, int adminid)
         {

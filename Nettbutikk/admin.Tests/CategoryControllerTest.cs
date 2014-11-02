@@ -505,8 +505,39 @@ namespace Nettbutikk.Tests
 
             //Assert
             Assert.AreEqual("ListSubCategories", action.RouteValues["Action"]);
+        }
+        [TestMethod]
+        public void category_delete_category_httppost_no_child()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new CategoryController(new CategoryBLL(new CategoryDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
 
+            //Act
+            var action = (JsonResult)controller.DeleteCategory(5);
+            var success = (bool)(new PrivateObject(action.Data, "success")).Target;
 
+            //Assert
+            Assert.IsTrue(success); 
+
+        }
+        [TestMethod]
+        public void category_delete_category_httppost_child()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new CategoryController(new CategoryBLL(new CategoryDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
+
+            //Act
+            var action = (JsonResult)controller.DeleteCategory(4);
+            var success = (bool)(new PrivateObject(action.Data, "success")).Target;
+
+            //Assert
+            Assert.IsFalse(success); 
         }
     }
 }
