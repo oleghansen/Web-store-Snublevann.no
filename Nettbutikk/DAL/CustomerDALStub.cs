@@ -86,13 +86,13 @@ namespace Nettbutikk.DAL
  
         public Customer findUser(String email)
         {
-            var db = new DatabaseContext();
-            Customers userFound = db.Customers.FirstOrDefault(u => u.Email == email);
-            Customer c = new Customer();
-            c.id = userFound.Id;
-            c.email = userFound.Email;
-            c.hashpassword = userFound.Password;
-            return c;
+            var cust = new Customer()
+            {
+                id = 1,
+                email = "stats@minister.no",
+                password = "konge"
+            };
+            return cust;
         }
 
         public bool validate(String email, byte[] hashedPassword)

@@ -19,12 +19,32 @@ namespace Nettbutikk.admin.Tests
         public void main_login_view()
         {
             // Arrange 
-            var controller = new MainController(new CustomerBLL(new CustomerDALStub()));
+            var controller = new MainController();
             // Act
             var result = (ViewResult)controller.LogIn();
 
             //Assert
             Assert.AreEqual(result.ViewName, "");
+        }
+
+        [TestMethod]
+        public void main_login_modelstate_is_invalid()
+        {
+            // Arrange 
+            var controller = new MainController(new CustomerBLL(new CustomerDALStub()));
+            controller.ViewData.ModelState.AddModelError("feil", "dette ble feil gitt");
+            Customer cust = new Customer()
+            {
+                email = "",
+                password = ""
+            };
+            // Act
+            var result = (ViewResult)controller.logIn(cust.email,cust.password);
+
+            //Assert
+            Assert.AreEqual("", result.ViewName);
+            Assert.IsTrue(result.ViewData.ModelState.Count == 1);
+
         }
     }
 }
