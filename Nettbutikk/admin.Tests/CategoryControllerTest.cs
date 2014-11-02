@@ -707,5 +707,28 @@ namespace Nettbutikk.Tests
             Assert.IsTrue(result); 
         }
 
+        [TestMethod]
+        public void category_producer_details_httppost_modelstate_invalid()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new CategoryController(new CategoryBLL(new CategoryDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
+            controller.ViewData.ModelState.AddModelError("error", "noe gikk galt");
+            ProducerInfo pi = new ProducerInfo()
+            {
+                prodId = 12,
+                prodName = "En produsent"
+            };
+
+            //Act
+            var action = (JsonResult)controller.ProducerDetails(pi.prodId, pi);
+            var result = (bool)(new PrivateObject(action.Data, "success")).Target;
+
+            //Assert
+            Assert.IsFalse(result); 
+        }
+
     }
 }
