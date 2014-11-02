@@ -27,7 +27,7 @@
             <h5>
                 <a href='@Url.Action("ListProducts", "Product")' id="prodPath"> Alle produkter</a> >
                 <a href='@Url.Action("ListCategories")' id="prodPath"> Kategorier</a> >
-                <a href='@Url.Action("updateCatergoryDetails", new { id = Model.id }))' id="prodPath"> Endre kategori</a>
+                <a href='@Url.Action("updateCatergoryDetails", new { id = Model.id }))' id="prodPath">@Html.DisplayFor(model => model.name)</a>
             </h5>
         </div>
 
@@ -35,7 +35,7 @@
 
             <div class="row">
                 <div class="formTitle">
-                    <h2><span class="glyphicon glyphicon-glass"></span>Endre kategori</h2>
+                    <h2><span class="glyphicon glyphicon-th-large"></span>Endre kategori</h2>
                 </div>
                 <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
                     <form role="form">

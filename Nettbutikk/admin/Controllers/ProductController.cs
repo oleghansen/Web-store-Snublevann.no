@@ -24,7 +24,6 @@ namespace Nettbutikk.admin.Controllers
             _product = stub;
         }
 
-        // GET: Product
         public ActionResult Index()
         {
             if (!isAdmin())
@@ -90,9 +89,7 @@ namespace Nettbutikk.admin.Controllers
             }
 
 
-            ViewBag.CurrentItemsPerPage = itemsPerPage;
-
-            
+            ViewBag.CurrentItemsPerPage = itemsPerPage; 
 
             List<ProductInfo> list = new List<ProductInfo>();
             foreach (var item in allProducts)
@@ -137,7 +134,6 @@ namespace Nettbutikk.admin.Controllers
             }
             Product productDetails = _product.seeDetails(id);
             
-            // HACK: men funker... 
             List<GroupedSelectListItem> dropdownsubcategory2 = new List<GroupedSelectListItem>();
             var dropdownsubcategory1 = _product.getAllSubCategories();
             foreach (var item in dropdownsubcategory1)
@@ -210,7 +206,7 @@ namespace Nettbutikk.admin.Controllers
                 Customer admin = (Customer)Session["loggedInUser"];
                 var adminid = admin.id;
                 bool result = _product.updateProduct(adminid, updated);
-                // HACK: men funker... 
+                
                 List<GroupedSelectListItem> test2 = new List<GroupedSelectListItem>();
                 var test1 = _product.getAllSubCategories();
                 foreach (var item in test1)
@@ -249,12 +245,6 @@ namespace Nettbutikk.admin.Controllers
             }
             return Json(new { success = false, message = "Feil i validering" });
 
-        }
-        //TODO Hva gjør denne, skal det være admintest på denne?
-        public JsonResult getResults(string term)
-        {
-            List<string> foundProducts = _product.getAutoComplete(term);
-            return Json(foundProducts, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult addProduct()

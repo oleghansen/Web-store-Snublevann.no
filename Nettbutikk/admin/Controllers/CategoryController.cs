@@ -372,9 +372,6 @@ namespace Nettbutikk.admin.Controllers
             return Json(new { success = false, message = "<p>Du må først slette følgende produkter</p>", list = result }); 
         }
 
-
-
-
         public ActionResult addProducer()
         {
             if (!isAdmin())
