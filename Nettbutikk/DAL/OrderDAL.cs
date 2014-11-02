@@ -39,7 +39,7 @@ namespace Nettbutikk.DAL
 
             try
             {
-                Stopwatch sw = new Stopwatch();
+               
 
                 sw.Start();
                 var db = new DatabaseContext();
@@ -58,10 +58,7 @@ namespace Nettbutikk.DAL
                         orderdate = item.OrderDate,
                         customerid = item.CustomersId
                     }).ToList();
-                sw.Stop();
-
-                Debug.WriteLine("get allorders; Elapsed={0}", sw.Elapsed);
-                //get allorders; Elapsed=00:00:00.0457881
+               
                 return lines;
             }
             catch(Exception e)
@@ -95,7 +92,6 @@ namespace Nettbutikk.DAL
         private void writeToFile(Exception e)
         {
             string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"nettbutikkFeiLogg.txt";
-            Debug.WriteLine(path);
             try
             {
                 using (StreamWriter writer = new StreamWriter(path, true))
@@ -103,7 +99,6 @@ namespace Nettbutikk.DAL
                     writer.WriteLine("-----------   " + DateTime.Now.ToString() + "   --------------");
                     writer.WriteLine("");
                     writer.WriteLine("Message: " + e.Message + Environment.NewLine
-                        + "InnerMessage: " + e.InnerException.Message + Environment.NewLine
                         + "Stacktrace: " + e.StackTrace + Environment.NewLine);
                 }
             }

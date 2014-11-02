@@ -367,7 +367,6 @@ namespace Nettbutikk.DAL
                     writer.WriteLine("-----------   " + DateTime.Now.ToString() + "   --------------");
                     writer.WriteLine("");
                     writer.WriteLine("Message: " + e.Message + Environment.NewLine 
-                        + "InnerMessage: " + e.InnerException.Message + Environment.NewLine
                         + "Stacktrace: " + e.StackTrace + Environment.NewLine);
                 }
             }catch(IOException ioe)
