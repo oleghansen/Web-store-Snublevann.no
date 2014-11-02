@@ -159,7 +159,15 @@ namespace Nettbutikk.DAL
 
         public bool delete(int id, int adminid)
         {
-            return false;
+
+            if (id == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         private String normalizePostalcode(int postalcode)
