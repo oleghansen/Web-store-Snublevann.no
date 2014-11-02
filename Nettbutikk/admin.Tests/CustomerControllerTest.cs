@@ -160,6 +160,78 @@ namespace Nettbutikk.Tests
             Assert.IsTrue(string.Compare(result[0].firstname, result[1].firstname) > 0);
         }
 
+        [TestMethod]
+        public void customer_list_customers_sort_email()
+        {
+            // Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var bll = new CustomerController(new CustomerBLL(new CustomerDALStub()));
+            builder.InitializeController(bll);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+
+            // Act
+            var actual = (ViewResult)bll.ListCustomers(null, null, "EMail", null, null);
+            var result = (IPagedList<UserInfo>)actual.Model;
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsTrue(string.Compare(result[0].firstname, result[1].firstname) < 0);
+        }
+
+        [TestMethod]
+        public void customer_list_customers_sort_email_desc()
+        {
+            // Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var bll = new CustomerController(new CustomerBLL(new CustomerDALStub()));
+            builder.InitializeController(bll);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+
+            // Act
+            var actual = (ViewResult)bll.ListCustomers(null, null, "email_desc", null, null);
+            var result = (IPagedList<UserInfo>)actual.Model;
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsTrue(string.Compare(result[0].firstname, result[1].firstname) > 0);
+        }
+
+        [TestMethod]
+        public void customer_list_customers_sort_postalarea()
+        {
+            // Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var bll = new CustomerController(new CustomerBLL(new CustomerDALStub()));
+            builder.InitializeController(bll);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+
+            // Act
+            var actual = (ViewResult)bll.ListCustomers(null, null, "PArea", null, null);
+            var result = (IPagedList<UserInfo>)actual.Model;
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsTrue(string.Compare(result[0].firstname, result[1].firstname) < 0);
+        }
+
+        [TestMethod]
+        public void customer_list_customers_sort_postalarea_desc()
+        {
+            // Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var bll = new CustomerController(new CustomerBLL(new CustomerDALStub()));
+            builder.InitializeController(bll);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+
+            // Act
+            var actual = (ViewResult)bll.ListCustomers(null, null, "parea_desc", null, null);
+            var result = (IPagedList<UserInfo>)actual.Model;
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsTrue(string.Compare(result[0].firstname, result[1].firstname) > 0);
+        }
+
 
         [TestMethod]
         public void Hashed_password_Not_Null()
