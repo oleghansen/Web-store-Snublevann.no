@@ -143,8 +143,9 @@ namespace Nettbutikk.admin.Controllers
                 bool OK = _categoryBLL.Add(cat, c.id);
                 if (OK)
                     return Json(new { success = true, message = cat.name + " ble lagt til.", redirect = "/Category/ListCategories?item_desc" });
+                return Json(new { success = false, message = "noe gikk galt, prøv igjen senere." });
             }
-            return Json(new { success = false, message = "noe gikk galt, prøv igjen senere." });
+            return Json(new { success = false, message = "Feil i validering" });
         }
 
         public ActionResult updateCatergoryDetails(int id) 
@@ -181,7 +182,7 @@ namespace Nettbutikk.admin.Controllers
                 return Json(new { success = false, message = "Noe gikk galt, prøv igjen senere" });
 
             }
-            return Json(new { success = false, message = "feil i validering" });
+            return Json(new { success = false, message = "Feil i validering" });
         }
 
         public ActionResult newSubCategory()
@@ -216,8 +217,10 @@ namespace Nettbutikk.admin.Controllers
                     catId = sc.categoryId
                 }))
                     return Json(new { success = true, message = "Ny subkategori ble lagt til", redirect = "/Category/ListSubCategories/" });
+                return Json(new { success = false, message = "Dette gikk ikke så bra, prøv igjen en annen gang" });
             }
-            return Json(new { success = false, message = "Dette gikk ikke så bra, prøv igjen en annen gang" });
+            return Json(new { success = false, message = "Feil i validering" });
+            
         }
 
         public ActionResult ListSubCategories(int? page, int? itemsPerPage, string sortOrder, string currentFilter, string searchString)
@@ -369,9 +372,6 @@ namespace Nettbutikk.admin.Controllers
             return Json(new { success = false, message = "<p>Du må først slette følgende produkter</p>", list = result }); 
         }
 
-
-
-
         public ActionResult addProducer()
         {
             if (!isAdmin())
@@ -398,8 +398,9 @@ namespace Nettbutikk.admin.Controllers
                 bool OK = _categoryBLL.AddProducer(prod, c.id);
                 if (OK)
                     return Json(new { success = true, message = prod.name + " ble lagt til.", redirect = "/Category/ListProducers?item_desc" });
+                return Json(new { success = false, message = "noe gikk galt, prøv igjen senere." });
             }
-            return Json(new { success = false, message = "noe gikk galt, prøv igjen senere." });
+            return Json(new { success = false, message = "Feil i validering" });
         }
 
         public ActionResult ProducerDetails(int id)
@@ -431,9 +432,10 @@ namespace Nettbutikk.admin.Controllers
                 p.name = pi.prodName;
                 var result = _categoryBLL.updateProducer(id , p, c.id);
                 if(result)
-                        return Json(new { success = true, message = p.name + " ble endret.", redirect = "/Category/ListProducers/" });
+                    return Json(new { success = true, message = p.name + " ble endret.", redirect = "/Category/ListProducers/" });
+                return Json(new { success = false, message = "noe gikk galt, prøv igjen senere." });
             }
-            return Json(new { success = false, message = "noe gikk galt, prøv igjen senere." });
+            return Json(new { success = false, message = "Feil i validering" });
         }
 
         private bool isAdmin()

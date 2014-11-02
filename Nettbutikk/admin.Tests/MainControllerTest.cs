@@ -68,19 +68,44 @@ namespace Nettbutikk.admin.Tests
         [TestMethod]
         public void main_login_redirect_to_main_login_OK()
         {
+            TestControllerBuilder builder = new TestControllerBuilder();
             // Arrange 
             var controller = new MainController(new CustomerBLL(new CustomerDALStub()));
+            builder.InitializeController(controller);
+            
             LogIn cust = new LogIn()
             {
                 email = "stats@minister.no",
                 password = "konge"
             };
             // Act
-            
+
             var result = (RedirectToRouteResult)controller.logIn(cust);
-            // Assert
-            Assert.AreEqual(result.RouteName, "");
-       
+
+            //Assert
+            Assert.AreEqual("Main", result.RouteValues["Action"]);
+
+        }
+
+        [TestMethod]
+        public void main_logout()
+        {
+            TestControllerBuilder builder = new TestControllerBuilder();
+            //Arrange
+            var controller = new MainController();
+            builder.InitializeController(controller);
+            //Act
+          var result = (RedirectToRouteResult)controller.logOut();
+            //Assert
+            Assert.AreEqual("LogIn", result.RouteValues["Action"]);
+
+
+
+          
+
+
+
+
         }
 
     }

@@ -162,8 +162,6 @@ namespace Nettbutikk.DAL
         }
 
 
-        // TODO: Denne skal testes på web når siden er oppe!
-
         public bool updateProduct(int id,Product update)
         {
            

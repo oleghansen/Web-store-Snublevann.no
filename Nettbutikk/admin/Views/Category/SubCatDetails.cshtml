@@ -24,11 +24,18 @@
 @using (Html.BeginForm("SubCatDetails", "Category", FormMethod.Post, new { @class = "ajaxform" }))
 {
     @Html.AntiForgeryToken()
-    <div class="jumbotron">
+    <div class="jumbotron" style="padding-top:2px">
+        <div class="path">
+            <h5>
+                <a href='@Url.Action("ListProducts", "Product")' id="prodPath"> Alle produkter</a> >
+                <a href='@Url.Action("ListProducers")' id="prodPath"> Produsenter</a> >
+                <a href='@Url.Action("SubCatDetails", new { id = Model.categoryId })' id="prodPath"> @Html.DisplayFor(model => model.name)</a>
+            </h5>
+        </div>
         <div class="container">
             <div class="row">
                 <div class="formTitle">
-                    <h2><span class="glyphicon glyphicon-glass"></span>  Endre underkategori</h2>
+                    <h2><span class="glyphicon glyphicon-th"></span>  Endre underkategori</h2>
                 </div>
                 <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
                     <form role="form">

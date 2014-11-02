@@ -11,7 +11,7 @@ namespace Nettbutikk.admin.Controllers
 {
     public class MainController : Controller
     {
-        // GET: Main
+       
         public ActionResult Main()
         {
             if (!isAdmin())
@@ -49,8 +49,6 @@ namespace Nettbutikk.admin.Controllers
                     Session["loggedInUser"] = admin;
                     return RedirectToAction("Main");
                 }
-                return View();
-                
             }
             return View();
         }
