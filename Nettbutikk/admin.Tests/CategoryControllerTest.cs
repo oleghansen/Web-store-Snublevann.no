@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using MvcContrib.TestHelper;
 using PagedList.Mvc;
 using PagedList;
+using System.Diagnostics;
 
 namespace Nettbutikk.Tests
 {
@@ -21,8 +22,8 @@ namespace Nettbutikk.Tests
         {
             TestControllerBuilder builder = new TestControllerBuilder();
 
-            var bll = new CategoryController(new CategoryBLL(new CategoryDALStub()));
-            builder.InitializeController(bll);
+            var controller = new CategoryController(new CategoryBLL(new CategoryDALStub()));
+            builder.InitializeController(controller);
             builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
             var expected = new Category()
             {
@@ -213,15 +214,37 @@ namespace Nettbutikk.Tests
             builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
             CategoryInfo c = new CategoryInfo()
             {
-                
+                name="en kategori"
             };
-            var expected = new {success = true}; 
 
             //Act
-            var result = (JsonResult) controller.newCategory(c);
+            var result = (JsonResult)controller.newCategory(c);
             var success = (bool)(new PrivateObject(result.Data, "success")).Target;
             //Assert
+
             Assert.IsTrue(success);
+        }
+
+        [TestMethod]
+        public void category_new_category_httppost_modelstate_invalid()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new CategoryController(new CategoryBLL(new CategoryDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
+            controller.ViewData.ModelState.AddModelError("kategori", "Ikke oppgitt kategori");
+            CategoryInfo c = new CategoryInfo()
+            {
+                name = ""
+            };
+
+            //Act
+            var result = (JsonResult)controller.newCategory(c);
+            var success = (bool)(new PrivateObject(result.Data, "success")).Target;
+
+            //Assert
+            Assert.IsFalse(success);
         }
     }
 }
