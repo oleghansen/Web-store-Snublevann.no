@@ -230,7 +230,9 @@ namespace Nettbutikk.DAL
         }
         public bool deleteProduct(int id, int adminid)
         {
-            return false; 
+            if (id == 0)
+                return false;
+            return true;
         }
     }
 }

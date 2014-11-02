@@ -345,5 +345,24 @@ namespace Nettbutikk.admin.Tests
             Assert.IsTrue(success);
         }
 
+        [TestMethod]
+        public void product_delete_product_httppost_not_OK()
+        {
+             // Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new ProductController(new ProductBLL(new ProductDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
+            
+            // Act
+            var action = (JsonResult)controller.deleteProduct(0);
+            var success = (bool)(new PrivateObject(action.Data, "success")).Target;
+
+            //Assert
+            Assert.IsFalse(success);
+        }
+
+       
+
     }
 }
