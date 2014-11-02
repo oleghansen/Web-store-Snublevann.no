@@ -131,13 +131,13 @@ namespace Nettbutikk.admin.Controllers
             Product productDetails = _product.seeDetails(id);
             
             // HACK: men funker... 
-            List<GroupedSelectListItem> test2 = new List<GroupedSelectListItem>();
-            var test1 = _product.getAllSubCategories();
-            foreach (var item in test1)
+            List<GroupedSelectListItem> dropdownsubcategory2 = new List<GroupedSelectListItem>();
+            var dropdownsubcategory1 = _product.getAllSubCategories();
+            foreach (var item in dropdownsubcategory1)
             {
                 if(item.ID == productDetails.subCategoryid)
                 {
-                    test2.Add(new GroupedSelectListItem()
+                    dropdownsubcategory2.Add(new GroupedSelectListItem()
                     {
                         GroupKey = item.catId.ToString(),
                         GroupName = item.catName,
@@ -148,7 +148,7 @@ namespace Nettbutikk.admin.Controllers
                 }
                 else
                 {
-                    test2.Add(new GroupedSelectListItem()
+                    dropdownsubcategory2.Add(new GroupedSelectListItem()
                     {
                         GroupKey = item.catId.ToString(),
                         GroupName = item.catName,
@@ -158,7 +158,7 @@ namespace Nettbutikk.admin.Controllers
                 }
             }
 
-            IEnumerable<GroupedSelectListItem> test = test2; 
+            IEnumerable<GroupedSelectListItem> dropdownsubcategory = dropdownsubcategory2; 
             ProductDetail prodinfo = new ProductDetail()
             {
                 itemnumber = productDetails.itemnumber,
@@ -170,7 +170,7 @@ namespace Nettbutikk.admin.Controllers
                 countryid = productDetails.countryid,
                 producerid = productDetails.producerid,
                 pricePerLitre = productDetails.pricePerLitre,
-                subCategoryList = test,
+                subCategoryList = dropdownsubcategory,
                 countryList = _product.getCountries().Select(c => new SelectListItem { Value = c.id.ToString(), Text = c.name}).ToList(),
                 producerList = _product.getProducers().Select(p => new SelectListItem { Value = p.id.ToString(), Text = p.name}).ToList()
             };

@@ -136,7 +136,83 @@ namespace Nettbutikk.admin.Tests
             Assert.AreEqual(2, result.PageNumber);
             Assert.IsTrue(result[0].price > result[1].price);
         }
-        
 
+        [TestMethod]
+        public void product_list_products_Producer()
+        {
+            // Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+
+            var controller = new ProductController(new ProductBLL(new ProductDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
+
+            // Act
+            var action = (ViewResult)controller.ListProducts(2, 2, "Producer", null, null);
+            var result = (IPagedList<ProductInfo>)action.Model;
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual(2, result.PageNumber);
+            Assert.IsTrue(string.Compare(result[0].producer, result[1].producer) <= 0);
+        }
+
+        [TestMethod]
+        public void product_list_products_Producer_desc()
+        {
+            // Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+
+            var controller = new ProductController(new ProductBLL(new ProductDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
+
+            // Act
+            var action = (ViewResult)controller.ListProducts(2, 2, "producer_desc", null, null);
+            var result = (IPagedList<ProductInfo>)action.Model;
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual(2, result.PageNumber);
+            Assert.IsTrue(string.Compare(result[0].producer, result[1].producer) >= 0);
+        }
+        
+        [TestMethod]
+        public void product_detail_view()
+        {
+            // Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+
+            var controller = new ProductController(new ProductBLL(new ProductDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
+
+            ProductDetail expected = new ProductDetail()
+            {
+                itemnumber = 1,
+                name = "Tullball",
+                description = "Hei",
+                price = 123,
+                volum = 50,
+                producerid = 2,
+                longDescription = "Tullball er et fantastisk godt drikkeprodukt",
+                subCategoryid = 3,
+                countryid = 1
+            };
+
+            // Act
+            var action = (ViewResult)controller.ProductDetails(expected.itemnumber);
+            var result = (ProductDetail)action.Model;
+
+            // Assert
+            Assert.AreEqual(expected.itemnumber, result.itemnumber);
+            Assert.AreEqual(expected.name, result.name);
+            Assert.AreEqual(expected.description, result.description);
+            Assert.AreEqual(expected.price, result.price);
+            Assert.AreEqual(expected.volum, result.volum);
+            Assert.AreEqual(expected.producerid, result.producerid);
+            Assert.AreEqual(expected.longDescription, result.longDescription);
+            Assert.AreEqual(expected.countryid, result.countryid);
+        }
     }
 }
