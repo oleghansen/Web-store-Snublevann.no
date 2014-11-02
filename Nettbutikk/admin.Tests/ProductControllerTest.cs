@@ -276,8 +276,6 @@ namespace Nettbutikk.admin.Tests
             Assert.IsFalse(success);
         }
 
-        //TODO: "if(result) test om tid.. productcontroller linje 240
-
         [TestMethod]
         public void product_add_product_view()
         {
