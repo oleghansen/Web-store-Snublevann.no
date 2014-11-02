@@ -313,5 +313,27 @@ namespace Nettbutikk.Tests
             Assert.AreEqual("", action.ViewName);
             Assert.IsNotNull(result);
         }
+        [TestMethod]
+        public void category_new_subcategory_view_httppost()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new CategoryController(new CategoryBLL(new CategoryDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
+
+            SubCategoryDetail scd = new SubCategoryDetail()
+            {
+                name = "Preskanne",
+                categoryId = 2
+            };
+            
+            //Act
+            var result = (JsonResult)controller.newSubCategory(scd);
+            var success = (bool)(new PrivateObject(result.Data, "success")).Target;
+
+            //Assert
+            Assert.IsTrue(success);
+        }
     }
 }
