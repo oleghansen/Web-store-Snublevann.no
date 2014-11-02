@@ -226,6 +226,7 @@ namespace Nettbutikk.Tests
 
             //Assert
             Assert.IsFalse(success);
+            
         }
 
         [TestMethod]
@@ -272,6 +273,28 @@ namespace Nettbutikk.Tests
 
             //Assert
             Assert.AreEqual("ListCategories", result.RouteValues["Action"]);
+        }
+
+        [TestMethod]
+        public void category_update_category_details_httppost_modelstate_invalid()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new CategoryController(new CategoryBLL(new CategoryDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
+            controller.ViewData.ModelState.AddModelError("name", "Mangler brukernavn");
+            CategoryInfo ci = new CategoryInfo()
+            {
+                name = "kaffe"
+            };
+
+            //Act
+            var result = (ViewResult)controller.updateCatergoryDetails(ci);
+
+            //Assert
+            Assert.IsTrue(result.ViewData.ModelState.Count == 1);
+            Assert.AreEqual("", result.ViewName);
         }
     }
 }
