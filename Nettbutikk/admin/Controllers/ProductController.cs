@@ -41,6 +41,7 @@ namespace Nettbutikk.admin.Controllers
             ViewBag.NameSortParm = sortOrder == "Name" ? "name_desc" : "Name";
             ViewBag.PriceSortParm = sortOrder == "Price" ? "price_desc" : "Price";
             ViewBag.ProducerSortParm = sortOrder == "Producer" ? "producer_desc" : "Producer";
+            ViewBag.VolumeSortParm = sortOrder == "Volume" ? "volume_desc" : "Volume";
 
             if (searchString != null)
                 page = 1;
@@ -76,7 +77,13 @@ namespace Nettbutikk.admin.Controllers
                     break;
                 case "producer_desc":
                     allProducts = allProducts.OrderByDescending(s => s.producer).ToList();
-                    break; 
+                    break;
+                case "Volume":
+                    allProducts = allProducts.OrderBy(s => s.volum).ToList();
+                    break;
+                case "volume_desc":
+                    allProducts = allProducts.OrderByDescending(s => s.volum).ToList();
+                    break;
                 default:
                     allProducts = allProducts.OrderBy(s => s.itemnumber).ToList();
                     break;
