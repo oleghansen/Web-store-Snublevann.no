@@ -355,7 +355,6 @@ namespace Nettbutikk.admin.Tests
 
             // Assert
             Assert.IsNotNull(result);
-           // Assert.AreEqual(result.PageNumber, 2);
             Assert.IsInstanceOfType(result, typeof(IPagedList<OrderLineViewModel>));
             Assert.AreEqual(result[0].orderId , order.id ); 
             Assert.IsTrue(result[0].id <= result[1].id);
