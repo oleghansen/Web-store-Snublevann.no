@@ -249,7 +249,7 @@ namespace Nettbutikk.Tests
         }
 
         [TestMethod]
-        public void category_update_category_details_httppost()
+        public void category_update_category_details_httppost_update_OK()
         {
             //Arrange
             TestControllerBuilder builder = new TestControllerBuilder();
@@ -259,6 +259,7 @@ namespace Nettbutikk.Tests
 
             CategoryInfo ci = new CategoryInfo()
             {
+                id = 1,
                 name = "Kaffe"
             };
 

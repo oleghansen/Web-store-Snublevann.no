@@ -173,6 +173,7 @@ namespace Nettbutikk.admin.Controllers
             {
                 Customer a = (Customer)Session["loggedInUser"];
                 Category cat = new Category();
+                cat.ID = c.id;
                 cat.name = c.name;
                 var b = _categoryBLL.updateCategory(c.id, cat ,a.id);
                 if (b)
