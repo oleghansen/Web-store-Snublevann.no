@@ -572,5 +572,80 @@ namespace Nettbutikk.Tests
             //Assert
             Assert.IsFalse(success);
         }
+
+        [TestMethod]
+        public void category_delete_producer_httppost_no_child()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new CategoryController(new CategoryBLL(new CategoryDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
+
+            //Act
+            var action = (JsonResult)controller.DeleteProducer(5);
+            var success = (bool)(new PrivateObject(action.Data, "success")).Target;
+
+            //Assert
+            Assert.IsTrue(success);
+
+        }
+        [TestMethod]
+        public void category_delete_producer_httppost_child()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new CategoryController(new CategoryBLL(new CategoryDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
+
+            //Act
+            var action = (JsonResult)controller.DeleteProducer(4);
+            var success = (bool)(new PrivateObject(action.Data, "success")).Target;
+
+            //Assert
+            Assert.IsFalse(success);
+        }
+
+        [TestMethod]
+        public void category_add_producer_view()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new CategoryController(new CategoryBLL(new CategoryDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
+
+            //Act
+            var action = (ViewResult)controller.addProducer();
+            var result = (ProducerInfo)action.Model;
+
+            //Assert
+            Assert.AreEqual("", action.ViewName);
+            Assert.IsNull(result);
+        }
+        [TestMethod]
+        public void category_add_producer_httppost()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new CategoryController(new CategoryBLL(new CategoryDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
+
+            var producer = new ProducerInfo()
+            {
+                prodId = 12,
+                prodName = "Produsent"
+            };
+            //Act
+            var result = (JsonResult)controller.addProducer(producer);
+            var success = (bool)(new PrivateObject(result.Data, "success")).Target;
+
+            //Assert
+            Assert.IsTrue(success); 
+        }
+
+
     }
 }

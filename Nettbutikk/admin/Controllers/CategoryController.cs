@@ -364,13 +364,6 @@ namespace Nettbutikk.admin.Controllers
         }
 
 
-        private bool isAdmin()
-        {
-            if (Session == null)
-                return false;
-            var user = (Customer)Session["loggedInUser"];
-            return (user == null) ? false : user.admin;
-        }
 
 
         public ActionResult addProducer()
@@ -436,5 +429,14 @@ namespace Nettbutikk.admin.Controllers
             }
             return Json(new { success = false, message = "noe gikk galt, prøv igjen senere." });
         }
+
+        private bool isAdmin()
+        {
+            if (Session == null)
+                return false;
+            var user = (Customer)Session["loggedInUser"];
+            return (user == null) ? false : user.admin;
+        }
+
     }
 }
