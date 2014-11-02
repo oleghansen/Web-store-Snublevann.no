@@ -14,10 +14,10 @@ using PagedList;
 namespace Nettbutikk.Tests
 {
     [TestClass]
-    public class CustomerBLLTest
+    public class CustomerControllerTest
     {
         [TestMethod]
-        public void List_All_Customers()
+        public void customer_list_customers()
         {
             // Arrange
             TestControllerBuilder builder = new TestControllerBuilder();
@@ -25,32 +25,51 @@ namespace Nettbutikk.Tests
             builder.InitializeController(bll);
             builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true }; 
 
-            List<UserInfo> expected = new List<UserInfo>();
-            var cust = new UserInfo()
-            {
-                id = 1,
-                firstname = "Gunnar",
-                lastname = "Hansen",
-                address = "Golia",
-                email = "klin@kokkos.no",
-                postalarea = "Gollie",
-                postalcode = "1232",
-                phonenumber = "94499449",
-                password = "tullball123"
-
-            };
-
-            expected.Add(cust);
-
             // Act
             var actual = (ViewResult)bll.ListCustomers(null, null, null, null, null);
             var result = (IPagedList<UserInfo>)actual.Model;
 
-                     
             // Assert
             Assert.IsNotNull(result);
-            //Assert.AreEqual(expected.Count, result.Count);
+            Assert.IsTrue(result[0].id < result[1].id);
         }
+
+        [TestMethod]
+        public void customer_list_customers_order_id_desc()
+        {
+            // Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var bll = new CustomerController(new CustomerBLL(new CustomerDALStub()));
+            builder.InitializeController(bll);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+
+            // Act
+            var actual = (ViewResult)bll.ListCustomers(null, null, "id_desc", null, null);
+            var result = (IPagedList<UserInfo>)actual.Model;
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result[0].id > result[1].id);
+        }
+
+        [TestMethod]
+        public void customer_list_customers_sort_customer()
+        {
+            // Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var bll = new CustomerController(new CustomerBLL(new CustomerDALStub()));
+            builder.InitializeController(bll);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+
+            // Act
+            var actual = (ViewResult)bll.ListCustomers(null, null, "id_desc", null, null);
+            var result = (IPagedList<UserInfo>)actual.Model;
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result[0].id > result[1].id);
+        }
+
 
         [TestMethod]
         public void Hashed_password_Not_Null()
@@ -82,20 +101,15 @@ namespace Nettbutikk.Tests
         }
 
         [TestMethod]
-        public void find_user()
+        public void customer_find_customer()
         {
             //Arrange 
             var bll = new CustomerBLL(new CustomerDALStub());
-            string email = "admin@istrat.or";
-           
-            
+            string email = "admin@istrat.or";         
             //Act 
             var result = bll.findUser(email);
-
             //Assert
             Assert.IsNotNull(result.id);
-
-
         }
      
 
