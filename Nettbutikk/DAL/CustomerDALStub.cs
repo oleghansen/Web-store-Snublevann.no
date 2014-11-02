@@ -49,7 +49,7 @@ namespace Nettbutikk.DAL
             {
                 id = 1,
                 firstname = "Gunnar",
-                lastname = "Hansen",
+                lastname = "Hinsen",
                 address = "Golia",
                 email = "klin@kokkos.no",
                 postalarea = "Gollie",
@@ -70,7 +70,7 @@ namespace Nettbutikk.DAL
             {
                 id = 1,
                 firstname = "Gunnar",
-                lastname = "Hansen",
+                lastname = "Honsen",
                 address = "Golia",
                 email = "klin@kokkos.no",
                 postalarea = "Gollie",
@@ -117,7 +117,20 @@ namespace Nettbutikk.DAL
 
         public Customer getCustomer(int id)
         {
-            return new Customer();
+            var cust = new Customer()
+            {
+                id = id,
+                firstname = "Gunnar",
+                lastname = "Hansen",
+                address = "Golia",
+                email = "klin@kokkos.no",
+                postalarea = "Gollie",
+                postalcode = "1232",
+                phonenumber = "94499449",
+                password = "tullball123"
+
+            };
+            return cust;
         }
 
         public bool makeAdmin(int id, int adminid)
