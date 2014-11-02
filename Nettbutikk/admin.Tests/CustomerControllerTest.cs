@@ -334,6 +334,41 @@ namespace Nettbutikk.Tests
             Assert.IsNotNull(result);
         }
 
+        /*
+        [TestMethod]
+        public void customer_list_customers_orders()
+        {
+            // Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var bll = new CustomerController(new CustomerBLL(new CustomerDALStub()));
+            builder.InitializeController(bll);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+
+            // Act
+            var actual = (ViewResult)bll.ListCustomerOrders(2, 2, null, null, null);
+            var result = (IPagedList<UserInfo>)actual.Model;
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result[0].id < result[1].id);
+        }*/
+
+        [TestMethod]
+        public void customer_delete()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new CustomerController(new CustomerBLL(new CustomerDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
+
+            //Act
+            var action = (JsonResult)controller.deleteCustomer(2);
+            var success = (bool)(new PrivateObject(action.Data, "success")).Target;
+
+            //Assert
+            Assert.IsTrue(success);
+        }
 
 
         [TestMethod]
@@ -431,9 +466,6 @@ namespace Nettbutikk.Tests
 
             //Assert
             Assert.IsTrue(result.Count > 0);
-        }
-        
-       
-
+        }  
     }
 }
