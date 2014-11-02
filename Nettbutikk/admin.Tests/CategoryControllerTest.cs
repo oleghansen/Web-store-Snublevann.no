@@ -226,6 +226,7 @@ namespace Nettbutikk.Tests
 
             //Assert
             Assert.IsFalse(success);
+            
         }
 
         [TestMethod]
@@ -272,6 +273,90 @@ namespace Nettbutikk.Tests
 
             //Assert
             Assert.AreEqual("ListCategories", result.RouteValues["Action"]);
+        }
+
+        [TestMethod]
+        public void category_update_category_details_httppost_modelstate_invalid()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new CategoryController(new CategoryBLL(new CategoryDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
+            controller.ViewData.ModelState.AddModelError("name", "Mangler brukernavn");
+            CategoryInfo ci = new CategoryInfo()
+            {
+                name = "kaffe"
+            };
+
+            //Act
+            var result = (ViewResult)controller.updateCatergoryDetails(ci);
+
+            //Assert
+            Assert.IsTrue(result.ViewData.ModelState.Count == 1);
+            Assert.AreEqual("", result.ViewName);
+        }
+        [TestMethod]
+        public void category_new_subcategory_view()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new CategoryController(new CategoryBLL(new CategoryDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
+
+            //Act
+            var action = (ViewResult)controller.newSubCategory();
+            var result = (SubCategoryDetail)action.Model;
+
+            //Assert
+            Assert.AreEqual("", action.ViewName);
+            Assert.IsNotNull(result);
+        }
+        [TestMethod]
+        public void category_new_subcategory_view_httppost()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new CategoryController(new CategoryBLL(new CategoryDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
+
+            SubCategoryDetail scd = new SubCategoryDetail()
+            {
+                name = "Preskanne",
+                categoryId = 2
+            };
+            
+            //Act
+            var result = (JsonResult)controller.newSubCategory(scd);
+            var success = (bool)(new PrivateObject(result.Data, "success")).Target;
+
+            //Assert
+            Assert.IsTrue(success);
+        }
+
+        [TestMethod]
+        public void category_new_subcategory_view_httppost_modelstate_invalid()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new CategoryController(new CategoryBLL(new CategoryDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
+            controller.ViewData.ModelState.AddModelError("feil", "dette ble feil gitt"); 
+            SubCategoryDetail scd = new SubCategoryDetail()
+            {
+                name = "Preskanne",
+                categoryId = 2
+            };
+
+            //Act
+            var result = (JsonResult)controller.newSubCategory(scd);
+            var success = (bool)(new PrivateObject(result.Data, "success")).Target;
+
+            //Assert
+            Assert.IsFalse(success);
         }
     }
 }

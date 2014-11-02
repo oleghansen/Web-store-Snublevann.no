@@ -62,12 +62,210 @@ namespace Nettbutikk.Tests
             builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
 
             // Act
-            var actual = (ViewResult)bll.ListCustomers(null, null, "id_desc", null, null);
+            var actual = (ViewResult)bll.ListCustomers(null, null, "FName", null, null);
             var result = (IPagedList<UserInfo>)actual.Model;
 
             // Assert
             Assert.IsNotNull(result);
-            Assert.IsTrue(result[0].id > result[1].id);
+            Assert.IsTrue(string.Compare(result[0].firstname,result[1].firstname) < 0);
+        }
+
+        [TestMethod]
+        public void customer_list_customers_sort_customer_desc()
+        {
+            // Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var bll = new CustomerController(new CustomerBLL(new CustomerDALStub()));
+            builder.InitializeController(bll);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+
+            // Act
+            var actual = (ViewResult)bll.ListCustomers(null, null, "fname_desc", null, null);
+            var result = (IPagedList<UserInfo>)actual.Model;
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsTrue(string.Compare(result[0].firstname, result[1].firstname) > 0);
+        }
+
+        [TestMethod]
+        public void customer_list_customers_sort_lastname()
+        {
+            // Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var bll = new CustomerController(new CustomerBLL(new CustomerDALStub()));
+            builder.InitializeController(bll);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+
+            // Act
+            var actual = (ViewResult)bll.ListCustomers(null, null, "LName", null, null);
+            var result = (IPagedList<UserInfo>)actual.Model;
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsTrue(string.Compare(result[0].firstname, result[1].firstname) < 0);
+        }
+
+        [TestMethod]
+        public void customer_list_customers_sort_lastname_desc()
+        {
+            // Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var bll = new CustomerController(new CustomerBLL(new CustomerDALStub()));
+            builder.InitializeController(bll);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+
+            // Act
+            var actual = (ViewResult)bll.ListCustomers(null, null, "lname_desc", null, null);
+            var result = (IPagedList<UserInfo>)actual.Model;
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsTrue(string.Compare(result[0].firstname, result[1].firstname) > 0);
+        }
+
+        [TestMethod]
+        public void customer_list_customers_sort_address()
+        {
+            // Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var bll = new CustomerController(new CustomerBLL(new CustomerDALStub()));
+            builder.InitializeController(bll);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+
+            // Act
+            var actual = (ViewResult)bll.ListCustomers(null, null, "Address", null, null);
+            var result = (IPagedList<UserInfo>)actual.Model;
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsTrue(string.Compare(result[0].firstname, result[1].firstname) > 0);
+        }
+
+        [TestMethod]
+        public void customer_list_customers_sort_address_desc()
+        {
+            // Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var bll = new CustomerController(new CustomerBLL(new CustomerDALStub()));
+            builder.InitializeController(bll);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+
+            // Act
+            var actual = (ViewResult)bll.ListCustomers(null, null, "address_desc", null, null);
+            var result = (IPagedList<UserInfo>)actual.Model;
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsTrue(string.Compare(result[0].firstname, result[1].firstname) < 0);
+        }
+
+        [TestMethod]
+        public void customer_list_customers_sort_email()
+        {
+            // Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var bll = new CustomerController(new CustomerBLL(new CustomerDALStub()));
+            builder.InitializeController(bll);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+
+            // Act
+            var actual = (ViewResult)bll.ListCustomers(null, null, "EMail", null, null);
+            var result = (IPagedList<UserInfo>)actual.Model;
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsTrue(string.Compare(result[0].firstname, result[1].firstname) > 0);
+        }
+
+        [TestMethod]
+        public void customer_list_customers_sort_email_desc()
+        {
+            // Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var bll = new CustomerController(new CustomerBLL(new CustomerDALStub()));
+            builder.InitializeController(bll);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+
+            // Act
+            var actual = (ViewResult)bll.ListCustomers(null, null, "email_desc", null, null);
+            var result = (IPagedList<UserInfo>)actual.Model;
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsTrue(string.Compare(result[0].firstname, result[1].firstname) < 0);
+        }
+
+        [TestMethod]
+        public void customer_list_customers_sort_postalarea()
+        {
+            // Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var bll = new CustomerController(new CustomerBLL(new CustomerDALStub()));
+            builder.InitializeController(bll);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+
+            // Act
+            var actual = (ViewResult)bll.ListCustomers(null, null, "PArea", null, null);
+            var result = (IPagedList<UserInfo>)actual.Model;
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsTrue(string.Compare(result[0].firstname, result[1].firstname) > 0);
+        }
+
+        [TestMethod]
+        public void customer_list_customers_sort_postalarea_desc()
+        {
+            // Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var bll = new CustomerController(new CustomerBLL(new CustomerDALStub()));
+            builder.InitializeController(bll);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+
+            // Act
+            var actual = (ViewResult)bll.ListCustomers(null, null, "parea_desc", null, null);
+            var result = (IPagedList<UserInfo>)actual.Model;
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsTrue(string.Compare(result[0].firstname, result[1].firstname) < 0);
+        }
+
+        [TestMethod]
+        public void customer_list_customers_sort_postalcode()
+        {
+            // Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var bll = new CustomerController(new CustomerBLL(new CustomerDALStub()));
+            builder.InitializeController(bll);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+
+            // Act
+            var actual = (ViewResult)bll.ListCustomers(null, null, "PCode", null, null);
+            var result = (IPagedList<UserInfo>)actual.Model;
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsTrue(string.Compare(result[0].firstname, result[1].firstname) > 0);
+        }
+
+        [TestMethod]
+        public void customer_list_customers_sort_postalcode_desc()
+        {
+            // Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var bll = new CustomerController(new CustomerBLL(new CustomerDALStub()));
+            builder.InitializeController(bll);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+
+            // Act
+            var actual = (ViewResult)bll.ListCustomers(null, null, "pcode_desc", null, null);
+            var result = (IPagedList<UserInfo>)actual.Model;
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsTrue(string.Compare(result[0].firstname, result[1].firstname) < 0);
         }
 
 
