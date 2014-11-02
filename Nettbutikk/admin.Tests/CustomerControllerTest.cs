@@ -466,9 +466,6 @@ namespace Nettbutikk.Tests
 
             //Assert
             Assert.IsTrue(result.Count > 0);
-        }
-        
-       
-
+        }  
     }
 }
