@@ -14,10 +14,10 @@ using PagedList;
 namespace Nettbutikk.Tests
 {
     [TestClass]
-    public class CustomerBLLTest
+    public class CustomerControllerTest
     {
         [TestMethod]
-        public void List_All_Customers()
+        public void customer_list_customers()
         {
             // Arrange
             TestControllerBuilder builder = new TestControllerBuilder();
@@ -25,31 +25,12 @@ namespace Nettbutikk.Tests
             builder.InitializeController(bll);
             builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true }; 
 
-            List<UserInfo> expected = new List<UserInfo>();
-            var cust = new UserInfo()
-            {
-                id = 1,
-                firstname = "Gunnar",
-                lastname = "Hansen",
-                address = "Golia",
-                email = "klin@kokkos.no",
-                postalarea = "Gollie",
-                postalcode = "1232",
-                phonenumber = "94499449",
-                password = "tullball123"
-
-            };
-
-            expected.Add(cust);
-
             // Act
             var actual = (ViewResult)bll.ListCustomers(null, null, null, null, null);
             var result = (IPagedList<UserInfo>)actual.Model;
 
-                     
             // Assert
             Assert.IsNotNull(result);
-            //Assert.AreEqual(expected.Count, result.Count);
         }
 
         [TestMethod]

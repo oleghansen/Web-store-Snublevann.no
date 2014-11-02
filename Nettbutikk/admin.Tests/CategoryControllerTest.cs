@@ -10,31 +10,13 @@ using System.Collections.Generic;
 using MvcContrib.TestHelper;
 using PagedList.Mvc;
 using PagedList;
+using System.Diagnostics;
 
 namespace Nettbutikk.Tests
 {
     [TestClass]
     public class CategoryControllerTest
     {
-        [TestMethod]
-        public void Category_Add_Return_True()
-        {
-            TestControllerBuilder builder = new TestControllerBuilder();
-
-            var bll = new CategoryController(new CategoryBLL(new CategoryDALStub()));
-            builder.InitializeController(bll);
-            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
-            var expected = new Category()
-            {
-                ID = 1,
-                name = "aifofjd"
-            };
-
-            //var action = (ViewResult)bll.newCategory(expected, 1);
-           // var result = (bool)action.Model;
-
-            //Assert.IsTrue(result);
-        }
         [TestMethod]
         public void category_list_categories()
         {
@@ -213,15 +195,62 @@ namespace Nettbutikk.Tests
             builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
             CategoryInfo c = new CategoryInfo()
             {
-                
+                name="en kategori"
             };
-            var expected = new {success = true}; 
 
             //Act
-            var result = (JsonResult) controller.newCategory(c);
+            var result = (JsonResult)controller.newCategory(c);
             var success = (bool)(new PrivateObject(result.Data, "success")).Target;
             //Assert
+
             Assert.IsTrue(success);
         }
+
+        [TestMethod]
+        public void category_new_category_httppost_modelstate_invalid()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new CategoryController(new CategoryBLL(new CategoryDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
+            controller.ViewData.ModelState.AddModelError("kategori", "Ikke oppgitt kategori");
+            CategoryInfo c = new CategoryInfo()
+            {
+                name = ""
+            };
+
+            //Act
+            var result = (JsonResult)controller.newCategory(c);
+            var success = (bool)(new PrivateObject(result.Data, "success")).Target;
+
+            //Assert
+            Assert.IsFalse(success);
+        }
+
+        [TestMethod]
+        public void category_update_category_details()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new CategoryController(new CategoryBLL(new CategoryDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
+
+            CategoryInfo expected = new CategoryInfo()
+            {
+                id = 2,
+                name = "Brennevin"
+            };
+
+            //Act
+            var action = (ViewResult)controller.updateCatergoryDetails(expected.id);
+            var result = (CategoryInfo)action.Model; 
+
+            //Assert
+            Assert.AreEqual(expected.id, result.id);
+            Assert.AreEqual(expected.name, result.name); 
+        }
+
     }
 }
