@@ -253,7 +253,12 @@ namespace Nettbutikk.DAL
         }
         public Producer producerDetails(int id)
         {
-            return null;
+            Producer p = new Producer()
+            {
+                id = id,
+                name = "En produsent"
+            };
+            return p; 
         }
 
         public bool updateProducer(int id, Producer p, int adminid)
