@@ -24,36 +24,36 @@ namespace Nettbutikk.DAL
             {
 
                 id = 298424,
-                customerid = 1,
+                customerid = 2,
                 orderdate = DateTime.Now
             };
             var order2 = new Order()
             {
 
                 id = 298425,
-                customerid = 1,
+                customerid = 3,
                 orderdate = DateTime.Now
             };
             var order3 = new Order()
             {
 
                 id = 298426,
-                customerid = 1,
+                customerid = 3,
                 orderdate = DateTime.Now
             };
             var order4 = new Order()
             {
 
                 id = 298427,
-                customerid = 1,
+                customerid = 4,
                 orderdate = DateTime.Now
             };
             var order5 = new Order()
             {
 
                 id = 298428,
-                customerid = 1,
-                orderdate = DateTime.Now
+                customerid = 5,
+                orderdate = DateTime.Now 
             };
             list.Add(order);
             list.Add(order1);

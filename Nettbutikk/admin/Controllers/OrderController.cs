@@ -25,7 +25,7 @@ namespace Nettbutikk.admin.Controllers
             _orderbll = stud;
         }
 
-        public ActionResult ListOrders(int? page, int? itemsPerPage, string sortOrder, string currentFilter)
+        public ActionResult ListOrders(int? page, int? itemsPerPage, string sortOrder)
         {
             Stopwatch sw = new Stopwatch();
 
@@ -115,7 +115,7 @@ namespace Nettbutikk.admin.Controllers
         }
 
        
-        public ActionResult ListOrderLines(int id, int? page, int? itemsPerPage, string sortOrder, string currentFilter)
+        public ActionResult ListOrderLines(int id, int? page, int? itemsPerPage, string sortOrder)
         {
             if (!isAdmin())
                 return RedirectToAction("LogIn", "Main");
@@ -150,8 +150,6 @@ namespace Nettbutikk.admin.Controllers
                         price = olItem.product.price.ToString(),
                         productid = olItem.productid.ToString(),
                         productname = olItem.product.name
-
-
 
                     });
                     linje++;

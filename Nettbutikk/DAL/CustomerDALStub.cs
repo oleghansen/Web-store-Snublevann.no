@@ -122,12 +122,26 @@ namespace Nettbutikk.DAL
 
         public bool makeAdmin(int id, int adminid)
         {
-            return false;
+            if(id == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         public bool revokeAdmin(int id, int adminid)
         {
-            return false;
+            if (id == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         public bool delete(int id, int adminid)

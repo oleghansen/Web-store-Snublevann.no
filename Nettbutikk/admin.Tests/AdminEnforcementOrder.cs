@@ -17,7 +17,7 @@ namespace Nettbutikk.Tests
             var controller = new OrderController(new OrderBLL(new OrderDALStub()));
 
             //Act
-            var result = (RedirectToRouteResult)controller.ListOrders(null, null, null, null); 
+            var result = (RedirectToRouteResult)controller.ListOrders(null, null, null); 
 
             //Assert
             Assert.AreEqual("LogIn", result.RouteValues["Action"]);
@@ -31,7 +31,7 @@ namespace Nettbutikk.Tests
             var controller = new OrderController(new OrderBLL(new OrderDALStub()));
 
             //Act
-            var result = (RedirectToRouteResult)controller.ListOrderLines(0,null, null, null, null);
+            var result = (RedirectToRouteResult)controller.ListOrderLines(0,null, null, null);
 
             //Assert
             Assert.AreEqual("LogIn", result.RouteValues["Action"]);
