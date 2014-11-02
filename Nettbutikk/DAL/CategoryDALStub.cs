@@ -263,7 +263,9 @@ namespace Nettbutikk.DAL
 
         public bool updateProducer(int id, Producer p, int adminid)
         {
-            return false;
+            if (p != null && id != 0 && adminid != 0)
+                return true;
+            return false; 
         }
     }
 }
