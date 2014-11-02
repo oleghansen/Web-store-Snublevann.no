@@ -7,7 +7,6 @@ using Nettbutikk.BLL;
 using Nettbutikk.DAL;
 using System.Web.Mvc;
 using MvcContrib.TestHelper;
-using Nettbutikk.admin.Controllers;
 using Nettbutikk.admin.Models;
 using PagedList;
 
@@ -213,6 +212,37 @@ namespace Nettbutikk.admin.Tests
             Assert.AreEqual(expected.producerid, result.producerid);
             Assert.AreEqual(expected.longDescription, result.longDescription);
             Assert.AreEqual(expected.countryid, result.countryid);
+        }
+
+        [TestMethod]
+        public void product_update_detail_HTTPPOST_modelState_IsValid()
+        {
+            // Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+
+            var controller = new ProductController(new ProductBLL(new ProductDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
+
+            ProductDetail expected = new ProductDetail()
+            {
+                itemnumber = 1,
+                name = "Tullball",
+                description = "Hei",
+                price = 123,
+                volum = 50,
+                producerid = 2,
+                longDescription = "Tullball er et fantastisk godt drikkeprodukt",
+                subCategoryid = 3,
+                countryid = 1
+            };
+
+            // Act
+            var result = (JsonResult)controller.ProductDetails( 1, expected);
+            var success = (bool)(new PrivateObject(result.Data, "success")).Target;
+
+            //Assert
+            Assert.IsTrue(success);
         }
     }
 }
