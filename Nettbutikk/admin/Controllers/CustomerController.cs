@@ -53,8 +53,8 @@ namespace Nettbutikk.admin.Controllers
                 allCustomers = _customerbll.getResult(searchString); 
             }
             else
-                allCustomers = _customerbll.getAll(); 
-            
+                allCustomers = _customerbll.getAll();
+
             switch(sortOrder)
             {
                 case "id_desc":
@@ -129,8 +129,7 @@ namespace Nettbutikk.admin.Controllers
         }
 
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpGet]
         public ActionResult makeAdmin(int id)
         {
             if (!isAdmin())
@@ -143,8 +142,7 @@ namespace Nettbutikk.admin.Controllers
             return Json(new { success = false, message = "Noe gikk galt, Brukeren fikk ikke adminrettigheter", redirect = "/Customer/CustomerDetails/" + id }, JsonRequestBehavior.AllowGet); 
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpGet]
         public ActionResult revokeAdmin(int id)
         {
             if (!isAdmin())

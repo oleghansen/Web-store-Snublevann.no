@@ -11,12 +11,17 @@
                     <a href='@Url.Action("ListCustomers")' id="prodPath"> Alle brukere</a> > <a href='@Url.Action("CustomerDetails", "Customer", new { id = Model.id })' id="prodPath"> @Html.DisplayFor(model => model.firstname) @Html.DisplayFor(model => model.lastname)</a>
                 </h5>
             </div>
+   
+
             <div class="row">
                 <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
                    
                         <h3>
                             <span class="glyphicon glyphicon-user"></span>  @Html.DisplayFor(model => model.lastname),  @Html.DisplayFor(model => model.firstname)
                         </h3>
+ @using (Html.BeginForm("deleteCustomer", "Customer", FormMethod.Post, new { @class="ajaxdelete"}))
+{
+    @Html.AntiForgeryToken()
                         <div class="panel-default" id="formPanel">
                             <div class="row">
                                     <div class="col-md-12">
@@ -40,7 +45,7 @@
                                             Fjern som admin  <span class="glyphicon glyphicon-user"></span><span class="glyphicon glyphicon-arrow-down"></span> 
                                         </a>
                                     }
-                                    <a href="@Url.Action("deleteCustomer", new { id = Model.id })" title="Slett" class="btn btn-danger ajaxdelete" id="dangerButton">
+                                    <a href="@Url.Action("deleteCustomer")" title="Slett" class="btn btn-danger ajaxdelete" id="@Model.id">
                                         Slett bruker  <span class="glyphicon glyphicon-trash"></span>
                                     </a>
 
@@ -50,7 +55,7 @@
 
                             </div>
                         </div>
-
+ }
 @using (Html.BeginForm("CustomerDetails", "Customer", FormMethod.Post, new { @class = "ajaxform" }))
 {
     @Html.AntiForgeryToken()
