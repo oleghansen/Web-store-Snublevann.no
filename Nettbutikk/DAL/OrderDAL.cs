@@ -39,9 +39,7 @@ namespace Nettbutikk.DAL
 
             try
             {
-               
-
-                sw.Start();
+              
                 var db = new DatabaseContext();
                 List<Order> lines;
                 if (id != null)
