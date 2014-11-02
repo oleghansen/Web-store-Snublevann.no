@@ -17,8 +17,6 @@
                     $('#infoModal').modal('show');
                     $('.modal-title').text("Feil");
                     $('.modal-body').text(status.message);
-                    $('#sletteModalKnapp').hide();
-                    $('#defaultModalButton').hide(); 
                 }
                 else {
                     console.log("baoetus");
