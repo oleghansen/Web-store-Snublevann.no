@@ -12,23 +12,23 @@
               {
                 <tr>
                     <td>
-                        <b><a href="@Url.Action("ListCustomersOrderLines", "Customer", new { sortOrder = ViewBag.IDSortParm })">@Html.DisplayNameFor(modelItem => Model[0].id)</a></b>
+                        <b><a href="@Url.Action("ListCustomersOrderLines", "Customer", new { itemsPerPage = ViewBag.CurrentItemsPerPage, sortOrder = ViewBag.IDSortParm })">@Html.DisplayNameFor(modelItem => Model[0].id)</a></b>
                     </td>
                     <td>
-                        <b><a href="@Url.Action("ListCustomersOrderLines", "Customer", new { sortOrder = ViewBag.PIDSortParm })">@Html.DisplayNameFor(modelItem => Model[0].productid)</a></b>
+                        <b><a href="@Url.Action("ListCustomersOrderLines", "Customer", new { itemsPerPage = ViewBag.CurrentItemsPerPage, sortOrder = ViewBag.PIDSortParm })">@Html.DisplayNameFor(modelItem => Model[0].productid)</a></b>
                     </td>
                     <td>
-                        <b><a href="@Url.Action("ListCustomersOrderLines", "Customer", new { sortOrder = ViewBag.PNameSortParm })">@Html.DisplayNameFor(modelItem => Model[0].productname)</a></b>
+                        <b><a href="@Url.Action("ListCustomersOrderLines", "Customer", new { itemsPerPage = ViewBag.CurrentItemsPerPage, sortOrder = ViewBag.PNameSortParm })">@Html.DisplayNameFor(modelItem => Model[0].productname)</a></b>
                     </td>
                     <td>
-                        <b><a href="@Url.Action("ListCustomersOrderLines", "Customer", new { sortOrder = ViewBag.AmountSortParm })">@Html.DisplayNameFor(modelItem => Model[0].quantity)</a></b>
+                        <b><a href="@Url.Action("ListCustomersOrderLines", "Customer", new { itemsPerPage = ViewBag.CurrentItemsPerPage, sortOrder = ViewBag.AmountSortParm })">@Html.DisplayNameFor(modelItem => Model[0].quantity)</a></b>
                     </td>
                     <td>
-                        <b><a href="@Url.Action("ListCustomersOrderLines", "Customer", new { sortOrder = ViewBag.PriceSortParm })">@Html.DisplayNameFor(modelItem => Model[0].price)</a></b>
+                        <b><a href="@Url.Action("ListCustomersOrderLines", "Customer", new { itemsPerPage = ViewBag.CurrentItemsPerPage, sortOrder = ViewBag.PriceSortParm })">@Html.DisplayNameFor(modelItem => Model[0].price)</a></b>
 
                     </td>
                     <td>
-                        <b><a href="@Url.Action("ListCustomersOrderLines", "Customer", new { sortOrder = ViewBag.TotalSortParm })">@Html.DisplayNameFor(modelItem => Model[0].orderlineSum )</a></b>
+                        <b><a href="@Url.Action("ListCustomersOrderLines", "Customer", new { itemsPerPage = ViewBag.CurrentItemsPerPage, sortOrder = ViewBag.TotalSortParm })">@Html.DisplayNameFor(modelItem => Model[0].orderlineSum )</a></b>
                     </td>
 
                 </tr>
@@ -37,23 +37,23 @@
               {
                 <tr>
                     <td>
-                        <b><a href="@Url.Action("ListOrderLines","Order", new { sortOrder = ViewBag.IDSortParm })">@Html.DisplayNameFor(modelItem => Model[0].id)</a></b>
+                        <b><a href="@Url.Action("ListOrderLines", "Order", new { itemsPerPage = ViewBag.CurrentItemsPerPage, sortOrder = ViewBag.IDSortParm })">@Html.DisplayNameFor(modelItem => Model[0].id)</a></b>
                     </td>
                     <td>
-                        <b><a href="@Url.Action("ListOrderLines","Order", new { sortOrder = ViewBag.PIDSortParm })">@Html.DisplayNameFor(modelItem => Model[0].productid)</a></b>
+                        <b><a href="@Url.Action("ListOrderLines", "Order", new { itemsPerPage = ViewBag.CurrentItemsPerPage, sortOrder = ViewBag.PIDSortParm })">@Html.DisplayNameFor(modelItem => Model[0].productid)</a></b>
                     </td>
                     <td>
-                        <b><a href="@Url.Action("ListOrderLines", "Order", new { sortOrder = ViewBag.PNameSortParm })">@Html.DisplayNameFor(modelItem => Model[0].productname)</a></b>
+                        <b><a href="@Url.Action("ListOrderLines", "Order", new { itemsPerPage = ViewBag.CurrentItemsPerPage, sortOrder = ViewBag.PNameSortParm })">@Html.DisplayNameFor(modelItem => Model[0].productname)</a></b>
                     </td>
                     <td>
-                        <b><a href="@Url.Action("ListOrderLines", "Order", new { sortOrder = ViewBag.AmountSortParm })">@Html.DisplayNameFor(modelItem => Model[0].quantity)</a></b>
+                        <b><a href="@Url.Action("ListOrderLines", "Order", new { itemsPerPage = ViewBag.CurrentItemsPerPage, sortOrder = ViewBag.AmountSortParm })">@Html.DisplayNameFor(modelItem => Model[0].quantity)</a></b>
                     </td>
                     <td>
-                        <b><a href="@Url.Action("ListOrderLines", "Order", new { sortOrder = ViewBag.PriceSortParm})">@Html.DisplayNameFor(modelItem => Model[0].price)</a></b>
+                        <b><a href="@Url.Action("ListOrderLines", "Order", new { itemsPerPage = ViewBag.CurrentItemsPerPage, sortOrder = ViewBag.PriceSortParm })">@Html.DisplayNameFor(modelItem => Model[0].price)</a></b>
 
                     </td>
                     <td>
-                        <b><a href="@Url.Action("ListOrderLines", "Order", new { sortOrder = ViewBag.TotalSortParm})">@Html.DisplayNameFor(modelItem => Model[0].orderlineSum)</a></b>
+                        <b><a href="@Url.Action("ListOrderLines", "Order", new { itemsPerPage = ViewBag.CurrentItemsPerPage, sortOrder = ViewBag.TotalSortParm })">@Html.DisplayNameFor(modelItem => Model[0].orderlineSum)</a></b>
                     </td>
 
                 </tr>
@@ -92,7 +92,8 @@
             using (Html.BeginForm("ListCustomersOrderLines", "Customer", FormMethod.Post))
             {
                 <small>Antall per side:</small> @Html.DropDownList("ItemsPerPage", itemsPerPageList, new { @id = "ItemsPerPageList", onchange = "this.form.submit();", style = "margin-bottom: 0px" })
-            }
+                @Html.Hidden("sortOrder", new { ViewBag.CurrentSort})   
+        }
         }
         else
         {
@@ -101,6 +102,7 @@
             using (Html.BeginForm("ListOrderLines", "Order", FormMethod.Post))
             {
                 <small>Antall per side:</small> @Html.DropDownList("ItemsPerPage", itemsPerPageList, new { @id = "ItemsPerPageList", onchange = "this.form.submit();", style = "margin-bottom: 0px" })
+                @Html.Hidden("sortOrder", new { ViewBag.CurrentSort})
             }
         }
 

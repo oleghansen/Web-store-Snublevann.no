@@ -9,7 +9,7 @@ namespace Nettbutikk.admin.Models
 {
     public class ProducerInfo
     {
-        [Display (Name="Produsent ID")]
+        [Display (Name="ID")]
         public int prodId { get; set; }
         [Display(Name="Navn")]
         [Required(ErrorMessage="Produsent må oppgis")]

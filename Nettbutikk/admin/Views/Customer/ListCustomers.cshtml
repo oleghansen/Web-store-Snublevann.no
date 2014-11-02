@@ -5,7 +5,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     SelectList itemsPerPageList = DefaultValues.ItemsPerPageList;
 }
-<link href="~/Content/Custom/MainSheet.css" rel="stylesheet" />
 
 <div class="jumbotron" style="padding-top:2px">
     <div class="container">
@@ -52,25 +51,25 @@
                     <table>
                         <tr>
                             <td>
-                                <b><a href="@Url.Action("ListCustomers", new { sortOrder = ViewBag.IDSortParm, currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].id)</a></b>
+                                <b><a href="@Url.Action("ListCustomers", new { itemsPerPage = ViewBag.CurrentItemsPerPage, sortOrder = ViewBag.IDSortParm, currentFilter = ViewBag.CurrentFilter })">@Html.DisplayNameFor(modelItem => Model[0].id)</a></b>
                             </td>
                             <td>
-                                <b><a href="@Url.Action("ListCustomers", new { sortOrder = ViewBag.FirstNameSortParm, currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].firstname)</a></b>
+                                <b><a href="@Url.Action("ListCustomers", new { itemsPerPage = ViewBag.CurrentItemsPerPage, sortOrder = ViewBag.FirstNameSortParm, currentFilter = ViewBag.CurrentFilter })">@Html.DisplayNameFor(modelItem => Model[0].firstname)</a></b>
                             </td>
                             <td>
-                                <b><a href="@Url.Action("ListCustomers", new { sortOrder = ViewBag.LastNameSortParm, currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].lastname)</a></b>
+                                <b><a href="@Url.Action("ListCustomers", new { itemsPerPage = ViewBag.CurrentItemsPerPage, sortOrder = ViewBag.LastNameSortParm, currentFilter = ViewBag.CurrentFilter })">@Html.DisplayNameFor(modelItem => Model[0].lastname)</a></b>
                             </td>
                             <td>
-                                <b><a href="@Url.Action("ListCustomers", new { sortOrder = ViewBag.AddressSortParm, currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].address)</a></b>
+                                <b><a href="@Url.Action("ListCustomers", new { itemsPerPage = ViewBag.CurrentItemsPerPage, sortOrder = ViewBag.AddressSortParm, currentFilter = ViewBag.CurrentFilter })">@Html.DisplayNameFor(modelItem => Model[0].address)</a></b>
                             </td>
                             <td>
-                                <b><a href="@Url.Action("ListCustomers", new { sortOrder = ViewBag.EMailSortParm, currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].email)</a></b>
+                                <b><a href="@Url.Action("ListCustomers", new { itemsPerPage = ViewBag.CurrentItemsPerPage, sortOrder = ViewBag.EMailSortParm, currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].email)</a></b>
                             </td>
                             <td>
-                                <b><a href="@Url.Action("ListCustomers", new { sortOrder = ViewBag.PostAreaSortParm, currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].postalarea)</a></b>
+                                <b><a href="@Url.Action("ListCustomers", new { itemsPerPage = ViewBag.CurrentItemsPerPage, sortOrder = ViewBag.PostAreaSortParm, currentFilter = ViewBag.CurrentFilter })">@Html.DisplayNameFor(modelItem => Model[0].postalarea)</a></b>
                             </td>
                             <td>
-                                <b><a href="@Url.Action("ListCustomers", new { sortOrder = ViewBag.PostCodeSortParm, currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].postalcode)</a></b>
+                                <b><a href="@Url.Action("ListCustomers", new { itemsPerPage = ViewBag.CurrentItemsPerPage, sortOrder = ViewBag.PostCodeSortParm, currentFilter = ViewBag.CurrentFilter })">@Html.DisplayNameFor(modelItem => Model[0].postalcode)</a></b>
                             </td>
                         </tr>
                         @foreach (var item in Model)
@@ -123,6 +122,7 @@
                     @using (Html.BeginForm("ListCustomers", "Customer", FormMethod.Post))
                     {
                         <small>Antall per side:</small> @Html.DropDownList("ItemsPerPage", itemsPerPageList, new { @id = "ItemsPerPageList", onchange = "this.form.submit();", style = "margin-bottom: 0px" })
+                        @Html.Hidden("sortOrder", new { ViewBag.CurrentSort})
                     }
                 </div>
             </div>

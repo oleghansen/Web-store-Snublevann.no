@@ -311,9 +311,11 @@ namespace Nettbutikk.admin.Controllers
     
                 sc.categoryList = _categoryBLL.getAll(null).Select(c => new SelectListItem { Value = c.ID.ToString(), Text = c.name }).ToList();
 
-                return View(sc);
+                if (result)
+                    return Json(new { success = true, message = "Subkategorien ble endret", redirect = "/Category/ListSubCategories" });
+                return Json(new { success = false, message = "Noe gikk galt, prøv igjen senenere" });
             }
-            return RedirectToAction("ListSubCategories");
+            return Json(new { success = false, message = "feil i validering" });
         }
 
 

@@ -43,10 +43,10 @@
                         <table>
                             <tr>
                                 <td>
-                                    <b><a href="@Url.Action("ListProducers", new { sortOrder = ViewBag.IdSortParm, currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].prodId)</a></b>
+                                    <b><a href="@Url.Action("ListProducers", new { itemsPerPage = ViewBag.CurrentItemsPerPage, sortOrder = ViewBag.IdSortParm, currentFilter = ViewBag.CurrentFilter })">@Html.DisplayNameFor(modelItem => Model[0].prodId)</a></b>
                                 </td>
                                 <td>
-                                    <b><a href="@Url.Action("ListProducers", new { sortOrder = ViewBag.NameSortParm , currentFilter = ViewBag.CurrentFilter})">@Html.DisplayNameFor(modelItem => Model[0].prodName)</a></b>
+                                    <b><a href="@Url.Action("ListProducers", new { itemsPerPage = ViewBag.CurrentItemsPerPage, sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })">@Html.DisplayNameFor(modelItem => Model[0].prodName)</a></b>
                                 </td>
                             </tr>
 
