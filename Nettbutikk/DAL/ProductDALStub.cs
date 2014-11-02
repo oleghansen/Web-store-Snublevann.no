@@ -91,18 +91,52 @@ namespace Nettbutikk.DAL
 
         public Product findProduct(int id)
         {
-            var product = new Product()
+            var product = new Product();
+            if(id == 1)
             {
-                itemnumber = 1,
-                name = "Tullball",
-                description = "Hei",
-                price = 123,
-                volum = 50,
-                producerid = 2,
-                longDescription = "Tullball er et fantastisk godt drikkeprodukt",
-                subCategoryid = 3,
-                countryid = 1
-            };
+                product = new Product()
+                {
+                    itemnumber = 1,
+                    name = "Tullball",
+                    description = "Hei",
+                    price = 123,
+                    volum = 50,
+                    producerid = 2,
+                    longDescription = "Tullball er et fantastisk godt drikkeprodukt",
+                    subCategoryid = 3,
+                    countryid = 1
+                };
+            }
+            else if (id == 2)
+            {
+                product = new Product()
+                {
+                    itemnumber = 2,
+                    name = "Tullball",
+                    description = "Hei",
+                    price = 123,
+                    volum = 50,
+                    producerid = 2,
+                    longDescription = "Tullball er et fantastisk godt drikkeprodukt",
+                    subCategoryid = 3,
+                    countryid = 1
+                };
+            }
+            else
+            {
+                product = new Product()
+                {
+                    itemnumber = 1,
+                    name = "Tullball",
+                    description = "Hei",
+                    price = 123,
+                    volum = 50,
+                    producerid = 2,
+                    longDescription = "Tullball er et fantastisk godt drikkeprodukt",
+                    subCategoryid = 3,
+                    countryid = 1
+                };
+            }
             return product;   
         }
 

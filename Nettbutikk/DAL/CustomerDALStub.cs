@@ -117,20 +117,58 @@ namespace Nettbutikk.DAL
 
         public Customer getCustomer(int id)
         {
-            var cust = new Customer()
+            var cust = new Customer();
+            if (id == 1)
             {
-                id = id,
-                firstname = "Gunnar",
-                lastname = "Hansen",
-                address = "Golia",
-                email = "klin@kokkos.no",
-                postalarea = "Gollie",
-                postalcode = "1232",
-                phonenumber = "94499449",
-                password = "tullball123"
+                 cust = new Customer()
+                {
+                    id = 1,
+                    firstname = "Gunnar",
+                    lastname = "Hansen",
+                    address = "Golia",
+                    email = "klin@kokkos.no",
+                    postalarea = "Gollie",
+                    postalcode = "1232",
+                    phonenumber = "94499449",
+                    password = "tullball123"
 
-            };
+                };
+            }
+            else if (id == 2)
+            {
+                 cust = new Customer()
+                {
+                    id = 2,
+                    firstname = "Frodo",
+                    lastname = "Baggins",
+                    address = "shire",
+                    email = "hobbit@shire.no",
+                    postalarea = "hobbittown",
+                    postalcode = "1232",
+                    phonenumber = "94499449",
+                    password = "tullball123"
+
+                };
+            }
+            else {
+                cust = new Customer()
+                {
+                    id = id,
+                    firstname = "Gunnar",
+                    lastname = "Hansen",
+                    address = "Golia",
+                    email = "klin@kokkos.no",
+                    postalarea = "Gollie",
+                    postalcode = "1232",
+                    phonenumber = "94499449",
+                    password = "tullball123"
+
+                };
+            }
+            
+
             return cust;
+
         }
 
         public bool makeAdmin(int id, int adminid)
