@@ -322,6 +322,62 @@ namespace Nettbutikk.admin.Tests
             Assert.IsFalse(success);
         }
 
+        [TestMethod]
+        public void product_add_product_httpPost_modelstate_is_valid()
+        {
+            // Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new ProductController(new ProductBLL(new ProductDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
+            ProductDetail p = new ProductDetail()
+            {
+                name = "Pilsner",
+                description = "gul",
+                longDescription = "gulere"
+            };
+
+            // Act
+            var result = (JsonResult)controller.addProduct(p);
+            var success = (bool)(new PrivateObject(result.Data, "success")).Target;
+
+            // Assert
+            Assert.IsTrue(success);
+        }
+
+        [TestMethod]
+        public void product_delete_product_httppost_not_OK()
+        {
+             // Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new ProductController(new ProductBLL(new ProductDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
+            
+            // Act
+            var action = (JsonResult)controller.deleteProduct(0);
+            var success = (bool)(new PrivateObject(action.Data, "success")).Target;
+
+            //Assert
+            Assert.IsFalse(success);
+        }
+
+        [TestMethod]
+        public void product_delete_product_httppost_OK()
+        {
+            // Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new ProductController(new ProductBLL(new ProductDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
+
+            // Act
+            var action = (JsonResult)controller.deleteProduct(2);
+            var success = (bool)(new PrivateObject(action.Data, "success")).Target;
+
+            //Assert
+            Assert.IsTrue(success);
+        }
 
     }
 }
