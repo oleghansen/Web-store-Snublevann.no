@@ -21,7 +21,7 @@
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("ProducerDetails", "Category", FormMethod.Post, new { @class = "ajaxform" }))
 {
     @Html.AntiForgeryToken()
     <div class="jumbotron" style="padding-top:2px">
@@ -37,14 +37,14 @@
 
             <div class="row">
                 <div class="formTitle">
-                    <h2><span class="glyphicon glyphicon-glass"></span>Endre kategori</h2>
+                    <h2><span class="glyphicon glyphicon-glass"></span>Endre produsent</h2>
                 </div>
                 <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
                     <form role="form">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <small>@Html.LabelFor(model => model.prodId )</small>
+                                    <small>@Html.LabelFor(model => model.prodId)</small>
                                     @Html.DisplayFor(model => model.prodId)
                                 </div>
                             </div>
@@ -53,7 +53,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                    @Html.EditorFor(model => model.prodName , new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Kategori", tabindex = "1", autofocus = "" } })
+                                    @Html.EditorFor(model => model.prodName, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Kategori", tabindex = "1", autofocus = "" } })
                                     @Html.ValidationMessageFor(model => model.prodName, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -61,7 +61,7 @@
                         <div class="row">
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-success" id="@(Model.prodId )">
+                                    <button type="submit" class="btn btn-success" id="@(Model.prodId)">
                                         <i class="glyphicon glyphicon-pencil"></i>  Oppdater produsent
                                     </button>
                                 </div>
@@ -73,3 +73,5 @@
         </div>
     </div>
 }
+
+@Html.Partial("~/Views/Shared/_Modal.cshtml")

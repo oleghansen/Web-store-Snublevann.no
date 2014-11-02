@@ -175,9 +175,12 @@ namespace Nettbutikk.admin.Controllers
                 Category cat = new Category();
                 cat.name = c.name;
                 var b = _categoryBLL.updateCategory(c.id, cat ,a.id);
-                return RedirectToAction("ListCategories");
+                if (b)
+                    return Json(new { success = true, message = "Kategorien ble endret", redirect = "/Category/ListCategories" });
+                return Json(new { success = false, message = "Noe gikk galt, prøv igjen senere" });
 
-            } return View(c.id);
+            }
+            return Json(new { success = false, message = "feil i validering" });
         }
 
         public ActionResult newSubCategory()
