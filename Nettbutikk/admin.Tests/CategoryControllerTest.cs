@@ -180,11 +180,6 @@ namespace Nettbutikk.Tests
             Assert.AreEqual("", action.ViewName);
             Assert.IsNull(result); 
         }
-
-
-
-
-        // denne funker ikke, må fikses!
         [TestMethod]
         public void category_new_category_httppost()
         {
