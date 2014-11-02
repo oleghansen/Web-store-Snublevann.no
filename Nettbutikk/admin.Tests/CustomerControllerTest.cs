@@ -62,12 +62,12 @@ namespace Nettbutikk.Tests
             builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
 
             // Act
-            var actual = (ViewResult)bll.ListCustomers(null, null, "id_desc", null, null);
+            var actual = (ViewResult)bll.ListCustomers(null, null, "FName", null, null);
             var result = (IPagedList<UserInfo>)actual.Model;
 
             // Assert
             Assert.IsNotNull(result);
-            Assert.IsTrue(result[0].id > result[1].id);
+            Assert.IsTrue(string.Compare(result[0].firstname,result[1].firstname) < 0);
         }
 
 
