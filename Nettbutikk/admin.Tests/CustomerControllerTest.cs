@@ -293,6 +293,7 @@ namespace Nettbutikk.Tests
             Assert.IsTrue(result);
         }
 
+        [TestMethod]
         public void customer_revokeadmin()
         {
             //Arrange
