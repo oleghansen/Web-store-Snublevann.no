@@ -1,4 +1,4 @@
-<h1>Web Applikasjoner, Høgskolen i Oslo og Akershus</h1>
+<h1>Webapplikasjoner, Høgskolen i Oslo og Akershus</h1>
 
 Vi er en gruppe på fire personer som har jobbet sammen i kurset Web Applikasjoner høsten 2014. Dette er vårt resultat. Under finner du oppgaveteksten for de to innleveringene.
 
