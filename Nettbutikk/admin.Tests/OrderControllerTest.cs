@@ -56,6 +56,41 @@ namespace Nettbutikk.admin.Tests
 
         }
         [TestMethod]
+        public void order_listOrders_sort_fname()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new OrderController(new OrderBLL(new OrderDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+
+            //Act
+            var actrow = (ViewResult)controller.ListOrders(null, null, "CFName");
+            var result = (IPagedList<OrderViewModel>)actrow.Model;
+            //Assert
+            Assert.IsTrue(string.Compare(result[0].customer.firstname ,result[1].customer.firstname) < 0);
+
+        }
+
+        [TestMethod]
+        public void order_listOrders_sort_fname_desc()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new OrderController(new OrderBLL(new OrderDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+
+            //Act
+            var actrow = (ViewResult)controller.ListOrders(null, null, "cfName_desc");
+            var result = (IPagedList<OrderViewModel>)actrow.Model;
+            //Assert
+            Assert.IsTrue(string.Compare(result[0].customer.firstname, result[1].customer.firstname) > 0);
+
+        }
+
+
+        [TestMethod]
         public void order_listOrders_sort_cid()
         {
             //Arrange
