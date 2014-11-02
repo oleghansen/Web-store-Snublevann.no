@@ -45,7 +45,7 @@
                                     <b><a href="@Url.Action("ListCategories", new { itemsPerPage = ViewBag.CurrentItemsPerPage, sortOrder = ViewBag.IdSortParm, currentFilter = ViewBag.CurrentFilter })">@Html.DisplayNameFor(modelItem => Model[0].id)</a></b>
                                 </td>
                                 <td>
-                                    <b><a href="@Url.Action("ListCategories", new { itemsPerPage = ViewBag.CurrentItemsPerPage, sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })">@Html.DisplayNameFor(modelItem => Model[0].name)</a></b>
+                                    <b><a href="@Url.Action("ListCategories", new { itemsPerPage = ViewBag.CurrentItemsPerPage, sortOrder = ViewBag.CategorySortParm, currentFilter = ViewBag.CurrentFilter })">@Html.DisplayNameFor(modelItem => Model[0].name)</a></b>
                                 </td>
                             </tr>
 
