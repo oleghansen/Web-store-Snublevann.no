@@ -31,10 +31,7 @@ namespace Nettbutikk.BLL
 
         public List<Order> getAllOrders(int? id)
         {
-            Stopwatch sw = new Stopwatch();
-
-            sw.Start();
-
+            
             List<Order> allOrders = _order.getAllOrders(id);
             List<Order> list = new List<Order>();
             
@@ -63,12 +60,7 @@ namespace Nettbutikk.BLL
                     orderLine = orderlineslist
                 });
             }
-            sw.Stop();
-
-            Debug.WriteLine("get all i BLL Elapsed={0}", sw.Elapsed);
-            //getall i BLL Elapsed=00:00:13.3913756
-
-
+            
             return list;
         }
 

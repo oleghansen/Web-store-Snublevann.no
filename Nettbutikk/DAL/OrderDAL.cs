@@ -39,7 +39,7 @@ namespace Nettbutikk.DAL
 
             try
             {
-                Stopwatch sw = new Stopwatch();
+               
 
                 sw.Start();
                 var db = new DatabaseContext();
@@ -58,10 +58,7 @@ namespace Nettbutikk.DAL
                         orderdate = item.OrderDate,
                         customerid = item.CustomersId
                     }).ToList();
-                sw.Stop();
-
-                Debug.WriteLine("get allorders; Elapsed={0}", sw.Elapsed);
-                //get allorders; Elapsed=00:00:00.0457881
+               
                 return lines;
             }
             catch(Exception e)
