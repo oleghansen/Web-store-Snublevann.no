@@ -275,5 +275,30 @@ namespace Nettbutikk.admin.Tests
             //Assert
             Assert.IsFalse(success);
         }
+
+        //TODO: "if(result) test om tid.. productcontroller linje 240
+
+        [TestMethod]
+        public void product_add_product_view()
+        {
+            // Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new ProductController(new ProductBLL(new ProductDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
+
+            // Act
+            var action = (ViewResult)controller.addProduct();
+            var result = (ProductDetail)action.Model;
+
+            // Assert
+            Assert.AreEqual("", action.ViewName);
+            Assert.IsNotNull(result);
+            Assert.IsNotNull(result.countryList);
+            Assert.IsNotNull(result.subCategoryList);
+            Assert.IsNotNull(result.producerList);
+        }
+
+
     }
 }

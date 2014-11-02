@@ -49,7 +49,7 @@ namespace Nettbutikk.DAL
             {
                 id = 1,
                 firstname = "Gunnar",
-                lastname = "Hansen",
+                lastname = "Hinsen",
                 address = "Golia",
                 email = "klin@kokkos.no",
                 postalarea = "Gollie",
@@ -70,7 +70,7 @@ namespace Nettbutikk.DAL
             {
                 id = 1,
                 firstname = "Gunnar",
-                lastname = "Hansen",
+                lastname = "Honsen",
                 address = "Golia",
                 email = "klin@kokkos.no",
                 postalarea = "Gollie",
