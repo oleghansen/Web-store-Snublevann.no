@@ -157,7 +157,7 @@ namespace Nettbutikk.admin.Controllers
             else {
                 var b = _customerbll.revokeAdmin(id,c.id);
                 if(b)
-                    return Json(new { success = true, message = "Brukeren fikk tatt vekk adminrettigheter", redirect = "/Customer/CustomerDetails/" + id }, JsonRequestBehavior.AllowGet);
+                    return Json(new { success = true, message = "Adminrettigheter er fjernet", redirect = "/Customer/CustomerDetails/" + id }, JsonRequestBehavior.AllowGet);
                 return Json(new { success = false, message = "Noe gikk galt, Brukeren har fortsatt adminrettigheterr", redirect = "/Customer/CustomerDetails/" + id }, JsonRequestBehavior.AllowGet); 
             }
         }
@@ -207,10 +207,12 @@ namespace Nettbutikk.admin.Controllers
                 c.postalarea = cd.postalarea;
                 c.postalcode = cd.postalcode;
                 b = _customerbll.update(cd.id, c, a.id);
+                if (b)
+                    return Json(new { success = true, message = "Endringene ble lagret", redirect = "/Customer/ListCustomers/" });
+                return Json(new { success = false, message = "Noe gikk galt, endringene ble ikke lagret" }); 
             }
-            if (b)
-                return Json(new { success = true, message = "Endringene ble lagret", redirect = "/Customer/ListCustomers/" }, JsonRequestBehavior.AllowGet);
-            return Json(new { success = false, message = "Noe gikk galt, endringene ble ikke lagret" }, JsonRequestBehavior.AllowGet); 
+            return Json(new { success = false, message = "Feil i validering" }); 
+
         }
 
         public ActionResult ListCustomerOrders(int id,int? page, int? itemsPerPage, string sortOrder, string currentFilter)
