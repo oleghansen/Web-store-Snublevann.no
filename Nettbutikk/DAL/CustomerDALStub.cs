@@ -90,19 +90,19 @@ namespace Nettbutikk.DAL
             {
                 id = 1,
                 email = "stats@minister.no",
-                password = "konge"
+                hashpassword = System.Security.Cryptography.SHA256.Create().ComputeHash(System.Text.Encoding.ASCII.GetBytes("konge")),
+                admin = true
             };
             return cust;
         }
 
         public bool validate(String email, byte[] hashedPassword)
         {
-            var db = new DatabaseContext();
-            Customers userFound = db.Customers.FirstOrDefault(u => u.Email == email);
 
-            if (userFound.Admin == true)
+            Customer userFound = findUser(email); 
+            if (userFound.admin == true)
             {
-                if (email.Equals(userFound.Email) && hashedPassword.Equals(userFound.Password))
+                if (email.Equals(userFound.email) && hashedPassword.Equals(userFound.password))
                 {
                     return true;
                 }
