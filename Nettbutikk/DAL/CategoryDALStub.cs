@@ -42,7 +42,11 @@ namespace Nettbutikk.DAL
             catlist.Add(cat3);
             catlist.Add(cat4);
             catlist.Add(cat5);
-            return catlist;
+
+            if (id == null)
+                return catlist;
+            else
+                return catlist.Where(c => c.ID == id).ToList();
         }
 
         public List<Category> getResult(int? id, string sc)
