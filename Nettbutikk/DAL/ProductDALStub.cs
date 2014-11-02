@@ -21,8 +21,36 @@ namespace Nettbutikk.DAL
                 name = "Tullball",
                 description = "Hei"
             };
+            var prod1 = new Product()
+            {
+                itemnumber = 2,
+                name = "Truse",
+                description = "Hei"
+            };
+            var prod2 = new Product()
+            {
+                itemnumber = 3,
+                name = "Tullball",
+                description = "Hei"
+            };
+            var prod3 = new Product()
+            {
+                itemnumber = 4,
+                name = "Tullball",
+                description = "Hei"
+            };
+            var prod4 = new Product()
+            {
+                itemnumber = 5,
+                name = "Tullball",
+                description = "Hei"
+            };
             List<Product> productlist = new List<Product>();
             productlist.Add(prod);
+            productlist.Add(prod1);
+            productlist.Add(prod2);
+            productlist.Add(prod3);
+            productlist.Add(prod4);
             return productlist;
         }
 
