@@ -18,11 +18,8 @@
     });
 
 </script>
-<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
-<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
 
-
-@using (Html.BeginForm())
+@using (Html.BeginForm("updateCatergoryDetails", "Category", FormMethod.Post, new { @class = "ajaxform" }))
 {
     @Html.AntiForgeryToken()
     <div class="jumbotron" style="padding-top:2px">
@@ -30,7 +27,7 @@
             <h5>
                 <a href='@Url.Action("ListProducts", "Product")' id="prodPath"> Alle produkter</a> >
                 <a href='@Url.Action("ListCategories")' id="prodPath"> Kategorier</a> >
-                <a href='@Url.Action("updateCatergoryDetails", new { id = Model.id}))' id="prodPath"> Endre kategori</a>
+                <a href='@Url.Action("updateCatergoryDetails", new { id = Model.id }))' id="prodPath"> Endre kategori</a>
             </h5>
         </div>
 
@@ -66,3 +63,5 @@
         </div>
     </div>
 }
+
+@Html.Partial("~/Views/Shared/_Modal.cshtml")

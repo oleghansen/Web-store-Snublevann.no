@@ -90,11 +90,11 @@
                             <div class="navUl pull-right">
                                 @if (Session["loggedInUser"] != null)
                                 {
-                                    <a href="@Url.Action("ListCustomers", "Customer")" id="usersLink" onclick="toggle_visibility('submenuUsers', 'submenuProducts', 'submenuOrders');">
+                                    <a href="@Url.Action("ListCustomers", "Customer")" id="usersLink" style="margin-right:20px" onclick="toggle_visibility('submenuUsers', 'submenuProducts', 'submenuOrders');">
                                         <i class="glyphicon glyphicon-user"> </i> Brukere
                                     </a>
 
-                                    <a href="#" id="productsLink" onclick="toggle_visibility('submenuProducts', 'submenuUsers', 'submenuOrders');">
+                                    <a href="#" id="productsLink" style="padding-left:30px" onclick="toggle_visibility('submenuProducts', 'submenuUsers', 'submenuOrders');">
                                         <i class=" glyphicon glyphicon-glass"> </i> Produkter
                                     </a>
 
@@ -102,7 +102,7 @@
                                         <i class="glyphicon glyphicon-align-justify"> </i> Ordre
                                     </a>
 
-                                    <a href="@Url.Action("LogOut", "Main")">
+                                    <a href="@Url.Action("LogOut", "Main")" id="logoutLink">
                                         <i class="glyphicon glyphicon-log-out"> </i> Logg ut
                                     </a>
                                 }
@@ -116,24 +116,6 @@
 
     
         <div class="container body-content">
-            <!-- SUBMENY USER
-            <div id="submenuUsers" style="display:none">
-                <div class="row">
-                    <div class="col-sm-12 col-md-12">
-                        <div class="navUl pull-right">
-                                <a href="@Url.Action("ListCustomers", "Customer")">
-                                    <i class="glyphicon glyphicon-user"> </i> Undermeny 1
-                                </a>
-
-                                <a href="@Url.Action("ListCustomers", "Customer")" id="product">
-                                    <i class="glyphicon glyphicon-user"> </i> List alle
-                                </a>
-                        </div>
-                    </div>
-                </div>
-            </div>-->
-
-            <!-- SUBMENY PRODUCT-->
                 <div id="submenuProducts" style="display:none">
                     <div class="row">
                         <div class="col-sm-12 col-md-12">
@@ -154,36 +136,7 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- SUBMENY ORDERS
-                    <div id="submenuOrders" style="display:none">
-                        <div class="row">
-                            <div class="col-sm-12 col-md-12">
-                                <div class="navUl pull-right">
-                                        <a href="@Url.Action("ListOrders", "Order")">
-                                            <i class="glyphicon glyphicon-align-justify"> </i> Undermeny 1
-                                        </a>
-
-                                        <a href="@Url.Action("ListOrders", "Order")" id="product">
-                                            <i class="glyphicon glyphicon-align-justify"> </i> List alle
-                                        </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>  -->
-
-
                     @RenderBody()
-
-
-                    <!-- TRENGER KANSKJE IKKE FOOTER HER?
-
-         <div class="footer">
-            <div class="jumbotron footerjumbo">
-                Copyright &copy; @DateTime.Now.Year Snublevann - All rights reserved.
-            </div>
-        </div>-->
-
                 </div>
     </body>
 </html>
