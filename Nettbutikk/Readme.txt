@@ -7,8 +7,17 @@ Begrunnelse av valg vi har gjort
 
 	Oppstart av løsningen
 	------------------------------
-	Vi har valgt å lage admin sider som et nytt prosjekt i samme løsning. Vi benytter
-	sa
+	Vi har valgt å opprette admin som et eget prosjekt i samme løsning. Vi benytter samme database som 
+	nettbutikken gjør. Denne databasen opprettes av nettbutikken, da vi ikke har fått laget referanser fra
+	admin til nettbutikk pga namespace utfordringer. Det er derfor viktig å følge disse stegene for å starte 
+	prosjektet:
+		
+		1: Build Solution
+		2: Sørg for at "store" er oppstartsprosjekt (høyreklikk på Store og velg "Set as StartUp Project")
+		3: Du vil nå få opp en side på http://localhost:1209/ som er nettbutikken
+		4: Åpne en ny tab med http://localhost:1054/ som da vil være adminsiden.
+		5: Innlogging for adminsiden: login: admin@istrat.or passord: admin
+
 
 	Admin kan ikke opprette bruker
 	------------------------------
