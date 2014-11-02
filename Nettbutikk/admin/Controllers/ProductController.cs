@@ -24,7 +24,6 @@ namespace Nettbutikk.admin.Controllers
             _product = stub;
         }
 
-        // GET: Product
         public ActionResult Index()
         {
             if (!isAdmin())
@@ -90,9 +89,7 @@ namespace Nettbutikk.admin.Controllers
             }
 
 
-            ViewBag.CurrentItemsPerPage = itemsPerPage;
-
-            
+            ViewBag.CurrentItemsPerPage = itemsPerPage; 
 
             List<ProductInfo> list = new List<ProductInfo>();
             foreach (var item in allProducts)

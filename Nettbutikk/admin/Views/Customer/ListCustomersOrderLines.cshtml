@@ -15,12 +15,10 @@
             <a href='@Url.Action("ListCustomersOrderLines", "Customer", new { id = Model[0].orderId })' id="prodPath"> Ordre @Html.DisplayFor(model => Model[0].orderId) </a>
         </h5>
     </div>
-    
-
         <div class="row">
             <h3>
                 <span class="glyphicon glyphicon-align-justify"></span> Ordredetaljer for ordrenummer: @Html.DisplayFor(model => Model[0].orderId )
-                <a href="@Url.Action("showReceipt","order", new { id = Model[0].order.id  })" title="Vis kvittering" class="pull-right btn btn-xs btn-default" id="defaultButton">
+                <a href="@Url.Action("showReceipt","order", new { id = Model[0].order.id  })" title="Vis kvittering" class="pull-right btn btn-default" id="defaultButton">
                     <span class="glyphicon glyphicon-print"></span>
 
                     </a>

@@ -27,10 +27,7 @@ namespace Nettbutikk.admin.Controllers
 
         public ActionResult ListOrders(int? page, int? itemsPerPage, string sortOrder)
         {
-            Stopwatch sw = new Stopwatch();
-
-            sw.Start();
-
+       
             if (!isAdmin())
                 return RedirectToAction("LogIn", "Main");
             ViewBag.CurrentSort = sortOrder;
@@ -106,11 +103,6 @@ namespace Nettbutikk.admin.Controllers
             }
 
             ViewBag.CurrentItemsPerPage = itemsPerPage;
-            sw.Stop();
-
-            Debug.WriteLine("GEtall i contoller Elapsed={0}", sw.Elapsed);
-            //getall i contoller Elapsed=00:00:14.5930095
-
             return View(list.ToPagedList(pageNumber: page ?? 1, pageSize: itemsPerPage ?? 15));
         }
 

@@ -11,7 +11,7 @@ namespace Nettbutikk.admin.Controllers
 {
     public class MainController : Controller
     {
-        // GET: Main
+       
         public ActionResult Main()
         {
             if (!isAdmin())
