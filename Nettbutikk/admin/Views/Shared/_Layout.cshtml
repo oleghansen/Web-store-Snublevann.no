@@ -86,27 +86,29 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-12 col-md-12">
-                            <div class="navUl pull-right">
+                        <div class="col-sm-6 col-md-6">
+                        </div>
+                        <div class="col-sm-6 col-md-6" style="padding-left:3px">
+                            <div class="navUl">
                                 @if (Session["loggedInUser"] != null)
                                 {
-                                    <a href="@Url.Action("ListCustomers", "Customer")" id="usersLink" style="margin-right:20px" onclick="toggle_visibility('submenuUsers', 'submenuProducts', 'submenuOrders');">
+                                    <a href="@Url.Action("ListCustomers", "Customer")" style="padding-right:15px"id="usersLink" onclick="toggle_visibility('submenuUsers', 'submenuProducts', 'submenuOrders');">
                                         <i class="glyphicon glyphicon-user"> </i> Brukere
                                     </a>
 
-                                    <a href="#" id="productsLink" style="padding-left:30px" onclick="toggle_visibility('submenuProducts', 'submenuUsers', 'submenuOrders');">
-                                        <i class=" glyphicon glyphicon-glass"> </i> Produkter
-                                    </a>
+                                        <a href="#" style="padding-right:25px" id="productsLink" onclick="toggle_visibility('submenuProducts', 'submenuUsers', 'submenuOrders');">
+                                            <i class=" glyphicon glyphicon-glass"> </i> Produkter
+                                        </a>
 
-                                    <a href="@Url.Action("ListOrders", "Order")" id="ordersLink" onclick="toggle_visibility('submenuOrders', 'submenuProducts', 'submenuUsers');">
-                                        <i class="glyphicon glyphicon-align-justify"> </i> Ordre
-                                    </a>
+                                        <a href="@Url.Action("ListOrders", "Order")" style="padding-right:18px"  id="ordersLink" onclick="toggle_visibility('submenuOrders', 'submenuProducts', 'submenuUsers');">
+                                            <i class="glyphicon glyphicon-align-justify"> </i> Ordre
+                                        </a>
 
-                                    <a href="@Url.Action("LogOut", "Main")" id="logoutLink">
+                                    <a href="@Url.Action("LogOut", "Main")" style="padding-right:15px"id="logoutLink">
                                         <i class="glyphicon glyphicon-log-out"> </i> Logg ut
                                     </a>
                                 }
-</div>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -174,10 +174,9 @@ box-shadow:         0px 3px 10px 0px rgba(50, 50, 50, 0.75);
  box-shadow:         0px 1px 2px 0px rgba(50, 50, 50, 0.24);
 }
 
-#userLink, #productsLink, #logoutLink, #orderLink
+#usersLink, #productsLink, #logoutLink, #ordersLink
 {
-    padding-left: 20px;
-    padding-right: 35px;
+
 }
 .userpanel
 {
