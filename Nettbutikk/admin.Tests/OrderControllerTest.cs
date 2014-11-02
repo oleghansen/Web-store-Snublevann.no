@@ -119,7 +119,7 @@ namespace Nettbutikk.admin.Tests
             var result = (IPagedList<OrderViewModel>)actrow.Model;
             //Assert
 
-            Assert.IsTrue(string.Compare(result[0].customer.firstname, result[1].customer.firstname) > 0);
+            Assert.IsTrue(string.Compare(result[0].customer.firstname, result[1].customer.firstname) >= 0);
          
            
         }
@@ -155,7 +155,7 @@ namespace Nettbutikk.admin.Tests
             var result = (IPagedList<OrderViewModel>)actrow.Model;
             //Assert
             Debug.Write(result[0].customer.lastname + result[1].customer.lastname);
-            Assert.IsTrue(string.Compare(result[0].customer.lastname, result[1].customer.lastname) > 0);
+            Assert.IsTrue(string.Compare(result[0].customer.lastname, result[1].customer.lastname) >= 0);
             Assert.IsNotNull(result[0].customer.lastname);
         }
 
@@ -227,7 +227,7 @@ namespace Nettbutikk.admin.Tests
             var actrow = (ViewResult)controller.ListOrders(null, null, "amount_desc");
             var result = (IPagedList<OrderViewModel>)actrow.Model;
             //Assert
-            Assert.IsTrue(result[0].quantity > result[1].quantity);
+            Assert.IsTrue(result[0].quantity >= result[1].quantity);
             Assert.IsNotNull(result[0].quantity); 
 
         }
@@ -263,7 +263,7 @@ namespace Nettbutikk.admin.Tests
             var actrow = (ViewResult)controller.ListOrders(null, null, "total_desc");
             var result = (IPagedList<OrderViewModel>)actrow.Model;
             //Assert
-            Assert.IsTrue(result[0].sum > result[1].sum);
+            Assert.IsTrue(result[0].sum >= result[1].sum);
             Assert.IsNotNull(result[0].sum);
 
         }
@@ -358,7 +358,7 @@ namespace Nettbutikk.admin.Tests
            // Assert.AreEqual(result.PageNumber, 2);
             Assert.IsInstanceOfType(result, typeof(IPagedList<OrderLineViewModel>));
             Assert.AreEqual(result[0].orderId , order.id ); 
-            Assert.IsTrue(result[0].id < result[1].id);
+            Assert.IsTrue(result[0].id <= result[1].id);
 
         }
 
@@ -389,10 +389,10 @@ namespace Nettbutikk.admin.Tests
             expected.Add(o);
             expected.Add(o);
             // Act
-            var actual = (ViewResult)bll.ListOrderLines(298423, null, 5, null);
+            var actual = (ViewResult)bll.ListOrderLines(298423, null, 2, null);
             var result = (PagedList<OrderLineViewModel>)actual.Model;
             // Assert
-            Assert.AreEqual(5, result.Count);
+            Assert.AreEqual(2, result.Count);
             Assert.AreEqual(result[0].orderlineSum, (int.Parse(result[0].price) * result[0].quantity) );
             
         }
@@ -404,15 +404,15 @@ namespace Nettbutikk.admin.Tests
             TestControllerBuilder builder = new TestControllerBuilder();
             var controller = new OrderController(new OrderBLL(new OrderDALStub()));
             builder.InitializeController(controller);
-            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
 
             //Act
-            var actrow = (ViewResult)controller.ListOrderLines(298423,2, 2, "id_desc");
+            var actrow = (ViewResult)controller.ListOrderLines(298423,null, 2, "id_desc");
             var result = (IPagedList<OrderLineViewModel>)actrow.Model;
 
-            Assert.AreEqual(result.PageNumber, 2);
+            Assert.AreEqual(result.PageNumber, 1);
             Assert.AreEqual(result.PageSize, 2);
-            Assert.IsTrue(result[0].id > result[1].id);
+            Assert.IsTrue(result[0].id >= result[1].id);
             Assert.IsNotNull(result[0].id);
 
         }
@@ -447,7 +447,7 @@ namespace Nettbutikk.admin.Tests
             builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
 
             //Act
-            var actrow = (ViewResult)controller.ListOrderLines(298423, 1, 7, "pid_desc");
+            var actrow = (ViewResult)controller.ListOrderLines(298423, 1, 2, "pid_desc");
             var result = (IPagedList<OrderLineViewModel>)actrow.Model;
 
             Assert.AreEqual(result.PageNumber, 1);
@@ -467,12 +467,12 @@ namespace Nettbutikk.admin.Tests
             builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
 
             //Act
-            var actrow = (ViewResult)controller.ListOrderLines(298423, 1, 7, "PName");
+            var actrow = (ViewResult)controller.ListOrderLines(298423, 1, 2, "PName");
             var result = (IPagedList<OrderLineViewModel>)actrow.Model;
 
             Assert.AreEqual(result.PageNumber, 1);
             Assert.AreEqual(result.PageSize, result.Count);
-            Assert.IsTrue(string.Compare(result[0].product.name, result[1].product.name) < 0);
+            Assert.IsTrue(string.Compare(result[0].product.name, result[1].product.name) <= 0);
             Assert.IsNotNull(result[0].product.name);
 
         }
@@ -490,7 +490,7 @@ namespace Nettbutikk.admin.Tests
             var actrow = (ViewResult)controller.ListOrderLines(298423, null, null, "pname_desc");
             var result = (IPagedList<OrderLineViewModel>)actrow.Model;
 
-            Assert.IsTrue(string.Compare(result[0].product.name, result[1].product.name) > 0);
+            Assert.IsTrue(string.Compare(result[0].product.name, result[1].product.name) >= 0);
             Assert.IsNotNull(result[0].product.name);
 
         }
@@ -544,7 +544,7 @@ namespace Nettbutikk.admin.Tests
             var actrow = (ViewResult)controller.ListOrderLines(298423, null, null, "Price");
             var result = (IPagedList<OrderLineViewModel>)actrow.Model;
 
-            Assert.IsTrue(result[0].product.price  < result[1].product.price);
+            Assert.IsTrue(result[0].product.price  <= result[1].product.price);
             Assert.IsNotNull(result[0].product.price);
 
         }
@@ -562,7 +562,7 @@ namespace Nettbutikk.admin.Tests
             var actrow = (ViewResult)controller.ListOrderLines(298423, null, null, "price_desc");
             var result = (IPagedList<OrderLineViewModel>)actrow.Model;
 
-            Assert.IsTrue(result[0].product.price > result[1].product.price);
+            Assert.IsTrue(result[0].product.price >= result[1].product.price);
             Assert.IsNotNull(result[0].product.price);
 
         }
