@@ -46,5 +46,23 @@ namespace Nettbutikk.admin.Tests
             Assert.IsTrue(result.ViewData.ModelState.Count == 1);
 
         }
+
+        [TestMethod]
+        public void main_login_modelstate_valid_ok_admin_is_null()
+        {
+             // Arrange 
+            var controller = new MainController(new CustomerBLL(new CustomerDALStub()));
+            Customer cust = new Customer()
+            {
+                email = "",
+                password = ""
+            };
+            // Act
+            var result = (ViewResult)controller.logIn(cust.email, cust.password);
+
+            // Assert
+            Assert.AreEqual("", result.ViewName);
+            Assert.IsTrue(result.ViewData.ModelState.Count == 0);
+        }
     }
 }
