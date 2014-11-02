@@ -24,8 +24,22 @@ namespace Nettbutikk.DAL
                 password = "tullball123"
 
             };
+            var cust2 = new Customer()
+            {
+                id = 2,
+                firstname = "Frodo",
+                lastname = "Baggins",
+                address = "Mordor",
+                email = "lordofthering@gollum.no",
+                postalarea = "Hobbitland",
+                postalcode = "2322",
+                phonenumber = "94499433",
+                password = "tullball22"
+
+            };
             List<Customer> custList = new List<Customer>();
             custList.Add(cust);
+            custList.Add(cust2);
             return custList;
         }
 
@@ -74,11 +88,11 @@ namespace Nettbutikk.DAL
         {
             var db = new DatabaseContext();
             Customers userFound = db.Customers.FirstOrDefault(u => u.Email == email);
-             Customer c = new Customer();
-                c.id = userFound.Id;
-                c.email = userFound.Email;
-                c.hashpassword = userFound.Password;
-                return c;
+            Customer c = new Customer();
+            c.id = userFound.Id;
+            c.email = userFound.Email;
+            c.hashpassword = userFound.Password;
+            return c;
         }
 
         public bool validate(String email, byte[] hashedPassword)

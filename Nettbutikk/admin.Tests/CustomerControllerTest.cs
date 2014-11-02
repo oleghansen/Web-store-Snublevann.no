@@ -31,7 +31,45 @@ namespace Nettbutikk.Tests
 
             // Assert
             Assert.IsNotNull(result);
+            Assert.IsTrue(result[0].id < result[1].id);
         }
+
+        [TestMethod]
+        public void customer_list_customers_order_id_desc()
+        {
+            // Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var bll = new CustomerController(new CustomerBLL(new CustomerDALStub()));
+            builder.InitializeController(bll);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+
+            // Act
+            var actual = (ViewResult)bll.ListCustomers(null, null, "id_desc", null, null);
+            var result = (IPagedList<UserInfo>)actual.Model;
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result[0].id > result[1].id);
+        }
+
+        [TestMethod]
+        public void customer_list_customers_sort_customer()
+        {
+            // Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var bll = new CustomerController(new CustomerBLL(new CustomerDALStub()));
+            builder.InitializeController(bll);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+
+            // Act
+            var actual = (ViewResult)bll.ListCustomers(null, null, "id_desc", null, null);
+            var result = (IPagedList<UserInfo>)actual.Model;
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result[0].id > result[1].id);
+        }
+
 
         [TestMethod]
         public void Hashed_password_Not_Null()
@@ -63,20 +101,15 @@ namespace Nettbutikk.Tests
         }
 
         [TestMethod]
-        public void find_user()
+        public void customer_find_customer()
         {
             //Arrange 
             var bll = new CustomerBLL(new CustomerDALStub());
-            string email = "admin@istrat.or";
-           
-            
+            string email = "admin@istrat.or";         
             //Act 
             var result = bll.findUser(email);
-
             //Assert
             Assert.IsNotNull(result.id);
-
-
         }
      
 
