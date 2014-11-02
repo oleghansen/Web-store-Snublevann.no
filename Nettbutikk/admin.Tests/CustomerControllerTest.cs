@@ -293,6 +293,30 @@ namespace Nettbutikk.Tests
             Assert.IsTrue(result);
         }
 
+        [TestMethod]
+        public void customer_revokeadmin()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new CustomerController(new CustomerBLL(new CustomerDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
+
+            UserInfo expected = new UserInfo()
+            {
+                id = 3,
+                firstname = "Jens",
+                admin = true
+            };
+
+            //Act
+            var action = (JsonResult)controller.revokeAdmin(expected.id);
+            var result = (bool)(new PrivateObject(action.Data, "success")).Target;
+            //Assert
+            Assert.IsTrue(result);
+        }
+
+
 
         [TestMethod]
         public void Hashed_password_Not_Null()
