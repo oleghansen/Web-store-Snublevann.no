@@ -33,13 +33,13 @@ namespace Nettbutikk.admin.Tests
             // Arrange 
             var controller = new MainController(new CustomerBLL(new CustomerDALStub()));
             controller.ViewData.ModelState.AddModelError("feil", "dette ble feil gitt");
-            Customer cust = new Customer()
+            LogIn cust = new LogIn()
             {
                 email = "",
                 password = ""
             };
             // Act
-            var result = (ViewResult)controller.logIn(cust.email,cust.password);
+            var result = (ViewResult)controller.logIn(cust);
 
             //Assert
             Assert.AreEqual("", result.ViewName);
@@ -52,13 +52,13 @@ namespace Nettbutikk.admin.Tests
         {
              // Arrange 
             var controller = new MainController(new CustomerBLL(new CustomerDALStub()));
-            Customer cust = new Customer()
+            LogIn cust = new LogIn()
             {
                 email = "",
                 password = ""
             };
             // Act
-            var result = (ViewResult)controller.logIn(cust.email, cust.password);
+            var result = (ViewResult)controller.logIn(cust);
 
             // Assert
             Assert.AreEqual("", result.ViewName);
@@ -70,15 +70,17 @@ namespace Nettbutikk.admin.Tests
         {
             // Arrange 
             var controller = new MainController(new CustomerBLL(new CustomerDALStub()));
-            Customer cust = new Customer()
+            LogIn cust = new LogIn()
             {
                 email = "stats@minister.no",
-                hashpassword = System.Security.Cryptography.SHA256.Create().ComputeHash(System.Text.Encoding.ASCII.GetBytes("konge"))
+                password = "konge"
             };
             // Act
-            var result = (RedirectToRouteResult) controller.logIn(cust.email, cust.password);
+            
+            var result = (RedirectToRouteResult)controller.logIn(cust);
             // Assert
-            Assert.AreEqual("Main", result.RouteValues["Action"]);
+            Assert.AreEqual(result.RouteName, "");
+       
         }
 
     }

@@ -202,7 +202,7 @@ namespace Nettbutikk.DAL
 
         public bool updateCategory(int id, Category c, int adminid)
         {
-            if (id == 0)
+            if (id == 0 || c == null)
                 return false;
             return true;
         }
