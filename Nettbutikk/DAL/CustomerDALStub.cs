@@ -1,6 +1,7 @@
 ﻿using Nettbutikk.Model;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -100,9 +101,9 @@ namespace Nettbutikk.DAL
         {
 
             Customer userFound = findUser(email); 
-            if (userFound.admin == true)
+            if (userFound.admin)
             {
-                if (email.Equals(userFound.email) && hashedPassword.Equals(userFound.password))
+                if (email.Equals(userFound.email) && Enumerable.SequenceEqual(hashedPassword, userFound.hashpassword))
                 {
                     return true;
                 }
