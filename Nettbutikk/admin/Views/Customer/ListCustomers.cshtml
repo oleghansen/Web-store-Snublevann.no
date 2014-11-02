@@ -100,8 +100,7 @@
                                     <a href="@Url.Action("CustomerDetails", new { id = item.id })" title="Endre" class="btn btn-xs btn-default" id="defaultButton">
                                         <span class="glyphicon glyphicon-pencil"></span>
                                     </a>
-                                        <!-- <button class="btn btn-xs btn-default" style="margin-top:0px" type="submit"><i class="glyphicon glyphicon-align-justify"></i>@Html.ActionLink("Se ordre", "ListCustomerOrders", new { id = item.id }) </button>-->
-                                        <a href="@Url.Action("deleteCustomer", new {id = item.id})" title="Delete" class="btn btn-xs btn-danger ajaxdelete">
+                                       <a href="@Url.Action("deleteCustomer", new {id = item.id})" title="Delete" class="btn btn-xs btn-danger ajaxdelete">
                                             <i class="glyphicon glyphicon-trash"></i>
                                         </a>
 

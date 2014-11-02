@@ -31,9 +31,5 @@ namespace Nettbutikk.admin.Models
 
         [Display(Name = "Admin")]
         public bool admin { get; set; }
-
-        //public ShoppingCart shoppingcart;
-        //public List<Orders> Orders { get; set; }
-
     }
 }
