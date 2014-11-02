@@ -46,5 +46,40 @@ namespace Nettbutikk.admin.Tests
             Assert.IsTrue(result.ViewData.ModelState.Count == 1);
 
         }
+
+        [TestMethod]
+        public void main_login_modelstate_valid_ok_admin_is_null()
+        {
+             // Arrange 
+            var controller = new MainController(new CustomerBLL(new CustomerDALStub()));
+            Customer cust = new Customer()
+            {
+                email = "",
+                password = ""
+            };
+            // Act
+            var result = (ViewResult)controller.logIn(cust.email, cust.password);
+
+            // Assert
+            Assert.AreEqual("", result.ViewName);
+            Assert.IsTrue(result.ViewData.ModelState.Count == 0);
+        }
+
+        [TestMethod]
+        public void main_login_redirect_to_main_login_OK()
+        {
+            // Arrange 
+            var controller = new MainController(new CustomerBLL(new CustomerDALStub()));
+            Customer cust = new Customer()
+            {
+                email = "stats@minister.no",
+                hashpassword = System.Security.Cryptography.SHA256.Create().ComputeHash(System.Text.Encoding.ASCII.GetBytes("konge"))
+            };
+            // Act
+            var result = (RedirectToRouteResult) controller.logIn(cust.email, cust.password);
+            // Assert
+            Assert.AreEqual("Main", result.RouteValues["Action"]);
+        }
+
     }
 }
