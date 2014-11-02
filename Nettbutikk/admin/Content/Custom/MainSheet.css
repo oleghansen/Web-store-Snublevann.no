@@ -256,6 +256,10 @@ tr.mainrows
     font-size: medium;
 }
 
+.btn-danger.ajaxdelete:hover
+{
+      background-color:#c9302c;
+}
 tr.rows
 {
     border-bottom: 1px solid #eeeeee;
