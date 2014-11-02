@@ -76,11 +76,31 @@ namespace Nettbutikk.admin.Tests
                 password = "konge"
             };
             // Act
-            
+
             var result = (RedirectToRouteResult)controller.logIn(cust);
-            // Assert
-            Assert.AreEqual(result.RouteName, "");
-       
+
+            //Assert
+            Assert.AreEqual("Main", result.RouteValues["Action"]);
+            Assert.AreEqual("Main", result.RouteValues["Controller"]);
+        }
+
+        [TestMethod]
+        public void main_logout()
+        {
+            //Arrange
+            var controller = new MainController();
+            //Act
+          var result = (RedirectToRouteResult)controller.logOut();
+            //Assert
+            Assert.AreEqual("Main", result.RouteValues["Action"]);
+            Assert.AreEqual("Main", result.RouteValues["Controller"]);
+
+
+          
+
+
+
+
         }
 
     }
