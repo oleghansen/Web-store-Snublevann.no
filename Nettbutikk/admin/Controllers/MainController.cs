@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Nettbutikk.BLL;
 using Nettbutikk.Model;
+using Nettbutikk.admin.Models;
 
 namespace Nettbutikk.admin.Controllers
 {
@@ -38,11 +39,11 @@ namespace Nettbutikk.admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult logIn(String email, String password)
+        public ActionResult logIn(LogIn user)
         {
             if (ModelState.IsValid)
             {
-                var admin = _customerbll.logIn(email, password);
+                var admin = _customerbll.logIn(user.email, user.password);
                 if (admin != null) 
                 {
                     Session["loggedInUser"] = admin;
