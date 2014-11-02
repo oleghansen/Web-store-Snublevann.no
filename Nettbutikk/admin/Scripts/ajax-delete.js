@@ -38,6 +38,7 @@
                     $('#infoModal').modal('show');
                     $('.modal-title').text("Feil");
                     $('.modal-body').html(status.message);
+
                     if(typeof status.list !== "undefined")
                     {
                         $('.modal-body').append("<ul>");
