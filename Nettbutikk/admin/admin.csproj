@@ -111,9 +111,9 @@
     <Content Include="Content\img\snublevann_dark_transparent.png" />
     <Content Include="Content\img\snublevann_liten_lys.ico" />
     <Content Include="Content\img\snublevann_liten_lys.png" />
-    <Content Include="Content\img\snublevann_liten_mork.ico" />
     <Content Include="Content\img\snublevann_liten_mork.png" />
     <Content Include="Content\img\snuble_admin.png" />
+    <Content Include="Content\img\snuble_admin_icon.ico" />
     <Content Include="Content\notify.css" />
     <Content Include="Content\notify.min.css" />
     <Content Include="Content\PagedList.css" />
