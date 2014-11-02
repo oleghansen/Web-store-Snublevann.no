@@ -296,5 +296,22 @@ namespace Nettbutikk.Tests
             Assert.IsTrue(result.ViewData.ModelState.Count == 1);
             Assert.AreEqual("", result.ViewName);
         }
+        [TestMethod]
+        public void category_new_subcategory_view()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new CategoryController(new CategoryBLL(new CategoryDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
+
+            //Act
+            var action = (ViewResult)controller.newSubCategory();
+            var result = (SubCategoryDetail)action.Model;
+
+            //Assert
+            Assert.AreEqual("", action.ViewName);
+            Assert.IsNotNull(result);
+        }
     }
 }
