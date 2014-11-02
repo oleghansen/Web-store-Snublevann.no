@@ -109,7 +109,7 @@ namespace Nettbutikk.DAL
 
         public bool updateProduct(int id, Product p)
         {
-            if (id == 0 || p == null)
+            if (id == 0)
                 return false;
             return true;
         }

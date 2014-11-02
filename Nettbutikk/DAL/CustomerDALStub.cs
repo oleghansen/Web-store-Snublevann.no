@@ -117,17 +117,44 @@ namespace Nettbutikk.DAL
 
         public Customer getCustomer(int id)
         {
-            return new Customer();
+            var cust = new Customer()
+            {
+                id = id,
+                firstname = "Gunnar",
+                lastname = "Hansen",
+                address = "Golia",
+                email = "klin@kokkos.no",
+                postalarea = "Gollie",
+                postalcode = "1232",
+                phonenumber = "94499449",
+                password = "tullball123"
+
+            };
+            return cust;
         }
 
         public bool makeAdmin(int id, int adminid)
         {
-            return false;
+            if(id == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         public bool revokeAdmin(int id, int adminid)
         {
-            return false;
+            if (id == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         public bool delete(int id, int adminid)

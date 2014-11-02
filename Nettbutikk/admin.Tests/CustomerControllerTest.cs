@@ -269,6 +269,73 @@ namespace Nettbutikk.Tests
         }
 
 
+
+        [TestMethod]
+        public void customer_makeadmin()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new CustomerController(new CustomerBLL(new CustomerDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
+
+            UserInfo expected = new UserInfo()
+            {
+                id = 3,
+                firstname = "Jens",
+                admin = false
+            };
+
+            //Act
+            var action = (JsonResult)controller.makeAdmin(expected.id);
+            var result = (bool)(new PrivateObject(action.Data, "success")).Target;
+            //Assert
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void customer_revokeadmin()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new CustomerController(new CustomerBLL(new CustomerDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
+
+            UserInfo expected = new UserInfo()
+            {
+                id = 3,
+                firstname = "Jens",
+                admin = true
+            };
+
+            //Act
+            var action = (JsonResult)controller.revokeAdmin(expected.id);
+            var result = (bool)(new PrivateObject(action.Data, "success")).Target;
+            //Assert
+            Assert.IsTrue(result);
+        }
+
+
+        [TestMethod]
+        public void customer_list_details()
+        {
+            // Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var bll = new CustomerController(new CustomerBLL(new CustomerDALStub()));
+            builder.InitializeController(bll);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+
+            // Act
+            var actual = (ViewResult)bll.CustomerDetails(2);
+            var result = actual.Model;
+
+            // Assert
+            Assert.IsNotNull(result);
+        }
+
+
+
         [TestMethod]
         public void Hashed_password_Not_Null()
         {

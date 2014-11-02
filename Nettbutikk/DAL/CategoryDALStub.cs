@@ -210,23 +210,55 @@ namespace Nettbutikk.DAL
 
         public List<SubCategory> deleteCategory(int id, int adminid)
         {
-            return null;
+            List<SubCategory> list = new List<SubCategory>();
+            list.Add(new SubCategory()
+            {
+                name = "mokka"
+            });
+            if (id == 5)
+                return null;
+            else
+                return list;
+
         }
         public List<Product> deleteSubCategory(int id, int adminid)
         {
-            return null;
+            List<Product> list = new List<Product>();
+            list.Add(new Product()
+            {
+                name = "IPA"
+            });
+            if (id == 5)
+                return null;
+            else
+                return list;
         }
         public List<Product> deleteProducer(int id, int adminid)
         {
-            return null;
+            List<Product> list = new List<Product>();
+            list.Add(new Product()
+            {
+                name = "IPA"
+            });
+            if (id == 5)
+                return null;
+            else
+                return list;
         }
         public bool AddProducer(Producer prod, int id)
         {
-            return false;
+            if (prod != null && id != 0)
+                return true;
+            return false; 
         }
         public Producer producerDetails(int id)
         {
-            return null;
+            Producer p = new Producer()
+            {
+                id = id,
+                name = "En produsent"
+            };
+            return p; 
         }
 
         public bool updateProducer(int id, Producer p, int adminid)
