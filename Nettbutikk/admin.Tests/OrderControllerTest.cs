@@ -407,10 +407,10 @@ namespace Nettbutikk.admin.Tests
             builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
 
             //Act
-            var actrow = (ViewResult)controller.ListOrderLines(298423,1, 2, "id_desc");
+            var actrow = (ViewResult)controller.ListOrderLines(298423,null, 2, "id_desc");
             var result = (IPagedList<OrderLineViewModel>)actrow.Model;
 
-            Assert.AreEqual(result.PageNumber, 2);
+            Assert.AreEqual(result.PageNumber, 1);
             Assert.AreEqual(result.PageSize, 2);
             Assert.IsTrue(result[0].id >= result[1].id);
             Assert.IsNotNull(result[0].id);
