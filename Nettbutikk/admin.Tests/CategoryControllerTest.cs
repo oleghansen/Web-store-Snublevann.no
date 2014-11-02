@@ -263,11 +263,11 @@ namespace Nettbutikk.Tests
             };
 
             //Act
-            var result = (RedirectToRouteResult)controller.updateCatergoryDetails(ci);
-            
+            var result = (JsonResult)controller.updateCatergoryDetails(ci);
+            var success = (bool)(new PrivateObject(result.Data, "success")).Target;
 
             //Assert
-            Assert.AreEqual("ListCategories", result.RouteValues["Action"]);
+            Assert.IsTrue(success);
         }
 
         [TestMethod]
@@ -285,11 +285,10 @@ namespace Nettbutikk.Tests
             };
 
             //Act
-            var result = (ViewResult)controller.updateCatergoryDetails(ci);
-
+            var result = (JsonResult)controller.updateCatergoryDetails(ci);
+            var success = (bool)(new PrivateObject(result.Data, "success")).Target;
             //Assert
-            Assert.IsTrue(result.ViewData.ModelState.Count == 1);
-            Assert.AreEqual("", result.ViewName);
+            Assert.IsFalse(success);
         }
         [TestMethod]
         public void category_new_subcategory_view()
