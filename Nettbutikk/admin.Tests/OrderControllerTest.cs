@@ -59,6 +59,35 @@ namespace Nettbutikk.admin.Tests
         }
 
         [TestMethod]
+        public void order_is_equal()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new OrderController(new OrderBLL(new OrderDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+
+            var order = new Order()
+            {
+
+                id = 298423,
+                customerid = 1,
+                orderdate = DateTime.Now
+            };
+
+            //Act 
+            var actrow = (ViewResult)controller.ListOrders(null, null, null);
+            var result = (IPagedList<OrderViewModel>)actrow.Model;
+
+            //Assert
+           Assert.AreEqual(actrow.ViewName, "" );
+           Assert.AreEqual(result[0].id, order.id);
+           Assert.AreEqual(result[0].customerid, order.customerid);
+
+
+        }
+
+        [TestMethod]
         public void order_listOrders_sort_cfname()
         {
             //Arrange
