@@ -13,8 +13,6 @@ namespace Nettbutikk.DAL
         {
             List<Order> list = new List<Order>();
             
-           
-
             var order = new Order()
             {
                  
@@ -22,9 +20,48 @@ namespace Nettbutikk.DAL
                 customerid = 1,   
                 orderdate = DateTime.Now
             };
+            var order1 = new Order()
+            {
+
+                id = 298424,
+                customerid = 1,
+                orderdate = DateTime.Now
+            };
+            var order2 = new Order()
+            {
+
+                id = 298425,
+                customerid = 1,
+                orderdate = DateTime.Now
+            };
+            var order3 = new Order()
+            {
+
+                id = 298426,
+                customerid = 1,
+                orderdate = DateTime.Now
+            };
+            var order4 = new Order()
+            {
+
+                id = 298427,
+                customerid = 1,
+                orderdate = DateTime.Now
+            };
+            var order5 = new Order()
+            {
+
+                id = 298428,
+                customerid = 1,
+                orderdate = DateTime.Now
+            };
             list.Add(order);
-            list.Add(order);
-            list.Add(order);
+            list.Add(order1);
+            list.Add(order2);
+            list.Add(order3);
+            list.Add(order4);
+            list.Add(order5);
+            
             return list;
         }
 
@@ -61,17 +98,7 @@ namespace Nettbutikk.DAL
             return olList;
         }
 
-        public Order getOrder(int id)
-        {
-            Order o = new Order()
-            {
-                id = id,
-                customerid = 1,
-                orderdate = DateTime.Now
-
-            };
-
-            return o;
-        }
+       
+       
     }
 }

@@ -102,7 +102,7 @@
     <Compile Include="AdminEnforcementProduct.cs" />
     <Compile Include="CategoryControllerTest.cs" />
     <Compile Include="CustomerBLLTest.cs" />
-    <Compile Include="OrderTestController.cs" />
+    <Compile Include="OrderControllerTest.cs" />
     <Compile Include="ProductBLLTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
