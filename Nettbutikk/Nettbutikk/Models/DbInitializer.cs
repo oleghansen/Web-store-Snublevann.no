@@ -20,23 +20,6 @@ namespace Nettbutikk.Models
 
             dateRange = (DateTime.Today - start).Days;
 
-            /*
-            var countries = new List<Countries>
-            {
-                new Countries {Name = "Norge"},//1
-                new Countries {Name = "Sverige"},//2
-                new Countries {Name = "Frankrike"},//3
-                new Countries {Name = "Belgia"},//4
-                new Countries {Name = "Tyskland"},//5
-                new Countries {Name = "Østerike"},//6
-                new Countries {Name = "Sørafrika"},//7
-                new Countries {Name = "Spania"},//8
-                new Countries {Name = "Italia"},//9
-                new Countries {Name = "Danmark"},//10
-                new Countries {Name = "Cuba"},//11
-                new Countries {Name = "Australia"}//12
-            };
-             */
             var countries = new List<Countries>
             {
                 new Countries {Name = "Afghanistan"},
@@ -679,27 +662,6 @@ namespace Nettbutikk.Models
             context.SaveChanges();
             var orders = new List<Orders>
             {
-                
-                new Orders {OrderDate=RandomDay(), CustomersId=19},
-                new Orders {OrderDate=RandomDay(), CustomersId=20},
-                new Orders {OrderDate=RandomDay(), CustomersId=21},
-                new Orders {OrderDate=RandomDay(), CustomersId=13},
-                new Orders {OrderDate=RandomDay(), CustomersId=14},
-                new Orders {OrderDate=RandomDay(), CustomersId=15},
-                new Orders {OrderDate=RandomDay(), CustomersId=16},
-                new Orders {OrderDate=RandomDay(), CustomersId=17},
-                new Orders {OrderDate=RandomDay(), CustomersId=19},
-                new Orders {OrderDate=RandomDay(), CustomersId=20},
-                new Orders {OrderDate=RandomDay(), CustomersId=21},
-                new Orders {OrderDate=RandomDay(), CustomersId=18},
-                new Orders {OrderDate=RandomDay(), CustomersId=13},
-                new Orders {OrderDate=RandomDay(), CustomersId=14},
-                new Orders {OrderDate=RandomDay(), CustomersId=15},
-                new Orders {OrderDate=RandomDay(), CustomersId=22},
-                new Orders {OrderDate=RandomDay(), CustomersId=23},
-                new Orders {OrderDate=RandomDay(), CustomersId=16},
-                new Orders {OrderDate=RandomDay(), CustomersId=12},
-                new Orders {OrderDate=RandomDay(), CustomersId=16},
                 new Orders {OrderDate=RandomDay(), CustomersId=12},
                 new Orders {OrderDate=RandomDay(), CustomersId=16},
                 new Orders {OrderDate=RandomDay(), CustomersId=17},
@@ -758,7 +720,7 @@ namespace Nettbutikk.Models
                 new Orders {OrderDate=RandomDay(), CustomersId=5},
                 new Orders {OrderDate=RandomDay(), CustomersId=4},
                 new Orders {OrderDate=RandomDay(), CustomersId=3},
-                new Orders {OrderDate=RandomDay(), CustomersId=1},
+                new Orders {OrderDate=RandomDay(), CustomersId=2},
                 new Orders {OrderDate=RandomDay(), CustomersId=12},
                 new Orders {OrderDate=RandomDay(), CustomersId=11},
                 new Orders {OrderDate=RandomDay(), CustomersId=10},
@@ -797,6 +759,8 @@ namespace Nettbutikk.Models
             context.SaveChanges();
             var orderlines = new List<OrderLines>
             {
+
+                new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298514},
                 new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298514},
                 new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298514},
                 new OrderLines {ProductsId=RandomProduct(), Quantity = RandomQuantity(), OrdersId=298514},

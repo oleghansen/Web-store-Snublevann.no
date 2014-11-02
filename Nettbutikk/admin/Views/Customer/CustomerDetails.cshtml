@@ -19,9 +19,7 @@
                         <h3>
                             <span class="glyphicon glyphicon-user"></span>  @Html.DisplayFor(model => model.lastname),  @Html.DisplayFor(model => model.firstname)
                         </h3>
- @using (Html.BeginForm("deleteCustomer", "Customer", FormMethod.Post, new { @class="ajaxdelete"}))
-{
-    @Html.AntiForgeryToken()
+
                         <div class="panel-default" id="formPanel">
                             <div class="row">
                                     <div class="col-md-12">
@@ -30,32 +28,44 @@
                                         </div>
                                     </div>
                                 <div class="col-md-12">
+     
                                     <a href="@Url.Action("ListCustomerOrders", new { id = Model.id})" title="Endre" class="btn btn-primary" id="primaryButton">
                                         Se ordre  <span class="glyphicon glyphicon-align-justify"></span>  
                                     </a>
                                     @if (Model.admin == false)
                                     {
-                                        <a href="@Url.Action("makeAdmin", new { id = Model.id})" title="Gjør til admin" class="btn btn-primary" id="primaryButton">
+                                        using (Html.BeginForm("makeAdmin", "Customer", FormMethod.Post, new { @class = "ajaxform", style="display:inline" }))
+                                        {
+                                            @Html.AntiForgeryToken() 
+                                        
+                                            <button title="Gjør til admin" class="btn btn-primary ajaxform" id="ajaxform">
                                             Gjør til admin  <span class="glyphicon glyphicon-user"></span><span class="glyphicon glyphicon-arrow-up"></span> 
-                                        </a>
+                                            </button>
+                                            @Html.Hidden("id", Model.id) 
+                                        }
                                     }
                                     else
                                     {
-                                        <a href="@Url.Action("revokeAdmin", new { id = Model.id})" title="Fjern som admin" class="btn btn-primary" id="primaryButton">
+                                        using (Html.BeginForm("revokeAdmin", "Customer", FormMethod.Post, new { @class = "ajaxform", style = "display:inline" }))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            <button title="Fjern som admin" class="btn btn-primary ajaxform" id="ajaxform">
                                             Fjern som admin  <span class="glyphicon glyphicon-user"></span><span class="glyphicon glyphicon-arrow-down"></span> 
-                                        </a>
+                                            </button>
+                                            @Html.Hidden("id", Model.id)
+                                        }
                                     }
+@using (Html.BeginForm("deleteCustomer", "Customer", FormMethod.Post, new { @class = "ajaxdelete", style="display:inline" }))
+{
+    @Html.AntiForgeryToken()
                                     <a href="@Url.Action("deleteCustomer")" title="Slett" class="btn btn-danger ajaxdelete" id="@Model.id">
                                         Slett bruker  <span class="glyphicon glyphicon-trash"></span>
                                     </a>
-
+}
                                 </div>
-
-
-
                             </div>
                         </div>
- }
+ 
 @using (Html.BeginForm("CustomerDetails", "Customer", FormMethod.Post, new { @class = "ajaxform" }))
 {
     @Html.AntiForgeryToken()

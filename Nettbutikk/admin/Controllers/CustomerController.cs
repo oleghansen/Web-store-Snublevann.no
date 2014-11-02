@@ -129,7 +129,8 @@ namespace Nettbutikk.admin.Controllers
         }
 
 
-        [HttpGet]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult makeAdmin(int id)
         {
             if (!isAdmin())
@@ -142,7 +143,8 @@ namespace Nettbutikk.admin.Controllers
             return Json(new { success = false, message = "Noe gikk galt, Brukeren fikk ikke adminrettigheter", redirect = "/Customer/CustomerDetails/" + id }, JsonRequestBehavior.AllowGet); 
         }
 
-        [HttpGet]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult revokeAdmin(int id)
         {
             if (!isAdmin())

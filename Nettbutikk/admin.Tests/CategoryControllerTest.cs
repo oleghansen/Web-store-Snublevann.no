@@ -180,11 +180,6 @@ namespace Nettbutikk.Tests
             Assert.AreEqual("", action.ViewName);
             Assert.IsNull(result); 
         }
-
-
-
-
-        // denne funker ikke, må fikses!
         [TestMethod]
         public void category_new_category_httppost()
         {
@@ -477,13 +472,11 @@ namespace Nettbutikk.Tests
             };
 
             //Act
-            var action = (ViewResult)controller.SubCatDetails(scd);
-            var result = (SubCategoryDetail)action.Model;
+            var action = (JsonResult)controller.SubCatDetails(scd);
+            var result = (bool)(new PrivateObject(action.Data, "success")).Target;
 
             //Assert
-            Assert.AreEqual("", action.ViewName);
-            Assert.IsNotNull(result);
-            Assert.AreEqual(scd.name, result.name); 
+            Assert.IsTrue(result);
         }
         [TestMethod]
         public void category_subcategories_details_httppost_modelstate_invalid()
@@ -501,10 +494,11 @@ namespace Nettbutikk.Tests
             };
 
             //Act
-            var action = (RedirectToRouteResult)controller.SubCatDetails(scd);
+            var action = (JsonResult)controller.SubCatDetails(scd);
+            var success = (bool)(new PrivateObject(action.Data, "success")).Target;
 
             //Assert
-            Assert.AreEqual("ListSubCategories", action.RouteValues["Action"]);
+            Assert.IsFalse(success);
         }
         [TestMethod]
         public void category_delete_category_httppost_no_child()
