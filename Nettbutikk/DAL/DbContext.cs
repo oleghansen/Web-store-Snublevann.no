@@ -29,17 +29,15 @@ namespace Nettbutikk.DAL
         }
         public int SaveChanges(int userId)
         {
-            // Get all Added/Deleted/Modified entities (not Unmodified or Detached)
+
             foreach (var ent in this.ChangeTracker.Entries().Where(p => p.State == EntityState.Added || p.State == EntityState.Deleted || p.State == EntityState.Modified))
             {
-                // For each changed record, get the audit record entries and add them
                 foreach (AuditLog x in GetAuditRecordsForChange(ent, userId))
                 {
                     this.AuditLogs.Add(x);
                 }
             }
 
-            // Call the original SaveChanges(), which will save both the changes made and the audit records
             return base.SaveChanges();
         }
 

@@ -13,8 +13,6 @@ namespace Nettbutikk.DAL
         bool updateProduct(int id,Product p);
         Product addProduct(int id, Product p);
         List<SubCategory> getAllSubCategories();
-
-
         List<Country> getCountries();
         List<Producer> getProducers();
         bool deleteProduct(int id, int adminid);

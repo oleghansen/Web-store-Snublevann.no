@@ -277,7 +277,7 @@ namespace Nettbutikk.DAL
         private void writeToFile(Exception e)
         {
             string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"nettbutikkFeiLogg.txt";
-            Debug.WriteLine(path);
+
             try
             {
                 using (StreamWriter writer = new StreamWriter(path, true))

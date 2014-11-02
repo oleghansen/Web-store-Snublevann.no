@@ -95,7 +95,6 @@ namespace Nettbutikk.DAL
         private void writeToFile(Exception e)
         {
             string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"nettbutikkFeiLogg.txt";
-            Debug.WriteLine(path);
             try
             {
                 using (StreamWriter writer = new StreamWriter(path, true))
@@ -103,7 +102,6 @@ namespace Nettbutikk.DAL
                     writer.WriteLine("-----------   " + DateTime.Now.ToString() + "   --------------");
                     writer.WriteLine("");
                     writer.WriteLine("Message: " + e.Message + Environment.NewLine
-                        + "InnerMessage: " + e.InnerException.Message + Environment.NewLine
                         + "Stacktrace: " + e.StackTrace + Environment.NewLine);
                 }
             }
