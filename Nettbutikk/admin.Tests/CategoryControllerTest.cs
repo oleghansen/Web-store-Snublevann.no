@@ -499,10 +499,11 @@ namespace Nettbutikk.Tests
             };
 
             //Act
-            var action = (RedirectToRouteResult)controller.SubCatDetails(scd);
+            var action = (JsonResult)controller.SubCatDetails(scd);
+            var success = (bool)(new PrivateObject(action.Data, "success")).Target;
 
             //Assert
-            Assert.AreEqual("ListSubCategories", action.RouteValues["Action"]);
+            Assert.IsFalse(success);
         }
         [TestMethod]
         public void category_delete_category_httppost_no_child()
