@@ -254,7 +254,7 @@ namespace Nettbutikk.admin.Tests
             var controller = new ProductController(new ProductBLL(new ProductDALStub()));
             builder.InitializeController(controller);
             builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
-
+            controller.ViewData.ModelState.AddModelError("feil", "dette ble feil gitt");
             ProductDetail expected = new ProductDetail()
             {
                 itemnumber = 1,
