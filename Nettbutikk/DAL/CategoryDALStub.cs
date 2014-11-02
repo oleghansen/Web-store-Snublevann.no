@@ -181,7 +181,7 @@ namespace Nettbutikk.DAL
 
         public SubCategory SubCatDetails(int id)
         {
-            return null;
+            return getAllSub(id)[0];
         }
 
         public bool update(int id, SubCategory sc, int adminid)

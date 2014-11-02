@@ -20,35 +20,45 @@ namespace Nettbutikk.DAL
                 itemnumber = 1,
                 name = "Tullball",
                 description = "Hei",
-                price = 123
+                price = 123,
+                producerid = 2,
+                producer = "Ringnes"
             };
             var prod1 = new Product()
             {
                 itemnumber = 2,
                 name = "Truse",
                 description = "Hei",
-                price = 23
+                price = 23,
+                producerid = 3,
+                producer = "Fjellbekk"
             };
             var prod2 = new Product()
             {
                 itemnumber = 3,
                 name = "Bjelleklang",
                 description = "Hei",
-                price = 433
+                price = 433,
+                producerid = 4,
+                producer = "Brokkoliekspressen"
             };
             var prod3 = new Product()
             {
                 itemnumber = 4,
                 name = "Bremse",
                 description = "Hei",
-                price = 988
+                price = 988,
+                producerid = 6,
+                producer = "Batman"
             };
             var prod4 = new Product()
             {
                 itemnumber = 5,
                 name = "Apekatt",
                 description = "Hei",
-                price = 900
+                price = 900,
+                producerid = 13,
+                producer = "Robin"
             };
             List<Product> productlist = new List<Product>();
             productlist.Add(prod);
@@ -84,9 +94,14 @@ namespace Nettbutikk.DAL
             var product = new Product()
             {
                 itemnumber = 1,
-                name = "Tull",
-                description = "Ball",
-                price = 230,
+                name = "Tullball",
+                description = "Hei",
+                price = 123,
+                volum = 50,
+                producerid = 2,
+                longDescription = "Tullball er et fantastisk godt drikkeprodukt",
+                subCategoryid = 3,
+                countryid = 1
             };
             return product;   
         }
@@ -112,7 +127,41 @@ namespace Nettbutikk.DAL
 
         public List<SubCategory> getAllSubCategories()
         {
-            return null;
+            List<SubCategory> sub = new List<SubCategory>();
+            sub.Add(new SubCategory()
+            {
+                ID= 1, 
+                name = "Søt",
+                catId = 1,
+                catName = "Øl"
+            });
+            sub.Add(new SubCategory()
+            {
+                ID= 2, 
+                name = "Tørr"
+            });
+            sub.Add(new SubCategory()
+            {
+                ID= 3, 
+                name = "Vodka",
+                catId = 1,
+                catName = "Øl"
+            });
+            sub.Add(new SubCategory()
+            {
+                ID= 4, 
+                name = "Brus",
+                catId = 1,
+                catName = "Øl"
+            });
+            sub.Add(new SubCategory()
+            {
+                ID= 5, 
+                name = "Kaffer",
+                catId = 1,
+                catName = "Øl"
+            });
+            return sub;
         }
 
 
@@ -125,12 +174,53 @@ namespace Nettbutikk.DAL
 
         public List<Country> getCountries()
         {
-
-            return null; 
+            List<Country> country = new List<Country>();
+            country.Add(new Country()
+            {
+                id = 1,
+                name = "Sverige"
+            });
+            country.Add(new Country()
+            {
+                id = 2,
+                name = "Norge"
+            });
+            country.Add(new Country()
+            {
+                id = 3,
+                name = "Danmark"
+            });
+            return country;
         }
         public List<Producer> getProducers()
         {
-            return null; 
+            List<Producer> producer = new List<Producer>();
+            producer.Add(new Producer()
+            {
+                id = 1,
+                name = "Ringnger"
+            });
+            producer.Add(new Producer()
+            {
+                id = 2,
+                name = "Carlsberg"
+            });
+            producer.Add(new Producer()
+            {
+                id = 3,
+                name = "Fjellelc"
+            });
+            producer.Add(new Producer()
+            {
+                id = 4,
+                name = "Tromsøvann"
+            });
+            producer.Add(new Producer()
+            {
+                id = 5,
+                name = "Absolute"
+            });
+            return producer;
         }
         public bool deleteProduct(int id, int adminid)
         {
