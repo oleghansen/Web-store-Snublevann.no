@@ -485,5 +485,28 @@ namespace Nettbutikk.Tests
             Assert.IsNotNull(result);
             Assert.AreEqual(scd.name, result.name); 
         }
+        [TestMethod]
+        public void category_subcategories_details_httppost_modelstate_invalid()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new CategoryController(new CategoryBLL(new CategoryDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
+            controller.ViewData.ModelState.AddModelError("error", "feilmelding");
+            var scd = new SubCategoryDetail()
+            {
+                ID = 8,
+                name = "Cappucino"
+            };
+
+            //Act
+            var action = (RedirectToRouteResult)controller.SubCatDetails(scd);
+
+            //Assert
+            Assert.AreEqual("ListSubCategories", action.RouteValues["Action"]);
+
+
+        }
     }
 }
