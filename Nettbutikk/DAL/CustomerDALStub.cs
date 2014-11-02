@@ -90,7 +90,7 @@ namespace Nettbutikk.DAL
             {
                 id = 1,
                 email = "stats@minister.no",
-                password = "konge",
+                hashpassword = System.Security.Cryptography.SHA256.Create().ComputeHash(System.Text.Encoding.ASCII.GetBytes("konge")),
                 admin = true
             };
             return cust;
