@@ -14,7 +14,7 @@ using PagedList;
 namespace Nettbutikk.Tests
 {
     [TestClass]
-    public class CustomerBLLTest
+    public class CustomerControllerTest
     {
         [TestMethod]
         public void List_All_Customers()
