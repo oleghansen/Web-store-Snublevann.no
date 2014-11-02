@@ -157,6 +157,26 @@ namespace Nettbutikk.admin.Tests
             Assert.IsTrue(string.Compare(result[0].producer, result[1].producer) <= 0);
         }
 
+        [TestMethod]
+        public void product_list_products_Producer_desc()
+        {
+            // Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+
+            var controller = new ProductController(new ProductBLL(new ProductDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
+
+            // Act
+            var action = (ViewResult)controller.ListProducts(2, 2, "producer_desc", null, null);
+            var result = (IPagedList<ProductInfo>)action.Model;
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual(2, result.PageNumber);
+            Assert.IsTrue(string.Compare(result[0].producer, result[1].producer) >= 0);
+        }
+        
 
     }
 }
