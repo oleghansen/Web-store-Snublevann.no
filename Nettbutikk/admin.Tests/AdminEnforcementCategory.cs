@@ -152,7 +152,7 @@ namespace Nettbutikk.Tests
             var controller = new CategoryController(new CategoryBLL(new CategoryDALStub()));
 
             //Act
-            var result = (RedirectToRouteResult)controller.SubCatDetails(0,null);
+            var result = (RedirectToRouteResult)controller.SubCatDetails(null);
 
             //Assert
             Assert.AreEqual("LogIn", result.RouteValues["Action"]);

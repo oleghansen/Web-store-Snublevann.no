@@ -358,5 +358,155 @@ namespace Nettbutikk.Tests
             //Assert
             Assert.IsFalse(success);
         }
+
+        [TestMethod]
+        public void category_list_subcategories()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new CategoryController(new CategoryBLL(new CategoryDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
+
+            //Act
+            var action = (ViewResult)controller.ListSubCategories(2, 2, null, null, null);
+            var result = (PagedList<SubCategoryInfo>)action.Model;
+
+            //Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual(2, result.PageNumber);
+            Assert.IsInstanceOfType(result, typeof(IPagedList<SubCategoryInfo>));
+            Assert.IsTrue(result[0].ID < result[1].ID);
+        }
+        [TestMethod]
+        public void category_list_subcategories_sort_id_desc()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new CategoryController(new CategoryBLL(new CategoryDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
+
+            //Act
+            var action = (ViewResult)controller.ListSubCategories(2, 2, "id_desc", null, null);
+            var result = (PagedList<SubCategoryInfo>)action.Model;
+
+            //Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual(2, result.PageNumber);
+            Assert.IsInstanceOfType(result, typeof(IPagedList<SubCategoryInfo>));
+            Assert.IsTrue(result[0].ID > result[1].ID);
+        }
+        [TestMethod]
+        public void category_list_subcategories_sort_name()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new CategoryController(new CategoryBLL(new CategoryDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
+
+            //Act
+            var action = (ViewResult)controller.ListSubCategories(2, 2, "Name", null, null);
+            var result = (PagedList<SubCategoryInfo>)action.Model;
+
+            //Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual(2, result.PageNumber);
+            Assert.IsInstanceOfType(result, typeof(IPagedList<SubCategoryInfo>));
+            Assert.IsTrue(string.Compare(result[0].name, result[1].name) < 0);
+        }
+        [TestMethod]
+        public void category_list_subcategories_sort_name_desc()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new CategoryController(new CategoryBLL(new CategoryDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
+
+            //Act
+            var action = (ViewResult)controller.ListSubCategories(2, 2, "name_desc", null, null);
+            var result = (PagedList<SubCategoryInfo>)action.Model;
+
+            //Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual(2, result.PageNumber);
+            Assert.IsInstanceOfType(result, typeof(IPagedList<SubCategoryInfo>));
+            Assert.IsTrue(string.Compare(result[0].name, result[1].name) > 0);
+        }
+        [TestMethod]
+        public void category_subcategories_details_view()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new CategoryController(new CategoryBLL(new CategoryDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
+
+            SubCategory expected = new SubCategory()
+            {
+                ID = 4,
+                name = "Mokka",
+                catName = "Kaffe"
+            }; 
+
+            //Act
+            var action = (ViewResult)controller.SubCatDetails(expected.ID);
+            var result = (SubCategoryDetail)action.Model;
+
+            //Assert
+            Assert.AreEqual("", action.ViewName);
+            Assert.IsNotNull(result);
+            Assert.IsNotNull(result.categoryList);  
+        }
+
+        [TestMethod]
+        public void category_subcategories_details_httppost()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new CategoryController(new CategoryBLL(new CategoryDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
+
+            var scd = new SubCategoryDetail()
+            {
+                ID = 8,
+                name = "Cappucino"
+            };
+
+            //Act
+            var action = (ViewResult)controller.SubCatDetails(scd);
+            var result = (SubCategoryDetail)action.Model;
+
+            //Assert
+            Assert.AreEqual("", action.ViewName);
+            Assert.IsNotNull(result);
+            Assert.AreEqual(scd.name, result.name); 
+        }
+        [TestMethod]
+        public void category_subcategories_details_httppost_modelstate_invalid()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new CategoryController(new CategoryBLL(new CategoryDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
+            controller.ViewData.ModelState.AddModelError("error", "feilmelding");
+            var scd = new SubCategoryDetail()
+            {
+                ID = 8,
+                name = "Cappucino"
+            };
+
+            //Act
+            var action = (RedirectToRouteResult)controller.SubCatDetails(scd);
+
+            //Assert
+            Assert.AreEqual("ListSubCategories", action.RouteValues["Action"]);
+
+
+        }
     }
 }

@@ -69,8 +69,38 @@ namespace Nettbutikk.DAL
                 name = "Rusbrus",
                 catName = "ØL"
             };
+            var cat1 = new SubCategory()
+            {
+                ID = 2,
+                name = "Preskanne",
+                catName = "Kaffe"
+            };
+            var cat2 = new SubCategory()
+            {
+                ID = 3,
+                name = "Pulver",
+                catName = "Kaffe"
+            };
+            var cat3 = new SubCategory()
+            {
+                ID = 4,
+                name = "Mokka",
+                catName = "Kaffe"
+            };
+            var cat4 = new SubCategory()
+            {
+                ID = 5,
+                name = "Latte",
+                catName = "Kaffe"
+            };
+
             List<SubCategory> sublist = new List<SubCategory>();
             sublist.Add(cat);
+            sublist.Add(cat1);
+            sublist.Add(cat2);
+            sublist.Add(cat3);
+            sublist.Add(cat4);
+
             return sublist;
         }
 
@@ -151,7 +181,7 @@ namespace Nettbutikk.DAL
 
         public SubCategory SubCatDetails(int id)
         {
-            return null;
+            return getAllSub(id)[0];
         }
 
         public bool update(int id, SubCategory sc, int adminid)
