@@ -246,5 +246,29 @@ namespace Nettbutikk.Tests
             //Assert
             Assert.IsFalse(success);
         }
+
+        [TestMethod]
+        public void category_update_category_details()
+        {
+            //Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var controller = new CategoryController(new CategoryBLL(new CategoryDALStub()));
+            builder.InitializeController(controller);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { id = 1, admin = true };
+
+            CategoryInfo expected = new CategoryInfo()
+            {
+                id = 2,
+                name = "Brennevin"
+            };
+
+            //Act
+            var action = (ViewResult)controller.updateCatergoryDetails(expected.id);
+            var result = (CategoryInfo)action.Model; 
+
+            //Assert
+            Assert.AreEqual(expected.id, result.id);
+            Assert.AreEqual(expected.name, result.name); 
+        }
     }
 }
