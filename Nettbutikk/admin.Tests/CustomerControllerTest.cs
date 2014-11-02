@@ -317,6 +317,24 @@ namespace Nettbutikk.Tests
         }
 
 
+        [TestMethod]
+        public void customer_list_details()
+        {
+            // Arrange
+            TestControllerBuilder builder = new TestControllerBuilder();
+            var bll = new CustomerController(new CustomerBLL(new CustomerDALStub()));
+            builder.InitializeController(bll);
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+
+            // Act
+            var actual = (ViewResult)bll.CustomerDetails(2);
+            var result = actual.Model;
+
+            // Assert
+            Assert.IsNotNull(result);
+        }
+
+
 
         [TestMethod]
         public void Hashed_password_Not_Null()
