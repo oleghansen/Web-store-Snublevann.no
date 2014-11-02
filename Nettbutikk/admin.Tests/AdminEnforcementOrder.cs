@@ -37,20 +37,7 @@ namespace Nettbutikk.Tests
             Assert.AreEqual("LogIn", result.RouteValues["Action"]);
             Assert.AreEqual("Main", result.RouteValues["Controller"]);
         }
-        [TestMethod]
-        public void non_admin_order_details()
-        {
-            //Arrange
-            var controller = new OrderController(new OrderBLL(new OrderDALStub()));
-
-            //Act
-            var result = (RedirectToRouteResult)controller.Details(0);
-
-            //Assert
-            Assert.AreEqual("LogIn", result.RouteValues["Action"]);
-            Assert.AreEqual("Main", result.RouteValues["Controller"]);
-        }
-
+       
         [TestMethod]
         public void non_admin_order_show_receipt()
         {

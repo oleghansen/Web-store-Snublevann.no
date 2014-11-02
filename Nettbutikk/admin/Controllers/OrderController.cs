@@ -201,27 +201,17 @@ namespace Nettbutikk.admin.Controllers
             
         }
 
-
-        public ActionResult Details(int id)
-        {
-            if (!isAdmin())
-                return RedirectToAction("LogIn", "Main"); 
-            Order orderDetails = _orderbll.getOne(id);
-            return View(orderDetails);
-        }
-
         public ActionResult showReceipt(int id)
         {
 
             if (!isAdmin())
                 return RedirectToAction("LogIn", "Main");
           
-            List<Order> allOrders = _orderbll.getAllOrders(id);
+            Order allOrders = _orderbll.getAllOrders(id)[0];
             BillingViewModel b = null;
-           foreach(var item in allOrders)
-           {
+        
                List<int> s = new List<int>();
-               foreach(var i in item.orderLine)
+               foreach(var i in allOrders.orderLine)
                {
                    
                      s.Add(i.quantity * i.product.price);
@@ -229,19 +219,18 @@ namespace Nettbutikk.admin.Controllers
                
                b = new BillingViewModel() 
                {
-                    customer = item.customer,
-                    order = item,
-                    ordreid = item.id,  
-                    orderdate = item.orderdate,
-                    shoppingcart = item.orderLine,
-                    totsum = _orderbll.getSum(item),
-                    mva = _orderbll.getMva(_orderbll.getSum(item)), 
-                    exmva = _orderbll.getExmva(_orderbll.getSum(item)),
+                    customer = allOrders.customer,
+                    order = allOrders,
+                    ordreid = allOrders.id,  
+                    orderdate = allOrders.orderdate,
+                    shoppingcart = allOrders.orderLine,
+                    totsum = _orderbll.getSum(allOrders),
+                    mva = _orderbll.getMva(_orderbll.getSum(allOrders)), 
+                    exmva = _orderbll.getExmva(_orderbll.getSum(allOrders)),
                     sum = s
                     
                };
-               
-           }
+              
             return View(b);
         }
         private bool isAdmin()

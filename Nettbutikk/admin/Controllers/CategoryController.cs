@@ -213,13 +213,7 @@ namespace Nettbutikk.admin.Controllers
                 }))
                     return Json(new { success = true, message = "Ny subkategori ble lagt til", redirect = "/Category/ListSubCategories/" });
             }
-
             return Json(new { success = false, message = "Dette gikk ikke så bra, prøv igjen en annen gang" });
-
-
-            //sc.categoryList = _categoryBLL.getAll(null).Select(c => new SelectListItem { Value = c.ID.ToString(), Text = c.name }).ToList();
-            //ehm burde ikke denn flyttes nedover ??
-           
         }
 
         public ActionResult ListSubCategories(int? page, int? itemsPerPage, string sortOrder, string currentFilter, string searchString)
@@ -227,8 +221,9 @@ namespace Nettbutikk.admin.Controllers
             if (!isAdmin())
                 return RedirectToAction("LogIn", "Main");
             ViewBag.CurrentSort = sortOrder;
-            ViewBag.ItemSortParm = String.IsNullOrEmpty(sortOrder) ? "item_desc" : "";
+            ViewBag.IdSortParm = String.IsNullOrEmpty(sortOrder) ? "id_desc" : "";
             ViewBag.NameSortParm = sortOrder == "Name" ? "name_desc" : "Name";
+            ViewBag.CatNameSortParm = sortOrder == "CatName" ? "catname_desc" : "CatName";
             if (searchString != null)
                 page = 1;
             else
@@ -239,11 +234,20 @@ namespace Nettbutikk.admin.Controllers
 
             switch (sortOrder)
             {
-                case "item_desc":
+                case "id_desc":
                     allSubCategories = allSubCategories.OrderByDescending(s => s.ID).ToList();
                     break;
                 case "name_desc":
                     allSubCategories = allSubCategories.OrderByDescending(s => s.name).ToList();
+                    break;
+                case "Name":
+                    allSubCategories = allSubCategories.OrderBy(s => s.name).ToList();
+                    break;
+                case "catname_desc":
+                    allSubCategories = allSubCategories.OrderByDescending(s => s.catName).ToList();
+                    break;
+                case "CatName":
+                    allSubCategories = allSubCategories.OrderBy(s => s.catName).ToList();
                     break;
                 default:
                     allSubCategories = allSubCategories.OrderBy(s => s.ID).ToList();

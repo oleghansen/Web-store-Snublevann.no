@@ -68,48 +68,6 @@ namespace Nettbutikk.BLL
             return list;
         }
 
-        public List<OrderLine> getAllOrderLinesOfOrder(int id)
-        {
-           /*  ICustomerDAL _customer = new CustomerDAL();
-             ICustomerDAL _customer = new CustomerDAL();
-            IProductDAL _product = new ProductDAL();
-            List<OrderLine> orderlineslist = new List<OrderLine>();
-            List<OrderLine> OLlist = _order.getAllOrderLinesOfOrder(id);
-
-            foreach (var item in OLlist){
-
-                var order = new Order()
-                {
-                     id = item.id,
-                      orderdate = order.orderdate
-                };
-
-                orderlineslist.Add(new OrderLine()
-                {
-                    id = item.id,
-                    productid = item.productid,
-                    quantity = item.quantity,
-                    product = _product.findProduct(item.productid),
-                    orderid =  id,
-                    order = 
-
-                });
-
-            }
-
-                */
-            return null;
-        }
-
-        public  Customer getCustomer(int id)
-        {
-            return null;
-        }
-
-        public Order getOne(int id)
-        {
-            return _order.getOrder(id);
-        }
         public int getNumItems(Order o)
         {
             var num = 0;
