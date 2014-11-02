@@ -90,11 +90,30 @@ namespace Nettbutikk.DAL
                 productid = 100001,
                 quantity = 3,
                 orderid = 298423,
+                
+
+            };
+            var orderline1 = new OrderLine()
+            {
+                id = 2,
+                productid = 100002,
+                quantity = 4,
+                orderid = 298424,
+
+
+            };
+            var orderline2 = new OrderLine()
+            {
+                id = 2,
+                productid = 100002,
+                quantity = 4,
+                orderid = 298425,
+
 
             };
             olList.Add(orderline);
-            olList.Add(orderline);
-            olList.Add(orderline);
+            olList.Add(orderline1);
+            olList.Add(orderline2);
             return olList;
         }
 
