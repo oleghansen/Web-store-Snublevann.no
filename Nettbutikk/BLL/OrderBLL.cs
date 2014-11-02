@@ -12,15 +12,21 @@ namespace Nettbutikk.BLL
     public class OrderBLL : BLL.IOrderBLL
     {
         private IOrderDAL _order;
+        private IProductDAL _product;
+        private ICustomerDAL _customer;
 
         public OrderBLL()
         {
             _order = new OrderDAL();
+            _product = new ProductDAL();
+            _customer = new CustomerDAL();
         }
 
         public OrderBLL(IOrderDAL stub)
         {
             _order = stub;
+            _product = new ProductDALStub();
+            _customer = new CustomerDALStub();
         }
 
         public List<Order> getAllOrders(int? id)
@@ -29,8 +35,6 @@ namespace Nettbutikk.BLL
 
             sw.Start();
 
-            ICustomerDAL _customer = new CustomerDAL();
-            IProductDAL _product = new ProductDAL();
             List<Order> allOrders = _order.getAllOrders(id);
             List<Order> list = new List<Order>();
             

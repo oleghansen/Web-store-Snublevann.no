@@ -47,9 +47,11 @@ namespace Nettbutikk.admin.Controllers
                 {
                     Session["loggedInUser"] = admin;
                     return RedirectToAction("Main");
-                }return View();
+                }
+                return View();
                 
-            }return View();
+            }
+            return View();
         }
 
         private bool isAdmin()
