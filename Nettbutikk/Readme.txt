@@ -5,6 +5,10 @@
 Begrunnelse av valg vi har gjort
 ================================
 
+	Oppstart av løsningen
+	------------------------------
+	Vi har valgt å lage admin sider som et nytt prosjekt i samme løsning. Vi benytter
+	sa
 
 	Admin kan ikke opprette bruker
 	------------------------------
@@ -17,7 +21,7 @@ Begrunnelse av valg vi har gjort
 	------------------------------
 	Det er mulig å opprette underkategorier, men de vil ikke vises i nettbutikken. 
 	Dette er fordi underkategoriene på dette tidspunktet er hardkodet inn i drop-downlistene
-	på adminsiden.
+	i nettbutikken.
 
 
 	Sletting fra databasen
@@ -38,3 +42,5 @@ Begrunnelse av valg vi har gjort
 	nettbutikken. Bildene vil imidlertid få et "defaultbilde". Hvis man vil kan 
 	man på dette tidspunktet  legge inn et bilde manuelt i /img/products/ og kalle
 	bildet "[varenummer].png" - og det vil synes i nettbutikken. 
+
+
