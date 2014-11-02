@@ -70,7 +70,7 @@
                             @Html.DisplayFor(modelItem => item.sum)
                         </td>
                         <td class="pull-right" style="margin-top: 3px">
-                            <a href="@Url.Action("ListCustomersOrderLines", "Customer", new { id = Model[0].id })" title="Vis ordrelinje" class="btn btn-xs btn-default" id="defaultButton">
+                            <a href="@Url.Action("ListCustomersOrderLines", "Customer", new { id = item.id })" title="Vis ordrelinje" class="btn btn-xs btn-default" id="defaultButton">
                                 <span class="glyphicon glyphicon-list"></span>
                             </a>
                             <a href="@Url.Action("showReceipt", "Order", new { id = Model[0].id })" title="Vis kvittering" class="btn btn-xs btn-default" id="defaultButton">

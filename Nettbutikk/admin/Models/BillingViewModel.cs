@@ -26,11 +26,11 @@ namespace Nettbutikk.admin.Models
             [DisplayFormat(DataFormatString = "{0:C}")]
             public double mva { get; set; }
             [DisplayFormat(DataFormatString = "{0:C}")]
-          
-        
-            
+
             public double totsum { get; set; }
             public int quantity { get; set; }
+           
+          
         
     }
 }
