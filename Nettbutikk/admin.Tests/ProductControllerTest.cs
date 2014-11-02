@@ -65,14 +65,17 @@ namespace Nettbutikk.admin.Tests
 
             var controller = new ProductController(new ProductBLL(new ProductDALStub()));
             builder.InitializeController(controller);
-            builder.HttpContext.Session["loggedInUser"] = new Customer() { admin = true };
+            builder.HttpContext.Session["loggedInUser"] = new Customer() { id=1, admin = true };
 
             // Act
             var action = (ViewResult)controller.ListProducts(2, 2, "name_desc", null, null);
             var result = (IPagedList<ProductInfo>)action.Model;
 
             // Assert
-            Assert.IsTrue(string.Compare(result[0].name, result[1].name) > 0);
+            Assert.IsNotNull(result);
+            Assert.AreEqual(2, result.PageNumber);
+            Assert.IsTrue(string.Compare(result[0].name, result[1].name) > 0);    
         }
+
     }
 }
