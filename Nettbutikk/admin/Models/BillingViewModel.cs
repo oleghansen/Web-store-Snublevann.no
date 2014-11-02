@@ -29,8 +29,8 @@ namespace Nettbutikk.admin.Models
 
             public double totsum { get; set; }
             public int quantity { get; set; }
-            [DisplayFormat(DataFormatString = "{0:C}")]
-            public double productprice { get; set; }
+           
+          
         
     }
 }
